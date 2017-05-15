@@ -1,0 +1,6 @@
+---
+description: Shebang
+tabTrigger:  sb
+scope:       source.python
+---
+#!/usr/bin/env python${1:3}

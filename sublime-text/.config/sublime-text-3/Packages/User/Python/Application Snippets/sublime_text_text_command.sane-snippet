@@ -1,0 +1,8 @@
+---
+description: Sublime Text TextCommand
+tabTrigger:  st_text_cmd
+scope:       source.python
+---
+class ${1:TestCommand}Command(sublime_plugin.TextCommand):
+    def run(self, edit):
+    	${2:pass}

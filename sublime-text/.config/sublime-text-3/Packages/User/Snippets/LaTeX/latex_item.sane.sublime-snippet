@@ -1,0 +1,3 @@
+<snippet><description>Item</description><tabTrigger>i</tabTrigger><scope>text.tex.latex</scope><content><![CDATA[
+\item $0
+]]></content></snippet>

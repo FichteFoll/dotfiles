@@ -1,0 +1,24 @@
+{
+  /**
+   *  Zeal executable path.
+   *  For Linux: /usr/bin/zeal
+   *  For Windows: c:\\Program Files\\Zeal\\zeal.exe
+   */
+  // "zeal_command": "c:\\Program Files (x86)\\Zeal\\zeal.exe",
+
+  /**
+   * Language mapping.
+   */
+  "language_mapping": {
+    "HTML": {"lang": "html", "zeal_lang": "html"},
+    "JavaScript": {"lang": "javascript", "zeal_lang": "javascript"},
+    "CSS": {"lang": "css", "zeal_lang": "css"},
+    "PHP": {"lang": "php", "zeal_lang": "php"},
+    "Lua": {"lang": "lua", "zeal_lang": "lua"},
+    "Python": {"lang": "python", "zeal_lang": "python"},
+    // "Python 3": {"lang": "python", "zeal_lang": "python3"},
+    // "Python 2": {"lang": "python", "zeal_lang": "python2"},
+    "Ruby": {"lang": "ruby", "zeal_lang": "ruby"},
+    "Rust": {"lang": "rust", "zeal_lang": "rust"}
+  }
+}

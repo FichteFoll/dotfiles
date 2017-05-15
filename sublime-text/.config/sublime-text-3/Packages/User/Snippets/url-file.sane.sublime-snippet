@@ -1,0 +1,4 @@
+<snippet><description>URL file content</description><tabTrigger>url</tabTrigger><scope>source.ini</scope><content><![CDATA[
+[InternetShortcut]
+URL=$1
+]]></content></snippet>

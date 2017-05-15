@@ -1,0 +1,10 @@
+{
+    "shell_cmd": "source ./.venv/bin/activate && python -u \"$file\"",
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "working_dir": "${project_path:${folder:$file_path}}",
+    "selector": "source.python",
+
+    "windows": {
+        "shell_cmd": ".\\venv\\Scripts\\activate.bat & python -u \"$file\""
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "show_commit_diff": true,
+    "inline_diff_auto_scroll": true,
+    "fallback_encoding": "cp-850",
+    "show_remotes_in_branch_dashboard": true,
+    "show_remotes_in_tags_dashboard": true,
+    "api_tokens": {
+        // "github.com": "ADD YOUR TOKEN HERE"
+    },
+    "tab_order": [
+        "status",
+        "branch",
+        "rebase",
+        "graph"
+    ]
+}

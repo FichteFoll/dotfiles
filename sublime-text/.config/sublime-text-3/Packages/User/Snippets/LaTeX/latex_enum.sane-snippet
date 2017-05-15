@@ -1,0 +1,8 @@
+---
+description: Enumeration (annotated)
+tabTrigger:  enum
+scope:       text.tex.latex
+---
+\begin{enumerate}${1/(.+)/\[/}$1${1/(.+)/\]/}
+	\item $0
+\end{enumerate}

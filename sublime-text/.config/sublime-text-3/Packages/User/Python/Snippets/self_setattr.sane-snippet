@@ -1,0 +1,6 @@
+---
+description: self.… = …
+tabTrigger:  s
+scope:       source.python
+---
+self.$1 = $1

@@ -1,0 +1,3 @@
+<snippet><description>self.… = …</description><tabTrigger>s</tabTrigger><scope>source.python</scope><content><![CDATA[
+self.$1 = $1
+]]></content></snippet>

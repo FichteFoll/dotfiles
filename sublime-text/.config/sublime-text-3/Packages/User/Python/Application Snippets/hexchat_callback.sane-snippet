@@ -1,0 +1,7 @@
+---
+description: Hexchat Callback
+tabTrigger:  hcc
+scope:       source.python
+---
+def ${1:event}_cb(word, word_eol, ${2:userdata}):
+    ${3:pass}

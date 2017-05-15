@@ -1,0 +1,10 @@
+{
+	"debug": false,
+	"monospace_font": false,
+	"prettify_history": true,
+	"remove_non_existent_files_on_preview": true,
+	"timestamp_format": "%Y-%m-%d %H:%M:%S",
+	"timestamp_mode": "history_access",
+    "cleanup_on_startup": true,
+    "reopen_file_in_current_group": false
+}

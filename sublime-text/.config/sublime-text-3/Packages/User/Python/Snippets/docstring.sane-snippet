@@ -1,0 +1,6 @@
+---
+description: Doc String
+tabTrigger:  doc
+scope:       source.python
+---
+"""${1:$SELECTION}"""

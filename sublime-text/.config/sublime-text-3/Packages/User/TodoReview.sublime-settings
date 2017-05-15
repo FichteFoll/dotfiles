@@ -1,0 +1,23 @@
+{
+    "patterns": {
+        "TODO": "\\bTODO(:|\\s)+(?P<todo>.*)$",
+        "TOCHECK": "\\b(TOCHECK|CHECK ?ME)(:|\\s)+(?P<tocheck>.*)$",
+        "XXX": "\\bXXX(:|\\s)+(?P<xxx>.*)$",
+        "TOFIX": "\\b(TOFIX|FIX ?ME)(:|\\s)+(?P<tofix>.*)$"
+    },
+    "patterns_weight": {
+        "TOFIX": 1,
+        "TODO": 2,
+        "TOCHECK": 3,
+        "XXX": 4
+    },
+    "render_header_date": "%A %y-%m-%d at %H:%M",
+    "render_folder_depth": 3,
+    "exclude_folders": [
+        "*.git*",
+        "*node_modules*",
+        "*.venv*",
+        "htmlcov"
+    ],
+    "render_include_folder": true
+}

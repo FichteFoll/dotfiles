@@ -1,0 +1,20 @@
+{
+    "shell_cmd": "py.test --color no",
+    "selector": "",
+    "file_regex": "^(.*?):(\\d+):",
+    "env": {
+        "TINYCSS_SKIP_SPEEDUPS_TESTS": "a"
+    },
+
+    "variants": [
+        {
+            "name": "Run quiet",
+            "shell_cmd": "py.test -q --color no"
+        },
+        {
+            "name": "Project root",
+            "working_dir": "${project_path:${folder}}"
+        },
+    ]
+
+}

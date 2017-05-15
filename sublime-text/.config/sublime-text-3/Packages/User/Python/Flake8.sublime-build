@@ -1,0 +1,14 @@
+{
+    "cmd": ["flake8", "--exit-zero", "$file"],
+    "file_regex": "^(.+):([0-9]+):(\\d+): (.*)",
+    "working_dir": "${folder:${project_path:$file_path}}",
+    "selector": "source.python",
+
+    "variants": [
+        {
+            "name": "Project",
+            "cmd": ["flake8", ".", "--exit-zero", "--exclude=.git,__pycache__,.venv*,node_modules"],
+            "working_dir": "${folder:${project_path:$file_path}}"
+        }
+    ]
+}

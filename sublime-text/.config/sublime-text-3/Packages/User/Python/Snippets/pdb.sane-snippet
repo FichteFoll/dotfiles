@@ -1,0 +1,6 @@
+---
+description: Invoke pdb
+tabTrigger:  pdb
+scope:       source.python
+---
+import pdb; pdb.set_trace()

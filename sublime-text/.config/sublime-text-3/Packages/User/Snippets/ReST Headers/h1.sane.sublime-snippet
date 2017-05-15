@@ -1,0 +1,5 @@
+<snippet><description>Heading 1</description><tabTrigger>h1</tabTrigger><scope>text.html.markdown, text.restructuredtext</scope><content><![CDATA[
+${1/./=/g}
+${1:Heading 1}
+${1/./=/g}
+]]></content></snippet>

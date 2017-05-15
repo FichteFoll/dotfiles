@@ -1,0 +1,8 @@
+---
+description: Heading 1
+tabTrigger:  h1
+scope:       text.html.markdown, text.restructuredtext
+---
+${1/./=/g}
+${1:Heading 1}
+${1/./=/g}

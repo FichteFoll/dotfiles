@@ -1,0 +1,7 @@
+---
+description: Sublime Text EventListener
+tabTrigger:  st_listener
+scope:       source.python
+---
+class ${1:TestListener}(sublime_plugin.EventListener):
+	${2:pass}

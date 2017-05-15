@@ -1,0 +1,106 @@
+{
+    "upper_case_hex": false,
+    "use_webcolor_names": false,
+    "inline_preview_position": "right",
+    // Scanning rules
+    "color_scanning": [
+        {
+            "base_scopes": ["source.csscheme"],
+            "scan_scopes": ["constant.other.color-hash"],
+            "allowed_colors": ["hex", "hexa", "hex_compressed"],
+            "use_hex_argb": false,
+            "compress_hex_output": false
+        },
+        {
+            "base_scopes": ["source.csscheme.scss"],
+            "scan_scopes": ["meta.function, constant.other.color-hash"],
+            "allowed_colors": ["css3", "hexa"],
+            "use_hex_argb": false,
+            "compress_hex_output": false
+        },
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": [
+                "source.css",
+                "text.html"
+            ],
+            "scan_scopes": [
+                // https://packagecontrol.io/packages/CSS3
+                "meta.property-list.css -support.type.property-name.css -comment -string",
+                // CSS, CSS in HTML etc. (based on: Sublime Default)
+                "meta.property-value.css -comment -string",
+                // CSS3, CSS3 in HTML etc. (based on: https://packagecontrol.io/packages/CSS3)
+                "meta.value.css -comment -string",
+                // HTML attributes (based on: Sublime Default)
+                "meta.tag.inline.any.html string.quoted",
+                "meta.tag.any.html meta.attribute-with-value.style.html"
+            ],
+            "scan_completion_scopes": [],
+            "extensions": [],
+            "allowed_colors": ["css3"],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        },
+        {
+            // A number of sass and scss syntaxes are bundled together
+            // So we will just bundle all the scss and sass rules together
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": [
+                "source.scss",
+                "source.sass"
+            ],
+            "scan_scopes": [
+                // Sass and SCSS (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
+                "meta.property-list.css.sass -comment -string",
+                // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
+                "constant.other.rgb-value.sass -comment -string",
+                // SCSS (based on https://packagecontrol.io/packages/SCSS)
+                "constant.other.color.rgb-value.scss -comment -string",
+                // SCSS (based on https://packagecontrol.io/packages/SCSS)
+                "constant.other.color.rgb-value.scss",
+                "support.constant.color.w3c-standard-color-name.scss",
+                "meta.property-value.scss",
+                // Sass and SCSS script maps (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
+                "sass-script-maps -variable.other -comment -string"
+            ],
+            "scan_completion_scopes": [
+                // SCSS (based on https://packagecontrol.io/packages/SCSS)
+                // Sass (based on https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20PostCSS)
+                // Sass and SCSS script maps (based on: https://packagecontrol.io/packages/Syntax%20Highlighting%20for%20Sass)
+                "source.scss -comment -string",
+                "source.sass -comment -string"
+            ],
+            "extensions": [],
+            "allowed_colors": ["css3"],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        },
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": ["text.xml"],
+            "scan_scopes": ["text.xml -meta.tag.xml -comment -string"],
+            "allowed_colors": ["hex", "hexa"],
+            "extensions": [".tmTheme"],
+            "use_hex_argb": false,
+            "compress_hex_output": false
+        },
+        {
+            "syntax_files": [],
+            "syntax_filter": "whitelist",
+            "base_scopes": ["source.stylus"],
+            "scan_scopes": [
+                // Based on https://github.com/billymoon/Stylus/blob/master/Stylus.tmLanguage
+                "constant.other.color.rgb-value.stylus",
+                "constant.color.w3c-standard-color-name.stylus",
+                "meta.property-value.stylus"
+            ],
+            "allowed_colors": ["css3"],
+            "extensions": [],
+            "use_hex_argb": false,
+            "compress_hex_output": true
+        }
+    ]
+}

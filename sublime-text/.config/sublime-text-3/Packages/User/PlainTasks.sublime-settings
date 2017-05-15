@@ -1,0 +1,13 @@
+{
+    // plugin settings
+    "date_format": "(%Y-%m-%d %H:%M)",
+    "show_remain_due": true,
+    "before_date_space": "",
+
+    // normal setting overrides
+    "color_scheme": "Packages/Theme - Nil/Tubnil_mod.tmTheme",
+    // "color_scheme": "Packages/PlainTasks/tasks-monokai.hidden-tmTheme",
+    "line_numbers": true,
+    "line_numbers": true,
+    "draw_indent_guides": true,
+}

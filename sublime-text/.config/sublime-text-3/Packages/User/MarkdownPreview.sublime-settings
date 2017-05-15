@@ -1,0 +1,7 @@
+{
+    "show_panel_on_build": true,
+    "parser": "github",
+    "github_inject_header_ids": true,
+    "build_action": "browser",
+    "file_path_conversions": "relative"
+}

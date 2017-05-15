@@ -1,0 +1,5 @@
+<snippet><description>Enumeration (annotated)</description><tabTrigger>enum</tabTrigger><scope>text.tex.latex</scope><content><![CDATA[
+\begin{enumerate}${1/(.+)/\[/}$1${1/(.+)/\]/}
+	\item $0
+\end{enumerate}
+]]></content></snippet>

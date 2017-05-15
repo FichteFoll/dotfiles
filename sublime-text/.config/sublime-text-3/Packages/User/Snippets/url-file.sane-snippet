@@ -1,0 +1,7 @@
+---
+description: URL file content
+tabTrigger:  url
+scope:       source.ini
+---
+[InternetShortcut]
+URL=$1

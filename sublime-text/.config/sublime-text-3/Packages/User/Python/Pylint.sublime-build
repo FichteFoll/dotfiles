@@ -1,0 +1,6 @@
+{
+    "shell_cmd": "pylint \"$file\"",
+    //"file_regex": "^\\*+ Module ().*",
+    "line_regex": "^\\w: *(\\d+), *(\\d+): (.*)",
+    "selector": "source.python"
+}

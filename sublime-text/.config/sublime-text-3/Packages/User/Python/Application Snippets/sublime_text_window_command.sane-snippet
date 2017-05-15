@@ -1,0 +1,8 @@
+---
+description: Sublime Text WindowCommand
+tabTrigger:  st_win_cmd
+scope:       source.python
+---
+class ${1:TestCommand}Command(sublime_plugin.WindowCommand):
+    def run(self):
+    	${2:pass}

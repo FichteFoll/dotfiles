@@ -1,0 +1,6 @@
+---
+description: Item
+tabTrigger:  i
+scope:       text.tex.latex
+---
+\item $0

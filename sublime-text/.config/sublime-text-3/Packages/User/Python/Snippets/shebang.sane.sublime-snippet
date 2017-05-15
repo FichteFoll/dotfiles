@@ -1,0 +1,3 @@
+<snippet><description>Shebang</description><tabTrigger>sb</tabTrigger><scope>source.python</scope><content><![CDATA[
+#!/usr/bin/env python${1:3}
+]]></content></snippet>

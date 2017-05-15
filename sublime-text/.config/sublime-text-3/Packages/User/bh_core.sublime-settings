@@ -1,0 +1,93 @@
+{
+    // Define region highlight styles
+    "bracket_styles": {
+        // "default" and "unmatched" styles are special
+        // styles. If they are not defined here,
+        // they will be generated internally with
+        // internal defaults.
+
+        // "default" style defines attributes that
+        // will be used for any style that does not
+        // explicitly define that attribute.  So if
+        // a style does not define a color, it will
+        // use the color from the "default" style.
+        "default": {
+            "icon": "dot",
+            "color": "constant",
+            "style": "outline"
+        },
+
+        // This particular style is used to highlight
+        // unmatched bracekt pairs.  It is a special
+        // style.
+        "unmatched": {
+            "icon": "question",
+            "color": "invalid.illegal",
+            "style": "outline"
+        },
+        // User defined region styles
+        "curly": {
+            "icon": "curly_bracket",
+            "color": "keyword"
+            // "style": "underline"
+        },
+        "round": {
+            "icon": "round_bracket",
+            "color": "variable"
+            // "style": "outline"
+        },
+        "square": {
+            "icon": "square_bracket",
+            "color": "storage",
+            "style": "outline"
+        },
+        "angle": {
+            "icon": "angle_bracket",
+            "color": "entity"
+            // "style": "underline"
+        },
+        "tag": {
+            "icon": "tag",
+            "color": "entity",
+            "style": "outline"
+        },
+        "single_quote": {
+            "icon": "single_quote",
+            "color": "string"
+            // "style": "underline"
+        },
+        "double_quote": {
+            "icon": "double_quote",
+            "color": "string"
+            // "style": "underline"
+        },
+        "regex": {
+            "icon": "regex",
+            "color": "string.regexp"
+            // "style": "underline"
+        },
+        "mditalic": {
+            "icon": "star",
+            "color": "variable"
+            // "style": "underline"
+        },
+        "mdbold": {
+            "icon": "star",
+            "color": "variable"
+            // "style": "underline"
+        }
+    },
+
+    // "bracket_string_escape_mode": "regex",
+
+    "user_brackets": [
+        // Lua
+        {
+            "name": "lua",
+            "language_list": ["Lua", "Lua_user"]
+        }
+    ],
+
+    "show_offscreen_bracket_popup": true,
+    "show_in_widgets": true
+}

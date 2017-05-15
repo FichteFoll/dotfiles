@@ -1,0 +1,19 @@
+{
+	"windows": {
+		"texpath" : "",
+		"distro" : "miktex",
+		"sumatra": "c:\\Program Files (x86)\\SumatraPDF\\SumatraPDF.exe",
+		"sublime_executable": "sublime_text.exe",
+		"keep_focus_delay": 0.5
+	},
+    "builder_settings" : {
+        "options": ["--shell-escape"]
+    },
+    "open_pdf_on_build": false,
+    "keep_focus": false,
+    "display_bad_boxes": true,
+    // "use_biblatex": true,
+    "bibliography": "new",
+    //"output_directory": "c:\\Users\\Fichte\\AppData\\Roaming\\LaTeXTools",
+    //"aux_directory": "c:\\Users\\Fichte\\AppData\\Roaming\\LaTeXTools"
+}

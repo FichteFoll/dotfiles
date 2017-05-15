@@ -8,4 +8,4 @@
 # Refer to stow(1) for other command line options.
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-find . -maxdepth 1 -name ".git" -prune -o -type d \! -path . -printf "%f\\n" | xargs stow --dir="$DIR" --target="$HOME" $*
+find "$DIR" -maxdepth 1 -mindepth 1 -name ".git" -prune -o -type d -printf "%f\\n" | xargs stow --dir="$DIR" --target="$HOME" $*

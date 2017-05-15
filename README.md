@@ -10,7 +10,7 @@ See [here][stow-guide] for an introduction.
 
 [stow-guide]: http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html
 
-A convenience bash script 
+A convenience shell script 
 to install all packages at once
 is also included: `install-all`.
 Packages are installed into `$HOME`.

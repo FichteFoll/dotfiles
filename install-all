@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Install all packages that are subdirs of this directory.
+#
+# The target directory is $HOME.
+# To "restow", use `-R`.
+#
+# Refer to stow(1) for other command line options.
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+find . -maxdepth 1 -name ".git" -prune -o -type d \! -path . -printf "%f\\n" | xargs stow --dir="$DIR" --target="$HOME" $*

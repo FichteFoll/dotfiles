@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Calculate CRC32 but output in base 16
+
+pyprog=$(cat << 'EOF'
+num, size, name = input().split(maxsplit=2)
+print(f"{int(num):08X} {size} {name}")
+EOF
+)
+
+for file in "$@" do
+    cksum "$file" | python -c "$pyprog"
+done

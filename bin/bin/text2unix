@@ -1,0 +1,2 @@
+#!/bin/zsh
+find "${1:-.}" -type f -exec 'file "{}"' \; | grep "with CRLF" | awk -F ': ' '{ print $1 }' - | xargs -d "\n" dos2unix -k

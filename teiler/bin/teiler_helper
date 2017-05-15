@@ -1,0 +1,20 @@
+#!/bin/zsh
+# original from /usr/bin/teiler_helper
+
+# source $HOME/.config/teiler/config
+
+# define uploaders
+# images
+uploadFile () {
+    url=$(curl -F "file=@$1" https://x0.at)
+    echo -n "$url" | xclip -selection clipboard
+    notify-send -a "teiler" "Image Uploaded" "$url"
+}
+
+# this is stupid, but it's what `teiler` calls this with
+if [[ $1 == "--upload" ]]; then
+    if [[ $2 == "image" ]]; then uploadFile "$3"
+    elif [[ $2 == "video" ]]; then uploadFile "$3"
+    elif [[ $2 == "text" ]]; then uploadFile "$3"
+    fi
+fi

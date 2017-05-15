@@ -1,0 +1,273 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font -xow4-terminus-medium-r-normal--14-*-*-*-*-*-iso10646-1
+font pango:DejaVu Sans Mono 9
+font pango:monospace 9
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Hide edge borders for workspaces with a single window
+hide_edge_borders smart
+
+
+# Don't focus window, only mark its request
+focus_on_window_activation urgent
+
+# Wrap focus insite tabbed or stacked containers
+#force_focus_wrapping yes
+
+# Delay urgency hint reset (default is 500 ms)
+force_display_urgency_hint 1000 ms
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# change focus, cursor keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# move focused window, cursor keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal/vertical orientation
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# bindsym $mod+ctrl+space focus mode_toggle
+
+# focus the parent/child container
+bindsym $mod+a focus parent
+bindsym $mod+c focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# lock
+set $Locker i3lock-extra --screenshot --pixelize --tint black 10%
+bindsym $mod+Shift+Control+l exec $Locker
+
+set $mode_system System [l]ock, [e] logout, [s]uspend, [h]ibernate, [r]eboot, [S]hutdown
+mode "$mode_system" {
+    set $default_exec mode "default", exec --no-startup-id
+    bindsym l $default_exec $Locker
+    bindsym e $default_exec i3-msg exit
+    bindsym s $default_exec $Locker & (sleep 2 && systemctl suspend)
+    # bindsym h $default_exec $Locker && systemctl hibernate
+    bindsym r $default_exec systemctl reboot
+    bindsym Shift+s $default_exec systemctl poweroff -i
+
+    # back to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym      q mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+mode "resize" {
+    bindsym h resize shrink width  10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow   width  10 px or 10 ppt
+
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
+
+    bindsym Shift+h resize shrink width  2 px or 2 ppt
+    bindsym Shift+j resize grow   height 2 px or 2 ppt
+    bindsym Shift+k resize shrink height 2 px or 2 ppt
+    bindsym Shift+l resize grow   width  2 px or 2 ppt
+
+    bindsym Shift+Left  resize shrink width  2 px or 2 ppt
+    bindsym Shift+Down  resize grow   height 2 px or 2 ppt
+    bindsym Shift+Up    resize shrink height 2 px or 2 ppt
+    bindsym Shift+Right resize grow   width  2 px or 2 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# i3bar + i3status
+bar {
+    position top
+    tray_output primary
+    status_command i3status
+    separator_symbol "||"
+}
+
+
+# middle mouse button over a titlebar kills the window
+bindsym --release button2 kill
+# $mod+middle mouse button toggles float
+bindsym --whole-window $mod+button2 floating toggle
+
+# volume
+set $volume_step 5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master $volume_step+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master $volume_step-
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+
+# media keys for foobar
+# /home/fichte/.wine/dosdevices/c:/users/fichte/Desktop/foobar2000.desktop
+set $foobar env WINEPREFIX='/home/fichte/.wine' wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/fichte/.wine/dosdevices/c:/users/Public/Desktop/foobar2000.lnk
+bindsym XF86AudioPrev exec --no-startup-id $foobar /prev
+bindsym XF86AudioPlay exec --no-startup-id $foobar /playpause
+bindsym XF86AudioNext exec --no-startup-id $foobar /next
+
+# bindsym XF86AudioPlay exec notify-send "window title: $(xdotool getwindowname $(xdotool getactivewindow))"
+
+# window-specific settings #
+
+# for_window [class="Doublecmd" title="Copying|Moving|Deleting|File operations|Options"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="Firefox" window_role="page-info"] floating enable
+for_window [class="Thunderbird" window_role="EventDialog"] floating enable
+for_window [class="Deluge"] floating enable
+
+# not supported https://github.com/i3/i3/issues/2608
+#for_window [class="Steam" title="Friends"] resize set width 350 or 14, move right
+
+## launch stuff ##
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# rofi launcher
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show run
+#bindsym button2 nop
+
+# make a screenshot
+bindsym $mod+Print exec teiler
+bindsym Shift+Print exec teiler --quick video area
+bindsym Ctrl+Print exec teiler --quick image area
+# bindsym Ctrl+Print exec maim -s teiler --quick image area
+
+# color picker
+bindsym $mod+Ctrl+c exec gcolor2
+
+# mpv with url in clipboard
+bindsym $mod+m exec "mpv `xsel -ob`"
+# share files (or clipboard contents) by uploading them and replacing clipboard with the url
+# Prior = page up / Next = page down
+bindsym $mod+Next exec "share_clip"
+
+
+# Press $mod+o followed by a letter to run applications
+# or Esc or Return to return the default mode.
+set $mode_launcher Launch: [f]irefox [t]hunderbird [r]anger [s]ubl [h]exchat [d]iscord [F]oobar
+bindsym $mod+o mode "$mode_launcher"
+mode "$mode_launcher" {
+    set $to_default mode "default"
+    bindsym f exec firefox, $to_default
+    bindsym t exec thunderbird, $to_default
+    bindsym r exec termite -e ranger, $to_default
+    bindsym s exec subl, $to_default
+    bindsym h exec hexchat, $to_default
+    bindsym d exec discord-canary, $to_default
+    bindsym Shift+f exec $foobar, $to_default
+
+    bindsym Esc $to_default
+    bindsym Return $to_default
+}
+
+
+# Initial startup #
+exec --no-startup-id compton
+exec --no-startup-id parcellite
+exec --no-startup-id fcitx
+# to circumvent fcitx workaround (https://github.com/fcitx/fcitx/issues/324)
+exec --no-startup-id setxkbmap de neo_qwertz
+
+# applications
+exec keepass
+
+
+# desktop
+# exec --no-startup-id hsetroot -solid "#333333"
+exec --no-startup-id ~/.fehbg
+
+exec-always notify-send "i3 was restarted"

@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+req_url='https://x0.at/'
+
+if [ ! -f "$1" ]; then
+    echo "File $1 does not exist"
+    exit 1
+fi
+echo "file: $1"
+url=$(curl -F "file=@\"$1\"" $req_url)
+echo -n "$url" | xsel -ib
+notify-send -a "share" "File uploaded" "$url"

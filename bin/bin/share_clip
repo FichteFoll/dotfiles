@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+req_url='https://x0.at/'
+
+clip=$(xsel -ob)
+
+if [ -f "$clip" ]; then
+    echo "Detected path to an existing file; uploading the file's contents instead"
+    share "$clip"
+fi
+
+url=$(echo -nE "$clip" | curl -F "file=@-" $req_url) # file=@-;filename=clip.txt
+echo -nE "$url" | xsel -ib
+notify-send -a "share" "Clipboard uploaded" "$url"

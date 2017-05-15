@@ -1,0 +1,17 @@
+set editing-mode emacs
+
+# termite
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+"\e[A":
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+
+"\e[[D": backward-char
+"\e[[C": forward-char
+"\e[[A": previous-history
+"\e[[B": next-history
+"\eH": backward-kill-word
+"\e[3;5~": kill-word

@@ -1,0 +1,31 @@
+[user]
+	name = FichteFoll
+	email = fichtefoll2@googlemail.com
+	signingkey = 07CD83C5
+
+[commit]
+	gpgsign = true
+
+[alias]
+	lg = log --graph --oneline --decorate
+
+	; https://gist.github.com/gnarf/5406589
+	prr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; } ; f"
+	pr = "!f() { git prr origin $1; } ; f"
+	pru = "!f() { git prr upstream $1; } ; f"
+	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+
+[branch]
+	autosetuprebase = always
+
+[push]
+	default = simple
+
+[gc]
+	autoDetach = false
+
+[pull]
+	rebase = true
+
+[merge]
+	conflictstyle = diff3

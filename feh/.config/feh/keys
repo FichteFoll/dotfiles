@@ -1,0 +1,6 @@
+# rotate left (or right)
+orient_3 l
+orient_1 L
+
+# unbind "f"
+save_filelist

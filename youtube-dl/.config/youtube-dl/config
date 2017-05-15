@@ -1,0 +1,4 @@
+--force-ipv4
+--format=bestvideo[height<=?1440]+bestaudio/best
+--output="/data_tmp/Video/Download/%(title)s_%(id)s.%(ext)s"
+--no-mtime

@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Recursively touch files by creating parent directories when necessary
+
+for file in "$@"; do
+    if [[ "$file" = */* ]]; then
+        mkdir -p "${file%/*}"
+    fi;
+
+    touch "$file";
+done

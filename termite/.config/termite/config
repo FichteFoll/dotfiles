@@ -1,0 +1,8 @@
+[options]
+font = Terminus 11
+font = Monospace 11
+font = Misc Fixed 10
+
+[colors]
+background = #121314
+foreground = #dedede

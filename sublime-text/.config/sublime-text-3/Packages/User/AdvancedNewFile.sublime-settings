@@ -1,0 +1,12 @@
+{
+    "show_files": true,
+    "completion_type": "nix",
+    "rename_default": "<filename>",
+    "append_extension_on_move": false,
+    "copy_default": "<filename>",
+    "append_extension_on_copy": false,
+    "warn_overwrite_on_move": true,
+    "rename_file_default_root": "current",
+    "copy_file_default_root": "current",
+    "cursor_before_extension": true
+}

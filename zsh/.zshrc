@@ -275,6 +275,11 @@ cu () {
     # local gitpkgs=($(pacman -Qm | grep -e '-git$\b' | cut -d " " -f 1))
 }
 
+# systemd aliases
+alias sc='syctemctl'
+alias jc='journalctl'
+alias nc='netctl'
+
 
 # wine stuff
 alias wine32='env WINEARCH=win32 WINEPREFIX="$HOME/.wine32" wine'

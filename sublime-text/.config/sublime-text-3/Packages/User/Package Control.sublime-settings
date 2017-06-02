@@ -69,7 +69,7 @@
 		"SublimeLinter-flake8",
 		"SublimeLinter-javac",
 		"SublimeLinter-jshint",
-		"SublimeLinter-pydocstyle",
+		"SublimeLinter-lua",
 		"SublimeLinter-pyyaml",
 		"SublimeREPL",
 		"Table Editor",

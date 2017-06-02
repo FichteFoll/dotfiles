@@ -28,11 +28,12 @@
 	"atomic_save": false,
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_cycle": true,
+	"auto_complete_selector": "source - comment - string, meta.tag - punctuation.definition.tag.begin",
 	"auto_complete_triggers":
 	[
 		{
 			"characters": ".",
-			"selector": "source.python -comment -string, source.js"
+			"selector": "(source.python | source.js) - comment - string"
 		}
 	],
 	"auto_find_in_selection": true,

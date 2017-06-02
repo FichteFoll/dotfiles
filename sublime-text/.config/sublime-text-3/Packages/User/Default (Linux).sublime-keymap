@@ -42,7 +42,7 @@
   },
 
   // Auto-complete popup
-  { "keys": ["ctrl+space"], "command": "auto_complete" },
+  { "keys": ["ctrl+space"], "command": "auto_complete", "args": {"disable_auto_insert": true} },
   { "keys": ["ctrl+space"], "command": "replace_completion_with_auto_complete",
     "context": [
       { "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },

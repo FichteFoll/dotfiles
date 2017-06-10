@@ -87,7 +87,19 @@
             "language_list": ["Lua", "Lua_user"]
         }
     ],
-
+    "user_scope_brackets": [
+        // Python f-strings
+        {
+            "name": "py_single_quote",
+            "open": "(?:u|b|f)?r?((?:'')?')",
+            "scopes": ["meta.string", "string"]
+        },
+        {
+            "name": "py_double_quote",
+            "open": "(?:u|b|f)?r?((?:\"\")?\")",
+            "scopes": ["meta.string", "string"]
+        }
+    ],
     "show_offscreen_bracket_popup": true,
     "show_in_widgets": true
 }

@@ -11,7 +11,7 @@ Packages are installed from the containing directory
 to $HOME.
 
 This script was made by FichteFoll <fichtefoll2@googlemail.com>
-and is placed in the Open Domain.
+and is placed in the Public Domain.
 """
 
 import logging

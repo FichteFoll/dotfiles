@@ -250,7 +250,7 @@ mode "$mode_launcher" {
     bindsym d exec discord-canary, $to_default
     bindsym Shift+f exec $foobar, $to_default
 
-    bindsym Esc $to_default
+    bindsym Escape $to_default
     bindsym Return $to_default
 }
 

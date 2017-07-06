@@ -1,4 +1,5 @@
 #!/usr/bin/env python3.6
+
 from pathlib import Path
 import re
 import shlex
@@ -7,8 +8,13 @@ import sys
 
 urls = sys.argv[1:]
 
+conf = []
 with Path("~/.config/openurl.conf").expanduser().open() as f:
-    conf = [line.split(maxsplit=1) for line in f]
+    for line in f:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue  # Discard empty and commented lines
+        conf.append(stripped.split(maxsplit=1))
 
 for url in urls:
     for reg, cmd in conf:
@@ -18,4 +24,5 @@ for url in urls:
             subprocess.Popen(args)
             break
     else:
+        # You don't want this to happen
         print(f"No regex match for {url!r}", file=sys.stderr)

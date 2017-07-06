@@ -149,10 +149,9 @@ def main():
     additional_stow_args = sys.argv[1:]
 
     package_paths = {path for path in dotfiles_path.glob("*") if is_package(path)}
-    print(package_paths)
     package_names = {path.name for path in package_paths}
     l.info(f"Installing {len(package_names)} packages")
-    l.debug(f"Packages: {package_names}")
+    l.debug(f"Packages: {', '.join(sorted(package_names))}")
 
     hard_package_names = package_names & HARD_STOW_PACKAGES
     normal_package_names = package_names - hard_package_names

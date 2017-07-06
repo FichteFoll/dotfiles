@@ -6,6 +6,8 @@
  *   https://github.com/azuwis/.vimfx/blob/master/config.js
  */
 
+/* jshint esversion: 6 */
+
 // imports
 const {classes: Cc, interfaces: Ci, utils: Cu} = Components;
 const nsIFile = () => Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);

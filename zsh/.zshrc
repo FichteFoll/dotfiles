@@ -109,6 +109,9 @@ done; unset rh
 alias help=run-help
 
 
+###########################################################
+# aliases and functions (mostly)
+
 # ls
 # alias la="ls -la ${ls_options:+${ls_options[*]}}"
 # alias ll="ls -l ${ls_options:+${ls_options[*]}}"
@@ -276,7 +279,7 @@ cu () {
 }
 
 # systemd aliases
-alias sc='syctemctl'
+alias sc='systemctl'
 alias jc='journalctl'
 alias nc='netctl'
 

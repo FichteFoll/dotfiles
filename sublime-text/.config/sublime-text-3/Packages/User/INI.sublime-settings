@@ -2,6 +2,8 @@
 	"extensions":
 	[
 		"url",
-		"conf"
+		"conf",
+		"timer",
+		"service"
 	]
 }

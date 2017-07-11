@@ -100,6 +100,13 @@ syntax_file=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighti
 unset syntax_file
 
 
+# termite: Launch new terminal in current dir
+if [[ $TERM == xterm-termite ]]; then
+  . /etc/profile.d/vte.sh
+  __vte_osc7
+fi
+
+
 # use zsh's run-help (<M-h> to invoke on current line)
 # (( ${+aliases[run-help]} )) && unalias run-help
 alias run-help >&/dev/null && unalias run-help

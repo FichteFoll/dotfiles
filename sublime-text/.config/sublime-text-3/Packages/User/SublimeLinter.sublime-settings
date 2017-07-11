@@ -30,7 +30,7 @@
                 "builtins": "",
                 "excludes": [],
                 "executable": "",
-                "ignore": "E201,E221,E222,E241,W191,W291,W292,W293,W503,D1,D211",
+                "ignore": "E201,E221,E222,E241,W191,W291,W292,W293,W503,D1,D211,D413",
                 "jobs": "1",
                 "max-complexity": -1,
                 "max-line-length": 99,

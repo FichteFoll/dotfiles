@@ -271,10 +271,10 @@ whatwhen()  {
 twitch() {
     local channel=$1
     shift
-    mpv $@ "https://twitch.tv/$channel"
+    mpv $@ -- "https://twitch.tv/$channel"
 }
 
-alias apv="mpv --profile=audio"
+alias mpa="mpv --profile=audio"
 alias ytdl="youtube-dl"
 
 

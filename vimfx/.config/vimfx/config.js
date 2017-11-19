@@ -15,8 +15,8 @@ const nsIProcess = () => Cc["@mozilla.org/process/util;1"].createInstance(Ci.nsI
 const {commands} = vimfx.modes.normal;
 
 // constants
-const MPV_PATH = "/usr/bin/mpv";
-const MPV_OPTIONS = "--player-operation-mode=pseudo-gui"; // space-separated
+const MPV_PATH = "/usr/bin/env";
+const MPV_OPTIONS = "mpv"; // space-separated
 
 // setting overrides
 vimfx.set('prevent_autofocus', true);

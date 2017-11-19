@@ -285,7 +285,8 @@ twitch() {
     mpv $@ -- "https://twitch.tv/$channel"
 }
 
-alias mpa="mpv --profile=audio"
+alias mpa="command mpv --profile=audio"
+alias mpv="command mpv --profile=terminal"
 alias ytdl="youtube-dl"
 
 

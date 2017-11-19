@@ -238,7 +238,7 @@ bindsym Ctrl+Print exec teiler --quick image area
 bindsym $mod+Ctrl+c exec gcolor2
 
 # mpv with url in clipboard
-bindsym $mod+m exec "mpv --player-operation-mode=pseudo-gui -- \\"`xsel -ob`\\""
+bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""
 # share files (or clipboard contents) by uploading them and replacing clipboard with the url
 # Prior = page up / Next = page down
 bindsym $mod+Next exec share_clip

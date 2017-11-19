@@ -68,7 +68,6 @@ precmd () { print -Pn "\e]2;%n@%M | %~\a" }
 
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
-alias ls='ls --color=auto'
 
 # support colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'    # begin bold
@@ -122,16 +121,22 @@ alias help=run-help
 ###########################################################
 # aliases and functions (mostly)
 
-# ls
+# ls: exa
+alias ls='exa --time-style=long-iso'
+alias exat='exa --tree --level=3'
+alias ols='command ls --color=auto'
+
 # alias la="ls -la ${ls_options:+${ls_options[*]}}"
 # alias ll="ls -l ${ls_options:+${ls_options[*]}}"
 # alias lh="ls -hAl ${ls_options:+${ls_options[*]}}"
 # alias l="ls -l ${ls_options:+${ls_options[*]}}"
-alias dir="ls -lSrah"
-# Only show dot-directories
-alias lad='ls -d .*(/)'
+alias dir="exa -la"
+# All entries
+alias lsa='ls -a'
 # Only show dot-files
-alias lsa='lsc -a .*(.)'
+alias lsa='ls -a .*(.)'
+# Only show dot-directories
+alias lsad='ls -d .*(/)'
 # Only files with setgid/setuid/sticky flag
 alias lss='ls -l *(s,S,t)'
 # Only show symlinks
@@ -141,11 +146,11 @@ alias lsx='ls -l *(*)'
 # Display world-{readable,writable,executable} files
 alias lsw='ls -ld *(R,W,X.^ND/)'
 # Display the ten biggest files
-alias lsbig="ls -flh *(.OL[1,10])"
+alias lsbig="exa -lr --sort=size *(.OL[1,10])"
 # Only show directories
 alias lsd='ls -d *(/)'
 # Only show empty directories
-alias lse='ls -d *(/^F)'
+alias lsed='ls -d *(/^F)'
 
 
 # Shorthands for directory navigation

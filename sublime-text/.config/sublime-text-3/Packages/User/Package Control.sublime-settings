@@ -18,6 +18,7 @@
 		"Alignment",
 		"AlignTab",
 		"ASCII Decorator",
+		"AutomaticPackageReloader",
 		"BetterFindBuffer",
 		"BracketHighlighter",
 		"ChannelRepositoryTools",
@@ -58,6 +59,7 @@
 		"ShellScriptImproved",
 		"Stylus",
 		"SublimeLinter",
+		"SublimeLinter Inline Errors",
 		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-mypy",
 		"SublimeLinter-contrib-rustc",
@@ -74,8 +76,8 @@
 		"Theme - Nil",
 		"TodoReview",
 		"TOML",
-		"UnitTesting",
 		"Wrap Plus",
+		"Z",
 		"Zeal"
 	],
 	"repositories":

@@ -1,9 +1,10 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-gtk-theme-name="Arc-Dark"
+include "/home/fichte/.gtkrc-2.0.mine"
+gtk-theme-name="Arc-Dark-solid"
 gtk-icon-theme-name="Adwaita"
-gtk-font-name="Cantarell 11"
+gtk-font-name="DejaVu Sans 11"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
@@ -16,5 +17,3 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintmedium"
 gtk-xft-rgba="rgb"
-
-include "/home/fichte/.gtkrc-2.0.mine"

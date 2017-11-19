@@ -292,8 +292,13 @@ alias ytdl="youtube-dl"
 # check for system updates
 cu () {
     checkupdates
-    pacaur -k --devel
-    # local gitpkgs=($(pacman -Qm | grep -e '-git$\b' | cut -d " " -f 1))
+    pacaur -k
+}
+cu2 () {
+    # include updates for --devel packages (*-git)
+    # takes longer to run because all git repos need to be updated
+    checkupdates
+    pacaur -k --devel --needed
 }
 
 # systemd aliases

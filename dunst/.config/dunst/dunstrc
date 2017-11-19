@@ -18,7 +18,7 @@
     alignment = left
     word_wrap = yes
     ignore_newline = no
-    geometry = "300x5-0+20"
+    geometry = "370x5-0+20"
     shrink = no
     show_age_threshold = 60
     idle_threshold = 120
@@ -35,10 +35,11 @@
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
     startup_notification = false
-    #dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
     browser = /usr/bin/xdg-open
+    max_icon_size = 64
     icon_position = left
-    icon_folders = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/hicolor/16x16/apps/
+    icon_folders = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/hicolor/16x16/apps/:/usr/share/pixmaps/
 
 [frame]
     width = 2

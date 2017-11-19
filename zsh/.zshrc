@@ -346,3 +346,6 @@ export WORKON_HOME=${HOME}/.virtualenvs
 source /usr/bin/virtualenvwrapper_lazy.sh
 
 alias venv="source .venv/bin/activate"
+
+# quick directory jumping (with `z`)
+source /usr/lib/z.sh

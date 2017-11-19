@@ -29,7 +29,10 @@ hide_edge_borders smart
 focus_on_window_activation urgent
 
 # Wrap focus insite tabbed or stacked containers
-#force_focus_wrapping yes
+# force_focus_wrapping yes
+
+# Disable teleporting mouse to new outputs when window is focused
+mouse_warping none
 
 # Delay urgency hint reset (default is 500 ms)
 force_display_urgency_hint 1000 ms
@@ -79,6 +82,7 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+b border toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -206,6 +210,12 @@ for_window [class="feh"] floating enable
 for_window [class="Firefox" window_role="page-info"] floating enable
 for_window [class="Thunderbird" window_role="EventDialog"] floating enable
 for_window [class="Deluge"] floating enable
+for_window [class="Pinentry"] floating enable
+for_window [class="cool-retro-term"] fullscreen enable
+
+# add border for border-less gtk3 applications
+for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
+# for_window [class="mpv"] border pixel 2
 
 # not supported https://github.com/i3/i3/issues/2608
 #for_window [class="Steam" title="Friends"] resize set width 350 or 14, move right
@@ -214,6 +224,7 @@ for_window [class="Deluge"] floating enable
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec cool-retro-term
 
 # rofi launcher
 bindsym $mod+d exec rofi -show drun
@@ -224,16 +235,15 @@ bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+Print exec teiler
 bindsym Shift+Print exec teiler --quick video area
 bindsym Ctrl+Print exec teiler --quick image area
-# bindsym Ctrl+Print exec maim -s teiler --quick image area
 
 # color picker
 bindsym $mod+Ctrl+c exec gcolor2
 
 # mpv with url in clipboard
-bindsym $mod+m exec "mpv `xsel -ob`"
+bindsym $mod+m exec "mpv --player-operation-mode=pseudo-gui -- \\"`xsel -ob`\\""
 # share files (or clipboard contents) by uploading them and replacing clipboard with the url
 # Prior = page up / Next = page down
-bindsym $mod+Next exec "share_clip"
+bindsym $mod+Next exec share_clip
 
 
 # Press $mod+o followed by a letter to run applications
@@ -263,7 +273,7 @@ exec --no-startup-id fcitx
 exec --no-startup-id setxkbmap de neo_qwertz
 
 # applications
-exec keepass
+exec --no-startup-id keepass
 
 
 # desktop

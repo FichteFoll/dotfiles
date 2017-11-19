@@ -248,17 +248,21 @@ bindsym $mod+Next exec share_clip
 
 # Press $mod+o followed by a letter to run applications
 # or Esc or Return to return the default mode.
-set $mode_launcher Launch: [f]irefox [t]hunderbird [r]anger [s]ubl [h]exchat [d]iscord [F]oobar
+set $mode_launcher Launch: [a]egisub [d]iscord [f]irefox [F]oobar [h]exchat [k]eepass [r]anger [S]martgit [s]ubl [T]elegram [t]hunderbird
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     set $to_default mode "default"
-    bindsym f exec firefox, $to_default
-    bindsym t exec thunderbird, $to_default
-    bindsym r exec termite -e ranger, $to_default
-    bindsym s exec subl, $to_default
-    bindsym h exec hexchat, $to_default
-    bindsym d exec discord-canary, $to_default
-    bindsym Shift+f exec $foobar, $to_default
+    bindsym a       exec aegisub, $to_default
+    bindsym d       exec discord-canary, $to_default
+    bindsym f       exec firefox, $to_default
+    bindsym Shift+f exec foobar, $to_default
+    bindsym h       exec hexchat, $to_default
+    bindsym k       exec keepass, $to_default
+    bindsym r       exec termite -e ranger, $to_default
+    bindsym Shift+s exec smartgit, $to_default
+    bindsym s       exec subl, $to_default
+    bindsym Shift+t exec telegram-desktop, $to_default
+    bindsym t       exec thunderbird, $to_default
 
     bindsym Escape $to_default
     bindsym Return $to_default

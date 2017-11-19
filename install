@@ -76,6 +76,7 @@ def hard_stow(package_names: Iterable[str],
     you may want to use this.
     """
     # TODO uninstalling
+    ret = 0
     for package_name in package_names:
         l.debug(f"Planning hard-stow of package {package_name}...")
         package_path = dir / package_name
@@ -127,10 +128,9 @@ def hard_stow(package_names: Iterable[str],
                     os.link(source_path, target_path)
         except:
             # TODO roll back
-            pass
-            return 10
-        else:
-            return 0
+            ret = 10
+
+    return ret
 
 
 def main():

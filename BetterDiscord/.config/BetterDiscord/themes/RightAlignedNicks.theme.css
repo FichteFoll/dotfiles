@@ -1,0 +1,75 @@
+//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.1.2"}*//{}
+
+/**
+ * Nicks are right-aligned, where possible.
+ * Space for timestamps is also reduced.
+ *
+ * Requires compact mode for obvious reasons.
+ *
+ * Nicknames that are too long for the associated space
+ * expand into the message area and make the message area shrink.
+ * If this annoys you,
+ * adjust the width of the username column
+ * or yell at the people until they pick a shorter nick.
+ *
+ * Known issues:
+ *
+ *   - When copy-pasting messages,
+ *     newlines are inserted between timestamp, nick and message.
+ *     This is because of the blocks being displayed as `inline-block`,
+ *     which was necessary to properly align multi-line messages.
+ *
+ */
+
+/* Variables for configuration. You can override these in your user css. */
+:root {
+    /* ch as unit makes the most sense here,
+     * but doesn't work properly with calculating offset of the .accessory div */
+    --username-width: 7.3rem;
+    --timestamp-width: 2.5rem;
+    /*--username-width: 13ch;
+    --timestamp-width: 9ch;*/ /* use `6ch` for 24h timestamps */
+
+    /* used for calculations */
+    --timestamp-default-width: 65px;
+}
+
+.message-group.compact .message .message-text .markup {
+    text-indent: 0;
+    padding-left: 0;
+    display: flex;
+}
+.message-group.compact .comment .timestamp {
+    vertical-align: top;
+    flex: none;
+    width: var(--timestamp-width);
+}
+
+.message-group.compact .comment .username-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    min-width: var(--username-width);
+    flex: none;
+}
+
+.message-group.compact .comment .message-content {
+    display: inline-block;
+}
+
+.message-group.compact .comment .accessory {
+    padding-left: calc(70px - var(--timestamp-default-width) + var(--timestamp-width) + var(--username-width) );
+}
+
+/* adjust alignment by ~4px because of left border on highlighted messages */
+.message-group.compact .message.mentioned .timestamp {
+    margin-left: -8px; /* 2*4px because it is center-positioned */
+}
+
+/* prevent follow-up timestamps from being hidden (currently hardcoded for dark mode) */
+.message-group.compact .message:not(.first) .timestamp {
+    color: hsla(0,0%,100%,.2) !important;
+}
+.message-group.compact .message:hover .timestamp {
+    color: #99aab5 !important;
+}

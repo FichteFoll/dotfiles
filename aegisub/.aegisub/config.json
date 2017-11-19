@@ -1,0 +1,720 @@
+{
+	"App" : {
+		"Auto" : {
+			"Backup" : true,
+			"Check For Updates" : true,
+			"Load Linked Files" : 2,
+			"Save" : true,
+			"Save Every Seconds" : 60,
+			"Save on Every Change" : false
+		},
+		"Call Tips" : false,
+		"First Start" : false,
+		"Hotkey Migrations" : [
+			{
+				"string" : "placeholder since empty arrays aren't supported"
+			},
+			{
+				"string" : "7035"
+			},
+			{
+				"string" : "7070"
+			},
+			{
+				"string" : "edit/line/duplicate/shift_back"
+			},
+			{
+				"string" : "duplicate -> split"
+			}
+		],
+		"Language" : "en_US",
+		"Maximized" : false,
+		"Save Charset" : "UTF-8",
+		"Save UI State" : true,
+		"Show Toolbar" : true,
+		"Toolbar Icon Size" : 16
+	},
+	"Audio" : {
+		"Auto" : {
+			"Commit" : true,
+			"Focus" : true,
+			"Scroll" : true
+		},
+		"Cache" : {
+			"HD" : {
+				"Location" : "default"
+			},
+			"Type" : 1
+		},
+		"Colour Schemes" : [
+			{
+				"string" : "Green"
+			},
+			{
+				"string" : "Icy Blue"
+			}
+		],
+		"Display" : {
+			"Draw" : {
+				"Cursor Time" : true,
+				"Inactive Comments" : false,
+				"Keyframes in Dialogue Mode" : true,
+				"Keyframes in Karaoke Mode" : true,
+				"Seconds" : false,
+				"Video Position" : true
+			},
+			"Waveform Style" : 0
+		},
+		"Display Height" : 239,
+		"Downmixer" : "ConvertToMono",
+		"Drag Timing" : false,
+		"Inactive Lines Display Mode" : 2,
+		"Karaoke" : {
+			"Font Face" : "Verdana",
+			"Font Size" : 9
+		},
+		"Lead" : {
+			"IN" : 200,
+			"OUT" : 300
+		},
+		"Line Boundaries Thickness" : 2,
+		"Link" : true,
+		"Lock Scroll on Cursor" : true,
+		"Medusa Timing Hotkeys" : true,
+		"Next Line on Commit" : true,
+		"Player" : "ALSA",
+		"Plays When Stepping Video" : false,
+		"Provider" : "ffmpegsource",
+		"Renderer" : {
+			"Spectrum" : {
+				"Cutoff" : 0,
+				"Memory Max" : 128,
+				"Quality" : 1
+			}
+		},
+		"Snap" : {
+			"Distance" : 5,
+			"Enable" : true
+		},
+		"Spectrum" : true,
+		"Start Drag Sensitivity" : 5,
+		"Track Cursor" : {
+			"Font Face" : ""
+		},
+		"Volume" : 50,
+		"Wheel Default to Zoom" : false,
+		"Zoom" : {
+			"Horizontal" : 3,
+			"Vertical" : 52
+		}
+	},
+	"Automation" : {
+		"Autoreload Mode" : 1,
+		"Trace Level" : 3
+	},
+	"Colour" : {
+		"Audio Display" : {
+			"Keyframe" : "rgb(255, 0, 255)",
+			"Line Boundary Inactive Line" : "rgb(190, 190, 190)",
+			"Line boundary End" : "rgb(0, 0, 216)",
+			"Line boundary Start" : "rgb(216, 0, 0)",
+			"Play Cursor" : "rgb(255, 255, 255)",
+			"Seconds Line" : "rgb(0, 100, 255)",
+			"Spectrum" : "Green",
+			"Syllable Boundaries" : "rgb(255, 255, 0)",
+			"Waveform" : "Green"
+		},
+		"Schemes" : {
+			"Green" : {
+				"Inactive" : {
+					"Hue Offset" : 85.0,
+					"Hue Scale" : 0.0,
+					"Lightness Offset" : 0.0,
+					"Lightness Scale" : 100.0,
+					"Saturation Offset" : 255.0,
+					"Saturation Scale" : 0.0
+				},
+				"Normal" : {
+					"Hue Offset" : 85.0,
+					"Hue Scale" : 0.0,
+					"Lightness Offset" : 0.0,
+					"Lightness Scale" : 200.0,
+					"Saturation Offset" : 255.0,
+					"Saturation Scale" : 0.0
+				},
+				"Primary" : {
+					"Hue Offset" : 85.0,
+					"Hue Scale" : 0.0,
+					"Lightness Offset" : 25.0,
+					"Lightness Scale" : 300.0,
+					"Saturation Offset" : 128.0,
+					"Saturation Scale" : 0.0
+				},
+				"Selection" : {
+					"Hue Offset" : 80.0,
+					"Hue Scale" : 0.0,
+					"Lightness Offset" : 10.0,
+					"Lightness Scale" : 175.0,
+					"Saturation Offset" : 255.0,
+					"Saturation Scale" : 0.0
+				},
+				"UI" : {
+					"Dark" : "rgb(0, 10, 0)",
+					"Light" : "rgb(0, 200, 0)",
+					"Selection" : "rgb(0, 80, 0)"
+				},
+				"UI Focused" : {
+					"Dark" : "rgb(0, 10, 0)",
+					"Light" : "rgb(50, 255, 50)",
+					"Selection" : "rgb(0, 80, 0)"
+				}
+			},
+			"Icy Blue" : {
+				"Inactive" : {
+					"Hue Offset" : 191.0,
+					"Hue Scale" : -128.0,
+					"Lightness Offset" : 32.0,
+					"Lightness Scale" : 192.0,
+					"Saturation Offset" : 63.0,
+					"Saturation Scale" : 192.0
+				},
+				"Normal" : {
+					"Hue Offset" : 191.0,
+					"Hue Scale" : -128.0,
+					"Lightness Offset" : 0.0,
+					"Lightness Scale" : 255.0,
+					"Saturation Offset" : 127.0,
+					"Saturation Scale" : 128.0
+				},
+				"Primary" : {
+					"Hue Offset" : 191.0,
+					"Hue Scale" : -128.0,
+					"Lightness Offset" : 64.0,
+					"Lightness Scale" : 192.0,
+					"Saturation Offset" : 127.0,
+					"Saturation Scale" : 128.0
+				},
+				"Selection" : {
+					"Hue Offset" : 191.0,
+					"Hue Scale" : -128.0,
+					"Lightness Offset" : 32.0,
+					"Lightness Scale" : 192.0,
+					"Saturation Offset" : 127.0,
+					"Saturation Scale" : 128.0
+				},
+				"UI" : {
+					"Dark" : "rgb(8, 4, 13)",
+					"Light" : "rgb(89, 145, 220)",
+					"Selection" : "rgb(65, 34, 103)"
+				},
+				"UI Focused" : {
+					"Dark" : "rgb(8, 4, 13)",
+					"Light" : "rgb(205, 240, 226)",
+					"Selection" : "rgb(82, 107, 213)"
+				}
+			}
+		},
+		"Style Editor" : {
+			"Background" : {
+				"Preview" : "rgb(125, 153, 176)"
+			}
+		},
+		"Subtitle" : {
+			"Background" : "rgb(64, 69, 82)",
+			"Syntax" : {
+				"Background" : {
+					"Brackets" : "",
+					"Comment" : "",
+					"Drawing" : "",
+					"Error" : "rgb(255, 200, 200)",
+					"Karaoke Template" : "",
+					"Karaoke Variable" : "",
+					"Line Break" : "",
+					"Normal" : "",
+					"Parameters" : "",
+					"Slashes" : "",
+					"Tags" : ""
+				},
+				"Bold" : {
+					"Brackets" : false,
+					"Comment" : true,
+					"Drawing" : true,
+					"Error" : false,
+					"Karaoke Template" : true,
+					"Karaoke Variable" : true,
+					"Line Break" : true,
+					"Normal" : false,
+					"Parameters" : false,
+					"Slashes" : false,
+					"Tags" : true
+				},
+				"Brackets" : "rgb(172, 26, 26)",
+				"Comment" : "rgb(127, 129, 140)",
+				"Drawing" : "rgb(212, 238, 209)",
+				"Error" : "rgb(200, 0, 0)",
+				"Karaoke Template" : "rgb(195, 98, 244)",
+				"Karaoke Variable" : "rgb(72, 145, 222)",
+				"Line Break" : "rgb(160, 160, 160)",
+				"Normal" : "rgb(211, 218, 227)",
+				"Parameters" : "rgb(129, 216, 129)",
+				"Slashes" : "rgb(255, 0, 200)",
+				"Tags" : "rgb(202, 132, 70)"
+			}
+		},
+		"Subtitle Grid" : {
+			"Active Border" : "rgb(186, 76, 176)",
+			"Background" : {
+				"Background" : "rgb(52, 56, 70)",
+				"Comment" : "rgb(37, 38, 41)",
+				"Inframe" : "rgb(71, 57, 57)",
+				"Selected Comment" : "rgb(58, 58, 58)",
+				"Selection" : "rgb(43, 43, 43)"
+			},
+			"CPS Error" : "rgb(202, 65, 64)",
+			"Collision" : "rgb(227, 128, 128)",
+			"Header" : "rgb(27, 23, 35)",
+			"Left Column" : "rgb(32, 39, 33)",
+			"Lines" : "rgb(43, 46, 57)",
+			"Selection" : "rgb(240, 240, 240)",
+			"Standard" : "rgb(211, 218, 227)"
+		},
+		"Video Dummy" : {
+			"Last Colour" : "rgb(47, 163, 254)"
+		}
+	},
+	"Limits" : {
+		"Find Replace" : 16,
+		"MRU" : 16,
+		"Undo Levels" : 50
+	},
+	"Path" : {
+		"Auto" : {
+			"Backup" : "?user/autoback",
+			"Save" : "?user/autosave"
+		},
+		"Automation" : {
+			"Autoload" : "?user/automation/autoload/|?data/automation/autoload/",
+			"Base" : "?data/automation/",
+			"Include" : "?user/automation/include/|?data/automation/include/"
+		},
+		"Dictionary" : "?user/dictionaries",
+		"Fonts Collector Destination" : "/data/fansub/AKA/One Piece/OP19/",
+		"Last" : {
+			"Audio" : "",
+			"Automation" : "",
+			"Keyframes" : "/data/fansub/AFK/Made in Abyss/01",
+			"Subtitles" : "/data/fansub/AFK/Made in Abyss",
+			"Timecodes" : "",
+			"Video" : "/data/fansub/AFK/Made in Abyss/01"
+		},
+		"Screenshot" : "?video"
+	},
+	"Player" : {
+		"Audio" : {
+			"ALSA" : {
+				"Device" : "default"
+			},
+			"DirectSound" : {
+				"Buffer Latency" : 100,
+				"Buffer Length" : 5
+			},
+			"OSS" : {
+				"Device" : "/dev/dsp"
+			},
+			"PortAudio" : {
+				"Device Name" : "Default"
+			}
+		}
+	},
+	"Provider" : {
+		"Audio" : {
+			"AVS" : {
+				"Sample Rate" : 0
+			},
+			"FFmpegSource" : {
+				"Decode Error Handling" : "ignore"
+			}
+		},
+		"Avisynth" : {
+			"Allow Ancient" : false,
+			"Memory Max" : 64
+		},
+		"FFmpegSource" : {
+			"Cache" : {
+				"Files" : 20,
+				"Size" : 42
+			},
+			"Index All Tracks" : true,
+			"Log Level" : "quiet"
+		},
+		"Video" : {
+			"Cache" : {
+				"Size" : 32
+			},
+			"FFmpegSource" : {
+				"Decoding Threads" : -1,
+				"Unsafe Seeking" : false
+			}
+		}
+	},
+	"Subtitle" : {
+		"Character Counter" : {
+			"CPS Error Threshold" : 30,
+			"CPS Warning Threshold" : 15,
+			"Ignore Punctuation" : true,
+			"Ignore Whitespace" : true
+		},
+		"Character Limit" : 40,
+		"Default Resolution" : {
+			"Auto" : true,
+			"Height" : 720,
+			"Width" : 1280
+		},
+		"Edit Box" : {
+			"Font Face" : "Trebuchet MS",
+			"Font Size" : 14
+		},
+		"Grid" : {
+			"Column" : [
+				{
+					"bool" : true
+				}
+			],
+			"Focus Allow" : true,
+			"Font Face" : "Sans",
+			"Font Size" : 9,
+			"Hide Overrides" : 0,
+			"Hide Overrides Char" : "☀",
+			"Highlight Subtitles in Frame" : true
+		},
+		"Highlight" : {
+			"Syntax" : true
+		},
+		"Provider" : "libass",
+		"Time Edit" : {
+			"Insert Mode" : true
+		}
+	},
+	"Subtitle Format" : {
+		"ASS" : {
+			"Default Style Catalog" : "Default"
+		},
+		"EBU STL" : {
+			"Display Standard" : 0,
+			"Inclusive End Times" : true,
+			"Line Wrapping Mode" : 1,
+			"Max Line Length" : 42,
+			"TV Standard" : 0,
+			"Text Encoding" : 0,
+			"Timecode Offset" : {
+				"F" : 0,
+				"H" : 0,
+				"M" : 0,
+				"S" : 0
+			},
+			"Translate Alignments" : true
+		},
+		"MicroDVD" : {
+			"Default Style Catalog" : "Default"
+		},
+		"SRT" : {
+			"Default Style Catalog" : "Default"
+		},
+		"TTXT" : {
+			"Default Style Catalog" : "Default"
+		},
+		"TXT" : {
+			"Default Style Catalog" : "Default"
+		}
+	},
+	"Timing" : {
+		"Default Duration" : 2000
+	},
+	"Tool" : {
+		"Colour Picker" : {
+			"Last" : {
+				"X" : 3236,
+				"Y" : 865
+			},
+			"Maximized" : false,
+			"Mode" : 4,
+			"Recent Colours" : [
+				{
+					"color" : "rgb(255, 221, 139)"
+				},
+				{
+					"color" : "rgb(71, 51, 25)"
+				},
+				{
+					"color" : "rgb(0, 0, 0)"
+				},
+				{
+					"color" : "rgb(226, 204, 147)"
+				},
+				{
+					"color" : "rgb(209, 181, 128)"
+				},
+				{
+					"color" : "rgb(192, 165, 112)"
+				},
+				{
+					"color" : "rgb(79, 56, 26)"
+				},
+				{
+					"color" : "rgb(251, 251, 249)"
+				},
+				{
+					"color" : "rgb(217, 185, 155)"
+				},
+				{
+					"color" : "rgb(88, 51, 14)"
+				},
+				{
+					"color" : "rgb(99, 61, 21)"
+				},
+				{
+					"color" : "rgb(91, 54, 14)"
+				},
+				{
+					"color" : "rgb(137, 192, 129)"
+				},
+				{
+					"color" : "rgb(0, 0, 0)"
+				},
+				{
+					"color" : "rgb(255, 255, 255)"
+				},
+				{
+					"color" : "rgb(207, 181, 147)"
+				},
+				{
+					"color" : "rgb(43, 43, 43)"
+				},
+				{
+					"color" : "rgb(166, 20, 19)"
+				},
+				{
+					"color" : "rgb(72, 145, 222)"
+				},
+				{
+					"color" : "rgb(195, 98, 244)"
+				},
+				{
+					"color" : "rgb(155, 41, 212)"
+				},
+				{
+					"color" : "rgb(51, 122, 198)"
+				},
+				{
+					"color" : "rgb(40, 102, 174)"
+				},
+				{
+					"color" : "rgb(127, 129, 140)"
+				},
+				{
+					"color" : "rgb(171, 171, 171)"
+				},
+				{
+					"color" : "rgb(196, 196, 196)"
+				},
+				{
+					"color" : "rgb(68, 68, 68)"
+				},
+				{
+					"color" : "rgb(138, 138, 138)"
+				},
+				{
+					"color" : "rgb(212, 238, 209)"
+				},
+				{
+					"color" : "rgb(71, 57, 57)"
+				},
+				{
+					"color" : "rgb(52, 42, 42)"
+				},
+				{
+					"color" : "rgb(58, 58, 58)"
+				}
+			]
+		},
+		"Fonts Collector" : {
+			"Action" : 0
+		},
+		"Import" : {
+			"Text" : {
+				"Actor Separator" : ":",
+				"Comment Starter" : "#",
+				"Include Blank" : false
+			}
+		},
+		"Kanji Timer" : {
+			"Interpolation" : true
+		},
+		"Paste Lines Over" : {
+			"Fields" : [
+				{
+					"bool" : false
+				},
+				{
+					"bool" : false
+				},
+				{
+					"bool" : true
+				},
+				{
+					"bool" : true
+				},
+				{
+					"bool" : false
+				},
+				{
+					"bool" : false
+				},
+				{
+					"bool" : false
+				},
+				{
+					"bool" : false
+				},
+				{
+					"bool" : false
+				},
+				{
+					"bool" : false
+				},
+				{
+					"bool" : false
+				}
+			]
+		},
+		"Preferences" : {
+			"Page" : 5
+		},
+		"Search Replace" : {
+			"Affect" : 1,
+			"Field" : 0,
+			"Match Case" : false,
+			"RegExp" : true,
+			"Skip Comments" : false,
+			"Skip Tags" : false
+		},
+		"Select Lines" : {
+			"Action" : 0,
+			"Condition" : 0,
+			"Field" : 1,
+			"Match" : {
+				"Case" : false,
+				"Comment" : true,
+				"Dialogue" : true
+			},
+			"Mode" : 2,
+			"Text" : "Dialog"
+		},
+		"Shift Times" : {
+			"Affect" : 0,
+			"ByTime" : true,
+			"Direction" : false,
+			"Frames" : 0,
+			"Time" : 156000,
+			"Type" : 0
+		},
+		"Spell Checker" : {
+			"Backend" : "hunspell",
+			"Language" : "de_DE_frami",
+			"Skip Comments" : false,
+			"Skip Uppercase" : false
+		},
+		"Style Editor" : {
+			"Last" : {
+				"Height" : 451,
+				"Width" : 993,
+				"X" : 3256,
+				"Y" : 672
+			},
+			"Maximized" : false,
+			"Preview Text" : "Aegisub\\N0123 月語"
+		},
+		"Style Manager" : {
+			"Last" : {
+				"X" : 2807,
+				"Y" : 482
+			},
+			"Maximized" : false
+		},
+		"Styling Assistant" : {
+			"Last" : {
+				"X" : -1,
+				"Y" : -1
+			},
+			"Maximized" : false
+		},
+		"Thesaurus" : {
+			"Language" : "en_US"
+		},
+		"Timing Post Processor" : {
+			"Adjacent Bias" : 0.9000000000000000222,
+			"Enable" : {
+				"Adjacent" : false,
+				"Keyframe" : true,
+				"Lead" : {
+					"IN" : false,
+					"OUT" : false
+				}
+			},
+			"Only Selection" : false,
+			"Threshold" : {
+				"Adjacent Gap" : 300,
+				"Adjacent Overlap" : 50,
+				"Key End After" : 100,
+				"Key End Before" : 100,
+				"Key Start After" : 100,
+				"Key Start Before" : 100
+			}
+		},
+		"Translation Assistant" : {
+			"Last" : {
+				"X" : -1,
+				"Y" : -1
+			},
+			"Maximized" : false
+		},
+		"Visual" : {
+			"Autohide" : true
+		}
+	},
+	"Version" : {
+		"Last Version" : 8908,
+		"Next Check" : 1511040090
+	},
+	"Video" : {
+		"Default Zoom" : 7,
+		"Detached" : {
+			"Enabled" : false,
+			"Last" : {
+				"X" : 843,
+				"Y" : 71
+			},
+			"Maximized" : false
+		},
+		"Dummy" : {
+			"FPS" : 23.975999999999999091,
+			"Last" : {
+				"Height" : 1080,
+				"Length" : 40000,
+				"Width" : 1920
+			},
+			"Pattern" : false
+		},
+		"Force BT.601" : false,
+		"Last Script Resolution Mismatch Choice" : 2,
+		"Open Audio" : true,
+		"Overscan Mask" : false,
+		"Provider" : "ffmpegsource",
+		"Script Resolution Mismatch" : 1,
+		"Slider" : {
+			"Fast Jump Step" : 10,
+			"Show Keyframes" : true
+		},
+		"Subtitle Sync" : false
+	}
+}

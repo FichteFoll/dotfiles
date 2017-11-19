@@ -7,8 +7,9 @@ clip=$(xsel -ob)
 if [ -f "$clip" ]; then
     echo "Detected path to an existing file; uploading the file's contents instead"
     share "$clip"
+    exit
 fi
 
-url=$(echo -nE "$clip" | curl -F "file=@-" $req_url) # file=@-;filename=clip.txt
-echo -nE "$url" | xsel -ib
+url=$(curl -F "file=@-" $req_url <<< $clip) # file=@-;filename=clip.txt
+xsel -ib <<< $url
 notify-send -a "share" "Clipboard uploaded" "$url"

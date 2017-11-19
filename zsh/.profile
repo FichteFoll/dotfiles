@@ -1,5 +1,6 @@
 # default applications
 export TERMINAL=termite
+export TERM=termite
 export EDITOR="subl -nw"
 export PAGER=less
 

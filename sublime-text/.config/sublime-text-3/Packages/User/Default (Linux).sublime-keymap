@@ -106,7 +106,7 @@
     "args": {"overlay": "command_palette", "text": "git: "} },
 
   // make the "Build: Cancel" binding accessable
-  { "keys": ["pause"], "command": "exec", "args": {"kill": true} },
+  { "keys": ["pause"], "command": "cancel_build" },
 
   // re-add project switcher binding (removed in 3096)
   { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
@@ -275,4 +275,7 @@
   { "keys": ["ctrl+alt+shift+d"], "command": "advanced_new_file_copy" },
   { "keys": ["ctrl+k", "ctrl+n"], "command": "advanced_new_file_new" },
   { "keys": ["ctrl+k", "ctrl+shift+n"], "command": "advanced_new_file_new", "args": {"initial_path": "./"} },
+
+  // package reloader
+  { "keys": ["ctrl+super+r"], "command": "package_reloader_reload" },
 ]

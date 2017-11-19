@@ -30,7 +30,7 @@
                 "builtins": "",
                 "excludes": [],
                 "executable": "",
-                "ignore": "E201,E221,E222,E241,W191,W291,W292,W293,W503,D1,D211,D413",
+                "ignore": "E201,E221,E222,E241,E722,W191,W291,W292,W293,W503,D1,D211,D413,D",
                 "jobs": "1",
                 "max-complexity": -1,
                 "max-line-length": 99,
@@ -44,7 +44,7 @@
                 "lint": ""
             },
             "jshint": {
-                "@disable": false,
+                "@disable": true,
                 "args": [],
                 "args.bak": [
                     "--config",
@@ -58,9 +58,14 @@
                 "excludes": []
             },
             "mypy": {
-                "@disable": true,
+                "@disable": false,
                 "args": [],
-                "excludes": []
+                "cache-dir": "",
+                "config-file": "",
+                "disallow-any": [],
+                "excludes": [],
+                "python-version": "",
+                "strict-optional-whitelist": []
             },
             "pyyaml": {
                 "@disable": false,

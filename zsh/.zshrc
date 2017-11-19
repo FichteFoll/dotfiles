@@ -59,6 +59,9 @@ PS3='?# '
 # the execution trace prompt (setopt xtrace). default: '+%N:%i>'
 PS4='+%N:%i:%_> '
 
+# title bar prompt
+precmd () { print -Pn "\e]2;%n@%M | %~\a" }
+
 
 ###########################################################
 # color stuff

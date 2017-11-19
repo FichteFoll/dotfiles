@@ -50,7 +50,8 @@
 		"CVS",
 		"__pycache__",
 		".sass-cache",
-		"node_modules"
+		"node_modules",
+		".mypy_cache"
 	],
 	"font_face": "Operator Mono",
 	"font_size": 12,
@@ -60,11 +61,12 @@
 	[
 		"ASCII Decorator",
 		"Floobits",
-		"Markdown",
+		"MarkdownEditing",
 		"Open-Include",
 		"Plugin Debugger",
 		"RestructuredText",
 		"Stylus",
+		"SublimeLinter Inline Errors",
 		"Table Editor",
 		"Theme - Freesia",
 		"UnitTesting",
@@ -82,7 +84,6 @@
 		"*.log"
 	],
 	"minimap_scroll_to_clicked_text": true,
-	"overlay_scroll_bars": "system",
 	"plugin_debugger_python": "c:\\Python27\\python.exe",
 	"remember_full_screen": true,
 	"shift_tab_unindent": true,

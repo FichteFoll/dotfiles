@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+
+# parse args
+_fps=(--fps 10)
+zparseopts -D -E -K -fps:=_fps i:=_input o:=_output
+fps=$_fps[2]
+input=$_input[2]
+output=$_output[2]
+params=($@)
+
+if [[ -z $1 || $1 == --help || $1 == -h || -z "$input" || -z "$output" ]]; then
+    echo "params:"
+    echo "  --fps n (optional)"
+    echo "  -i input"
+    echo "  -o output"
+    exit 1
+fi
+
+# calculate delay setting for convert
+# -r x => 1/x
+# -delay AxB => A/B
+# delay=$(( 1000 / $fps ))
+# echo "fps: $fps; delay: $delay"
+
+tmpdir=$(mktemp -d)
+
+ffmpeg -i "$input" -r $fps $params "$tmpdir/out_%04d.png"
+# convert $tmpdir/out_*.png -delay $delay -loop 0 -colors 32 -layers optimize "$output"
+convert $tmpdir/out_*.png -colors 32 -delay 1x$fps -loop 0 -layers optimize "$output"
+# gifsicle
+
+rm -r $tmpdir

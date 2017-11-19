@@ -4,8 +4,42 @@ font = xos4 Terminus 10
 #font = Monospace 10
 
 mouse_autohide = true
-scrollback_lines = 1000
+scrollback_lines = 5000
 
 [colors]
 background = #121314
 foreground = #dedede
+foreground_bold = #ffffff
+
+# black
+color0 = #111111
+# bright_black
+color8 = #333333
+# red
+color1 = #a25153
+# bright_red
+color9 = #bb7678
+# green
+color2 = #53a251
+# bright_green
+color10 = #78bb76
+# yellow
+color3 = #a2a051
+# bright_yellow
+color11 = #bbb976
+# blue
+color4 = #5153a2
+# bright_blue
+color12 = #7678bb
+# magenta
+color5 = #a051a2
+# bright_magenta
+color13 = #b976bb
+# cyan
+color6 = #51a2a0
+# bright_cyan
+color14 = #76bbb9
+# white
+color7 = #d7d7d7
+# bright_white
+color15 = #ffffff

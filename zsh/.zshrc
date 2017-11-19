@@ -121,6 +121,9 @@ alias help=run-help
 ###########################################################
 # aliases and functions (mostly)
 
+# pls
+alias pls='sudo !!'
+
 # ls: exa
 alias ls='exa --time-style=long-iso'
 alias exat='exa --tree --level=3'

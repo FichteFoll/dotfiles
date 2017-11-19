@@ -1,0 +1,300 @@
+{
+	"name": "FichteMarkDown",
+	"scopeName": "text.fmd",
+	"fileTypes": ["fmd"],
+	"patterns": [
+		{
+			"include": "#inline"
+		},
+		{
+			"include": "#list-heading"
+		},
+		{
+			"include": "#list-item"
+		}
+	],
+
+	"repository": {
+		"inline": {
+			"patterns": [
+				{
+					"include": "#source"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#uri"
+				},
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#heading"
+				}
+			]
+		},
+
+
+		"in-list": {
+			"patterns": [
+				{
+					"include": "#inline"
+				},
+				{
+					"comment": "Matches ` No-Spaces-Here:` at the beginning of a #list-item",
+					"name": "markup.heading.topic.list.fmd",
+					"match": "\\G\\s*(\\S+)(:)(?=\\s)",
+					"captures": {
+					    "1": { "name": "variable.other.topic.list.fmd" },
+					    "2": { "name": "punctuation.definition.topic.list.fmd" }
+					}
+				},
+				{
+					"include": "#list-item"
+				}
+			]
+		},
+
+
+		"source": {
+			"patterns": [
+				{
+					"name": "source.lua",
+					"begin": "`l`",
+					"beginCaptures": {
+						"0": { "name": "variable.definition.source.block.begin.fmd" }
+					},
+					"end" : "``|´´",
+					"endCaptures": {
+						"0": { "name": "variable.definition.source.block.end.fmd" }
+					},
+					"patterns": [
+						{ "include": "source.lua" }
+					]
+				},
+				{
+					"name": "source.regexp.python string.unquoted",
+					"begin": "`r`",
+					"beginCaptures": {
+						"0": { "name": "variable.definition.source.block.begin.fmd" }
+					},
+					"end" : "``|´´",
+					"endCaptures": {
+						"0": { "name": "variable.definition.source.block.end.fmd" }
+					},
+					"patterns": [
+						{ "include": "source.regexp.python" }
+					]
+				},
+				{
+					"name": "source.inline.block.fmd",
+					"begin": "```",
+					"beginCaptures": {
+						"0": { "name": "variable.definition.source.block.begin.fmd" }
+					},
+					"end" : "```|´´´",
+					"endCaptures": {
+						"0": { "name": "variable.definition.source.block.end.fmd" }
+					}
+				},
+				{
+					"name": "source.inline.line.fmd",
+					"begin": "`",
+					"beginCaptures": {
+						"0": { "name": "comment.definition.source.block.begin.fmd" }
+					},
+					"end" : "$|`|´",
+					"endCaptures": {
+						"0": { "name": "comment.definition.source.block.end.fmd" }
+					}
+				}
+			]
+		},
+
+
+		"string": {
+			"name": "string.quoted.double.fmd",
+			"begin": "\"",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.string.begin.fmd" }
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.string.end.fmd" }
+			}
+		},
+
+
+		"comment": {
+			"patterns": [
+				{
+					"name": "comment.block.fmd",
+					"begin": "<#",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.comment.begin.fmd" }
+					},
+					"end": "#>",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.comment.end.fmd" }
+					}
+				},
+				{
+					"name": "invalid.illegal.comment-end.fmd",
+					"match": "#>"
+				},
+				{
+					"name": "comment.line.double-number.fmd",
+					"begin": "##",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.comment.begin.fmd" }
+					},
+					"end": "$"
+				}
+			]
+		},
+
+
+		"uri": {
+			"name": "string.other.uri.fmd constant.other.uri.fmd",
+			"begin": "(\\w+)://",
+			"beginCaptures": {
+				"1": { "name": "meta.uri.protocol.fmd" }
+			},
+			"end": "(?=\\s)"
+		},
+
+
+		"heading": {
+			"comment": "Headlines like `== Head == COMMENT`",
+			"name": "markup.heading.fmd",
+			"match": "^\\s*(=+)\\s*([^=]+)\\s*(=*)(.*)$",
+			"captures": {
+				"1": { "name": "punctuation.definition.heading.list.start.fmd" },
+				"2": { "name": "entity.name.section.fmd" },
+				"3": { "name": "punctuation.definition.heading.list.end.fmd" },
+				"4": { "name": "comment.line.other.heading.fmd" }
+			}
+		},
+
+
+		"list-heading": {
+			"patterns": [
+				{
+					"comment": "Matches `- Listsection: (comment)`",
+					"name": "markup.heading.list.fmd",
+					"match": "^\\s*(-)\\s*(.+)(:)\\s*((\\()[^\\)]*(\\)))?\\s*$",
+					"captures": {
+					    "1": { "name": "punctuation.definition.list.normal.fmd" },
+					    "2": { "name": "keyword.entity.name.section.list.fmd" },
+					    "3": { "name": "punctuation.definition.heading.list.fmd" },
+					    "4": { "name": "comment.line.other.heading.list.fmd" },
+						"5": { "name": "punctuation.definition.comment.line.post_heading.start.fmd" },
+						"6": { "name": "punctuation.definition.comment.line.post_heading.end.fmd" }
+					}
+				},
+				{
+					"comment": "Matches `! Listsection: (comment)`",
+					"name": "markup.heading.list.fmd",
+					"match": "^\\s*(!)\\s*(.+)(:)\\s*((\\()[^\\)]*(\\)))?\\s*$",
+					"captures": {
+					    "1": { "name": "punctuation.definition.list.invalid.fmd" },
+					    "2": { "name": "invalid.deprecated.name.section.list.fmd" },
+					    "3": { "name": "punctuation.definition.heading.list.fmd" },
+					    "4": { "name": "comment.line.other.heading.list.fmd" },
+						"5": { "name": "punctuation.definition.comment.line.post_heading.start.fmd" },
+						"6": { "name": "punctuation.definition.comment.line.post_heading.end.fmd" }
+					}
+				}
+			]
+		},
+
+
+		"list-item": {
+			"patterns": [
+				{
+					"name": "markup.list.unnumbered.normal.fmd",
+					"begin": "^(\\s*)(-)",
+					"beginCaptures": {
+						"2": { "name": "punctuation.definition.list.normal.fmd" }
+					},
+					"end": "^(?!\\1\\s+)(?!$)|^(?!\\s*=)",
+					"patterns": [
+						{
+							"include": "#in-list"
+						}
+					]
+				},
+				{
+					"name": "markup.list.numbered.fmd",
+					"begin": "^(\\s*)(-?\\d+)(\\.)(?!\\S)",
+					"beginCaptures": {
+						"2": { "name": "constant.number.list.fmd" },
+						"3": { "name": "keyword.other.definition.list.numbered.fmd" }
+					},
+					"end": "^(?!\\1\\s+)(?!$)|^(?!\\s*=)",
+					"patterns": [
+						{
+							"include": "#in-list"
+						}
+					]
+				},
+				{
+					"name": "support.list.tilde.fmd",
+					"begin": "^(\\s*)(~)",
+					"beginCaptures": {
+						"2": { "name": "punctuation.definition.list.tilde.fmd" }
+					},
+					"end": "^(?!\\1\\s+)(?!$)|^(?!\\s*=)",
+					"patterns": [
+						{
+							"include": "#in-list"
+						}
+					]
+				},
+				{
+					"name": "constant.list.plus.fmd",
+					"begin": "^(\\s*)(\\+)",
+					"beginCaptures": {
+						"2": { "name": "punctuation.definition.list.plus.fmd" }
+					},
+					"end": "^(?!\\1\\s+)(?!$)|^(?!\\s*=)",
+					"patterns": [
+						{
+							"include": "#in-list"
+						}
+					]
+				},
+				{
+					"name": "storage.list.star.fmd",
+					"begin": "^(\\s*)(\\*)",
+					"beginCaptures": {
+						"2": { "name": "punctuation.definition.list.star.fmd" }
+					},
+					"end": "^(?!\\1\\s+)(?!$)|^(?!\\s*=)",
+					"patterns": [
+						{
+							"include": "#in-list"
+						}
+					]
+				},
+				{
+					"name": "comment.list.x.fmd",
+					"begin": "^(\\s*)(?i)(x)(?=\\s)",
+					"beginCaptures": {
+						"2": { "name": "punctuation.definition.list.x.fmd" }
+					},
+					"end": "^(?!\\1\\s+)(?!$)|^(?!\\s*=)",
+					"patterns": [
+						{
+							"include": "#in-list"
+						}
+					]
+				}
+			]
+		}
+	},
+
+
+	"uuid": "4a101fc9-ac2c-487a-abe5-4f87ceaf884e"
+}

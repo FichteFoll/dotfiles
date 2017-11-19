@@ -1,0 +1,4 @@
+// These settings override both User and Default settings for the FichteMarkDown syntax
+{
+    "color_scheme": "Packages/User/FichteMarkDown/Twilight-Fichte.tmTheme"
+}

@@ -135,7 +135,7 @@ def hard_stow(package_names: Iterable[str],
 
 def main():
     # TODO args
-    # nargs (packages; default to subfolders)
+    # nargs (packages; default to all subfolders)
     # -n, --no
     # --adopt
     # --exclude (fnmatch)
@@ -146,10 +146,19 @@ def main():
     l.addHandler(logging.StreamHandler())
     l.setLevel(logging.DEBUG)
 
-    additional_stow_args = sys.argv[1:]
+    additional_stow_args = []
+    provided_package_names = set()
+    for arg in sys.argv[1:]:
+        if arg.startswith("-"):
+            additional_stow_args.append(arg)
+        else:
+            provided_package_names.add(arg)
 
-    package_paths = {path for path in dotfiles_path.glob("*") if is_package(path)}
-    package_names = {path.name for path in package_paths}
+    available_package_paths = {path for path in dotfiles_path.glob("*") if is_package(path)}
+    available_package_names = {path.name for path in available_package_paths}
+    missing_package_names = provided_package_names - available_package_names
+    package_names = provided_package_names - missing_package_names
+
     l.info(f"Installing {len(package_names)} packages")
     l.debug(f"Packages: {', '.join(sorted(package_names))}")
 

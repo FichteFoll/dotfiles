@@ -13,7 +13,7 @@ viewer=feh # eog
 player=mpv
 
 # Hitting Enter will upload
-always_ul=1
+always_ul=0
 
 # Uploading options
 # Possible Choices for img_ul: fb, scp, s3, imgur

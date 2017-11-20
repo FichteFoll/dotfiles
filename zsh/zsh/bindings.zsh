@@ -219,5 +219,9 @@ bind2maps emacs viins       -- -s '^xM' inplaceMkDirs
 # <f5> Insert a timestamp on the command line (yyyy-mm-dd)
 bind2maps emacs viins       -- -s "\e[15~" insert-datestamp
 
+# <C-r>, <C-f> search for pattern occurence in buffer and history
+bind2maps emacs viins       -- -s '^R' history-incremental-pattern-search-backward
+bind2maps emacs viins       -- -s '^F' history-incremental-pattern-search-forward
+
 
 unfunction bind2maps

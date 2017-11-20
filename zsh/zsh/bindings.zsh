@@ -83,12 +83,20 @@ slash-backward-kill-word() {
 }
 zle -N slash-backward-kill-word
 
-# run command line as user root via sudo:
+# run current or last command line via sudo
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/sudo/sudo.plugin.zsh
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
-    if [[ $BUFFER != sudo\ * ]]; then
-        BUFFER="sudo $BUFFER"
-        CURSOR=$(( CURSOR+5 ))
+    if [[ $BUFFER == sudo\ * ]]; then
+        LBUFFER="${LBUFFER#sudo }"
+    elif [[ $BUFFER == $EDITOR\ * ]]; then
+        LBUFFER="${LBUFFER#$EDITOR }"
+        LBUFFER="sudoedit $LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]]; then
+        LBUFFER="${LBUFFER#sudoedit }"
+        LBUFFER="$EDITOR $LBUFFER"
+    else
+        LBUFFER="sudo $LBUFFER"
     fi
 }
 zle -N sudo-command-line
@@ -191,7 +199,9 @@ bind2maps emacs viins       -- -s "\C-H"    slash-backward-kill-word # backward-
 bind2maps emacs viins       -- -s "\e[3;5~" delete-word # <C-Delete>
 bind2maps emacs viins       -- -s "\eOM"    accept-line # <Enter>
 
-bind2maps emacs viins       -- -s "^os" sudo-command-line
+# <C-x, s> run current previous or previous line as sudo
+bind2maps emacs viins       -- -s "^Xs" sudo-command-line
+
 # mkdir -p <dir> from string under cursor or marked area
 bind2maps emacs viins       -- -s '^xM' inplaceMkDirs
 

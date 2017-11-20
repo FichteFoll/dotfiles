@@ -350,3 +350,20 @@ alias venv="source .venv/bin/activate"
 
 # quick directory jumping (with `z`)
 source /usr/lib/z.sh
+
+# The Fuck smart corrections
+eval $(thefuck --alias) # --enable-experimental-instant-mode
+
+fuck-command-line() {
+    local FUCK="$(THEFUCK_REQUIRE_CONFIRMATION=0 thefuck $(fc -ln -1 | tail -n 1) 2> /dev/null)"
+    [[ -z $FUCK ]] && echo -n -e "\a" && return
+    BUFFER=$FUCK
+    zle end-of-line
+}
+zle -N fuck-command-line
+# Defined shortcut keys: [Esc] [Esc]
+bindkey "\e\e" fuck-command-line
+
+
+# Load file with confidential information
+source ~/.zshrc-private

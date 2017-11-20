@@ -134,8 +134,10 @@ inplaceMkDirs() {
 }
 zle -N inplaceMkDirs
 
-# insert-datestamp() { LBUFFER+=${(%):-'%D{%Y-%m-%d}'}; }
-# zle -N insert-datestamp
+insert-datestamp() {
+    LBUFFER+=${(%):-'%D{%Y-%m-%d}'};
+}
+zle -N insert-datestamp
 
 # https://anonscm.debian.org/cgit/pkg-zsh/zsh.git/tree/debian/zshrc
 typeset -A key
@@ -205,8 +207,8 @@ bind2maps emacs viins       -- -s "^Xs" sudo-command-line
 # mkdir -p <dir> from string under cursor or marked area
 bind2maps emacs viins       -- -s '^xM' inplaceMkDirs
 
-# Insert a timestamp on the command line (yyyy-mm-dd)
-bind2maps emacs viins       -- -s '^ed' insert-datestamp
+# <f5> Insert a timestamp on the command line (yyyy-mm-dd)
+bind2maps emacs viins       -- -s "\e[15~" insert-datestamp
 
 
 unfunction bind2maps

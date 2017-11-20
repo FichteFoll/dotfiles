@@ -178,12 +178,19 @@ bind2maps emacs             -- Right        forward-char
 bind2maps       viins vicmd -- Right        vi-forward-char
 # bind2maps menuselect        -- BackTab      reverse-menu-complete
 
+# bind2maps emacs viins       -- PageUp       history-beginning-search-backward-end
+# bind2maps emacs viins       -- PageDown     history-beginning-search-forward-end
 # search history for entry beginning with typed text
-bind2maps emacs viins       -- PageUp       history-beginning-search-backward-end
-bind2maps emacs viins       -- PageDown     history-beginning-search-forward-end
 # <C-Up> and <C-Down> in termite
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 bind2maps emacs viins       -- -s "\e[1;5A" history-beginning-search-backward-end
-bind2maps emacs viins       -- -s "\e[1;5B" history-beginning-search-foward-end
+bind2maps emacs viins       -- -s "\e[1;5B" history-beginning-search-forward-end
+# <A-Space> in termite
+autoload -U history-beginning-search-menu
+zle -N history-beginning-search-menu-end history-beginning-search-menu
+bind2maps emacs viins       -- -s "\e " history-beginning-search-menu-end
 
 # Bind <C-Left> and <C-Right> for word-wise caret movement
 # $TERM == rxvt-unicode-256color

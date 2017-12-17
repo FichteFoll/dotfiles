@@ -75,8 +75,8 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
+bindsym $mod+Shift+w layout stacking
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -226,6 +226,8 @@ bindsym $mod+Shift+Return exec cool-retro-term
 # rofi launcher
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+d exec rofi -show run
+bindsym $mod+s exec rofi -show window
+bindsym $mod+Shift+s exec rofi -show ssh
 #bindsym button2 nop
 
 # make a screenshot

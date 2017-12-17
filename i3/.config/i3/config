@@ -192,10 +192,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master $volume_step
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master $volume_step-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-# media keys for foobar
-bindsym XF86AudioPrev exec --no-startup-id foobar /prev
-bindsym XF86AudioPlay exec --no-startup-id foobar /playpause
-bindsym XF86AudioNext exec --no-startup-id foobar /next
+# media keys for foobar (needs stdout redirect, doesn't start otherwise)
+bindsym XF86AudioPrev exec --no-startup-id foobar /prev >/dev/null
+bindsym XF86AudioPlay exec --no-startup-id foobar /playpause >/dev/null
+bindsym XF86AudioNext exec --no-startup-id foobar /next >/dev/null
 
 # bindsym XF86AudioPlay exec notify-send "window title: $(xdotool getwindowname $(xdotool getactivewindow))"
 
@@ -254,7 +254,8 @@ mode "$mode_launcher" {
     bindsym a       exec aegisub, $to_default
     bindsym d       exec discord-canary, $to_default
     bindsym f       exec firefox, $to_default
-    bindsym Shift+f exec foobar, $to_default
+    # needs stdout redirect, doesn't start otherwise
+    bindsym Shift+f exec foobar >/dev/null, $to_default
     bindsym h       exec hexchat, $to_default
     bindsym k       exec keepass, $to_default
     bindsym r       exec termite -e ranger, $to_default

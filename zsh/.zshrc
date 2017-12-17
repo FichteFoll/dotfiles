@@ -279,15 +279,15 @@ whatwhen()  {
 
 
 # mpv/ytdl
+alias mpa="command mpv --profile=audio"
+alias mpv="command mpv --profile=terminal"
+alias ytdl="youtube-dl"
+
 twitch() {
     local channel=$1
     shift
     mpv $@ -- "https://twitch.tv/$channel"
 }
-
-alias mpa="command mpv --profile=audio"
-alias mpv="command mpv --profile=terminal"
-alias ytdl="youtube-dl"
 
 
 # check for system updates

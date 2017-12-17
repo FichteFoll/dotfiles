@@ -223,5 +223,8 @@ bind2maps emacs viins       -- -s "\e[15~" insert-datestamp
 bind2maps emacs viins       -- -s '^R' history-incremental-pattern-search-backward
 bind2maps emacs viins       -- -s '^F' history-incremental-pattern-search-forward
 
+# <f5> Insert a timestamp on the command line (yyyy-mm-dd)
+bind2maps emacs viins       -- -s "\e[15~" insert-datestamp
+
 
 unfunction bind2maps

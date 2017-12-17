@@ -6,6 +6,8 @@ import shlex
 import subprocess
 import sys
 
+import requests
+
 urls = sys.argv[1:]
 
 conf = []
@@ -17,12 +19,25 @@ with Path("~/.config/openurl.conf").expanduser().open() as f:
         conf.append(stripped.split(maxsplit=1))
 
 for url in urls:
+    req = requests.head(url)
+    content_type = req.headers.get('content-type')
+    mime_type = content_type.split(";", maxsplit=1)[0] if content_type else None
+
     for reg, cmd in conf:
-        if re.search(reg, url):
-            args = shlex.split(cmd.format(url=url))
-            print(f"Opening {url!r} with {args[0]}", file=sys.stderr)
-            subprocess.Popen(args)
-            break
+        if reg.startswith("mime:"):
+            reg = reg[5:]
+            if not mime_type or not re.search(reg, mime_type):
+                continue
+            print(f"MIME type {mime_type!r} matched by `{reg!s}`", file=sys.stderr)
+        elif not re.search(reg, url):
+            continue
+        else:
+            print(f"URL matched by `{reg!s}`", file=sys.stderr)
+
+        args = shlex.split(cmd.format(url=url))
+        print(f"Opening {url!r} with `{cmd}`", file=sys.stderr)
+        subprocess.Popen(args)
+        break
     else:
         # You don't want this to happen
         print(f"No regex match for {url!r}", file=sys.stderr)

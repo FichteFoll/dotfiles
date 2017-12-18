@@ -10,6 +10,14 @@ import requests
 
 urls = sys.argv[1:]
 
+
+def notify(summary, body=""):
+    args = ["notify-send", "--app-name=openurl", summary]
+    if body:
+        args.append(body)
+    subprocess.Popen(args)
+
+
 conf = []
 with Path("~/.config/openurl.conf").expanduser().open() as f:
     for line in f:
@@ -22,6 +30,12 @@ for url in urls:
     req = requests.head(url)
     content_type = req.headers.get('content-type')
     mime_type = content_type.split(";", maxsplit=1)[0] if content_type else None
+
+    if req.status_code >= 400:
+        print(f"HTTP {req.status_code}", file=sys.stderr)
+        notify(f"HTTP {req.status_code}",
+               f"Server returned HTTP status code {req.status_code} for:\n{url!r}")
+        continue
 
     for reg, cmd in conf:
         if reg.startswith("mime:"):

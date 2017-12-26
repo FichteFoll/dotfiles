@@ -1,5 +1,7 @@
 #!/usr/bin/env python3.6
 
+# TODO (not really here, but) webrun https://github.com/Vifon/webrun/blob/20cbf5e/webrun
+# could be used for evince, $EDITOR
 from pathlib import Path
 import re
 import shlex
@@ -7,6 +9,8 @@ import subprocess
 import sys
 
 import requests
+
+REQUEST_TIMEOUT = 1
 
 urls = sys.argv[1:]
 
@@ -27,14 +31,26 @@ with Path("~/.config/openurl.conf").expanduser().open() as f:
         conf.append(stripped.split(maxsplit=1))
 
 for url in urls:
-    req = requests.head(url)
-    content_type = req.headers.get('content-type')
-    mime_type = content_type.split(";", maxsplit=1)[0] if content_type else None
+    try:
+        req = requests.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
+    except (requests.ConnectTimeout, requests.ConnectionError):
+        mime_type = ""
+        code = 0
+    else:
+        content_type = req.headers.get('content-type')
+        mime_type = content_type.split(";", maxsplit=1)[0] if content_type else None
+        code = req.status_code
+        print(f"HEAD request replied to with HTTP {code}", file=sys.stderr)
+        if req.url != url:
+            print(f"And previously redirected to {req.url}")
+            url = req.url
 
-    if req.status_code >= 400:
-        print(f"HTTP {req.status_code}", file=sys.stderr)
-        notify(f"HTTP {req.status_code}",
-               f"Server returned HTTP status code {req.status_code} for:\n{url!r}")
+    # https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_errors
+    # if code >= 400 and code not in (401, 405, 418, 503):
+    if code in (403, 404, 410, 502):
+        # amazon sends 503 for HEAD requests, so we can't match that
+        notify(f"HTTP {code}",
+               f"Server returned HTTP status code {code} for:\n{url!r}")
         continue
 
     for reg, cmd in conf:

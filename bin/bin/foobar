@@ -2,5 +2,5 @@
 
 export WINEPREFIX='/home/fichte/.wine32'
 export FREETYPE_PROPERTIES="truetype:interpreter-version=35"
-wine 'C:\Program Files\foobar2000\foobar2000.exe' $@
+exec wine 'C:\Program Files\foobar2000\foobar2000.exe' $@
 # wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/fichte/.wine32/dosdevices/c:/users/Public/Desktop/foobar2000.lnk $@

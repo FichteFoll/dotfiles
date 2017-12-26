@@ -210,14 +210,30 @@ bind2maps emacs viins       -- -s "\C-H"    slash-backward-kill-word # backward-
 bind2maps emacs viins       -- -s "\e[3;5~" delete-word # <C-Delete>
 bind2maps emacs viins       -- -s "\eOM"    accept-line # <Enter>
 
+# <A-v> insert ???
+# bind2maps emacs viins       -- -s "\ev"     quoted-insert
+
 # <C-x, s> run current previous or previous line as sudo
 bind2maps emacs viins       -- -s "^Xs" sudo-command-line
 
-# mkdir -p <dir> from string under cursor or marked area
-bind2maps emacs viins       -- -s '^xM' inplaceMkDirs
+# <C-x, m> mkdir -p <dir> from string under cursor or marked area
+bind2maps emacs viins       -- -s '^XM' inplaceMkDirs
 
 # <f5> Insert a timestamp on the command line (yyyy-mm-dd)
 bind2maps emacs viins       -- -s "\e[15~" insert-datestamp
+
+# <C-x, f> previews results of typing a file pattern
+autoload -U insert-files
+bind2maps emacs viins       -- -s '^Xf' insert-files
+
+# <C-x, u> insert unicode char by typing its hex digits; press again to exit
+# autoload -U insert-unicode-char
+# bind2maps emacs viins       -- -s '^XU' insert-unicode-char
+
+# <C-A-Up>, <C-A-Down> increment or decrement a number
+# autoload -U incarg
+# bind2maps emacs viins       -- -s '\e[1;7A' incarg
+# bind2maps emacs viins       -- -s '\e[1;7B' incarg -1
 
 # <C-r>, <C-f> search for pattern occurence in buffer and history
 bind2maps emacs viins       -- -s '^R' history-incremental-pattern-search-backward

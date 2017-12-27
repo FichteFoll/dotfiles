@@ -49,19 +49,16 @@ precmd() {
 
 # TODO venv
 prompt_() {
-    # return code if non-zero, and a line break
+    # return code, iff non-zero, and a line break
     echo -n "%(?// %B?=%K{1}%?%k%b)\n"
-    # name@host, name red if privileged
-    # echo -n "%(!/%F{1}/%F{11})%n%F{9}@%F{14}%m%f"
+    # name in red iff privileged
     echo -n "%(!/%F{1}%n%f /)"
-    # cwd
-    echo -n "%F{13}%-100(l.%(6~#%-3~/…/%2~#%~).%c)%f"  # show most of path if terminal wide enough
-    # echo -n "%F{13}%c»%f"
+    # cwd; show most of path if terminal wide enough
+    echo -n "%F{13}%-100(l.%(6~#%-3~/…/%2~#%~).%c)%f"  #
     echo -n " "
     # VCS action, if any; other VCS info => RPROMPT
     echo -n "\${vcs_info_msg_1_}"
     # prompt symbol
-    # echo -n "%(?//%F{1})Σ%f " # (red if non-zero return code)
     echo -n "\$the_symbol_ "
 }
 

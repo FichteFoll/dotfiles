@@ -1,6 +1,6 @@
 # default applications
-export TERMINAL=termite
-export TERM=termite
+export TERMINAL=alacritty
+export TERM=alacritty
 export EDITOR="subl -nw"
 export PAGER=less
 

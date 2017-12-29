@@ -50,7 +50,7 @@ precmd() {
 # TODO venv
 prompt_() {
     # return code, iff non-zero, and a line break
-    echo -n "%(?// %B?=%K{1}%?%k%b)\n"
+    echo -n "%(?// %B%F{9}?=%f%K{9}%?%k%f%b)\n"
     # name in red iff privileged
     echo -n "%(!/%F{1}%n%f /)"
     # cwd; show most of path if terminal wide enough

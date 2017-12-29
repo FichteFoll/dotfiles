@@ -258,7 +258,7 @@ mode "$mode_launcher" {
     bindsym Shift+f exec foobar >/dev/null, $to_default
     bindsym h       exec hexchat, $to_default
     bindsym k       exec keepass, $to_default
-    bindsym r       exec termite -e ranger, $to_default
+    bindsym r       exec i3-sensible-terminal -e ranger, $to_default
     bindsym Shift+s exec smartgit, $to_default
     bindsym s       exec subl, $to_default
     bindsym Shift+t exec telegram-desktop, $to_default

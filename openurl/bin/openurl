@@ -33,9 +33,10 @@ with Path("~/.config/openurl.conf").expanduser().open() as f:
 for url in urls:
     try:
         req = requests.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
-    except (requests.ConnectTimeout, requests.ConnectionError):
+    except (requests.ConnectTimeout, requests.ConnectionError, requests.ReadTimeout):
         mime_type = ""
         code = 0
+        print(f"The request errored or timed out after {REQUEST_TIMEOUT} seconds", file=sys.stderr)
     else:
         content_type = req.headers.get('content-type')
         mime_type = content_type.split(";", maxsplit=1)[0] if content_type else None

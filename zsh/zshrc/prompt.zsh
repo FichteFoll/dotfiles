@@ -27,7 +27,7 @@ zstyle ':vcs_info:*' enable git svn hg
 zstyle ':vcs_info:*' check-for-changes true
 
 # "(vcs:reponame@branch)" "[action]"
-zstyle ':vcs_info:*' actionformats "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f)" "%F{3}[%F{1}%a%F{3}]%f "
+zstyle ':vcs_info:*' actionformats "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f)" " %F{3}[%F{1}%a%F{3}]%f"
 zstyle ':vcs_info:*' formats       "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f)"
 zstyle ':vcs_info:*' branchformat  "%b%F{1}:%F{3}%r"
 zstyle ':vcs_info:*' nvcsformats   "[%(!/%F{1}/%F{14})%n%F{12}@%F{4}%m%f]" # "[user@host]"
@@ -40,6 +40,22 @@ symbol_candidates_=(▚ ▞ Σ ∀ ∃ Δ ∇ Λ λ $ \> ¬ ↻ ♦ ж Ξ ▶)
 # more, but look bad-ish with my font: ε ⛼ ♦ ϟ ᐅ
 # even more: https://unicode-table.com
 
+# disable Python's standard virtualenv prompt modifications
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+virtualenv_prompt_info_() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        if [ -f "$VIRTUAL_ENV/__name__" ]; then
+            local name=`cat $VIRTUAL_ENV/__name__`
+        elif [ `basename $VIRTUAL_ENV` = "__" ]; then
+            local name=$(basename $(dirname $VIRTUAL_ENV))
+        else
+            local name=$(basename $VIRTUAL_ENV)
+        fi
+        echo -n " (%F{3}$name%f)"
+    fi
+}
+
 precmd() {
     vcs_info
     the_symbol_="$symbol_candidates_[$((RANDOM % $#symbol_candidates_ + 1))]"
@@ -47,19 +63,19 @@ precmd() {
     print -Pn "\e]2;%n@%M | %~\a"
 }
 
-# TODO venv
 prompt_() {
     # return code, iff non-zero, and a line break
     echo -n "%(?// %B%F{9}?=%f%K{9}%?%k%f%b)\n"
     # name in red iff privileged
     echo -n "%(!/%F{1}%n%f /)"
     # cwd; show most of path if terminal wide enough
-    echo -n "%F{13}%-100(l.%(6~#%-3~/…/%2~#%~).%c)%f"  #
-    echo -n " "
+    echo -n "%F{13}%-100(l.%(6~#%-3~/…/%2~#%~).%c)%f"
+    # current virtualenv (Python)
+    echo -n "\$(virtualenv_prompt_info_)"
     # VCS action, if any; other VCS info => RPROMPT
     echo -n "\${vcs_info_msg_1_}"
     # prompt symbol
-    echo -n "\$the_symbol_ "
+    echo -n " \${the_symbol_} "
 }
 
 rprompt_() {

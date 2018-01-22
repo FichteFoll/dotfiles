@@ -4,6 +4,7 @@ alias pls='sudo !!'
 
 # ls: exa
 alias ls='exa --time-style=long-iso'
+alias lst='exa --tree --level=3'
 alias exat='exa --tree --level=3'
 alias ols='command ls --color=auto'
 

@@ -138,7 +138,10 @@ class dot(Command):
         return filtered_paths
 
     def tab(self, tabnum: int) -> Generator[str, None, None]:
-        yield from sorted(self._pkg_names())
+        start, current = self.start(1), self.rest(1)
+        for name in sorted(self._pkg_names()):
+            if name.startswith(current):
+                yield start + name
 
     @classmethod
     def _pkg_names(cls) -> Generator[str, None, None]:

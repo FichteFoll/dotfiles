@@ -121,10 +121,7 @@ class dot(Command):
             files = {p for p, tag in self.fm.tags.tags.items() if tag == self.TAG}
 
         if not files:
-            files = {f.path for f in self.fm.thisdir.marked_items}
-
-        if not files:
-            files = {self.fm.thisfile.path}
+            files = {obj.path for obj in self.fm.thistab.get_selection()}
 
         # expand directories
         expanded_paths: Set[Path] = set()

@@ -29,3 +29,5 @@
 
 [merge]
 	conflictstyle = diff3
+[core]
+	excludesfile = /home/fichte/.gitignore_global

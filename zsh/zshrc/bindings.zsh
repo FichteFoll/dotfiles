@@ -198,14 +198,14 @@ bind2maps emacs viins       -- -s "\e " history-beginning-search-menu-end
 # $TERM == rxvt-unicode-256color
 bind2maps emacs viins       -- -s "\e0d"    backward-word
 bind2maps emacs viins       -- -s "\e0c"    emacs-forward-word
-# $TERM == xterm-termite
+# $TERM == xterm-termite, $TERM == alacritty
 bind2maps emacs viins       -- -s "\e[1;5D" backward-word
 bind2maps emacs viins       -- -s "\e[1;5C" emacs-forward-word
 # $TERM == linux
 bind2maps emacs viins       -- -s "\e[[D"   backward-word
 bind2maps emacs viins       -- -s "\e[[C"   emacs-forward-word
 
-# $TERM == xterm-termite
+# $TERM == xterm-termite, $TERM == alacritty
 bind2maps emacs viins       -- -s "\C-H"    slash-backward-kill-word # backward-delete-word
 bind2maps emacs viins       -- -s "\e[3;5~" delete-word # <C-Delete>
 bind2maps emacs viins       -- -s "\eOM"    accept-line # <Enter>

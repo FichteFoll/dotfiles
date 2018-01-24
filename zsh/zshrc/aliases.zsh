@@ -64,7 +64,10 @@ mktcd() {
 }
 
 # Remove current empty directory.
-alias rmcdir='cd ..; rmdir $OLDPWD || cd $OLDPWD'
+rmcdir () {
+    builtin cd ..
+    command rmdir $OLDPWD || builtin cd $OLDPWD
+}
 
 
 # OpenSSL cert shorthands
@@ -178,6 +181,7 @@ cu () {
     checkupdates
     pacaur -k
 }
+
 cu2 () {
     # include updates for --devel packages (*-git)
     # takes longer to run because all git repos need to be updated

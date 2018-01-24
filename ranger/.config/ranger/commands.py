@@ -146,3 +146,31 @@ class dot(Command):
     @classmethod
     def _pkg_names(cls) -> Generator[str, None, None]:
         yield from (p.name for p in cls.DOTFILES_DIR.iterdir() if p.is_dir())
+
+
+class unlink(Command):
+    """
+    :unlink [<remove>]
+
+    Replace a symlink with the thing it links to and optionally remove the original.
+    """
+
+    def execute(self):
+        import shutil
+        remove = bool(self.arg(1))
+
+        fileobjs = self.fm.thistab.get_selection()
+        paths = {Path(obj.path) for obj in fileobjs}
+        for src in paths:
+            if not src.is_symlink():
+                continue
+            try:
+                dst = src.resolve(strict=True)
+            except FileNotFoundError:
+                self.fm.notify(f"Target of {src!s} does not exist", bad=True)
+                continue
+            src.unlink()
+            if remove:
+                shutil.move(dst, src)
+            else:
+                shutil.copy2(dst, src)

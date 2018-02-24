@@ -205,6 +205,11 @@ alias wine_tmp='env WINEPREFIX="$HOME/.wine_tmp" wine'
 alias winecfg_tmp='env WINEPREFIX="$HOME/.wine_tmp" winecfg'
 alias winetricks_tmp='env WINEPREFIX="$HOME/.wine_tmp" winetricks'
 
-
-# python venv command
+# python source venv
 alias venv="source .venv/bin/activate"
+
+
+colorpicker () {
+    maim -st 0 | convert - -resize 1x1\! -format '%[pixel:p{0,0}]' info:-
+}
+

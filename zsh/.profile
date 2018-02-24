@@ -10,7 +10,7 @@ export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
 # make systemd aware of our "new" PATH
 systemctl --user import-environment PATH
 
-# enable aliasing for java
+# enable aliasing for java (JDownloader)
 # https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 

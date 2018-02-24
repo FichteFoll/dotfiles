@@ -1,4 +1,5 @@
 [
+  { "keys": ["ctrl+shift+p"], "command": "fixed_command_palette_input_selection" },
 // basic overrides:
   //["ctrl+;"] -> ctrl+ü; "/" is actually the "#" key
   { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": "#"} },

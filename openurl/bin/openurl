@@ -2,6 +2,7 @@
 
 # TODO (not really here, but) webrun https://github.com/Vifon/webrun/blob/20cbf5e/webrun
 # could be used for evince, $EDITOR
+# TODO blacklist for 403 replies since some servers are bad like that
 from pathlib import Path
 import re
 import shlex
@@ -30,9 +31,13 @@ with Path("~/.config/openurl.conf").expanduser().open() as f:
             continue  # Discard empty and commented lines
         conf.append(stripped.split(maxsplit=1))
 
+
+session = requests.Session()
+session.headers['User-Agent'] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 openurl/0.0 Safari/537.36"
+
 for url in urls:
     try:
-        req = requests.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
+        req = session.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
     except (requests.ConnectTimeout, requests.ConnectionError, requests.ReadTimeout):
         mime_type = ""
         code = 0

@@ -2,7 +2,7 @@
 
 req_url='https://x0.at/'
 
-xsel -ob | read clip
+xsel -ob | read -rd '' clip
 
 if [ -f "$clip" ]; then
     echo "Detected path to an existing file; uploading the file's contents instead"
@@ -11,6 +11,6 @@ if [ -f "$clip" ]; then
 fi
 
 # set filename with .txt so that x0.at sends a content-type header
-curl -F "file=file=@-;filename=clip.txt" $req_url <<< $clip | read -r url
+curl -F "file=@-;filename=clip.txt" $req_url <<< "$clip" | read -r url
 echo -n "$url" | xsel -ib
 notify-send -a "share" "Clipboard uploaded" "$url"

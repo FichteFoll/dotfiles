@@ -193,9 +193,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master $volume_step
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
 # media keys for foobar (needs stdout redirect, doesn't start otherwise)
-bindsym XF86AudioPrev exec --no-startup-id foobar /prev >/dev/null
-bindsym XF86AudioPlay exec --no-startup-id foobar /playpause >/dev/null
-bindsym XF86AudioNext exec --no-startup-id foobar /next >/dev/null
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioNext exec --no-startup-id mpc next
 
 # bindsym XF86AudioPlay exec notify-send "window title: $(xdotool getwindowname $(xdotool getactivewindow))"
 
@@ -208,6 +208,7 @@ for_window [class="Firefox" window_role="page-info"] floating enable
 for_window [class="Thunderbird" window_role="EventDialog"] floating enable
 for_window [class="Deluge"] floating enable
 for_window [class="Pinentry"] floating enable
+for_window [class="Pavucontrol"] floating enable
 for_window [class="cool-retro-term"] fullscreen enable
 
 # add border for border-less gtk3 applications

@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+
+cd /data/audio/\!download/ytdl
+
+# https://regex101.com/r/tb0qw7/1
+read -rd '' metadata_regex <<EOF # uses Python syntax
+(?ix)
+^( \ * [(\[【] .*? [)\]】] )?
+\ *
+((?P<artist>.+?) \ +[-/]\ +)?
+((?P<track>\d+) \ +-\ +)?
+(?P<title>.+?)
+\ *
+(\(
+    (   Album:\ *
+    |   (?P<albumartist>.+?)\ +-\ +
+    )
+    (?P<album>.+?)
+\))?
+\ *
+([|\[{].*)?
+(\((official|lyric|full).*)?
+$
+EOF
+
+if [[ "$1" =~ '(/playlist|/user/|/channel/)' ]]; then
+    # it's a playlist
+    echo "detected youtube playlist url"
+    # use release_date for sorting instead of playlist_index as that may change
+    output_fmt="%(playlist_title)s_%(playlist_id)s/%(playlist_index)s_%(title)s_%(id)s.%(ext)s"
+else
+    output_fmt="%(extractor)s/%(title)s_%(id)s.%(ext)s"
+fi
+
+youtube-dl \
+    -f bestaudio -x \
+    --no-playlist --playlist-reverse --ignore-errors \
+    --add-metadata \
+    --metadata-from-title "$metadata_regex" \
+    -o "$output_fmt" \
+    $@

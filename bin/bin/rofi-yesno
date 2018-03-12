@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+#
+# Ask for confirmation with rofi. Returns non-zero exit code if declined.
+# Specify prompt with $1.
+
+echo -en "yes\nno" | rofi -dmenu -p "$1" | read -r answer
+[[ $answer == yes ]]

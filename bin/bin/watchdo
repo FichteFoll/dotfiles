@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# $1 - file to watch
+# $2 - commands to execute
+
+while true; do
+  inotifywatch -e modify -t 1 "$1" 2>/dev/null | grep -q total && eval "$2";
+done

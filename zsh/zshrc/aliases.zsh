@@ -192,7 +192,9 @@ cu2 () {
 
 # systemd aliases
 alias sc='systemctl'
+alias scu='systemctl --user'
 alias jc='journalctl'
+alias jcu='journalctl --user'
 alias nc='netctl'
 
 

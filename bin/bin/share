@@ -7,6 +7,6 @@ if [ ! -f "$1" ]; then
     exit 1
 fi
 echo "file: $1"
-url=$(curl -F "file=@\"$1\"" $req_url)
+curl -F "file=@\"$1\"" $req_url | read -r url
 echo -n "$url" | xsel -ib
 notify-send -a "share" "File uploaded" "$url"

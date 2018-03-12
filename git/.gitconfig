@@ -31,3 +31,5 @@
 	conflictstyle = diff3
 [core]
 	excludesfile = /home/fichte/.gitignore_global
+[rebase]
+	autoSquash = true

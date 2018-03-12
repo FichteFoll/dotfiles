@@ -215,3 +215,12 @@ colorpicker () {
     maim -st 0 | convert - -resize 1x1\! -format '%[pixel:p{0,0}]' info:-
 }
 
+flasher() {
+    # doesn't work with alacritty
+    while true; do
+        printf "\\e[?5h"
+        sleep 1
+        printf "\\e[?5l"
+        read -s -k1 -t1 && break
+    done;
+}

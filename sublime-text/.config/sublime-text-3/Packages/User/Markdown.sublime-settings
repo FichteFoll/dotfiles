@@ -1,16 +1,4 @@
 {
-	"caret_extra_width": 0,
-	"caret_style": "smooth",
-	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
-	"draw_centered": false,
-	"enable_table_editor": true,
-	"extensions":
-	[
-		"md",
-		"mdown"
-	],
-	"highlight_line": true,
-	"line_numbers": true,
 	"rulers":
 	[
 		80

@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+r"""Really simple script to create vertical kanji lines by inserting \N inbetween.
+
+Requires https://github.com/rfw/python-ass.
+"""
+
 import re
 import sys
 

@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+"""Merge multiple ASS files into one.
+
+Supports a couple options to strip stuff
+and complains about style conflicts.
+Dialog lines are simply appended.
+
+Requires https://github.com/rfw/python-ass.
+"""
+
 import argparse
 import logging
 import sys

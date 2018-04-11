@@ -14,6 +14,8 @@ where the latter is usually the "right" one (or rather: the desired one).
 
 Since I most certainly can't bother to fix this upstream,
 I made this little script to post-process the font names inserted by Aegisub.
+
+Requires https://github.com/rfw/python-ass.
 """
 
 import argparse

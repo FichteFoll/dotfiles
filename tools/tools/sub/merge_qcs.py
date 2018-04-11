@@ -1,5 +1,11 @@
 #!/usr/bin/env python3.6
 
+"""Merge multiple QC documents, as created by kSub and mpvQC, into one.
+
+Sorts lines and attributes them with their reporter
+(sourced from the filename).
+"""
+
 # TODO option/mode to merge into ASS file
 
 import argparse

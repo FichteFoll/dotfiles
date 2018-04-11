@@ -176,17 +176,41 @@ alias nanaone="mpv https://live1.brb.re:8082/html5/hls/nanaone.m3u8"
 alias nanaone2="mpv rtmp://live1.brb.re/live/nanaone_720p"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"
 
-# check for system updates
+
+# check for and perform system updates
 cu () {
     checkupdates
-    pacaur -k
+    echo ''
+    aur vercmp -d aur
+    # pacaur -k
 }
 
 cu2 () {
     # include updates for --devel packages (*-git)
     # takes longer to run because all git repos need to be updated
     checkupdates
-    pacaur -k --devel --needed
+    # pacaur -k --devel --needed
+
+    # https://github.com/AladW/aurutils/issues/299#issuecomment-366807331
+    # until a "native" flag is added: https://github.com/AladW/aurutils/pull/283
+    local vcs_info
+    mktemp | read -r vcs_info
+    aur srcver ~/.cache/aurutils/sync/*-git > "$vcs_info"
+    aur vercmp -d custom -p "$vcs_info"
+    rm "$vcs_info"
+}
+
+Syu () {
+    # Check for special upgrade steps
+    links "https://www.archlinux.org/"
+    links "https://bbs.archlinux.org/viewforum.php?id=44"
+    read -q "?continue? [y/n]" || return
+
+    # the actual upgrade
+    sudo pacman -Syu
+
+    # print remaining outdated packages
+    cu
 }
 
 

@@ -2,5 +2,10 @@
 orient_3 l
 orient_1 L
 
-# unbind "f"
+# unbind "f" and then to toggle_fullscreen
 save_filelist
+toggle_fullscreen v f
+
+# Unbind default C-Delete action and replace with prompt to trash
+delete
+action_1 1 C-Delete

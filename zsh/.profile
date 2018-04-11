@@ -5,7 +5,7 @@ export EDITOR="subl -nw"
 export PAGER=less
 
 # add user scripts and cargo binaries to PATH
-export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$PATH:$HOME/.cargo/bin:$HOME/.gem/ruby/2.5.0/bin"
 
 # make systemd aware of our "new" PATH
 systemctl --user import-environment PATH

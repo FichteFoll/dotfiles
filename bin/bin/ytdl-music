@@ -32,9 +32,10 @@ else
     output_fmt="%(extractor)s/%(title)s_%(id)s.%(ext)s"
 fi
 
+# add --playlist-reverse if playlist is sorted newest first
 youtube-dl \
     -f bestaudio -x \
-    --no-playlist --playlist-reverse --ignore-errors \
+    --no-playlist --ignore-errors \
     --add-metadata \
     --metadata-from-title "$metadata_regex" \
     -o "$output_fmt" \

@@ -171,7 +171,6 @@ twitch() {
     mpv $@ -- "https://twitch.tv/$channel"
 }
 
-# alias nanaone="mpv rtmp://live1.brb.re/live/nanaone"
 alias nanaone="mpv https://live1.brb.re:8082/html5/hls/nanaone.m3u8"
 alias nanaone2="mpv rtmp://live1.brb.re/live/nanaone_720p"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"
@@ -234,7 +233,13 @@ alias winetricks_tmp='env WINEPREFIX="$HOME/.wine_tmp" winetricks'
 # python source venv
 alias venv="source .venv/bin/activate"
 
+# run locally installed npm scripts
+function npm-do {
+    (PATH=$(npm bin):$PATH; eval $@;)
+}
 
+
+# utilities
 colorpicker () {
     maim -st 0 | convert - -resize 1x1\! -format '%[pixel:p{0,0}]' info:-
 }

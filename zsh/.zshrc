@@ -102,5 +102,9 @@ zle -N fuck-command-line
 bindkey "\e\e" fuck-command-line
 
 
+# Env settings for tools
+export AUR_PAGER="ranger --cmd aur"
+
+
 # Load file with confidential information
 source ~/.zshrc-private

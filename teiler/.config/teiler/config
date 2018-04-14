@@ -36,7 +36,7 @@ always_ul=0
 # and webm-noaudio
 # You can create your own profiles, but changes to existing profiles
 # will be overwritten on startup
-profile="mp4-noaudio"
+profile="my-mp4-noaudio"
 
 # hotkeys
 upload="Alt+1"

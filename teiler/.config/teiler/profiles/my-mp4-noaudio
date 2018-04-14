@@ -1,0 +1,11 @@
+border="-show_region 1"
+
+# convert to yuv420p because browsers can't handle 444 subsampling
+# zscale requires --enable-libzimg
+# Alternatively: -pix_fmt yuv420p
+all_encopts="-r 30 -pix_fmt yuv420p -c:v libx264 -c:a libvorbis"
+#all_encopts="-r 30 -vf zscale=f=spline36:m=709,format=yuv420p -c:v libx264 -c:a libvorbis"
+encopts="$all_encopts -s $res -movflags +faststart"
+rect_encopts="$all_encopts -preset slow -crf 18"
+ext="mp4"
+ffaudio=""

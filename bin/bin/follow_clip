@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+import argparse
+import time
+
+import pyperclip
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Follow the system clipboard and print to stdout.")
+    parser.add_argument("-c", "--current",
+                        help="Include the current clipboard contents.")
+    parser.add_argument("-ws", "--no-ignore-whitespace", dest='ignore_ws', action='store_false',
+                        help="Ignore whitespace-only clips.")
+    parser.add_argument("-s", "--strip-whitespace", dest='strip_ws', action='store_true',
+                        help="Strip whitespace characters at the beginning and the end.")
+    parser.add_argument("--count", type=int, default=0,
+                        help="Exit after n items. 0 = infinite (default)")
+    parser.add_argument("-0", dest='separator', action='store_const', const="\000", default='\n',
+                        help="Use null byte to separate clipboard entries. Default is to use a newline.")
+
+    return parser.parse_args()
+
+
+def main():
+    params = parse_args()
+
+    def handle_paste(paste: str):
+        if params.ignore_ws and not paste.strip():
+            return
+        if params.strip_ws:
+            paste = paste.strip()
+        print(paste, end=params.separator, flush=True)
+
+    count = 0
+    last_paste = "" if params.current else pyperclip.paste()
+    while True:
+        new_paste = pyperclip.paste()
+        if new_paste != last_paste:
+            handle_paste(new_paste)
+            last_paste = new_paste
+            count += 1
+        if params.count and params.count == count:
+            break
+
+        time.sleep(0.3)
+
+    # TODO do we have to signal something to stdout?
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

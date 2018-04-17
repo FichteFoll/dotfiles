@@ -1,0 +1,60 @@
+# https://beets.readthedocs.io/en/stable/reference/config.html
+
+directory: /data/audio/music/sorted
+library: /data/audio/music/sorted/musiclibrary.db
+
+per_disc_numbering: true
+
+import:
+  move: true
+  # autotag: false
+  log: beetslog.txt
+
+# match:
+#   required: year
+
+# custom fields:
+#   - source: (for albumtype:Soundtrack)
+#     The name of the source for the soundtrack,
+#     e.g. the source of "Transistor Soundtrack" is "Transistor".
+#   - sourcetype: (for albumtype:Soundtrack)
+#     Type of the source.
+#     One out of "Game", "Movie", "Anime".
+#   - anime:
+#     For singles in the context of anime releases.
+#     Can be set to "Opening", "Ending", "Insert", etc.
+#   - touhou:true
+#     If it is a Touhou arrangement.
+
+# https://beets.readthedocs.io/en/stable/reference/pathformat.html
+paths:
+  # $if(%track%,$if($and(%discnumber%,$neql(%totaldiscs%,$num(%discnumber%,1))),$num(%discnumber%,1).,)$num(%track%,2) - ,)$if($and(%albumartist%,$neql(%albumartist%,%artist%)),%artist% - ,)%title%
+  comp: $albumartist/$year - $album%aunique{}/$disc_and_track - $artist - $title
+  albumtype:soundtrack: '#soundtrack/%ifdef{source,$source/}$album%aunique{}/$disc_and_track - $title'
+  # source:touhou: '#touhou/$album%aunique{}/$disc_and_track - $title'
+  # anime:true: '#touhou/$album%aunique{}/$disc_and_track - $title'
+  # doujin:true: '#touhou/$album%aunique{}/$disc_and_track - $title'
+  singleton: $albumartist/$title
+  # default: $artist/$title
+  default: $albumartist/$year - $album%aunique{}/$disc_and_track - $title
+
+item_fields:
+  disc_and_track: >
+    f"{disc}.{track:02}"
+    if disctotal > 1
+    else f"{track:02}"
+
+# https://beets.readthedocs.io/en/latest/plugins/index.html
+plugins: fetchart lastgenre missing duplicates inline
+# chroma embedart convert ftintitle
+
+lastgenre:
+  count: 3
+  separator: "\x00"  # multi-field ID3v2.4 text tags are separated by nulls - http://id3.org/id3v2.4.0-frames section 4.2 | doesn't seem to work out that well?
+
+# disabled, for now
+# ftintitle:
+#   format: (feat. {0})
+
+# chroma:
+#   auto: false

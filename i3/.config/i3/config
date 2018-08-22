@@ -144,6 +144,26 @@ mode "$mode_system" {
 
 bindsym $mod+Pause mode "$mode_system"
 
+# monitor management
+set $mode_monitor Monitor Management: [d]uplicate, extend [l]eft or [r]ight, [p]rimary or [s]econdary only
+mode "$mode_monitor" {
+    set $default_exec mode "default", exec --no-startup-id
+    bindsym d $default_exec mons -d
+    bindsym l $default_exec mons -e left
+    bindsym r $default_exec mons -e right
+    bindsym p $default_exec mons -o
+    bindsym s $default_exec mons -s
+    # back to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym      q mode "default"
+}
+
+bindsym $mod+p mode "$mode_monitor"
+
+# daemon mode to reestablish single-monitor mode
+exec --no-startup-id mons -m &!
+
 mode "resize" {
     bindsym h resize shrink width  10 px or 10 ppt
     bindsym j resize grow   height 10 px or 10 ppt

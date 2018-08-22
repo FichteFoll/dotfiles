@@ -4,7 +4,7 @@
 	signingkey = 07CD83C5
 
 [commit]
-	gpgsign = true
+	gpgSign = true
 
 [alias]
 	lg = log --graph --oneline --decorate

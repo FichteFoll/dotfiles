@@ -150,8 +150,8 @@ mode "$mode_system" {
     set $default_exec mode "default", exec --no-startup-id
     bindsym l $default_exec $Locker
     bindsym e $default_exec i3-msg exit
-    bindsym s $default_exec $Locker & (sleep 2 && systemctl suspend)
-    # bindsym h $default_exec $Locker && systemctl hibernate
+    bindsym s $default_exec systemctl suspend
+    bindsym h $default_exec systemctl hibernate
     bindsym r $default_exec systemctl reboot
     bindsym Shift+s $default_exec systemctl poweroff -i
 

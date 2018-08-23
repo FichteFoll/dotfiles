@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-python setup.py develop --install-dir "$HOME/.local/lib/python3.6/site-packages"
+python setup.py develop --install-dir "$HOME/.local/lib/python3.7/site-packages"

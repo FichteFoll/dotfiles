@@ -218,7 +218,11 @@ bindsym Ctrl+XF86AudioPlay exec --no-startup-id mpc seek 0 && mpc play
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioNext exec --no-startup-id mpc next
 
-# bindsym XF86AudioPlay exec notify-send "window title: $(xdotool getwindowname $(xdotool getactivewindow))"
+# backlight control
+set $backlight_step 10
+bindsym XF86MonBrightnessUp exec ~/bin/backlightctl inc $backlight_step && pkill -RTMIN+11 i3blocks
+bindsym XF86MonBrightnessDown exec ~/bin/backlightctl dec $backlight_step && pkill -RTMIN+11 i3blocks
+
 
 # window-specific settings #
 

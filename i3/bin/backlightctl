@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+import subprocess
+import argparse
+import sys
+
+
+def _xbacklight(*args: str, **kwargs) -> subprocess.CompletedProcess:
+    return subprocess.run(["xbacklight", *args], check=True, **kwargs)
+
+
+def _set_backlight(value: float) -> subprocess.CompletedProcess:
+    return _xbacklight("-set", str(value))
+
+
+def _get_backlight() -> float:
+    proc = _xbacklight("-get", stdout=subprocess.PIPE, encoding='ascii')
+    return float(proc.stdout)
+
+# def _dec_backlight(value: float):
+#     return _xbacklight("-dec", value)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Control backlight using xbacklight."
+                                                 " Prevents you from setting 0 by default.")
+    parser.add_argument("action", choices=["inc", "dec", "set"])
+    parser.add_argument("value", type=float, nargs="?", default=10,
+                        help="Value to set or in-/decrease by. Percentage. Default: 10")
+    parser.add_argument("--allow-zero", action='store_true')
+    params = parser.parse_args()
+
+    max_value = 100
+    min_value = 0 if params.allow_zero else 1
+
+    current_value = _get_backlight()
+    print("current value:", current_value, file=sys.stderr)
+
+    if params.action == 'set':
+        new_value = params.value
+    elif params.action == 'inc':
+        new_value = current_value + params.value
+    elif params.action == 'dec':
+        new_value = current_value - params.value
+
+    new_value = min(max(min_value, new_value), max_value)
+
+    print("new value:", new_value, file=sys.stderr)
+    _set_backlight(new_value)
+
+
+if __name__ == '__main__':
+    main()

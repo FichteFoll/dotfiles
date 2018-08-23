@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python3
 
 # TODO (not really here, but) webrun https://github.com/Vifon/webrun/blob/20cbf5e/webrun
 # could be used for evince, $EDITOR
@@ -39,7 +39,7 @@ for url in urls:
     try:
         req = session.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
     except (requests.ConnectTimeout, requests.ConnectionError, requests.ReadTimeout):
-        mime_type = ""
+        mime_type = None
         code = 0
         print(f"The request errored or timed out after {REQUEST_TIMEOUT} seconds", file=sys.stderr)
     else:

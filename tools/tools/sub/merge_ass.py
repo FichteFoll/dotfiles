@@ -39,20 +39,22 @@ def main():
     params = parse_args()
 
     merged_doc = ass.document.Document()
-    # docs = [ass.parse(file) for file in params.input]
 
     for file in params.input:
         doc = ass.parse(file)
+        stripped_fields = doc.fields.copy()
+        for key in ('Title'):
+            stripped_fields.pop(key, None)
 
         # Merge fields
         if not merged_doc.fields:
-            merged_doc.fields = doc.fields
+            merged_doc.fields = stripped_fields
         else:
-            if merged_doc.fields != doc.fields:
+            if merged_doc.fields != stripped_fields:
                 logger.error("Fields of files to merge don't match."
-                             "\nCurrent fields: %r"
-                             "\nFields of %r: %r",
-                             merged_doc.fields, file.name, doc.fields)
+                             "\nCurrent fields:\n%r"
+                             "\nFields of %r:\n%r",
+                             merged_doc.fields, file.name, stripped_fields)
                 # TODO offer to choose
                 return 1
 
@@ -74,7 +76,6 @@ def main():
 
             styles_seen[style.name] = style
             merged_doc.styles.append(style)
-        # merged_doc.styles.extend(doc.styles)
 
         # Merge events with filters
         events = doc.events

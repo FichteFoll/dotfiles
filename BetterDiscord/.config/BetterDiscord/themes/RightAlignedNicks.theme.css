@@ -1,5 +1,7 @@
-//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.1.2"}*//{}
+//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.0"}*//{}
 
+
+/* Discord broke this a while ago when messages wouldn't get their own*/
 /**
  * Nicks are right-aligned, where possible.
  * Space for timestamps is also reduced.
@@ -26,50 +28,50 @@
     /* ch as unit makes the most sense here,
      * but doesn't work properly with calculating offset of the .accessory div */
     --username-width: 7.3rem;
-    --timestamp-width: 2.5rem;
+    --timestamp-width: 3rem;
+    --header-offset: calc(0.3rem + 0.3em); /* first 0.3em from margin-left on timestamp */
     /*--username-width: 13ch;
     --timestamp-width: 9ch;*/ /* use `6ch` for 24h timestamps */
-
-    /* used for calculations */
-    --timestamp-default-width: 65px;
 }
 
-.message-group.compact .message .message-text .markup {
-    text-indent: 0;
-    padding-left: 0;
-    display: flex;
-}
-.message-group.compact .comment .timestamp {
-    vertical-align: top;
-    flex: none;
-    width: var(--timestamp-width);
-}
-
-.message-group.compact .comment .username-wrapper {
-    display: inline-block;
-    vertical-align: top;
-    text-align: right;
-    min-width: var(--username-width);
-    flex: none;
-}
-
-.message-group.compact .comment .message-content {
-    display: inline-block;
-}
-
-.message-group.compact .comment .accessory {
+.containerCompact-3bB5aN { /* accessory */
     padding-left: calc(70px - var(--timestamp-default-width) + var(--timestamp-width) + var(--username-width) );
 }
 
-/* adjust alignment by ~4px because of left border on highlighted messages */
-.message-group.compact .message.mentioned .timestamp {
-    margin-left: -8px; /* 2*4px because it is center-positioned */
+.containerCompact-3V0ioj .timestampCompactBase-26h38e {
+    float: left;
+    top: 1.5ex;
+    width: var(--timestamp-width);
+    /*text-align: center;*/
 }
 
-/* prevent follow-up timestamps from being hidden (currently hardcoded for dark mode) */
-.message-group.compact .message:not(.first) .timestamp {
-    color: hsla(0,0%,100%,.2) !important;
+.headerCompact-3wRt2W {
+    position: absolute;
+    left: 0;
 }
-.message-group.compact .message:hover .timestamp {
-    color: #99aab5 !important;
+
+.containerCompact-3V0ioj .usernameWrapper-1S-G5O {
+    display: inline-block;
+    text-align: right;
+    width: var(--username-width);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 1px; /* for on-hover underline on border; user_style.css */
+}
+
+.isCompact-1hsne1 {
+    margin-left: 0 !important;
+    padding-left: calc(var(--username-width) + var(--timestamp-width) + var(--header-offset)) !important;
+    text-indent: 0;
+}
+
+.containerCompact-3bB5aN {
+    padding-left: calc(var(--username-width) + var(--timestamp-width) + var(--header-offset) + 0rem);
+}
+
+.containerCompact-3V0ioj.container-1YxwTf .isMentioned-N-h9aa .markup-2BOw-j {
+    /*padding: 0;*/
+    /*margin: 0;*/
+    border-right: solid #FAA61A;
+    border-width: 0 2px;
 }

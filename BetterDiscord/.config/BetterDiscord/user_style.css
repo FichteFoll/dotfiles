@@ -1,38 +1,62 @@
-/* minimal mode fixes */
-.bd-minimal .channels-wrap .container-iksrDt {
-    height: 70px;
+/* Don't embold greentext on hover (why in the fuck?) */
+.message-1PNnaP #GreenText:hover {
+    font-weight: normal !important;
 }
 
-.bd-minimal .channels-wrap .container-iksrDt div:nth-of-type(3) {
-    flex-direction: column;
+/* prevent follow-up timestamps from being hidden (currently hardcoded for dark mode) */
+.theme-dark .timestampVisibleOnHover-276OMc {
+    color: hsla(0,0%,100%,.2);
 }
-
-.bd-minimal .channels-wrap .container-iksrDt div:nth-of-type(3) button,
-.bd-minimal .channels-wrap .container-iksrDt div:nth-of-type(3) div:nth-of-type(3) {
-    height: 20px
-}
-
 
 /* material theme adjustments */
-.message-group.compact.message-group {
-    padding: 0;
-    border-top: 1px hsla(0, 0%, 50%, .1) solid;
-}
 
-.message-group .comment {
-    margin-right: 0;
-}
-
-.comment .user-name:hover {
+.usernameWrapper-1S-G5O .username-_4ZSMR:hover {
     border-bottom: 1px solid;
 }
 
-.textArea-20yzAH {
-    padding: 16px 0 !important;
+.attachButton-1UjEWA {
+    width: 50px;
 }
 
-/* settings for right-aligned nicks */
-:root {
-    /*--username-width: 7.3rem;*/
-    /*--timestamp-width: 2.5rem;*/
+.textArea-2Spzkt {
+    padding: 16px 0 16px 50px !important;
+}
+
+.containerCompact-3V0ioj.container-1YxwTf {
+    padding: 0;
+    margin: 0 !important;
+}
+
+.divider-3gKybi {
+    height: 30px;
+}
+.divider-3gKybi > span {
+    background: hsl(0, 0%, 25%) !important;
+}
+.divider-3gKybi.dividerRed-MKoLlr > span {
+    background: hsl(358, 22%, 30%) !important;
+}
+
+.channels-Ie2l6A .scrollerWrap-2lJEkd {
+    box-shadow: none;
+}
+
+.container-1YxwTf {
+    background: none;
+}
+
+.chat-3bRxxu .messages-3amgkR {
+    background: hsl(0, 0%, 17%) !important;
+};
+
+.theme-dark .unreadMentionsBar-1VrBNe {
+    box-shadow: none;
+}
+
+.messagesWrapper-3lZDfY .messages-3amgkR {
+    padding-bottom: 1.2rem;
+}
+
+[class*="members-"] [class*="member-"] {
+    padding: 0 !important;
 }

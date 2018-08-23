@@ -22,10 +22,28 @@ dimensions:
   columns: 80
   lines: 24
 
-# Scrollback buffer
-scrollback:
-  enabled: true
-  max_lines: 10000
+scrolling:
+  # How many lines of scrollback to keep,
+  # '0' will disable scrolling.
+  history: 10000
+
+  # Number of lines the viewport will move for every line
+  # scrolled when scrollback is enabled (history > 0).
+  multiplier: 3
+
+  # Faux Scrolling
+  #
+  # The `faux_multiplier` setting controls the number
+  # of lines the terminal should scroll when the alternate
+  # screen buffer is active. This is used to allow mouse
+  # scrolling for applications like `man`.
+  #
+  # To disable this completely, set `faux_multiplier` to 0.
+  faux_multiplier: 3
+
+  # Automatically scroll to the bottom when new text is written
+  # to the terminal.
+  auto_scroll: false
 
 # Adds this many blank pixels of padding around the window
 # Units are physical pixels; this is not DPI aware.
@@ -237,6 +255,9 @@ live_config_reload: true
 # `Key1`, `Key2`, etc. Keys on the number pad are encoded `Number1`, `Number2`,
 # etc.  These all match the glutin::VirtualKeyCode variants.
 #
+# A list with all available `key` names can be found here:
+# https://docs.rs/glutin/*/glutin/enum.VirtualKeyCode.html#variants
+#
 # Possible values for `mods`
 # `Command`, `Super` refer to the super/command/windows key
 # `Control` for the control key
@@ -253,7 +274,18 @@ live_config_reload: true
 # around them.
 #
 # Either an `action`, `chars`, or `command` field must be present.
-#   `action` must be one of `Paste`, `PasteSelection`, `Copy`, or `Quit`.
+#   `action` must be one of the following:
+#       - `Paste`
+#       - `PasteSelection`
+#       - `Copy`
+#       - `IncreaseFontSize`
+#       - `DecreaseFontSize`
+#       - `ResetFontSize`
+#       - `ScrollPageUp`
+#       - `ScrollPageDown`
+#       - `ScrollToTop`
+#       - `ScrollToBottom`
+#       - `Quit`
 #   `chars` writes the specified string every time that binding is activated.
 #     These should generally be escape sequences, but they can be configured to
 #     send arbitrary strings of bytes.
@@ -275,8 +307,10 @@ key_bindings:
   - { key: Subtract, mods: Control,          action: DecreaseFontSize }
   - { key: Up,       mods: Control|Shift,    action: ScrollUp }
   - { key: Down,     mods: Control|Shift,    action: ScrollDown }
-  - { key: PageUp,   mods: Shift,            action: PageUp }
-  - { key: PageDown, mods: Shift,            action: PageDown }
+  - { key: PageUp,   mods: Shift,            action: ScrollPageUp }
+  - { key: PageDown, mods: Shift,            action: ScrollPageDown }
+  - { key: Home,     mods: Control,          action: ScrollToTop }
+  - { key: End,      mods: Control,          action: ScrollToBottom }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor }
@@ -284,7 +318,7 @@ key_bindings:
   # - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~" }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~" }
   - { key: PageUp,                  chars: "\x1b[5~" }
-  #- { key: PageDown, mods: Shift,   chars: "\x1b[6;2~" }
+  # - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~" }
   - { key: PageDown, mods: Control, chars: "\x1b[6;5~" }
   - { key: PageDown,                chars: "\x1b[6~" }
   - { key: Tab,      mods: Shift,   chars: "\x1b[Z" }

@@ -1,4 +1,4 @@
 #include "/usr/share/rofi/themes/Monokai.theme"
 
-rofi.terminal: termite
+rofi.terminal: alacritty
 #rofi.matching: fuzzy

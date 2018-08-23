@@ -11,7 +11,7 @@ unset sources src
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
 
-# automatically quote URLs
+# automatically quote URLs # TODO doesn't work
 # autoload -U url-quote-magic
 # zle -N self-insert url-quote-magic
 autoload -Uz bracketed-paste-magic
@@ -19,7 +19,7 @@ zle -N bracketed-paste bracketed-paste-magic
 
 
 # stat command as built-in # http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fstat-Module
-autoload -Uz stat
+# autoload -Uz stat
 
 
 # fish-like syntax highlighting
@@ -104,6 +104,7 @@ bindkey "\e\e" fuck-command-line
 
 # Env settings for tools
 export AUR_PAGER="ranger --cmd aur"
+export AUR_REPO="aur"  # default for aur packages
 
 
 # Load file with confidential information

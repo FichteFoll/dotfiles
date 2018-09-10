@@ -8,7 +8,8 @@
 	"install_prereleases":
 	[
 		"Package Control",
-		"PackageDev"
+		"PackageDev",
+		"SublimeLinter"
 	],
 	"installed_packages":
 	[
@@ -37,8 +38,9 @@
 		"Jedi - Python autocompletion",
 		"LaTeX-cwl",
 		"LaTeXTools",
-		"Markdown Preview",
+		"LSP",
 		"MarkdownEditing",
+		"MarkdownPreview",
 		"MarkdownTOC",
 		"Open URL",
 		"Origami",
@@ -55,26 +57,25 @@
 		"ScopeHunter",
 		"SCSS",
 		"SelectUntil",
-		"ShellScriptImproved",
+		"SimpleSyntax",
 		"Stylus",
 		"SublimeLinter",
-		"SublimeLinter Inline Errors",
 		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-mypy",
 		"SublimeLinter-contrib-rustc",
-		"SublimeLinter-contrib-sass-lint",
 		"SublimeLinter-contrib-sublime-syntax",
 		"SublimeLinter-contrib-yamllint",
 		"SublimeLinter-flake8",
-		"SublimeLinter-javac",
 		"SublimeLinter-jshint",
 		"SublimeLinter-lua",
 		"SublimeREPL",
 		"Table Editor",
+		"Terminal",
 		"Theme - Freesia",
 		"Theme - Nil",
 		"TodoReview",
 		"TOML",
+		"UnitTesting",
 		"Wrap Plus",
 		"Z",
 		"Zeal"

@@ -1,16 +1,11 @@
 [
-  { "keys": ["ctrl+shift+p"], "command": "fixed_command_palette_input_selection" },
 // basic overrides:
   //["ctrl+;"] -> ctrl+ü; "/" is actually the "#" key
   { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": "#"} },
   //["ctrl+`"] -> ctrl+ö
-  { "keys": ["f8"],     "command": "show_panel",   "args": {"panel": "console", "toggle": true} },
+  { "keys": ["f8"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
   // ["ctrl+g"]
   // { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
-
-  // swap pasting
-  // { "keys": ["ctrl+shift+v"], "command": "paste" },
-  // { "keys": ["ctrl+v"], "command": "paste_and_indent" },
 
   // ["ctrl+shift+k"]
   { "keys": ["alt+d"], "command": "run_macro_file",
@@ -262,10 +257,12 @@
   { "keys": ["ctrl+shift+a"], "command": "align_tab", "args": {"live_preview" : true} },
 
   // bracket highlighter
-  { "keys": ["ctrl+shift+q"], "command": "bh_async_key", "args": {
-    "lines": true,
-    "plugin": { "command": "bh_modules.swapquotes",
-                "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"] } }
+  { "keys": ["ctrl+shift+q"], "command": "bh_async_key",
+    "args": {
+      "lines": true,
+      "plugin": { "command": "bh_modules.swapquotes",
+                  "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"] }
+    }
   },
 
   // Scope Hunter
@@ -279,4 +276,14 @@
 
   // package reloader
   { "keys": ["ctrl+super+r"], "command": "package_reloader_reload" },
+
+  // sublime linter
+  { "keys": ["ctrl+k", "a"], "command": "sublime_linter_panel_toggle" },
+  // { "keys": ["ctrl+k", "ctrl+a"], "command": "sublime_linter_panel_toggle",
+  //   "args": {
+  //     "exclude_codes": [],
+  //     "exclude_linter": ["annotations"]
+  //   },
+  // },
+  { "keys": ["ctrl+k", "h"], "command": "sublime_linter_toggle_highlights" },
 ]

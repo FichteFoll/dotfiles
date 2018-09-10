@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# usage: extract_links in_file [out_file]
+
+grep -o -P 'https?://(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&/=]*)' \
+    "$1" > "${2:-/dev/stdout}"

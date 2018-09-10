@@ -1,4 +1,6 @@
 {
     "debounce_delay": 500,
     "show_markers_on_untracked_file": false,
+    "show_line_annotation": false,
+    "line_annotation_ruler": 2,
 }

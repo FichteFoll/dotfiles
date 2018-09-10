@@ -3,6 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -262,13 +263,21 @@ bindsym Shift+Print exec teiler --quick video area
 bindsym Ctrl+Print exec teiler --quick image area
 
 # color picker
-bindsym $mod+Ctrl+c exec gcolor2
+bindsym $mod+$alt+c exec gcolor2
 
 # mpv with url in clipboard
 bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""
 # share files (or clipboard contents) by uploading them and replacing clipboard with the url
 # Prior = page up / Next = page down
 bindsym $mod+Next exec share_clip
+
+# compton
+bindsym $mod+Ctrl+c exec killall compton; exec compton
+bindsym $mod+Ctrl+Shift+c exec killall compton
+
+# screenkey
+bindsym $mod+Ctrl+s exec killall screenkey; exec screenkey
+bindsym $mod+Ctrl+Shift+s exec killall screenkey
 
 
 # Press $mod+o followed by a letter to run applications

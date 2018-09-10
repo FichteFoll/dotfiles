@@ -1,159 +1,79 @@
 {
-    "user": {
-        "@python": 3,
-        "debug": false,
-        "delay": 0.5,
-        "error_color": "D02000",
-        "gutter_theme": "Packages/SublimeLinter/gutter-themes/Default.gutter-theme",
-        "gutter_theme_excludes": [],
-        "lint_mode": "background",
-        "linters": {
-            "annotations": {
-                "@disable": false,
-                "args": [],
-                "errors": [
-                    "FIXME",
-                    "TOFIX"
-                ],
-                "excludes": [],
-                "warnings": [
-                    "TODO",
-                    "XXX",
-                    "TOCHECK",
-                    "TOTEST",
-                    "README"
-                ]
-            },
-            "flake8": {
-                "@disable": false,
-                "args": [],
-                "builtins": "",
-                "excludes": [],
-                "executable": "",
-                "ignore": "E201,E221,E222,E241,E722,W191,W291,W292,W293,W503,D1,D211,D413,D",
-                "jobs": "1",
-                "max-complexity": -1,
-                "max-line-length": 99,
-                "select": "",
-                "show-code": true
-            },
-            "javac": {
-                "@disable": false,
-                "args": [],
-                "excludes": [],
-                "lint": ""
-            },
-            "jshint": {
-                "@disable": true,
-                "args": [],
-                "args.bak": [
-                    "--config",
-                    "~/.jshintrc"
-                ],
-                "excludes": []
-            },
-            "lua": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "mypy": {
-                "@disable": false,
-                "args": [],
-                "cache-dir": "",
-                "config-file": "",
-                "disallow-any": [],
-                "excludes": [],
-                "python-version": "",
-                "strict-optional-whitelist": []
-            },
-            "pyyaml": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "rust": {
-                "@disable": false,
-                "args": [],
-                "crate-root": null,
-                "excludes": [],
-                "use-cargo": false,
-                "use-cargo-check": false,
-                "use-crate-root": false
-            },
-            "sass": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "sublimesyntax": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            }
+    "debug": false,
+    "delay": 0.5,
+    "no_column_highlights_line": true,
+    "linters": {
+        "annotations": {
+            "errors": [
+                "FIXME",
+                "TOFIX"
+            ],
+            "warnings": [
+                "TODO",
+                "XXX",
+                "TOCHECK",
+                "TOTEST",
+                "README"
+            ],
+            "styles": [
+                {
+                    "mark_style": "outline", // solid_underline
+                    "scope": "region.orangish markup.info.todo.important.sublime_linter",
+                    "icon": "dot",
+                    "types": ["error"]
+                },
+                {
+                    "mark_style": "outline", // solid_underline
+                    "scope": "region.bluish markup.info.todo.sublime_linter",
+                    "icon": "dot",
+                    "types": ["warning"]
+                },
+            ],
         },
-        "mark_style": "outline",
-        "no_column_highlights_line": false,
-        "passive_warnings": false,
-        "paths": {
-            "windows": []
+        "flake8": {
+            "args": [
+                "--max-line-length=99",
+                // E201     whitespace after ‘(‘
+                // E221     multiple spaces before operator
+                // E222     multiple spaces after operator
+                // E241     multiple spaces after ‘,’
+                // W191     indentation contains tabs
+                // W291     trailing whitespace
+                // W292     no newline at end of file
+                // W293     blank line contains whitespace
+                // W503     line break before binary operator
+                "--ignore=E201,E221,E222,E241,W191,W2,W503,D1,D211,D413,D"
+            ],
+            "styles": [
+                {
+                    // make this the default style for flake8 warnings
+                    // "mark_style": "squiggly_underline",
+                    // "scope": "markup.warning.sublime_linter",
+                    "mark_style": "outline",
+                    "scope": "region.orangish markup.info.important.sublime_linter",
+                    "icon": "dot",
+                    "types": ["warning"],
+                },
+                // {
+                //     // and override for more important codes with normal warning style
+                //     "mark_style": "outline",
+                //     "priority": 1,
+                //     "scope": "markup.warning.sublime_linter",
+                //     "icon": "dot",
+                //     "codes": ["F701", "F702", "F703", "F704", "F705", "F706", "F707", "F811", "F812", "F821", "F822", "F823", "F841"]
+                // }
+            ]
         },
-        "python_paths": {
-            "windows": []
+        "mypy": {
+            "args": ["--ignore-missing-imports"],
         },
-        "rc_search_limit": 3,
-        "shell_timeout": 10,
-        "show_errors_on_save": false,
-        "show_marks_in_minimap": true,
-        "syntax_map": {
-            "coffeescript (gulpfile)": "coffeescript",
-            "html (django)": "html",
-            "html (rails)": "html",
-            "html 5": "html",
-            "javascript (babel)": "javascript",
-            "javascript (eslint)": "javascript",
-            "javascript (gruntfile)": "javascript",
-            "javascript (gulpfile)": "javascript",
-            "javascript (postcss)": "javascript",
-            "javascript (stylelint)": "javascript",
-            "javascript (webpack)": "javascript",
-            "json": "javascript",
-            "json (babel)": "json",
-            "json (bower)": "json",
-            "json (composer)": "json",
-            "json (eslint)": "json",
-            "json (npm)": "json",
-            "json (postcss)": "json",
-            "json (settings)": "json",
-            "json (stylelint)": "json",
-            "json (sublime)": "json",
-            "json (tern js)": "json",
-            "php": "html",
-            "python django": "python",
-            "sublime commands": "javascript",
-            "sublime completions": "javascript",
-            "sublime key map": "javascript",
-            "sublime macros": "javascript",
-            "sublime settings": "javascript",
-            "sublime text build system": "javascript",
-            "sublime text syntax def (json)": "javascript",
-            "sublime text syntax def (yaml)": "yaml",
-            "xml (config)": "xml",
-            "xml (svg)": "xml",
-            "yaml": "yaml",
-            "yaml (circleci)": "yaml",
-            "yaml (docker)": "yaml",
-            "yaml (eslint)": "yaml",
-            "yaml (lock)": "yaml",
-            "yaml (procfile)": "yaml",
-            "yaml (stylelint)": "yaml",
-            "yaml (yarn)": "yaml"
+        // "jshint": {
+        //     "args": [
+        //         "--config=$HOME/.jshintrc"
+        //     ],
+        // },
+        "yamllint": {
+            "selector": "source.yaml",
         },
-        "tooltip_fontsize": "1rem",
-        "tooltip_theme": "Packages/SublimeLinter/tooltip-themes/Default/Default.tooltip-theme",
-        "tooltip_theme_excludes": [],
-        "tooltips": false,
-        "warning_color": "DDB700",
-        "wrap_find": true
-    }
+    },
 }

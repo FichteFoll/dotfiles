@@ -39,3 +39,10 @@ zstyle ':completion:*:man:*'      menu yes select
 
 autoload -Uz compinit
 compinit
+
+# fish-like auto completions
+# requires 'zsh-autosuggestions' package
+syntax_file=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -e "${syntax_file}" ]] && source "${syntax_file}"
+unset syntax_file
+# ZSH_AUTOSUGGEST_USE_ASYNC=1

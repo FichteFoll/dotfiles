@@ -9,6 +9,7 @@ wget -N https://github.com/bjin/mpv-prescalers/raw/master/nnedi3-nns16-win8x4.ho
 wget -N https://github.com/bjin/mpv-prescalers/raw/master/nnedi3-nns32-win8x4.hook
 wget -N https://gist.github.com/igv/a015fc885d5c22e6891820ad89555637/raw/d993a9294725f04812f2759a47438d95eb26f3b5/KrigBilateral.glsl
 wget -N https://github.com/bjin/mpv-prescalers/raw/master/ravu-r3.hook
+wget -N https://github.com/bjin/mpv-prescalers/raw/master/vulkan/ravu-r3.hook -O ravu-r3-vulkan.hook
 wget -N https://pastebin.com/raw/yacMe6EZ -O noise_static_luma.hook
 
 cd "$DIR/scripts"

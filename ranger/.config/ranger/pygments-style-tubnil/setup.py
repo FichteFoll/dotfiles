@@ -1,7 +1,7 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 # install with:
-# $ python setup.py develop --install-dir "$HOME/.local/lib/python3.6/site-packages"
+# $ python setup.py develop --install-dir "$HOME/.local/lib/python3.7/site-packages"
 
 setup(
     name="pygmentize-style-tubnil",

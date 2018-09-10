@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python3
 
 """Merge multiple QC documents, as created by kSub and mpvQC, into one.
 

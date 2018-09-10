@@ -2,7 +2,7 @@
 
 # TODO (not really here, but) webrun https://github.com/Vifon/webrun/blob/20cbf5e/webrun
 # could be used for evince, $EDITOR
-# TODO blacklist for 403 replies since some servers are bad like that
+# TODO blacklist for 403 replies since some servers are bad like that (hastebin)
 from pathlib import Path
 import re
 import shlex

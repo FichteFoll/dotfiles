@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+import time
+
+SEP = "\uFFEF"
+PATH = "/tmp/now_playing.txt"
+
+
+def main():
+    last_playing = ""
+    while True:
+        now_playing = get_now_playing_str()
+        if last_playing != now_playing:
+            with open(PATH, "w", encoding='utf-8') as fp:
+                print("playing:", now_playing)
+                fp.write(now_playing if now_playing else "")
+            last_playing = now_playing
+
+        time.sleep(1)
+
+
+def playerctl(*args, player=None, all=False):
+    if player:
+        args = [f"--player={player}", *args]
+    result = subprocess.check_output(["playerctl", *args], encoding="utf-8")
+    return result if not all else result.split()
+
+
+def list_players():
+    return playerctl("--list-all").split()
+
+
+def get_now_playing_str():
+    players = list_players()
+    statuses = playerctl('status', all=True)
+
+    if 'Playing' not in statuses:
+        return
+    i = statuses.index('Playing')
+    player = players[i]
+
+    artist = playerctl("metadata", "xesam:artist", player=player)
+    title = playerctl("metadata", "xesam:title", player=player)
+    if artist:
+        return f"{artist} - {title}"
+    else:
+        return title
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        if os.path.exists(PATH):
+            os.remove(PATH)

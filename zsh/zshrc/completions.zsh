@@ -25,6 +25,9 @@ zstyle ':completion:*:descriptions'    format $'%{\e[0;31m%}completing %B%d%b%{\
 # zstyle ':completion:*:descriptions' format "- %d -"
 # zstyle ':completion:*:corrections' format "- %d - (errors %e})"
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+# highlight current prefix and next characters to press
+# http://www.smallbulb.net/2018/797-zsh-completion-with-visual-hints
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==90=01}:${(s.:.)LS_COLORS}")'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 zstyle ':completion:*' verbose yes

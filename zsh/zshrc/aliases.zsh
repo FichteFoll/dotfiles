@@ -1,6 +1,7 @@
 # random
 alias pls='sudo !!'
 alias ipy='ipython'
+alias sudo='killall screenkey >/dev/null; sudo'
 
 # ls: exa
 alias ls='exa --time-style=long-iso'

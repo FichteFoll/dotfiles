@@ -16,7 +16,12 @@ systemctl --user import-environment PATH
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 
 # start ssh-agent
-eval $(ssh-agent -s)
+eval "$(ssh-agent -s)"
+if [ -f "/usr/lib/seahorse/ssh-askpass" ] ; then
+  export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass"
+elif [ -f "/usr/lib/ssh/ssh-askpass" ] ; then
+  export SSH_ASKPASS="/usr/lib/ssh/ssh-askpass"
+fi
 
 # start Xorg if there is no session and we're on tty1
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then

@@ -236,6 +236,9 @@ for_window [class="Deluge"] floating enable
 for_window [class="Pinentry"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="cool-retro-term"] fullscreen enable
+for_window [class="key-mon"] floating enable
+for_window [class="Steam" title="Steam - News"] floating enable
+for_window [class="lxqt-openssh-askpass"] floating enable
 
 # add border for border-less gtk3 applications
 for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
@@ -272,11 +275,11 @@ bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""
 bindsym $mod+Next exec share_clip
 
 # compton
-bindsym $mod+Ctrl+c exec killall compton; exec compton
+bindsym $mod+Ctrl+c exec compton
 bindsym $mod+Ctrl+Shift+c exec killall compton
 
 # screenkey
-bindsym $mod+Ctrl+s exec killall screenkey; exec screenkey
+bindsym $mod+Ctrl+s exec screenkey
 bindsym $mod+Ctrl+Shift+s exec killall screenkey
 
 

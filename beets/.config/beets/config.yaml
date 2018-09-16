@@ -42,18 +42,21 @@ paths:
     /$long_date - $album%aunique{}%ifdef{event, [$event]}\
     /$disc_and_track - $title"
   # normal stuff
-  albumtype:soundtrack: '#soundtrack/%ifdef{source,$source/}$album%aunique{}/$disc_and_track - $title'
-  comp: $albumartist/$year - $album%aunique{}/$disc_and_track - $artist - $title
+  albumtype:soundtrack: '#soundtrack/%if{source,$source/}$year - $album%aunique{}/$disc_and_track - $title'
+  comp: $albumartist_or_label/$year - $album%aunique{}/$disc_and_track - $artist - $title
   singleton: $albumartist/$title
   # default: $artist/$title
   default: $albumartist/$year - $album%aunique{}/$disc_and_track - $title
 
 album_fields:
   long_date: '"-".join(f"{n:02}" for n in [year, month, day] if n)'
+  soundtrack_source: 'f"{source}/" if locals().get("source", None) and source != album else ""'
 
 item_fields:
-  # TODO consider 3-digit tracknumber albums?
-  disc_and_track: f"{disc}.{track:02}" if disctotal > 1 else f"{track:02}"
+  disc_and_track:
+    f"{disc}.{track:0{max(2, len(str(tracktotal)))}}"
+    if disctotal > 1
+    else f"{track:0{max(2, len(str(tracktotal)))}}"
   albumartist_or_label: label if comp and label else albumartist
 
 # https://beets.readthedocs.io/en/latest/plugins/index.html

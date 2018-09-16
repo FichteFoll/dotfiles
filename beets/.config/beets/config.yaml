@@ -38,7 +38,7 @@ paths:
   # special stuff
   # TODO anime:true: '#touhou/$album%aunique{}/$disc_and_track - $title'
   doujin:true: "#%ifdef{touhou,touhou,doujin}\
-    /%if{comp and label,$label,$albumartist}\
+    /$albumartist_or_label\
     /$long_date - $album%aunique{}%ifdef{event, [$event]}\
     /$disc_and_track - $title"
   # normal stuff
@@ -54,6 +54,7 @@ album_fields:
 item_fields:
   # TODO consider 3-digit tracknumber albums?
   disc_and_track: f"{disc}.{track:02}" if disctotal > 1 else f"{track:02}"
+  albumartist_or_label: label if comp and label else albumartist
 
 # https://beets.readthedocs.io/en/latest/plugins/index.html
 plugins: fetchart lastgenre missing duplicates inline

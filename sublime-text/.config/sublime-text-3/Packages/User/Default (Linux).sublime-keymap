@@ -278,12 +278,11 @@
   { "keys": ["ctrl+super+r"], "command": "package_reloader_reload" },
 
   // sublime linter
-  { "keys": ["ctrl+k", "a"], "command": "sublime_linter_panel_toggle" },
-  // { "keys": ["ctrl+k", "ctrl+a"], "command": "sublime_linter_panel_toggle",
-  //   "args": {
-  //     "exclude_codes": [],
-  //     "exclude_linter": ["annotations"]
-  //   },
-  // },
+  { "keys": ["ctrl+k", "f"],
+    "command": "sublime_linter_addon_cycle_filter_patterns",
+    "args": {
+      "patterns": ["-annotations:", "annotations:", ""]
+    }
+  },
   { "keys": ["ctrl+k", "h"], "command": "sublime_linter_toggle_highlights" },
 ]

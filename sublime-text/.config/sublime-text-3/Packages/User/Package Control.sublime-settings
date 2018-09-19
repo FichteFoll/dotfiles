@@ -60,6 +60,8 @@
 		"SimpleSyntax",
 		"Stylus",
 		"SublimeLinter",
+		"SublimeLinter-addon-filter",
+		"SublimeLinter-addon-toggler",
 		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-mypy",
 		"SublimeLinter-contrib-rustc",

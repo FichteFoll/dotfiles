@@ -10,12 +10,11 @@ unset sources src
 # "command not found" hook to search package list
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
-
-# automatically quote URLs # TODO doesn't work
+# automatically quote URLs
 # autoload -U url-quote-magic
 # zle -N self-insert url-quote-magic
-autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
+# autoload -Uz bracketed-paste-magic
+# zle -N bracketed-paste bracketed-paste-magic
 
 
 # stat command as built-in # http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fstat-Module

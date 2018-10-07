@@ -1,7 +1,6 @@
-//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.0"}*//{}
+//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.1"}*//{}
 
 
-/* Discord broke this a while ago when messages wouldn't get their own*/
 /**
  * Nicks are right-aligned, where possible.
  * Space for timestamps is also reduced.
@@ -34,42 +33,45 @@
     --timestamp-width: 9ch;*/ /* use `6ch` for 24h timestamps */
 }
 
-.containerCompact-3bB5aN { /* accessory */
+[class*=containerCompact-] { /* accessory */
     padding-left: calc(70px - var(--timestamp-default-width) + var(--timestamp-width) + var(--username-width) );
 }
 
-.containerCompact-3V0ioj .timestampCompactBase-26h38e {
+[class*=containerCompact-] [class*=timestampCompactBase-] {
     float: left;
     top: 1.5ex;
     width: var(--timestamp-width);
     /*text-align: center;*/
 }
 
-.headerCompact-3wRt2W {
+/*.headerCompact-3wRt2W {*/
+[class*=headerCompact-] {
     position: absolute;
     left: 0;
+    padding-bottom: 1px; /* for on-hover underline on border; user_style.css */
 }
 
-.containerCompact-3V0ioj .usernameWrapper-1S-G5O {
+/*.containerCompact-3V0ioj .usernameWrapper-1S-G5O {*/
+[class*=headerCompact-] > span {
     display: inline-block;
     text-align: right;
     width: var(--username-width);
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-bottom: 1px; /* for on-hover underline on border; user_style.css */
 }
 
-.isCompact-1hsne1 {
+[class*=markup-][class*=isCompact-] {
     margin-left: 0 !important;
     padding-left: calc(var(--username-width) + var(--timestamp-width) + var(--header-offset)) !important;
     text-indent: 0;
 }
 
-.containerCompact-3bB5aN {
+/*.containerCompact-3bB5aN {*/
+[class*=containerCompact-][class*=content-] ~ [class*=containerCompact-] {
     padding-left: calc(var(--username-width) + var(--timestamp-width) + var(--header-offset) + 0rem);
 }
 
-.containerCompact-3V0ioj.container-1YxwTf .isMentioned-N-h9aa .markup-2BOw-j {
+[class*=containerCompact-][class*=container-] [class*=isMentioned-] [class*=markup-] {
     /*padding: 0;*/
     /*margin: 0;*/
     border-right: solid #FAA61A;

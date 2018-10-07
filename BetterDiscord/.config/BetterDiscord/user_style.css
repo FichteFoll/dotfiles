@@ -1,59 +1,63 @@
 /* Don't embold greentext on hover (why in the fuck?) */
-.message-1PNnaP #GreenText:hover {
+[class*=message-] #GreenText:hover {
     font-weight: normal !important;
 }
 
 /* prevent follow-up timestamps from being hidden (currently hardcoded for dark mode) */
-.theme-dark .timestampVisibleOnHover-276OMc {
+.theme-dark [class*=timestampVisibleOnHover-] {
     color: hsla(0,0%,100%,.2);
 }
 
 /* material theme adjustments */
 
-.usernameWrapper-1S-G5O .username-_4ZSMR:hover {
+[class*=usernameWrapper-] [class*=username-]:hover {
     border-bottom: 1px solid;
 }
 
-.attachButton-1UjEWA {
+[class*=attachButton-] {
     width: 50px;
 }
 
-.textArea-2Spzkt {
+[class*=textArea-] {
     padding: 16px 0 16px 50px !important;
 }
 
-.containerCompact-3V0ioj.container-1YxwTf {
+/*[class*=containerCompact-][class*=container-] {*/
+/*.containerCompact-3V0ioj.container-1YxwTf {*/
+[class*=containerCompactBounded-] {
     padding: 0;
     margin: 0 !important;
 }
 
-.divider-3gKybi {
+[class*=divider-] {
     height: 30px;
 }
-.divider-3gKybi > span {
+[class*=divider-] > span {
     background: hsl(0, 0%, 25%) !important;
 }
-.divider-3gKybi.dividerRed-MKoLlr > span {
+[class*=divider-][class*=dividerRed-] > span {
     background: hsl(358, 22%, 30%) !important;
 }
 
-.channels-Ie2l6A .scrollerWrap-2lJEkd {
+[class*=channels-] [class*=scrollerWrap-] {
     box-shadow: none;
 }
 
+/*[class*=container-] {*/
+/*.da-container {*/
 .container-1YxwTf {
     background: none;
 }
 
-.chat-3bRxxu .messages-3amgkR {
+[class*=chat-] [class*=messages-] {
     background: hsl(0, 0%, 17%) !important;
-};
+}
 
-.theme-dark .unreadMentionsBar-1VrBNe {
+.theme-dark [class*=unreadMentionsBar-] {
     box-shadow: none;
 }
 
-.messagesWrapper-3lZDfY .messages-3amgkR {
+[class*=messagesWrapper-] [class*=messages-] {
     padding-bottom: 1.2rem;
 }
 

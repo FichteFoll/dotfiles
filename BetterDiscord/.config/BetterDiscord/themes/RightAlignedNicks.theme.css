@@ -1,24 +1,17 @@
-//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.1"}*//{}
+/*//META{"name":"Right-aligned Nicks2","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.2"}*//
 
 
 /**
- * Nicks are right-aligned, where possible.
+ * Nicks are right-aligned, where possible (i.e. compact layout).
  * Space for timestamps is also reduced.
  *
  * Requires compact mode for obvious reasons.
  *
  * Nicknames that are too long for the associated space
- * expand into the message area and make the message area shrink.
- * If this annoys you,
- * adjust the width of the username column
+ * are collapsed with an ellipse.
+ * You can adjust the width of the username column
+ * with a variable in your user css
  * or yell at the people until they pick a shorter nick.
- *
- * Known issues:
- *
- *   - When copy-pasting messages,
- *     newlines are inserted between timestamp, nick and message.
- *     This is because of the blocks being displayed as `inline-block`,
- *     which was necessary to properly align multi-line messages.
  *
  */
 
@@ -35,6 +28,7 @@
 
 [class*=containerCompact-] { /* accessory */
     padding-left: calc(70px - var(--timestamp-default-width) + var(--timestamp-width) + var(--username-width) );
+    position: relative;
 }
 
 [class*=containerCompact-] [class*=timestampCompactBase-] {
@@ -76,4 +70,9 @@
     /*margin: 0;*/
     border-right: solid #FAA61A;
     border-width: 0 2px;
+}
+
+/* Material theme sets this */
+.container-1YxwTf h2 {
+     margin-left: 0;
 }

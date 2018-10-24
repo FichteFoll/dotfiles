@@ -308,8 +308,7 @@ mode "$mode_launcher" {
 
 
 # Initial startup #
-# https://github.com/chjj/compton/issues/477
-exec --no-startup-id allow_rgb10_configs=false compton
+exec --no-startup-id compton
 exec --no-startup-id parcellite
 exec --no-startup-id fcitx
 # to circumvent fcitx workaround (https://github.com/fcitx/fcitx/issues/324)

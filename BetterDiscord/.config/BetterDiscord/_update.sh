@@ -22,7 +22,7 @@ wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/RoleMe
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/DoNotTrack/DoNotTrack.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/BetterFormattingRedux/BetterFormattingRedux.plugin.js
 
-wget -N https://github.com/rauenzi/BDPluginLibrary/raw/release/0PluginLibrary.plugin.js
+wget -N https://github.com/rauenzi/BDPluginLibrary/raw/master/release/0PluginLibrary.plugin.js
 
 wget -N https://github.com/samogot/betterdiscord-plugins/raw/master/v1/1lib_discord_internals.plugin.js
 wget -N https://github.com/samogot/betterdiscord-plugins/raw/master/v1/no_send_scroll.plugin.js
@@ -30,7 +30,7 @@ wget -N https://github.com/samogot/betterdiscord-plugins/raw/master/v1/quoter.pl
 
 cd "$DIR/themes"
 wget -N https://github.com/Snow-Pyon/BDStuff/raw/master/themes/BMDAddon/BMDAddon.theme.css
-wget -N "https://github.com/BeardDesign1/Material-design-theme/raw/themes/Beard's-Material-theme-for-Discord.theme.css"
+wget -N https://github.com/BeardDesign1/Material-design-theme/raw/themes/Beard\'s-Material-theme-for-Discord.theme.css
 wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/showURLs.theme.css
 wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/compactUserList.theme.css
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Themes/RadialStatus/RadialStatus.theme.css

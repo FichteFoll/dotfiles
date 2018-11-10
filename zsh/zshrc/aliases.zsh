@@ -187,7 +187,6 @@ cu () {
     checkupdates
     echo ''
     aur vercmp -d aur
-    # pacaur -k
 }
 
 cu2 () {
@@ -207,15 +206,19 @@ cu2 () {
 
 Syu () {
     # Check for special upgrade steps
-    links "https://www.archlinux.org/"
-    links "https://bbs.archlinux.org/viewforum.php?id=44"
-    read -q "?continue? [y/n]" || return
+    news="$(arch-news)"
+    if [[ -n "$news" ]]; then
+        read -q "?continue? [y/n]" || return
+    fi
+    # links "https://bbs.archlinux.org/viewforum.php?id=44"
 
     # the actual upgrade
     sudo pacman -Syu
 
     # print remaining outdated packages
-    cu
+    printf -- "\n"
+    aur vercmp -d aur
+    # cu
 }
 
 

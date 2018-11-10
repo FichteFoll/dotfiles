@@ -1,0 +1,39 @@
+#!/usr/bin/bash
+
+# depends: html2text hq
+
+# make the file writable by your user
+log_file="${log_file:-/var/log/arch-news.log}"
+
+get_news_log() {
+    # returns timestamp of last news seen
+    if [ -f $log_file ]; then
+        tail -n 1 $log_file | grep -o "^[0-9]*"
+    else
+        echo "0"
+    fi
+}
+
+# parse news (RSS)
+rss="$(curl -sSL "https://www.archlinux.org/feeds/news/")"
+IFS=$'\0' readarray -d $'\0' headers < <(<<< "$rss" hq -0 'item title' text)
+IFS=$'\0' readarray -d $'\0' times < <(<<< "$rss" hq -0 'item pubDate' text)
+IFS=$'\0' readarray -d $'\0' contents < <(<<< "$rss" hq -0 'item description' text)
+
+# display news, if newer
+maxid=$((${#headers[@]} - 1))
+id=maxid
+since=$(get_news_log)
+while ((id >= 0)); do
+    epoch="$(date -d "${times[id]}" +%s)"
+    if (( since < epoch )); then
+        timestamp="$(date -d "${times[id]}" -Idate)"
+        content="$(<<< "${contents[id]}" html2text --protect-links --ignore-images)"
+        printf -- "\e[1m%s | %s\e[0m\n\e[2m%s\e[0m\n" "${timestamp}" "${headers[id]}" "$content"
+        echo "$epoch | ${headers[id]}" >> "$log_file"
+        if ((id > 0)); then
+            printf -- "\n"
+        fi
+    fi
+    id=$((id - 1))
+done

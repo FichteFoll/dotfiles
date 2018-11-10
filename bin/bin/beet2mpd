@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+music_dir="$(rg -o '^music_directory\s+"([^"]+?)/?"' -r '$1' ~/.config/mpd/mpd.conf)"
+
+beet list $@ -f '$path' \
+  | sed "s#${music_dir}/##
+    t
+    d" \
+  | sort | mpc add

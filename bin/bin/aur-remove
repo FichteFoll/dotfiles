@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# usage: aur remove <repo> <package-name>…
+
+repo="${1:?missing repository}"
+shift
+packages=(${@:?missing package name(s)})
+find /var/cache/pacman/ -name "$repo.db.tar" -execdir repo-remove {} $packages \;
+sudo pacman -R "$packages"

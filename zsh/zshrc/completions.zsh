@@ -45,7 +45,10 @@ compinit
 
 # fish-like auto completions
 # requires 'zsh-autosuggestions' package
-syntax_file=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ -e "${syntax_file}" ]] && source "${syntax_file}"
-unset syntax_file
+sources=(/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+         $HOME/zshrc/zsh-autosuggestions/zsh-autosuggestions.zsh)
+for src in $sources; do
+    [[ -e "$src" ]] && source "$src"
+done
+unset sources src
 # ZSH_AUTOSUGGEST_USE_ASYNC=1

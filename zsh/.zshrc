@@ -1,6 +1,6 @@
 # source all .zsh files in that folder
 # order shouldn't matter
-sources=($(find $HOME/zshrc -name "*.zsh"))
+sources=($HOME/zshrc/*.zsh)
 for src in $sources; do
     source "$src"
 done
@@ -8,7 +8,7 @@ unset sources src
 
 
 # "command not found" hook to search package list
-source /usr/share/doc/pkgfile/command-not-found.zsh
+[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # automatically quote URLs
 # autoload -U url-quote-magic
@@ -23,9 +23,11 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # fish-like syntax highlighting
 # requires 'zsh-syntax-highlighting' package
-syntax_file=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -e "${syntax_file}" ]] && source "${syntax_file}"
-unset syntax_file
+sources=(/usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh)
+for src in $sources; do
+    [[ -e "$src" ]] && source "$src"
+done
+unset src
 
 
 # termite: Launch new terminal in current dir
@@ -69,7 +71,7 @@ alias help=run-help
 #   virtualenvwrapper
 export WORKON_HOME=${HOME}/.virtualenvs
 # source /usr/bin/virtualenvwrapper.sh
-source /usr/bin/virtualenvwrapper_lazy.sh
+[[ -e /usr/bin/virtualenvwrapper_lazy.sh ]] && source /usr/bin/virtualenvwrapper_lazy.sh
 
 
 # quick directory jumping and file access (completions) through fasd(1)
@@ -83,12 +85,12 @@ source /usr/bin/virtualenvwrapper_lazy.sh
 #   z='fasd_cd -d'     # cd, same functionality as j in autojump
 #   zz='fasd_cd -d -i' # cd with interactive selection
 # and completions on `,`
-eval "$(fasd --init auto)"
+command -v fasd >/dev/null && eval "$(fasd --init auto)"
 # source /usr/lib/z.sh
 
 
 # The Fuck smart corrections
-eval $(thefuck --alias) # --enable-experimental-instant-mode
+command -v thefuck >/dev/null && eval "$(thefuck --alias)" # --enable-experimental-instant-mode
 
 # And define a shortcut to auto-unfuck the last command on: [Esc] [Esc]
 fuck-command-line() {
@@ -107,4 +109,4 @@ export AUR_REPO="aur"  # default for aur packages
 
 
 # Load file with confidential information
-source ~/.zshrc-private
+[[ -e $HOME/.zshrc-private ]] && source ~/.zshrc-private

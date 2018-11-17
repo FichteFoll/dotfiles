@@ -213,7 +213,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master $volume_step
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master $volume_step-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-# media keys for foobar (needs stdout redirect, doesn't start otherwise)
+# media keys for mpd
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym Ctrl+XF86AudioPlay exec --no-startup-id mpc seek 0 && mpc play
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
@@ -285,7 +285,7 @@ bindsym $mod+Ctrl+Shift+s exec killall screenkey
 
 # Press $mod+o followed by a letter to run applications
 # or Esc or Return to return the default mode.
-set $mode_launcher Launch: [a]egisub [d]iscord [f]irefox [F]oobar [h]exchat [k]eepass [r]anger [S]martgit [s]ubl [T]elegram [t]hunderbird
+set $mode_launcher Launch: [a]egisub [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [r]anger [S]martgit [s]ubl [T]elegram [t]hunderbird [w]eechat
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     set $to_default mode "default"
@@ -296,11 +296,14 @@ mode "$mode_launcher" {
     bindsym Shift+f exec foobar >/dev/null, $to_default
     bindsym h       exec hexchat, $to_default
     bindsym k       exec keepass, $to_default
+    bindsym k       exec smerge, $to_default
     bindsym r       exec i3-sensible-terminal -e ranger, $to_default
     bindsym Shift+s exec smartgit, $to_default
     bindsym s       exec subl, $to_default
     bindsym Shift+t exec telegram-desktop, $to_default
     bindsym t       exec thunderbird, $to_default
+    # termite has clickable URLs
+    bindsym w       exec termite -e weechat, $to_default
 
     bindsym Escape $to_default
     bindsym Return $to_default

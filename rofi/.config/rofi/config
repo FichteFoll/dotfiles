@@ -1,3 +1,5 @@
 rofi.terminal: termite
 rofi.theme: /usr/share/rofi/themes/Arc-Dark.rasi
 #rofi.matching: fuzzy
+rofi.drun-match-fields: all
+rofi.tokenize: true

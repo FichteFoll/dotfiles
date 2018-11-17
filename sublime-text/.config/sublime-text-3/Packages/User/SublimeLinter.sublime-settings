@@ -30,6 +30,9 @@
                 },
             ],
         },
+        "eslint": {
+            "selector": "source.js - source.js.embedded.vue"
+        },
         "flake8": {
             "args": [
                 "--max-line-length=99",
@@ -66,14 +69,6 @@
         },
         "mypy": {
             "args": ["--ignore-missing-imports"],
-        },
-        // "jshint": {
-        //     "args": [
-        //         "--config=$HOME/.jshintrc"
-        //     ],
-        // },
-        "yamllint": {
-            "selector": "source.yaml",
         },
     },
 }

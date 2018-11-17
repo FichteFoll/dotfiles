@@ -70,6 +70,7 @@
 		"SublimeLinter-contrib-rustc",
 		"SublimeLinter-contrib-sublime-syntax",
 		"SublimeLinter-contrib-yamllint",
+		"SublimeLinter-eslint",
 		"SublimeLinter-flake8",
 		"SublimeLinter-lua",
 		"SublimeREPL",
@@ -80,6 +81,7 @@
 		"TodoReview",
 		"TOML",
 		"UnitTesting",
+		"Vue Syntax Highlight",
 		"Wrap Plus",
 		"Z",
 		"Zeal"

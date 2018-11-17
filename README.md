@@ -8,14 +8,10 @@ The files are primaritly managed with *stow*,
 the GNU software package installation manager.
 See [here][stow-guide] for an introduction.
 
+In short,
+clone the repo into your home folder,
+cd into it and run `stow pkgnames…`.
+
 [stow-guide]: http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html
 
-A custom installation script,
-which is a wrapper around *stow*
-and does additional special operations,
-is included: `install`.
-Currently, this is mostly needed because of Sublime Text.
-Packages are installed into `$HOME`.
-See the source code for details.
-
-**Note**: Considered WIP but works.
+I have a different branch for my notebook-specific overrides.

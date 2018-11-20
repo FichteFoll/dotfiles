@@ -60,16 +60,15 @@ item_fields:
   albumartist_or_label: label if comp and label else albumartist
 
 # https://beets.readthedocs.io/en/latest/plugins/index.html
-plugins: fetchart lastgenre missing duplicates inline
+plugins: fetchart lastgenre missing duplicates inline replaygain
 # chroma embedart convert ftintitle
 
 lastgenre:
   count: 1
   # separator: "\x00"  # multi-field ID3v2.4 text tags are separated by nulls - http://id3.org/id3v2.4.0-frames section 4.2 | doesn't seem to work out that well?
 
-# disabled, for now
-# ftintitle:
-#   format: (feat. {0})
+replaygain:
+    backend: gstreamer
 
 # chroma:
 #   auto: false

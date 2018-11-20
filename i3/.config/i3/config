@@ -293,10 +293,9 @@ mode "$mode_launcher" {
     bindsym d       exec discord, $to_default
     bindsym f       exec firefox, $to_default
     # needs stdout redirect, doesn't start otherwise
-    bindsym Shift+f exec foobar >/dev/null, $to_default
     bindsym h       exec hexchat, $to_default
     bindsym k       exec keepass, $to_default
-    bindsym k       exec smerge, $to_default
+    bindsym m       exec smerge, $to_default
     bindsym r       exec i3-sensible-terminal -e ranger, $to_default
     bindsym Shift+s exec smartgit, $to_default
     bindsym s       exec subl, $to_default

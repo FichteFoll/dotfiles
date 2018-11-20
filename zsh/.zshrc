@@ -27,7 +27,7 @@ sources=(/usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighti
 for src in $sources; do
     [[ -e "$src" ]] && source "$src"
 done
-unset src
+unset sources src
 
 
 # termite: Launch new terminal in current dir

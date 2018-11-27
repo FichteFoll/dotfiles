@@ -5,24 +5,41 @@
 set $mod Mod4
 set $alt Mod1
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Font for window titles (and the default bar).
 # font -xow4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1, -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:xos4 Terminus 10
+#font pango:xos4 Terminus 10
+font pango:Operator Mono Book 10
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# Gaps for i3-gaps
+#gaps inner 16
+#gaps outer -4
+#smart_gaps on
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
-# Hide edge borders for workspaces with a single window
+# Border settings
+for_window [class="^"] border pixel 2
+for_window [floating] border pixel 3
+#smart_borders no_gaps
+#default_border pixel 3
 hide_edge_borders smart
+
+# Colors
+# set $active #D4801F
+# set $active #893A77
+set $active #0a6cf5
+set $inactive #555555
+set $border #444444
+set $border #505050
+set $back #222222
+set $urgent #900000
+
+# class                 border  backgr.   text    indicator child_border
+client.focused          $border $inactive #ffffff #2e9ef4   $active
+client.focused_inactive $border $inactive #888888 #484e50   $inactive
+client.unfocused        $border $back     #888888 #292d2e   $back
+client.urgent           #2f343a $urgent   #ffffff #900000   $urgent
+client.placeholder      #000000 #0c0c0c   #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
 
 
 # Don't focus window, only mark its request
@@ -103,6 +120,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+Tab workspace back_and_forth
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -193,15 +211,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# i3bar + i3status
-bar {
-    position top
-    tray_output primary
-    status_command i3status
-    separator_symbol "||"
-}
-
-
 # middle mouse button over a titlebar kills the window
 bindsym --release button2 kill
 # $mod+middle mouse button toggles float
@@ -239,6 +248,7 @@ for_window [class="cool-retro-term"] fullscreen enable
 for_window [class="key-mon"] floating enable
 for_window [class="Steam" title="Steam - News"] floating enable
 for_window [class="lxqt-openssh-askpass"] floating enable
+for_window [class="Yad"] floating enable
 
 # add border for border-less gtk3 applications
 for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
@@ -324,4 +334,6 @@ exec --no-startup-id keepass
 # exec --no-startup-id hsetroot -solid "#333333"
 exec --no-startup-id ~/.fehbg
 
-exec-always notify-send "i3 was restarted"
+# polybar
+exec --no-startup-id polybar primary -r
+exec --no-startup-id polybar secondary -r

@@ -4,10 +4,6 @@ import argparse
 import subprocess
 import sys
 
-# yad --calendar --undecorated --fixed --close-on-unfocus --no-buttons \
-#     --width=$YAD_WIDTH --height=$YAD_HEIGHT --posx=$pos_x --posy=$pos_y \
-#     > /dev/null
-
 
 def get_pointer_info():
     # X=1471

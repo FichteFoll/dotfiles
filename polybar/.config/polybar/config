@@ -58,6 +58,8 @@ font-1 = Font Awesome 5 Free:style=Solid:size=10;2
 font-2 = Font Awesome 5 Free:size=10;2
 font-3 = Material Icons:size=10;2
 font-4 = Symbola:size=10;2
+# Need some CJK characters
+font-5 = M+ 2m:size=10;2
 
 
 # override-redirect = true
@@ -354,7 +356,7 @@ ramp-foreground = ${colors.prefix}
 [module/updates]
 type = custom/script
 
-exec = num=$(checkupdates | wc -l); ((num > 0)) && echo $num || echo ""
+exec = num=$(checkupdates | tee /tmp/updates | wc -l); ((num > 0)) && echo $num || echo ""
 label = %output%
 # format-prefix = " "
 format-prefix = " "
@@ -363,7 +365,7 @@ format-underline = ${colors.warning}
 tail = true
 interval = 300
 
-click-left = checkupdates | cut -d" " -f1 | ~/.config/polybar/scripts/polyyad.py --nobuttons --text-info --no-buttons --close-on-unfocus --height 270 --width 230 &
+click-left = </tmp/updates cut -d" " -f1 | ~/.config/polybar/scripts/polyyad.py --nobuttons --text-info --no-buttons --close-on-unfocus --height 270 --width 230 &
 
 [module/gpu_usage]
 type = custom/script
@@ -379,7 +381,7 @@ tail = true
 [module/cpu_load]
 type = custom/script
 
-exec = < /proc/loadavg cut -f1 -d" "
+exec = </proc/loadavg cut -f1 -d" "
 label = %output%
 format-underline = ${colors.cpu}
 interval = 5

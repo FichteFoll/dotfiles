@@ -283,6 +283,8 @@ live_config_reload: true
 #       - `ScrollToTop`
 #       - `ScrollToBottom`
 #       - `Quit`
+#       - `ClearLogNotice`
+#       - `SpawnNewInstance`
 #   `chars` writes the specified string every time that binding is activated.
 #     These should generally be escape sequences, but they can be configured to
 #     send arbitrary strings of bytes.
@@ -404,5 +406,4 @@ key_bindings:
   - { key: F10,      mods: Super,   chars: "\x1b[21;3~" }
   - { key: F11,      mods: Super,   chars: "\x1b[23;3~" }
   - { key: F12,      mods: Super,   chars: "\x1b[24;3~" }
-  - { key: T,        mods: Control|Shift,
-      command: { program: "sh", args: ["-c", 'alacritty --working-directory "$(readlink -e /proc/"$(pgrep -oP "$(xdo pid)")"/cwd)"'] } }
+  - { key: T,        mods: Control|Shift, action: SpawnNewInstance }

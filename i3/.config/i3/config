@@ -285,12 +285,15 @@ bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""
 bindsym $mod+Next exec share_clip
 
 # compton
-bindsym $mod+Ctrl+c exec compton
-bindsym $mod+Ctrl+Shift+c exec killall compton
+bindsym $mod+Ctrl+c exec --no-startup-id compton
+bindsym $mod+Ctrl+Shift+c exec --no-startup-id killall compton
+
+# polybar (kills automatically)
+bindsym $mod+Ctrl+p exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # screenkey
-bindsym $mod+Ctrl+s exec screenkey
-bindsym $mod+Ctrl+Shift+s exec killall screenkey
+bindsym $mod+Ctrl+s exec --no-startup-id screenkey
+bindsym $mod+Ctrl+Shift+s exec --no-startup-id killall screenkey
 
 
 # Press $mod+o followed by a letter to run applications
@@ -335,5 +338,7 @@ exec --no-startup-id keepass
 exec --no-startup-id ~/.fehbg
 
 # polybar
-exec --no-startup-id polybar primary -r
-exec --no-startup-id polybar secondary -r
+# exec-always doesn't work for some reason?
+exec --no-startup-id $HOME/.config/polybar/launch.sh
+
+exec-always --no-startup-id notify-send "i3 was restarted"

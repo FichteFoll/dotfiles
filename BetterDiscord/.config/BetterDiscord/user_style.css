@@ -8,10 +8,11 @@
     color: hsla(0,0%,100%,.2);
 }
 
-/* material theme adjustments */
+/* Nox theme adjustments */
+/* https://github.com/rauenzi/Nox */
 
-[class*=usernameWrapper-] [class*=username-]:hover {
-    border-bottom: 1px solid;
+:root {
+    --nox-level1: hsl(0, 0%, 17%);
 }
 
 [class*=attachButton-] {
@@ -22,8 +23,16 @@
     padding: 16px 0 16px 50px !important;
 }
 
-/*[class*=containerCompact-][class*=container-] {*/
-/*.containerCompact-3V0ioj.container-1YxwTf {*/
+[class*=usernameWrapper-] [class*=username-]:hover {
+    border-bottom: 1px solid;
+}
+
+[class*=containerCompact-][class*=container-][class*=isMentioned-] [class*=markup-],
+.containerCompact-3V0ioj.container-1YxwTf .isMentioned-N-h9aa .markup-2BOw-j {
+    border-left-width: 2px;
+}
+
+/* TODO: check if the following can be removed */
 [class*=containerCompactBounded-] {
     padding: 0;
     margin: 0 !important;
@@ -48,15 +57,6 @@
 .container-1YxwTf {
     background: none;
 }
-
-[class*=chat-] [class*=messages-] {
-    background: hsl(0, 0%, 17%) !important;
-}
-
-.theme-dark [class*=unreadMentionsBar-] {
-    box-shadow: none;
-}
-
 [class*="members-"] [class*="member-"] {
     padding: 0 !important;
 }

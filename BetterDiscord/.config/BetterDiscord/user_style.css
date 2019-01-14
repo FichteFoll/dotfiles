@@ -60,3 +60,10 @@
 [class*="members-"] [class*="member-"] {
     padding: 0 !important;
 }
+
+
+/* hide stupid buttons */
+[class*="channelTextArea-"] button[tabindex="2"],
+[class*="channelTextArea-"] button[tabindex="3"]{
+    display:none;
+}

@@ -3,6 +3,7 @@ alias pls='sudo $(fc -ln -1)'
 alias ipy='ipython'
 alias sudo='killall screenkey 2>/dev/null; sudo'
 alias lrc='source ~/.zshrc'
+alias rm='rm -i'
 
 # ls: exa
 alias ls='exa --time-style=long-iso'

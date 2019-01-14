@@ -15,13 +15,12 @@ wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/plugins/Highli
 # wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/plugins/restartNoMore.plugin.js
 wget -N https://github.com/Finicalmist/CopyCode/raw/master/copyCode.plugin.js
 wget -N https://github.com/Jiiks/BetterDiscordApp/raw/master/Plugins/dblClickEdit.plugin.js
-# wget -N https://gist.github.com/megamit/7a686742c2768f34cf4d83e1055e9375/raw/ee3fd996687707cb1481bee67638bd7f6cbbd302/renamer.plugin.js
+# wget -N https://github.com/megamit/repository/raw/gh-pages/renamer/1.5.4/renamer.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/AccountDetailsPlus/AccountDetailsPlus.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/PermissionsViewer/PermissionsViewer.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/RoleMembers/RoleMembers.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/DoNotTrack/DoNotTrack.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/BetterFormattingRedux/BetterFormattingRedux.plugin.js
-
 wget -N https://github.com/rauenzi/BDPluginLibrary/raw/master/release/0PluginLibrary.plugin.js
 
 wget -N https://github.com/samogot/betterdiscord-plugins/raw/master/v1/1lib_discord_internals.plugin.js
@@ -30,7 +29,8 @@ wget -N https://github.com/samogot/betterdiscord-plugins/raw/master/v1/quoter.pl
 
 cd "$DIR/themes"
 wget -N https://github.com/Snow-Pyon/BDStuff/raw/master/themes/BMDAddon/BMDAddon.theme.css
-wget -N https://github.com/BeardDesign1/Material-design-theme/raw/themes/Beard\'s-Material-theme-for-Discord.theme.css
+# wget -N https://github.com/BeardDesign1/Material-design-theme/raw/themes/Beard\'s-Material-theme-for-Discord.theme.css
+wget -N https://raw.githubusercontent.com/rauenzi/Nox/master/release/Nox.theme.css
 wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/showURLs.theme.css
 wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/compactUserList.theme.css
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Themes/RadialStatus/RadialStatus.theme.css

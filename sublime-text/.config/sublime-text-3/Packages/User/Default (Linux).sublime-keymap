@@ -209,6 +209,9 @@
   // pane cycle
   { "keys": ["ctrl+1"], "command": "cycle_panes" },
 
+  // reset mini diff
+  { "keys": ["ctrl+k", "ctrl+s"], "command": "reset_mini_diff" },
+
   // quick rulers
   { "keys": ["alt+r"], "command": "quick_rulers",
     "context": [

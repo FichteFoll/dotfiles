@@ -36,7 +36,7 @@ import:
 # https://beets.readthedocs.io/en/stable/reference/pathformat.html
 paths:
   # special stuff
-  # TODO anime:true: '#touhou/$album%aunique{}/$disc_and_track - $title'
+  sourcetype:Anime: '#soundtrack/%ifdef{source,$source/}$album%aunique{}%ifdef{anime, [$anime]}/$disc_and_track - $title'
   doujin:true: "#%ifdef{touhou,touhou,doujin}\
     /$albumartist_or_label\
     /$long_date - $album%aunique{}%ifdef{event, [$event]}\

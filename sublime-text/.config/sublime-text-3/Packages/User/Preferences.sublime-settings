@@ -93,6 +93,8 @@
 	[
 		"*.log"
 	],
+	"mouse_wheel_switches_tabs": false,
+	"move_to_limit_on_up_down": true,
 	"remember_full_screen": true,
 	"shift_tab_unindent": true,
 	"show_encoding": true,

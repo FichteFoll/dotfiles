@@ -67,6 +67,9 @@
                 // }
             ]
         },
+        "lua": {
+            "selector": "source.lua - source.lua.embedding punctuation.section.interpolation"
+        },
         "mypy": {
             "args": ["--ignore-missing-imports"],
         },

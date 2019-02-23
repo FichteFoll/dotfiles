@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+for arg in "$@"; do
+    aunpack -- "$arg"
+    # 7z x -- "$arg"
+done

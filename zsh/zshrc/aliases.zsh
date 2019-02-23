@@ -187,7 +187,7 @@ beet_mpa () {
 cu () {
     checkupdates
     echo ''
-    aur vercmp -d aur
+    aur repo -ld aur | aur vercmp
 }
 
 cu2 () {
@@ -201,7 +201,7 @@ cu2 () {
     local vcs_info
     mktemp | read -r vcs_info
     aur srcver ~/.cache/aurutils/sync/*-git > "$vcs_info"
-    aur vercmp -d custom -p "$vcs_info"
+    aur vercmp -d aur -p "$vcs_info"
     rm "$vcs_info"
 }
 
@@ -218,7 +218,7 @@ Syu () {
 
     # print remaining outdated packages
     printf -- "\n"
-    aur vercmp -d aur
+    aur repo -ld aur | aur vercmp
     # cu
 }
 

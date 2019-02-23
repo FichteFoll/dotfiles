@@ -40,7 +40,7 @@ fi
 # use zsh's run-help (<M-h> to invoke on current line)
 # (( ${+aliases[run-help]} )) && unalias run-help
 alias run-help >&/dev/null && unalias run-help
-for rh in run-help{,-git,-openssl,-sudo}; do
+for rh in run-help{,-git,-openssl,-sudo,-aur}; do
     autoload -Uz $rh
 done; unset rh
 alias help=run-help

@@ -221,6 +221,7 @@ set $volume_step 5%
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master $volume_step+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master $volume_step-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+bindsym Ctrl+XF86AudioMute exec --no-startup-id "amixer set Headphone toggle; exec amixer set Front toggle"
 
 # media keys for mpd
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
@@ -250,6 +251,7 @@ for_window [class="key-mon"] floating enable
 for_window [class="Steam" title="Steam - News"] floating enable
 for_window [class="lxqt-openssh-askpass"] floating enable
 for_window [class="Yad"] floating enable
+# for_window [class="Steam" title="Friends List"] resize set 400 px
 
 # add border for border-less gtk3 applications
 for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
@@ -257,6 +259,29 @@ for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
 
 # not supported https://github.com/i3/i3/issues/2608
 #for_window [class="Steam" title="Friends"] resize set width 350 or 14, move right
+
+# focus specific windows
+set $mode_focus Focus: [c]antata [D]eluge [d]iscord [f]irefox [h]exchat s[m]erge [T]elegram [t]hunderbird [z]eal | ST: [n]otes [H]ome
+bindsym $mod+g mode "$mode_focus"
+mode "$mode_focus" {
+    set $to_default mode "default"
+    bindsym c       [class="cantata"] focus, $to_default
+    bindsym Shift+d [class="Deluge"] focus, $to_default
+    bindsym d       [class="discord"] focus, $to_default
+    bindsym f       [class="Firefox"] focus, $to_default
+    bindsym h       [class="hexchat"] focus, $to_default
+    bindsym m       [class="Sublime_merge"] focus, $to_default
+    bindsym Shift+t [class="TelegramDesktop"] focus, $to_default
+    bindsym t       [class="Thunderbird"] focus, $to_default
+    bindsym z       [class="Zeal"] focus, $to_default
+
+    bindsym n       [class="Sublime_text" title="\\(notes\\) - Sublime Text$"] focus, $to_default
+    bindsym Shift+h [class="Sublime_text" title="\\(home\\) - Sublime Text$"] focus, $to_default
+
+    bindsym Escape $to_default
+    bindsym Return $to_default
+}
+
 
 ## launch stuff ##
 

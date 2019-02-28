@@ -14,7 +14,6 @@
 	"installed_packages":
 	[
 		"A File Icon",
-		"Advanced Substation Alpha (ASS)",
 		"AdvancedNewFile",
 		"Alignment",
 		"AlignTab",
@@ -25,6 +24,7 @@
 		"Chain of Command",
 		"ChannelRepositoryTools",
 		"ColorHelper",
+		"Decent Swift Syntax",
 		"DocBlockr",
 		"Edit Preferences",
 		"File History",
@@ -55,10 +55,10 @@
 		"Plugin Debugger",
 		"QuickRulers",
 		"RestructuredText Improved",
+		"Rust Enhanced",
 		"SaneSnippets",
 		"Sass",
 		"ScopeHunter",
-		"SCSS",
 		"SelectUntil",
 		"SimpleSyntax",
 		"Stylus",

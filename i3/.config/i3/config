@@ -239,6 +239,7 @@ bindsym XF86MonBrightnessDown exec ~/bin/backlightctl dec $backlight_step && pki
 # for_window [class="Doublecmd" title="Copying|Moving|Deleting|File operations|Options"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="Sxiv"] floating enable
 for_window [class="Firefox" window_role="page-info"] floating enable
 for_window [class="Thunderbird" window_role="EventDialog"] floating enable
 for_window [class="Deluge"] floating enable
@@ -298,11 +299,12 @@ bindsym $mod+Ctrl+Shift+s exec --no-startup-id killall screenkey
 
 # Press $mod+o followed by a letter to run applications
 # or Esc or Return to return the default mode.
-set $mode_launcher Launch: [a]egisub [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [r]anger [S]martgit [s]ubl [T]elegram [t]hunderbird [w]eechat
+set $mode_launcher Launch: [a]egisub [c]antata [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [r]anger [s]ubl [T]elegram [t]hunderbird [w]eechat [Z]eal
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     set $to_default mode "default"
     bindsym a       exec aegisub, $to_default
+    bindsym c       exec cantata, $to_default
     bindsym d       exec discord, $to_default
     bindsym f       exec firefox, $to_default
     # needs stdout redirect, doesn't start otherwise
@@ -310,12 +312,12 @@ mode "$mode_launcher" {
     bindsym k       exec keepass, $to_default
     bindsym m       exec smerge, $to_default
     bindsym r       exec i3-sensible-terminal -e ranger, $to_default
-    bindsym Shift+s exec smartgit, $to_default
     bindsym s       exec subl, $to_default
     bindsym Shift+t exec telegram-desktop, $to_default
     bindsym t       exec thunderbird, $to_default
     # termite has clickable URLs
     bindsym w       exec termite -e weechat, $to_default
+    bindsym z       exec zeal, [class="Zeal"] focus, $to_default
 
     bindsym Escape $to_default
     bindsym Return $to_default
@@ -328,6 +330,8 @@ exec --no-startup-id parcellite
 exec --no-startup-id fcitx
 # to circumvent fcitx workaround (https://github.com/fcitx/fcitx/issues/324)
 exec --no-startup-id setxkbmap de neo_qwertz
+# for some reason my setup in `/etc/X11/xorg.conf.d/50-video.conf` just doesn't work
+exec --no-startup-id xrandr --output DVI-I-1 --left-of HDMI-A-0
 
 # applications
 exec --no-startup-id keepass

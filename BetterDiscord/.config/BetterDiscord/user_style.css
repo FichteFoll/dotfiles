@@ -57,8 +57,8 @@
 .container-1YxwTf {
     background: none;
 }
-[class*="members-"] [class*="member-"] {
-    padding: 0 !important;
+[class*="membersWrap-"] [class*="members-"] [class*="member-"] {
+    padding: 1px 0 !important;
 }
 
 

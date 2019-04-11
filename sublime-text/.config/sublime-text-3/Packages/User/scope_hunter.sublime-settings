@@ -1,8 +1,8 @@
 {
-    "show_color_scheme_info": true,
-    "show_popup": true,
-    "show_panel": false,
-    "css_file": "ScopeHunter/css/dark.css",
+    "show_popup": false,
+    "show_panel": true,
     "highlight_style": "outline",
-    "selectors": true
+    "selectors": true,
+    "styling": true,
+    "debug": true,
 }

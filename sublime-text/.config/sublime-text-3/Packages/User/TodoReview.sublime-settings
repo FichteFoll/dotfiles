@@ -11,13 +11,13 @@
         "TOCHECK": 3,
         "XXX": 4
     },
-    "render_header_date": "%A %y-%m-%d at %H:%M",
-    "render_folder_depth": 3,
+    "render_header_date": "%A, %Y-%m-%d at %H:%M",
     "exclude_folders": [
         "*.git*",
         "*node_modules*",
         "*.venv*",
         "htmlcov"
     ],
-    "render_include_folder": true
+    "render_include_folder": true,
+    "render_folder_depth": "auto",
 }

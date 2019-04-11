@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 
+import argparse
 from functools import partial
+import logging
 import os
 import re
+import sys
 from typing import NamedTuple
+
+
+logger = logging.getLogger(__name__)
 
 
 class LibraryEntry(NamedTuple):
@@ -12,21 +18,25 @@ class LibraryEntry(NamedTuple):
     path: str
 
 
-def get_library_entries(accountnum=None):
+def get_library_entries(params):
     import trackma.engine
     import trackma.accounts
 
+    accountnum = params.accountnum
     if not accountnum:
         manager = trackma.accounts.AccountManager()
         accountnum = manager.accounts['default']
 
     account = manager.get_account(accountnum)
     engine = trackma.engine.Engine(account=account)
+    engine.config['tracker_enabled'] = False  # don't need this
+    engine.config['library_autoscan'] = False  # prevent double scanning
+    if params.force_sync:
+        engine.config['autoretrieve'] == 'always'
     engine.start()
 
     # Not necessary but we'll re-scan the library just in case something has changed
-    # TODO argument
-    engine.scan_library()
+    engine.scan_library(rescan=params.force_rescan)
 
     # {showid: {ep: path}}
     library = engine.library()
@@ -38,6 +48,8 @@ def get_library_entries(accountnum=None):
         show = engine.get_show_info(showid)
         for ep, path in eps.items():
             yield LibraryEntry(show, ep, path)
+
+    engine.unload()
 
 
 def unwatched_filter(entry):
@@ -56,15 +68,24 @@ def string_filter(entry, patterns=(), negative=True):
     return matched ^ negative
 
 
+def filter_with_logging(func, iterable, reason=None):
+    for item in iterable:
+        if func(item):
+            yield item
+        else:
+            logger.debug("filtered: %s - %02d [reason: %s]", item.show['title'], item.ep, reason)
+
+
 def filter_chain(filters, iterable):
-    for filter_ in filters:
-        iterable = filter(filter_, iterable)
+    for filter_, reason in filters:
+        iterable = filter_with_logging(filter_, iterable, reason=reason)
     return iterable
 
 
-def to_syncplay(filenames):
-    import sys
-    sys.path.append('/usr/lib/syncplay')  # TODO make configurable
+def to_syncplay(params, filenames):
+    # modify environment to make syncplay pick up the remaining args
+    sys.argv = ["syncplay", *params.syncplay_args]
+    sys.path.append(params.syncplay_path)
 
     # load syncplay config
     from syncplay.ui.ConfigurationGetter import ConfigurationGetter
@@ -81,51 +102,94 @@ def to_syncplay(filenames):
     interface = mock.MagicMock(ConsoleUI)
     client = SyncplayClient(config["playerClass"], interface, config)
     if not client:
-        print("Error opening syncplay")
+        logger.error("Error opening syncplay, somewhere…")
 
+    _old_connected = client.connected
+    done = False
+
+    # override the client's `connected` method
     def connected():
-        client._old_connected()
-        print(interface)
-        print(interface.method_calls)
+        nonlocal done
+        _old_connected()
+        logger.debug("interface mock calls: %s", interface.method_calls)
         playlist = client.playlist
-        print("old playlist", playlist._playlist)
+        logger.debug("old playlist: %s", playlist._playlist)
+        # We could dedupe here, but it doesn't matter.
         new_files = [*playlist._playlist, *filenames]
         playlist.changePlaylist(new_files)
-        print("new playlist", new_files)
+        logger.debug("new playlist: %s", new_files)
+        done = True
         # TODO terminate
 
-    client._old_connected = client.connected
-    client.connected = connected
-
+    # add a timeout handler in case connection fails
     def abort():
-        pass  # TODO
+        if done:
+            return
+        logger.error("Syncplay timeout!")
+        # TODO terminate
 
+    client.connected = connected
     from twisted.internet import reactor
     reactor.callLater(5, abort)
-    client.start(config['host'], config['port'])
+
     # TODO prevent player from opening
+    client.start(config['host'], config['port'])
 
 
-def main():
-    entries = get_library_entries()
-    # TODO logging
-    blacklist_patterns = [r"Starlight", r"Zombie", r"Shinsekai"]
+def main(params):
+    # blacklist_patterns = [r"Starlight|Zombie|Shinsekai"]
+
+    entries = get_library_entries(params)
     filters = [
-        watching_filter,
-        unwatched_filter,
-        # partial(string_filter, patterns=[r"."], negative=False),  # whitelist
-        partial(string_filter, patterns=blacklist_patterns, negative=True),  # blacklist
+        # (filter, reason)
+        (watching_filter, "not watching"),
+        (unwatched_filter, "watched"),
+        (partial(string_filter, patterns=params.include or [r"^"], negative=False), "not on whitelist"),
+        (partial(string_filter, patterns=params.exclude or [], negative=True), "blacklisted"),
     ]
-    filtered_entries = filter_chain(filters, entries)
+    filtered_entries = list(filter_chain(filters, entries))
+    for entry in filtered_entries:
+        logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
 
-    paths = [entry.path for entry in filtered_entries]
-    for path in paths:
-        print(path)
+    filenames = [os.path.basename(entry.path) for entry in filtered_entries]
+    to_syncplay(params, filenames)
 
-    # TODO may need to extract basenames
-    to_syncplay([os.path.basename(path) for path in paths])
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Find unwatched episodes trough trackma and add them to a syncplay playlist. "
+                    " Any unmatched arguments are forwarded to syncplay."
+                    " Refer to `syncplay --help`."
+    )
+    parser.add_argument("-v", "--verbose", action='store_true', default=False,
+                        help="Increase verbosity.")
+    parser.add_argument("--accountnum", help="For overriding the trackma account number to use."
+                        " You can look this up in trackma's account switcher."
+                        " Will use your default otherwise.")
+    parser.add_argument("--force-sync", action='store_true', default=False,
+                        help="Resync trackma cache with remote.")
+    parser.add_argument("--force-rescan", action='store_true', default=False,
+                        help="Rescan local trackma library.")
+    parser.add_argument("-f", "--force-all", action='store_true', default=False,
+                        help="Force all refreshes.")
+    parser.add_argument("--include", action='append',
+                        help="Regular expression for titles to include. Repeatable.")
+    parser.add_argument("--exclude", action='append',
+                        help="Regular expression for titles to exclude. Repeatable.")
+    parser.add_argument("--syncplay-path", default="/usr/lib/syncplay",
+                        help="Path to syncplay's install location.")
+
+    params, syncplay_args = parser.parse_known_args()
+    params.syncplay_args = syncplay_args
+    if params.force_all:
+        params.force_sync = params.force_rescan = True
+
+    return params
 
 
 if __name__ == '__main__':
-    # TODO argparse for trackma account and rescan, syncplay settings, filtering
-    main()
+    params = parse_args()
+    log_level = logging.DEBUG if params.verbose else logging.INFO
+    logging.basicConfig(level=log_level, format="%(message)s")
+    logger.debug("params: %r", params)
+    main(params)

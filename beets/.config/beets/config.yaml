@@ -36,17 +36,26 @@ import:
 # https://beets.readthedocs.io/en/stable/reference/pathformat.html
 paths:
   # special stuff
-  sourcetype:Anime: '#soundtrack/%ifdef{source,$source/}$album%aunique{}%ifdef{anime, [$anime]}/$disc_and_track - $title'
-  doujin:true: "#%ifdef{touhou,touhou,doujin}\
+  sourcetype:Anime:
+    "#soundtrack\
+    /%ifdef{source,$source/}\
+    $album%aunique{}%ifdef{anime, [$anime]}\
+    /$disc_and_track - $maybe_artist$title"
+  doujin:true:
+    "#%ifdef{touhou,touhou,doujin}\
     /$albumartist_or_label\
     /$long_date - $album%aunique{}%ifdef{event, [$event]}\
-    /$disc_and_track - $title"
+    /$disc_and_track - $maybe_artist$title"
+  albumtype:soundtrack:
+    "#soundtrack\
+    /%if{source,$source/}
+    $year - $album%aunique{}\
+    /$disc_and_track - $maybe_artist$title"
   # normal stuff
-  albumtype:soundtrack: '#soundtrack/%if{source,$source/}$year - $album%aunique{}/$disc_and_track - $title'
   comp: $albumartist_or_label/$year - $album%aunique{}/$disc_and_track - $artist - $title
   singleton: $albumartist/$title
   # default: $artist/$title
-  default: $albumartist/$year - $album%aunique{}/$disc_and_track - $title
+  default: $albumartist/$year - $album%aunique{}/$disc_and_track - $maybe_artist$title
 
 album_fields:
   long_date: '"-".join(f"{n:02}" for n in [year, month, day] if n)'
@@ -58,6 +67,7 @@ item_fields:
     if disctotal > 1
     else f"{track:0{max(2, len(str(tracktotal)))}}"
   albumartist_or_label: label if comp and label else albumartist
+  maybe_artist: f"{artist} - " if artist != albumartist else ""
 
 # https://beets.readthedocs.io/en/latest/plugins/index.html
 plugins: fetchart lastgenre missing duplicates inline replaygain
@@ -68,7 +78,7 @@ lastgenre:
   # separator: "\x00"  # multi-field ID3v2.4 text tags are separated by nulls - http://id3.org/id3v2.4.0-frames section 4.2 | doesn't seem to work out that well?
 
 replaygain:
-    backend: gstreamer
+  backend: gstreamer
 
 # chroma:
 #   auto: false

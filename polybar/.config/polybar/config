@@ -83,7 +83,7 @@ monitor = HDMI-A-0
 
 modules-left = i3 xwindow
 modules-center = date
-modules-right = compton updates filesystem memory cpu_usage cpu_load cpu_temperature gpu_usage gpu_temperature eth pulseaudio
+modules-right = compton updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
 
 tray-position = right
 # tray-background = #0063ff

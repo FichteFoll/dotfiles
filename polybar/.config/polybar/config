@@ -6,6 +6,16 @@
 ;
 ;==========================================================
 
+
+[settings]
+screenchange-reload = true
+
+
+[global/wm]
+margin-top = 6
+margin-bottom = 5
+
+
 [colors]
 ;background = ${xrdb:color0:#222}
 background = #222
@@ -24,6 +34,7 @@ alert = #bd2c40
 cpu = #950095
 memory = #4bffdc
 gpu = #8B4500
+
 
 [bar/base]
 width = 100%
@@ -61,9 +72,9 @@ font-4 = Symbola:size=10;2
 # Need some CJK characters
 font-5 = M+ 2m:size=10;2
 
-
 # override-redirect = true
 # wm-restack = i3
+
 
 [bar/primary]
 inherit = bar/base
@@ -80,6 +91,7 @@ tray-position = right
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+
 [bar/secondary]
 inherit = bar/base
 monitor = DVI-I-1
@@ -94,6 +106,7 @@ type = internal/xwindow
 label = %title:0:90:…%
 format-underline = ${colors.secondary}
 
+
 [module/filesystem]
 type = internal/fs
 interval = 20
@@ -105,6 +118,7 @@ mount-2 = /mnt/sekai
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %free:1%
 label-unmounted = %mountpoint%
 label-unmounted-foreground = ${colors.foreground-alt}
+
 
 [module/i3]
 type = internal/i3
@@ -181,17 +195,19 @@ icon-consume = ✀
 label-song-maxlen = 80
 label-song-ellipsis = true
 
+
 [module/xbacklight]
 type = internal/xbacklight
-
 # TODO
 format = <ramp> %level%
 label = BL
+
 
 [module/backlight-acpi]
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
+
 
 [module/cpu_usage]
 type = internal/cpu
@@ -201,6 +217,7 @@ format-prefix-foreground = ${colors.prefix}
 format-underline = #950095
 label = %percentage:2%%
 
+
 [module/memory]
 type = internal/memory
 interval = 2
@@ -208,6 +225,7 @@ format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 format-underline = ${colors.memory}
 label = %percentage_used%%
+
 
 [module/wlan]
 # TODO
@@ -231,6 +249,7 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
+
 [module/eth]
 type = internal/network
 interface = eno1
@@ -248,6 +267,7 @@ format-disconnected-prefix-foreground = ${colors.prefix}
 label-disconnected = %ifname%
 label-disconnected-foreground = ${colors.foreground-alt}
 
+
 [module/date]
 type = custom/script
 exec = date +"%Y-%m-%d %H:%M:%S"
@@ -258,6 +278,7 @@ format-prefix-foreground = ${colors.prefix}
 # format-underline = ${colors.secondary}
 
 click-left = ~/.config/polybar/scripts/polyyad.py --calendar --undecorated --fixed --close-on-unfocus --no-buttons --width=250 &
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -278,6 +299,7 @@ ramp-volume-foreground = ${colors.foreground-alt}
 # ramp-volume-0 = 🔈
 # ramp-volume-1 = 🔉
 # ramp-volume-2 = 🔊
+
 
 [module/battery]
 # TODO
@@ -313,6 +335,7 @@ animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
+
 [module/cpu_temperature]
 type = internal/temperature
 thermal-zone = 1
@@ -331,7 +354,6 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.prefix}
-
 
 
 [module/gpu_temperature]
@@ -353,11 +375,10 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.prefix}
 
+
 [module/updates]
 type = custom/script
-
 exec = num=$(checkupdates | tee /tmp/updates | wc -l); ((num > 0)) && echo $num || echo ""
-label = %output%
 # format-prefix = " "
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
@@ -367,20 +388,20 @@ interval = 300
 
 click-left = </tmp/updates cut -d" " -f1 | ~/.config/polybar/scripts/polyyad.py --nobuttons --text-info --no-buttons --close-on-unfocus --height 270 --width 230 &
 
+
 [module/gpu_usage]
 type = custom/script
-
 # TODO not working, but does in terminal?
 exec = sudo -n radeontop --dump - | rg 'gpu ([\d.]+)' -r '$1' -o
+tail = true
 label = %output%%
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 format-underline = ${colors.gpu}
-tail = true
+
 
 [module/cpu_load]
 type = custom/script
-
 exec = </proc/loadavg cut -f1 -d" "
 label = %output%
 format-underline = ${colors.cpu}
@@ -394,12 +415,5 @@ exec = pgrep -x compton >/dev/null && echo "" || echo "compton not running"
 label = %output%
 label-foreground = ${colors.foreground-alt}
 interval = 5
-
-[settings]
-screenchange-reload = true
-
-[global/wm]
-margin-top = 6
-margin-bottom = 5
 
 ; vim:ft=dosini

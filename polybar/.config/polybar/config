@@ -403,16 +403,14 @@ format-underline = ${colors.gpu}
 [module/cpu_load]
 type = custom/script
 exec = </proc/loadavg cut -f1 -d" "
-label = %output%
 format-underline = ${colors.cpu}
 interval = 5
 
 
 [module/compton]
 type = custom/script
-
-exec = pgrep -x compton >/dev/null && echo "" || echo "compton not running"
-label = %output%
+exec-if = ! pgrep -x compton
+exec = echo "compton not running"
 label-foreground = ${colors.foreground-alt}
 interval = 5
 

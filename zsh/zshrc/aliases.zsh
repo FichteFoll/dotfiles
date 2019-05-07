@@ -283,3 +283,10 @@ mkvattachments() {
     infile="$1"; shift
     ffmpeg -i "$infile" -dump_attachment:t "" -i $@
 }
+
+wttr() {
+    local request="https://wttr.in/${1-$_WTTR}?mQF"
+    [ "$COLUMNS" -lt 125 ] && request+='n'
+    # ${LANG%_*}
+    curl -H "Accept-Language: de,en" --compressed "$request"
+}

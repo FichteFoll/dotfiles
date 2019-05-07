@@ -82,7 +82,7 @@ inherit = bar/base
 monitor = HDMI-A-0
 
 modules-left = i3 xwindow
-modules-center = date
+modules-center = date wttr wttr_humidity
 modules-right = compton updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
 
 tray-position = right
@@ -413,5 +413,23 @@ exec-if = ! pgrep -x compton
 exec = echo "compton not running"
 label-foreground = ${colors.foreground-alt}
 interval = 5
+
+
+[module/wttr]
+type = custom/script
+exec = ~/.config/polybar/scripts/wttr.py "$_WTTR?format=%t+%c"
+interval = 300
+format-prefix = " "
+format-prefix-foreground = ${colors.prefix}
+click-left = feh "https://wttr.in/$_WTTR.png?F"
+
+
+[module/wttr_humidity]
+type = custom/script
+exec = curl -s "https://wttr.in/$_WTTR?format=%h"
+interval = 300
+format-prefix = " "
+format-prefix-foreground = ${colors.prefix}
+click-left = feh "https://wttr.in/$_WTTR.png?F"
 
 ; vim:ft=dosini

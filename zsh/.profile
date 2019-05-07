@@ -23,6 +23,9 @@ elif [ -f "/usr/lib/ssh/ssh-askpass" ] ; then
   export SSH_ASKPASS="/usr/lib/ssh/ssh-askpass"
 fi
 
+# load private environment variables
+[ -f ~/.profile-private ] && source ~/.profile-private
+
 # start Xorg if there is no session and we're on tty1
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
     echo "Starting X server"

@@ -1,7 +1,7 @@
 # random
 alias pls='sudo $(fc -ln -1)'
 alias ipy='ipython'
-alias sudo='killall screenkey 2>/dev/null; sudo'
+# alias sudo='killall screenkey 2>/dev/null; sudo'
 alias lrc='source ~/.zshrc'
 alias rm='rm -i'
 
@@ -174,8 +174,9 @@ twitch() {
     mpv $@ -- "https://twitch.tv/$channel"
 }
 
-alias nanaone="mpv https://live1.brb.re:8082/html5/hls/nanaone.m3u8"
+alias nanaone="mpv https://live1.brb.re:8082/html5/hls/nanaone.m3u8" # 30s delay
 alias nanaone2="mpv rtmp://live1.brb.re/live/nanaone_720p"
+alias nanaone3="mpv rtmp://live2.brb.re/live/nanaone"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"
 
 beet_mpa () {
@@ -224,7 +225,7 @@ Syu () {
 
 
 # systemd aliases
-alias sc='systemctl'
+alias sc='sudo systemctl'
 alias scu='systemctl --user'
 alias jc='journalctl'
 alias jcu='journalctl --user'

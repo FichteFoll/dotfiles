@@ -4,6 +4,7 @@ alias ipy='ipython'
 # alias sudo='killall screenkey 2>/dev/null; sudo'
 alias lrc='source ~/.zshrc'
 alias rm='rm -i'
+alias dragon="dragon-drag-and-drop"
 
 # ls: exa
 alias ls='exa --time-style=long-iso'

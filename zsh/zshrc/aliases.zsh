@@ -215,7 +215,7 @@ Syu () {
     # links "https://bbs.archlinux.org/viewforum.php?id=44"
 
     # the actual upgrade
-    sudo pacman -Syu
+    sudo pacman -Syu $@
 
     # print remaining outdated packages
     printf -- "\n"

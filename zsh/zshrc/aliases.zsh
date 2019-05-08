@@ -290,3 +290,19 @@ wttr() {
     # ${LANG%_*}
     curl -H "Accept-Language: de,en" --compressed "$request"
 }
+
+copympd() {
+    local source target
+    source=/data/audio/music/"$(mpc -f '%file%' current)"
+    if [[ "$source" == "${source%.*}".flac ]]; then
+        target="/tmp/$(basename "${source%.*}").ogg"
+        echo "converting to .ogg…"
+        ffmpeg -q -i "$source" -acodec libopus -b:a 128k -vbr on -compression_level 10 -vn "$target"
+    else
+        target="$source"
+    fi
+    xsel -b <<< "$target"
+    xclip-copyfile "$target"
+    notify-send "copied: $(basename "$target")"
+    # dragon "$target" --and-exit &
+}

@@ -65,12 +65,14 @@ module-padding = 3
 # https://fontawesome.com/cheatsheet
 # https://material.io/tools/icons/
 font-0 = Operator Mono Medium:size=11;2
+# font-1 = Font Awesome 5 Pro:style=Solid:size=10;2
 font-1 = Font Awesome 5 Free:style=Solid:size=10;2
 font-2 = Font Awesome 5 Free:size=10;2
 font-3 = Material Icons:size=10;2
-font-4 = Symbola:size=10;2
+font-4 = WeatherIcons-Regular:size=10.5;2
+font-5 = Symbola:size=10;2
 # Need some CJK characters
-font-5 = M+ 2m:size=10;2
+font-6 = M+ 2m:size=10;2
 
 # override-redirect = true
 # wm-restack = i3
@@ -421,7 +423,7 @@ exec = ~/.config/polybar/scripts/wttr.py "$_WTTR?format=%t+%c"
 interval = 300
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
-click-left = feh "https://wttr.in/$_WTTR.png?F"
+click-left = feh "https://wttr.in/$_WTTR.png?F&lang=de" &
 
 
 [module/wttr_humidity]
@@ -430,6 +432,6 @@ exec = curl -s "https://wttr.in/$_WTTR?format=%h"
 interval = 300
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
-click-left = feh "https://wttr.in/$_WTTR.png?F"
+click-left = feh "https://wttr.in/$_WTTR.png?F&lang=de" &
 
 ; vim:ft=dosini

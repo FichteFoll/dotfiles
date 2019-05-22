@@ -151,7 +151,8 @@ def main(params):
     for entry in filtered_entries:
         logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
 
-    filenames = [os.path.basename(entry.path) for entry in filtered_entries]
+    sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
+    filenames = [os.path.basename(entry.path) for entry in sorted_entries]
     to_syncplay(params, filenames)
 
 

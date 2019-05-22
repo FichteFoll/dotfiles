@@ -122,6 +122,16 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+Tab workspace back_and_forth
 
+# move workspace
+bindsym $mod+$alt+Left move workspace to output left
+bindsym $mod+$alt+Down move workspace to output down
+bindsym $mod+$alt+Up move workspace to output up
+bindsym $mod+$alt+Right move workspace to output right
+bindsym $mod+$alt+h move workspace to output left
+bindsym $mod+$alt+j move workspace to output down
+bindsym $mod+$alt+k move workspace to output up
+bindsym $mod+$alt+l move workspace to output right
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2

@@ -17,6 +17,8 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 
 # start ssh-agent
 eval "$(ssh-agent -s)"
+trap 'test -n "$SSH_AUTH_SOCK" && eval "`/usr/bin/ssh-agent -k`"' 0
+
 if [ -f "/usr/lib/seahorse/ssh-askpass" ] ; then
   export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 elif [ -f "/usr/lib/ssh/ssh-askpass" ] ; then

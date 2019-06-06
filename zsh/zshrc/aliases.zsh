@@ -6,6 +6,9 @@ alias lrc='source ~/.zshrc'
 alias rm='rm -i'
 alias dragon="dragon-drag-and-drop"
 
+# Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
+alias ssh="TERM=xterm-256color ssh"
+
 # ls: exa
 alias ls='exa --time-style=long-iso'
 alias lst='exa --tree --level=3'

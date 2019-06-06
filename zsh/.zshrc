@@ -31,8 +31,8 @@ unset sources src
 
 
 # termite: Launch new terminal in current dir
-if [[ $TERM == xterm-termite ]]; then
-  . /etc/profile.d/vte.sh
+if [[ $TERM == xterm-termite && -e /etc/profile.d/vte.sh ]]; then
+  source /etc/profile.d/vte.sh
   __vte_osc7
 fi
 

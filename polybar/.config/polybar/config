@@ -34,6 +34,7 @@ alert = #bd2c40
 cpu = #950095
 memory = #4bffdc
 gpu = #8B4500
+network = #10831E
 
 
 [bar/base]
@@ -233,15 +234,15 @@ label = %percentage_used%%
 # TODO
 type = internal/network
 interface = net1
-interval = 3.0
+interval = 5.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
+label-connected = %essid% %{F#555}%{F-} %downspeed:8% %{F#555}%{F-} %upspeed:8%
+format-connected-underline = ${colors.network}
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
+format-disconnected-underline = ${colors.warning}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 ramp-signal-0 = 
@@ -260,7 +261,8 @@ interval = 5.0
 # format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.prefix}
-label-connected = %local_ip%
+label-connected = %local_ip% %{F#555}%{F-} %downspeed:8% %{F#555}%{F-} %upspeed:8%
+format-connected-underline = ${colors.network}
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${colors.warning}

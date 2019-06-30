@@ -67,3 +67,4 @@ key_bindings:
   - { key: Up,       mods: Control|Shift, action: ScrollLineUp }
   - { key: Down,     mods: Control|Shift, action: ScrollLineDown }
   - { key: T,        mods: Control|Shift, action: SpawnNewInstance }
+  - { key: Delete,   mods: Control,       chars: "\x1b[3;5~" }

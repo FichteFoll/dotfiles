@@ -283,6 +283,11 @@ cheat() {
     curl cht.sh/"$@"
 }
 
+how_in() {
+  where="$1"; shift
+  IFS=+ curl "https://cht\.sh/$where/$*"
+}
+
 mkvattachments() {
     infile="$1"; shift
     ffmpeg -i "$infile" -dump_attachment:t "" -i $@

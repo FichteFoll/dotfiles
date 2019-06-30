@@ -1,9 +1,13 @@
-#!/usr/bin/env bash
-#
-# usage: aur remove <repo> <package-name>…
+#!/bin/sh --
+# aur-remove - remove listed packages from all local repositories
+if [ "$#" -eq 0 ]; then
+  printf 'usage: aur remove package [package ...]\en' >&2
+  exit 1
+fi
 
-repo="${1:?missing repository}"
-shift
-packages=(${@:?missing package name(s)})
-find /var/cache/pacman/ -name "$repo.db.tar" -execdir repo-remove {} $packages \;
-sudo pacman -R "$packages"
+aur repo --repo-list | while read -r repo_path; do
+  if repo_path=$(readlink -e "$repo_path"); then
+    repo-remove "$repo_path" "$@"
+    paccache -c "${repo_path%/*}" -rvk0 "$@"
+  fi
+done

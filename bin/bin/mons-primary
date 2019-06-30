@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+#
+# Prompt for a monitor to make the primary.
+
+mons=$(mons)
+monitors=$(rg '^\d+.*' -o <<< $mons)
+rest=$(rg '^\d+.*' -v <<< $mons)
+echo -en "$monitors" | rofi -dmenu -i -p "Specify the monitor to make the primary" -mesg "$rest" \
+    | awk '{print $2}' \
+    | read -r answer
+echo -n $answer
+[[ -n $answer ]] && mons --primary $answer

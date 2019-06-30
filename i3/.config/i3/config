@@ -174,14 +174,16 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 
 # monitor management
-set $mode_monitor Monitor Management: [d]uplicate, extend [l]eft or [r]ight, [p]rimary or [s]econdary only
+set $mode_monitor Monitor Management: [d]uplicate, [m]irror, extend [l]eft or [r]ight, [p]rimary or [s]econdary only; [P] to select primary
 mode "$mode_monitor" {
     set $default_exec mode "default", exec --no-startup-id
     bindsym d $default_exec mons -d
+    bindsym m $default_exec mons -m
     bindsym l $default_exec mons -e left
     bindsym r $default_exec mons -e right
     bindsym p $default_exec mons -o
     bindsym s $default_exec mons -s
+    bindsym shift+p $default_exec mons-primary
     # back to normal
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -359,13 +361,13 @@ mode "$mode_launcher" {
 
 
 # Initial startup #
-exec --no-startup-id compton
+# exec --no-startup-id compton
 exec --no-startup-id parcellite
 exec --no-startup-id fcitx
 # to circumvent fcitx workaround (https://github.com/fcitx/fcitx/issues/324)
 exec --no-startup-id setxkbmap de neo_qwertz
 # for some reason my setup in `/etc/X11/xorg.conf.d/50-video.conf` just doesn't work
-exec --no-startup-id xrandr --output DVI-I-1 --left-of HDMI-A-0
+# exec --no-startup-id xrandr --output DVI-I-1 --left-of HDMI-A-0
 
 # applications
 exec --no-startup-id keepass

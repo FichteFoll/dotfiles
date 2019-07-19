@@ -85,7 +85,7 @@ monitor = ${env:MONITOR:HDMI-A-0}
 # monitor = HDMI-A-0
 
 modules-left = i3 xwindow
-modules-center = date wttr wttr_humidity
+modules-center = date wttr
 modules-right = compton updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
 
 tray-position = right

@@ -12,7 +12,7 @@ def get_pointer_info():
     # WINDOW=88080389
     output = subprocess.check_output(["xdotool", "getmouselocation", "--shell"], encoding='ascii')
     mouse = dict(pair.split('=') for pair in output.splitlines())
-    print(mouse)
+    print("mouse", mouse)
 
     # WINDOW=75497474
     # X=1920
@@ -23,7 +23,7 @@ def get_pointer_info():
     output = subprocess.check_output(["xdotool", "getwindowgeometry", "--shell", mouse['WINDOW']],
                                      encoding='ascii')
     geometry = dict(pair.split('=') for pair in output.splitlines())
-    print(geometry)
+    print("geometry", geometry)
     return mouse, geometry
 
 

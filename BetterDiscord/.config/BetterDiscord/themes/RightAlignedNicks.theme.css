@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.2"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.3"}*//
 
 
 /**
@@ -47,7 +47,7 @@
 
 /*.containerCompact-3V0ioj .usernameWrapper-1S-G5O {*/
 [class*=headerCompact-] > span {
-    display: inline-block;
+    display: inline-block !important; /* something overrides this to inline-flex */
     text-align: right;
     width: var(--username-width);
     overflow: hidden;

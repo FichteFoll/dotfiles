@@ -30,7 +30,7 @@ import:
 #     Released by a doujin circle (usually at some event).
 #   - event:
 #     Event at which the doujin CD was released,
-#     e.g. "M3-41", "C-83", "Reitatsei-7".
+#     e.g. "M3-41", "C-83", "Reitatsei-7". `beet list -af '%ifdef{event}' | sort -u`
 #     Refer to https://vgmdb.net/db/events.php for a reference list.
 
 # https://beets.readthedocs.io/en/stable/reference/pathformat.html

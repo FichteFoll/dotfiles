@@ -346,7 +346,7 @@ mode "$mode_launcher" {
     bindsym f       exec firefox, $to_default
     # needs stdout redirect, doesn't start otherwise
     bindsym h       exec hexchat, $to_default
-    bindsym k       exec keepass, $to_default
+    bindsym k       exec keepassxc, $to_default
     bindsym m       exec smerge, $to_default
     bindsym r       exec i3-sensible-terminal -e ranger, $to_default
     bindsym s       exec subl, $to_default
@@ -361,24 +361,21 @@ mode "$mode_launcher" {
 
 
 # Initial startup #
-# exec --no-startup-id compton
-exec --no-startup-id parcellite
 exec --no-startup-id fcitx
 # to circumvent fcitx workaround (https://github.com/fcitx/fcitx/issues/324)
 exec --no-startup-id setxkbmap de neo_qwertz
-# for some reason my setup in `/etc/X11/xorg.conf.d/50-video.conf` just doesn't work
-# exec --no-startup-id xrandr --output DVI-I-1 --left-of HDMI-A-0
-
-# applications
-exec --no-startup-id keepass
-
 
 # desktop
+# for some reason my setup in `/etc/X11/xorg.conf.d/50-video.conf` just doesn't work
+#exec --no-startup-id xrandr HDMI-A-0 --primary --output DVI-I-1 --left-of HDMI-A-0
 # exec --no-startup-id hsetroot -solid "#333333"
 exec --no-startup-id ~/.fehbg
+exec --no-startup-id compton
 
 # polybar
 # exec-always doesn't work for some reason?
-exec --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id ~/.config/polybar/launch.sh
 
-exec-always --no-startup-id notify-send "i3 was restarted"
+# applications
+exec --no-startup-id parcellite
+exec --no-startup-id keepassxc

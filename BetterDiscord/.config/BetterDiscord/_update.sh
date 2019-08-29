@@ -13,12 +13,15 @@ wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/plugins/linkPr
 # wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/plugins/restartNoMore.plugin.js
 wget -N https://github.com/Jiiks/BetterDiscordApp/raw/master/Plugins/dblClickEdit.plugin.js
 wget -N https://github.com/kosshishub/BetterCustomCSS-BD-plugin/raw/master/BetterCustomCSS.plugin.js
+wget -N https://github.com/Metalloriff/BetterDiscordPlugins/raw/master/DoubleClickVoiceChannels.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/CompleteTimestamps/CompleteTimestamps.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/LastMessageDate/LastMessageDate.plugin.js
+# wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/ServerFolders/ServerFolders.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/ServerHider/ServerHider.plugin.js
 # wget -N https://github.com/megamit/repository/raw/gh-pages/renamer/1.5.4/renamer.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/AccountDetailsPlus/AccountDetailsPlus.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/BetterRoleColors/BetterRoleColors.plugin.js
+wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/HideDisabledEmojis/HideDisabledEmojis.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/PermissionsViewer/PermissionsViewer.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/RoleMembers/RoleMembers.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/DoNotTrack/DoNotTrack.plugin.js

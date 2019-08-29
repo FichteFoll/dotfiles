@@ -61,7 +61,8 @@
 		"node_modules",
 		".mypy_cache",
 		"*.egg-info",
-		".tox"
+		".tox",
+		".venv*"
 	],
 	"font_face": "Operator Mono",
 	"font_size": 12,

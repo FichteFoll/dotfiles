@@ -207,7 +207,7 @@
   { "keys": ["ctrl+super+t"], "command": "test_command" },
 
   // pane cycle
-  { "keys": ["ctrl+1"], "command": "cycle_panes" },
+  { "keys": ["ctrl+1"], "command": "cycle_groups" },
 
   // reset mini diff
   { "keys": ["ctrl+k", "ctrl+s"], "command": "reset_mini_diff" },

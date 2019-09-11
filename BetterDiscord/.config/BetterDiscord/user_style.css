@@ -38,6 +38,7 @@
     margin: 0 !important;
 }
 
+/* Adjust divider size and backgrounds */
 [class*=divider-] {
     height: 30px;
 }
@@ -54,11 +55,18 @@
 
 /*[class*=container-] {*/
 /*.da-container {*/
+/* remove main container's backround so there aren't random holes */
 .container-1YxwTf {
     background: none;
 }
-[class*="membersWrap-"] [class*="members-"] [class*="member-"] {
+
+/* reduce padding in member list */
+[class*="scroller-"][class*="members-"] [class*="member-"] {
     padding: 1px 0 !important;
+}
+/* TODO update for radial status */
+[class*="members-"] [class*="member-"] > [ckass=*="layout-"] {
+    height: 39px;
 }
 
 

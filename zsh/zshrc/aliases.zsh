@@ -222,9 +222,8 @@ Syu () {
     sudo pacman -Syu $@
 
     # print remaining outdated packages
-    printf -- "\n"
-    aur repo -ld aur | aur vercmp
-    # cu
+    # printf -- "\n"
+    # aur repo -ld aur | aur vercmp
 }
 
 

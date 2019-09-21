@@ -1,7 +1,9 @@
 [options]
-font = xos4 Terminus 10
+# bitmap fonts are broken
+#font = xos4 Terminus 10
 #font = Misc Fixed 10
-#font = Monospace 10
+font = Operator Mono 10
+font = Monospace 10
 
 allow_bold = true
 mouse_autohide = true

@@ -5,22 +5,19 @@
     color: var(--nox-white9);
 }
 
-/* FIX | Slowmode/Typing Indicator */
-.chat-3bRxxu form .typing-2GQL18 {
-    min-width: 150px;
-    display: flex;
+/* muted channels color TEMPFIX */
+.theme-dark .wrapper-1ucjTd.modeMuted-3osy7j .name-3_Dsmg,
+.wrapper-1ucjTd.modeMuted-3osy7j .icon-1_QxNX{
+    color: hsl(0,0%,25%) !important;
 }
 
+/* FIX | Slowmode/Typing Indicator */
 .typing-2GQL18 .ellipsis-19qdx6 {
     height: 7px;
 }
 .base-gE7OpD .ellipsis-19qdx6 {
-    display: flex;
     margin-left: 0px;
-    padding-right:15px;
-}
-.base-gE7OpD .text-1y-e8- {
-    margin-left: 4px;
+    padding-right:10px;
 }
 
 /* Jump To Present TEMPFIX*/
@@ -38,6 +35,17 @@
 }
 .theme-dark .container-3baos1, .theme-light .container-3baos1 {
     background: var(--nox-level3);
+}
+
+/*FIX for reactions/msg actions button*/
+.icon-3tPbgH, .reactionBtn-2na4rd {
+    width: 0;
+    height: 0;
+}
+
+.icon-3UTRNc {
+    width: 0;
+    height: 0;
 }
 
 /* box sizes TEMPFIX (dm list) */
@@ -65,6 +73,156 @@
     height: calc(100% - 24px);
 }
 
+/*Home Button Fix*/
+.childWrapper-anI2G9 {
+    webkit-transition: background-color .15s ease-out,color .15s ease-out;
+    transition: background-color .15s ease-out,color .15s ease-out;
+    background-color: var(--nox-level2);
+    color: var(--text-normal);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%
+}
+
+/*Fix for delete message button only being red on hover*/
+.itemBase-tz5SeC.danger-2dXSTE, .itemBase-tz5SeC.danger-2dXSTE:hover {
+    color: #f04747;
+}
+/*Fix for deletion confirmation*/
+.theme-dark .modal-yWgWj- {
+    background-color: var(--nox-level2);
+}
+.theme-dark .footer-3rDWdC {
+    background-color: var(--nox-level2);
+}
+.button-38aScr.lookLink-9FtZy- {
+    background: var(--nox-level1);
+}
+
+/*Fix for the context menu having differing alignments*/
+.contextMenu-HLZMGh .item-1Yvehc {
+    padding: 9px 8px;
+}
+
+/*Guild list background width fix*/
+.wrapper-1Rf91z {
+    width: 72px;
+}
+.wrapper-1Rf91z .scrollerWrap-1IAIlv {
+    width: 72px;
+}
+/*server setttings rounded edge fix*/
+.platform-win .sidebar-2K8pFh {
+    border-radius: 0;
+}
+/*FIX for server gap and width*/
+.listItem-2P_4kh {
+    height: initial;
+    width: 72px;
+}
+
+/*Various Menu Colour Fixes*/
+.theme-dark .bodyInner-245q0L {
+    background-color: var(--nox-level1);
+}
+.scroller-zPkAnE {
+    background-color: var(--nox-level2);
+}
+
+/*latest update fixes| scroller/color ect v2.0*/
+.scroller-1JbKMe {
+    background-color: var(--nox-level2);
+}
+.scroller-2TZvBN {
+    background-color: var(--nox-level1);
+}
+.outer-2IVh5n {
+    background-color: aliceblue;
+}
+.theme-dark .recentlyPlayedContainer-2F3MqS {
+    background-color: var(--nox-level2);
+}
+.contentRegionScroller-26nc1e {
+    background-color: var(--nox-level2);
+}
+.sidebarRegionScroller-3MXcoP {
+    background: var(--nox-level3);
+}
+.theme-dark .container-3ayLPN {
+    background-color: var(--nox-level2);
+}
+.lowerBadge-29hYVK, .upperBadge-2XnnGB {
+    right: 5px;
+    bottom: 5px;
+}
+.scroller-9moviB {
+    background-color: var(--nox-level1);
+}
+.scroller-1IIF0A {
+    background-color: var(--nox-level1);
+}
+.container-cMG81i {
+    background-color: var(--nox-level3);
+}
+.tutorialMessages-12mfId {
+    padding-top: 37px;
+}
+.card-GqTca8.da-card[style] {
+    height:80px;
+}
+.grid-1rkoVH {
+    column-gap: 5px;
+    margin: 0 5px;
+}
+.theme-dark .popoutContainer-3WC9HR:hover {
+    background-color: var(--nox-level3);
+}
+.theme-dark .popout-3G62UL {
+    background-color: var(--nox-level3);
+}
+.theme-dark .memberListItem-2ZX2pl:not(.popoutDisabled-xucru2):hover {
+    background-color: var(--nox-level2);
+}
+.theme-dark .enabled-5QKLzu:hover {
+    background-color: var(--nox-level2);
+}
+.theme-dark .outer-2IVh5n.interactive-1BeKSi:hover {
+    background-color: var(--nox-level3);
+}
+.contentColumn-2hrIYH .notDetected-33MY4s {
+    background: var(--nox-level1);
+}
+.theme-dark .searchBox-3Y2Vi7 {
+    background-color: var(--nox-level1);
+}
+.textCell-1aBIUP {
+    color: var(--nox-white);
+}
+.theme-dark .modal-yWgWj- {
+    background-color: var(--nox-level2);
+}
+.theme-dark .footer-3rDWdC {
+    background-color: var(--nox-level2);
+}
+.theme-dark .messagesPopout-24nkyi {
+    background-color: var(--nox-level2);
+}
+.scroller-305q3I {
+    background-color: var(--nox-level2); /*tnx Adamn didnt now see this before*/
+}
+.theme-dark .friendSelected-1sa4bG {
+    background-color: var(--nox-level1);
+}
+.css-181m2lf-menu{
+    background-color: var(--nox-level2);
+}
+.clickable-2ap7je .header-2o-2hj:hover, .selected-WP3kCM .header-2o-2hj {
+    background-color: #0A0A0A;
+}
+.micTestCaption-r5_z_T {
+    left: 115px;
+}
+/*End of scroller/color fixes */
 
 /* server folders TEMPFIX */
 /* animations removed because i fucking hate grid*/

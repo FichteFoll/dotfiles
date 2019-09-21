@@ -12,18 +12,34 @@ Requires https://github.com/rfw/python-ass.
 import argparse
 import logging
 import sys
-# from pathlib import Path
+from pathlib import Path
 
 import ass
+
+IGNORED_FIELDS = {
+    # irrelevant
+    'Title',
+    # Aegisub Project Garbage
+    'Last Style Storage',
+    'Video Aspect Ratio',
+    'Video Zoom',
+    'Video Position',
+    'Collisions',
+    'Video Zoom Percent',
+    'Audio File',
+    'Video File',
+    # other
+    'GradientFactory',
+}
 
 logger = logging.getLogger(__name__)
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Merge multiple ASS scripts into one.")
-    parser.add_argument("input", nargs='+', type=argparse.FileType('r'),
+    parser.add_argument("input", nargs='+', type=Path,
                         help="File(s) to merge. Supports stdin (`-`, once).")
-    parser.add_argument("-o", dest="output", type=argparse.FileType('w'),
+    parser.add_argument("-o", dest="output", type=Path,
                         help="File to write to. Supports stdout (`-`).")
     parser.add_argument("--skip-comments", action='store_true',
                         help="Skips comments for the merged file.")
@@ -40,10 +56,14 @@ def main():
 
     merged_doc = ass.document.Document()
 
-    for file in params.input:
-        doc = ass.parse(file)
+    for path in params.input:
+        if path == Path('-'):
+            doc = ass.parse(sys.stdin)
+        else:
+            with path.open('r', encoding='utf_8_sig') as f:
+                doc = ass.parse(f)
         stripped_fields = doc.fields.copy()
-        for key in ('Title'):
+        for key in IGNORED_FIELDS:
             stripped_fields.pop(key, None)
 
         # Merge fields
@@ -54,7 +74,7 @@ def main():
                 logger.error("Fields of files to merge don't match."
                              "\nCurrent fields:\n%r"
                              "\nFields of %r:\n%r",
-                             merged_doc.fields, file.name, stripped_fields)
+                             merged_doc.fields, path.name, stripped_fields)
                 # TODO offer to choose
                 return 1
 
@@ -70,9 +90,10 @@ def main():
                 if previous_style != style:
                     logger.error("Style %r differs in at least two source files,"
                                  " one of which is %r.",
-                                 style.name, file.name)
+                                 style.name, path.name)
                     # TODO offer to choose
                     return 2
+                continue
 
             styles_seen[style.name] = style
             merged_doc.styles.append(style)
@@ -89,7 +110,11 @@ def main():
 
         merged_doc.events.extend(doc.events)
 
-    merged_doc.dump_file(params.output)
+    if params.output == Path('-'):
+        merged_doc.dump_file(sys.stdout)
+    else:
+        with params.output.open('w', encoding='utf_8_sig') as f:
+            merged_doc.dump_file(f)
 
 
 if __name__ == '__main__':

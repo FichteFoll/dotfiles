@@ -12,7 +12,7 @@
     "open_pdf_on_build": false,
     "keep_focus": false,
     "display_bad_boxes": true,
-    // "use_biblatex": true,
+    "use_biblatex": true,
     "bibliography": "new",
     //"output_directory": "c:\\Users\\Fichte\\AppData\\Roaming\\LaTeXTools",
     //"aux_directory": "c:\\Users\\Fichte\\AppData\\Roaming\\LaTeXTools"

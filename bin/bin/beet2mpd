@@ -6,4 +6,5 @@ beet list $@ -f '$path' \
   | sed "s#${music_dir}/##
     t
     d" \
-  | sort | mpc add
+  | sort | tee /dev/fd/2 \
+  | mpc add

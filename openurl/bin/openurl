@@ -70,7 +70,10 @@ for url in urls:
         else:
             print(f"URL matched by `{reg!s}`", file=sys.stderr)
 
-        args = shlex.split(cmd.format(url=url))
+        if "{url}" in cmd:
+            args = shlex.split(cmd.format(url=url))
+        else:
+            args = shlex.split(cmd) + [url]
         print(f"Opening {url!r} with `{cmd}`", file=sys.stderr)
         subprocess.Popen(args)
         break

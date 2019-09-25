@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 # TODO (not really here, but) webrun https://github.com/Vifon/webrun/blob/20cbf5e/webrun
-# could be used for evince, $EDITOR
-# TODO blacklist for 403 replies since some servers are bad like that (hastebin)
+#   could be used for evince, $EDITOR
 from pathlib import Path
 import re
 import shlex
@@ -23,43 +22,52 @@ def notify(summary, body=""):
     subprocess.Popen(args)
 
 
-conf = []
+nohead = []
+patterns = []
 with Path("~/.config/openurl.conf").expanduser().open() as f:
     for line in f:
         stripped = line.strip()
         if not stripped or stripped.startswith("#"):
             continue  # Discard empty and commented lines
-        conf.append(stripped.split(maxsplit=1))
+        split = stripped.split(maxsplit=1)
+        if stripped.startswith("nohead:"):
+            nohead.append(stripped[7:])
+        else:
+            patterns.append(split)
 
 
 session = requests.Session()
 session.headers['User-Agent'] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 openurl/0.0 Safari/537.36"
 
 for url in urls:
-    try:
-        req = session.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
-    except (requests.ConnectTimeout, requests.ConnectionError, requests.ReadTimeout):
-        mime_type = None
-        code = 0
-        print(f"The request errored or timed out after {REQUEST_TIMEOUT} seconds", file=sys.stderr)
+    if not any(re.search(reg, url) for reg in nohead):
+        try:
+            req = session.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
+        except (requests.ConnectTimeout, requests.ConnectionError, requests.ReadTimeout):
+            mime_type = None
+            code = 0
+            print(f"The request errored or timed out after {REQUEST_TIMEOUT} seconds",
+                  file=sys.stderr)
+        else:
+            content_type = req.headers.get('content-type')
+            mime_type = content_type.split(";", maxsplit=1)[0] if content_type else None
+            code = req.status_code
+            print(f"HEAD request replied to with HTTP {code}", file=sys.stderr)
+            if req.url != url:
+                print(f"And previously redirected to {req.url}")
+                url = req.url
+
+        # https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_errors
+        # if code >= 400 and code not in (401, 405, 418, 503):
+        if code in (403, 404, 410, 502):
+            # amazon sends 503 for HEAD requests, so we can't match that
+            notify(f"HTTP {code}",
+                   f"Server returned HTTP status code {code} for:\n{url!r}")
+            continue
     else:
-        content_type = req.headers.get('content-type')
-        mime_type = content_type.split(";", maxsplit=1)[0] if content_type else None
-        code = req.status_code
-        print(f"HEAD request replied to with HTTP {code}", file=sys.stderr)
-        if req.url != url:
-            print(f"And previously redirected to {req.url}")
-            url = req.url
+        mime_type = None
 
-    # https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_errors
-    # if code >= 400 and code not in (401, 405, 418, 503):
-    if code in (403, 404, 410, 502):
-        # amazon sends 503 for HEAD requests, so we can't match that
-        notify(f"HTTP {code}",
-               f"Server returned HTTP status code {code} for:\n{url!r}")
-        continue
-
-    for reg, cmd in conf:
+    for reg, cmd in patterns:
         if reg.startswith("mime:"):
             reg = reg[5:]
             if not mime_type or not re.search(reg, mime_type):

@@ -132,6 +132,8 @@ main() {
 	else
 		i3lock -n -t -i "$image_file"
 	fi
+
+	rm "$cfg_tmpdir/lockbg.png"
 }
 
 main "$@"

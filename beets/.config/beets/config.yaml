@@ -11,32 +11,34 @@ import:
   # autotag: false
   log: beetslog.txt
 
-# match:
-#   required: year
-
-# custom fields:
-#   - source: (for albumtype:Soundtrack)
+# custom album fields:
+#   - source: (for albumtype:soundtrack)
 #     The name of the source for the soundtrack,
 #     e.g. the source of "Transistor Soundtrack" is "Transistor".
-#   - sourcetype: (for albumtype:Soundtrack)
+#   - sourcetype: (for albumtype:soundtrack)
 #     Type of the source.
-#     One out of "Game", "Movie", "Anime".
-#   - anime:
-#     For singles in the context of anime releases.
-#     Can be set to "Opening", "Ending", "Insert", etc.
+#     One out of "game", "movie", "anime".
+#     `beet list -af '%ifdef{sourcetype}' | sort -u`
 #   - touhou:true
 #     If it is a Touhou arrangement (disc).
 #   - doujin:true
 #     Released by a doujin circle (usually at some event).
 #   - event:
 #     Event at which the doujin CD was released,
-#     e.g. "M3-41", "C-83", "Reitatsei-7". `beet list -af '%ifdef{event}' | sort -u`
+#     e.g. "M3-41", "C-83", "Reitatsei-7".
 #     Refer to https://vgmdb.net/db/events.php for a reference list.
+#     `beet list -af '%ifdef{event}' | sort -u`
+#
+# custom track fields:
+#   - anime:
+#     For singles in the context of anime releases.
+#     Can be set to "Opening", "Ending", "Insert", etc.
 
 # https://beets.readthedocs.io/en/stable/reference/pathformat.html
 paths:
   # special stuff
-  sourcetype:Anime:
+  # TODO remove this
+  sourcetype:anime:
     "#soundtrack\
     /%ifdef{source,$source/}\
     $album%aunique{}%ifdef{anime, [$anime]}\
@@ -54,31 +56,50 @@ paths:
   # normal stuff
   comp: $albumartist_or_label/$year - $album%aunique{}/$disc_and_track - $artist - $title
   singleton: $albumartist/$title
-  # default: $artist/$title
   default: $albumartist/$year - $album%aunique{}/$disc_and_track - $maybe_artist$title
 
 album_fields:
   long_date: '"-".join(f"{n:02}" for n in [year, month, day] if n)'
-  soundtrack_source: 'f"{source}/" if locals().get("source", None) and source != album else ""'
+  albumartist_or_label: label if comp and label else albumartist
 
 item_fields:
   disc_and_track:
     f"{disc}.{track:0{max(2, len(str(tracktotal)))}}"
     if disctotal > 1
     else f"{track:0{max(2, len(str(tracktotal)))}}"
-  albumartist_or_label: label if comp and label else albumartist
   maybe_artist: f"{artist} - " if artist != albumartist else ""
 
+# TODO check out mpd-focused plugins like mpdstats
 # https://beets.readthedocs.io/en/latest/plugins/index.html
-plugins: fetchart lastgenre missing duplicates inline replaygain
-# chroma embedart convert ftintitle
+plugins: >-
+  duplicates
+  fetchart
+  inline
+  lastgenre
+  missing
+  playlist
+  replaygain
+  smartplaylist
+# embedart convert
+# plugins: inline  # for testing album fallback
 
 lastgenre:
   count: 1
   # separator: "\x00"  # multi-field ID3v2.4 text tags are separated by nulls - http://id3.org/id3v2.4.0-frames section 4.2 | doesn't seem to work out that well?
 
+playlist:
+  auto: true
+  playlist_dir: ~/.mpd/playlists
+
+smartplaylist:
+  playlist_dir: ~/.mpd/playlists
+  playlists:
+    - name: $Recently Added.m3u
+      query: 'added:-4w.. albumartist+ year+ album+ track+'
+    - name: $Anime Openings.m3u
+      query: 'sourcetype:anime anime:Opening source+ anime+'
+    - name: $Anime Endings.m3u
+      query: 'sourcetype:anime anime:Ending source+ anime+'
+
 replaygain:
   backend: gstreamer
-
-# chroma:
-#   auto: false

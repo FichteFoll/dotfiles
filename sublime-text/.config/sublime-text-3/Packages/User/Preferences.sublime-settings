@@ -45,6 +45,7 @@
 	],
 	"auto_complete_with_fields": true,
 	"auto_find_in_selection": true,
+	"clear_selection": false,
 	"color_scheme": "Packages/Theme - Nil/Tubnil_mod.tmTheme",
 	"dictionary": "Packages/Language - English_user/en_US.dic",
 	"drag_text": true,

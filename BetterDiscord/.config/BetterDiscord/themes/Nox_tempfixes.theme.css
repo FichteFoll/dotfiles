@@ -11,6 +11,15 @@
     color: hsl(0,0%,25%) !important;
 }
 
+/* server selected & unread TEMPFIX */
+.bd-guild.bd-selected {
+    background: var(--nox-level2);
+}
+.bd-guild.bd-unread:not(.bd-selected) img[class^="icon-"] {
+    padding: 2px;
+    border: 2px solid var(--nox-white8);
+}
+
 /* FIX | Slowmode/Typing Indicator */
 .typing-2GQL18 .ellipsis-19qdx6 {
     height: 7px;

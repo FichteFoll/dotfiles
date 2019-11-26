@@ -193,10 +193,9 @@ cu () {
 }
 
 cu2 () {
-    # include updates for --devel packages (*-git)
-    # takes longer to run because all git repos need to be updated
+    # like cu but include updates for VCS packages
     checkupdates
-    # pacaur -k --devel --needed
+    echo ''
 
     # https://github.com/AladW/aurutils/issues/299#issuecomment-366807331
     # until a "native" flag is added: https://github.com/AladW/aurutils/pull/283
@@ -211,16 +210,12 @@ Syu () {
     # Check for special upgrade steps
     news="$(arch-news)"
     if [[ -n "$news" ]]; then
+        echo "$news"
         read -q "?continue? [y/n]" || return
     fi
-    # links "https://bbs.archlinux.org/viewforum.php?id=44"
 
     # the actual upgrade
     sudo pacman -Syu $@
-
-    # print remaining outdated packages
-    # printf -- "\n"
-    # aur repo -ld aur | aur vercmp
 }
 
 

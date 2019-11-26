@@ -5,7 +5,7 @@ input_file=${1-/dev/stdin}
 tmp_file=$(mktemp)
 trap "rm -f '$tmp_file'" 0
 
-<$input_file tee "$tmp_file" | wc -lL "$input_file" | LFS=' ' read lines chars _
+<$input_file tee "$tmp_file" | wc -lL | LFS=' ' read lines chars _
 echo "lines: $lines, chars: $chars"
 
 <$tmp_file \

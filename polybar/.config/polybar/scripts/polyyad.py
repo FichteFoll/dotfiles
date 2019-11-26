@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import argparse
+import os
+import re
 import subprocess
 import sys
 
@@ -12,7 +14,6 @@ def get_pointer_info():
     # WINDOW=88080389
     output = subprocess.check_output(["xdotool", "getmouselocation", "--shell"], encoding='ascii')
     mouse = dict(pair.split('=') for pair in output.splitlines())
-    print("mouse", mouse)
 
     # WINDOW=75497474
     # X=1920
@@ -23,8 +24,19 @@ def get_pointer_info():
     output = subprocess.check_output(["xdotool", "getwindowgeometry", "--shell", mouse['WINDOW']],
                                      encoding='ascii')
     geometry = dict(pair.split('=') for pair in output.splitlines())
-    print("geometry", geometry)
     return mouse, geometry
+
+
+def get_screen_size():
+    screen = os.environ.get('SCREEN', "0")
+    # Screen 0: minimum 320 x 200, current 4480 x 1440, maximum 16384 x 16384
+    output = subprocess.check_output(["xrandr", "-q"], encoding='ascii')
+    for line in output.splitlines():
+        if line.startswith(f"Screen {screen}:"):
+            groups = re.search(r"current (\d+) x (\d+)", line).groups()
+            return tuple(map(int, groups))
+    else:
+        return None
 
 
 def main():
@@ -40,15 +52,31 @@ def main():
     params, rest = parser.parse_known_args()
 
     mouse, geometry = get_pointer_info()
+    print(f"{mouse=}")
+    print(f"{geometry=}")
+    screen_size = get_screen_size()
+    print(f"{screen_size=}")
 
-    x = int(mouse['X']) - params.width / 2
     if params.bottom:
+        # TODO this logic doesn't make sense
         y = int(geometry['Y']) - params.height
     else:
         y = int(geometry['HEIGHT'])
 
+    width = params.width
+    height = params.height
+    if screen_size:
+        width = min(width, screen_size[0])
+        height = min(height, screen_size[1] - y)
+    
+    x = int(mouse['X']) - width / 2
+
+    print(f"{x=}, {y=}")
+    print(f"{params.width=}, {params.height=}")
+    print(f"{width=}, {height=}")
+
     cmd = ["yad",
-           f"--width={params.width}", f"--height={params.height}",
+           f"--width={width}", f"--height={height}",
            f"--posx={x}", f"--posy={y}", "--fixed",
            *rest]
     subprocess.call(cmd, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)

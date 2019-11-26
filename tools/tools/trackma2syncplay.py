@@ -45,7 +45,10 @@ def get_library_entries(params):
         # We need to know meta info on a show,
         # e.g. the last episode watched, watching status and title,
         # so we query the engine for details.
-        show = engine.get_show_info(showid)
+        try:
+            show = engine.get_show_info(showid)
+        except trackma.utils.EngineError as e:
+            logger.error("Couldn't retrieve info for %d: %s", showid, e)
         for ep, path in eps.items():
             yield LibraryEntry(show, ep, path)
 

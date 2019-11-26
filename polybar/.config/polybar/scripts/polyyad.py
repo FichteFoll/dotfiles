@@ -28,7 +28,13 @@ def get_pointer_info():
 
 
 def get_screen_size():
-    screen = os.environ.get('SCREEN', "0")
+    if (
+        (display := os.environ.get('DISPLAY', ":0"))
+        and (m := re.search(r":(\d+)(\.\d+)?$", display))
+    ):
+        screen = m.group(1)
+    else:
+        screen = "0"
     # Screen 0: minimum 320 x 200, current 4480 x 1440, maximum 16384 x 16384
     output = subprocess.check_output(["xrandr", "-q"], encoding='ascii')
     for line in output.splitlines():

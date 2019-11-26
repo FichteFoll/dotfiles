@@ -86,7 +86,7 @@ monitor = ${env:MONITOR:HDMI-A-0}
 
 modules-left = i3 xwindow
 modules-center = date wttr
-modules-right = compton updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
+modules-right = picom updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
 
 tray-position = right
 # tray-background = #0063ff
@@ -411,10 +411,10 @@ format-underline = ${colors.cpu}
 interval = 5
 
 
-[module/compton]
+[module/picom]
 type = custom/script
-exec-if = ! pgrep -x compton
-exec = echo "compton not running"
+exec-if = ! pgrep -x picom
+exec = echo "picom not running"
 label-foreground = ${colors.foreground-alt}
 interval = 5
 

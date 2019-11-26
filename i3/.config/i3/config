@@ -322,9 +322,9 @@ bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""
 # Prior = page up / Next = page down
 bindsym $mod+Next exec share_clip
 
-# compton
-bindsym $mod+Ctrl+c exec --no-startup-id compton
-bindsym $mod+Ctrl+Shift+c exec --no-startup-id killall compton
+# picom (was "compton")
+bindsym $mod+Ctrl+c exec --no-startup-id picom
+bindsym $mod+Ctrl+Shift+c exec --no-startup-id killall picom
 
 # polybar (kills automatically)
 bindsym $mod+Ctrl+p exec --no-startup-id $HOME/.config/polybar/launch.sh
@@ -371,7 +371,7 @@ exec --no-startup-id setxkbmap de neo_qwertz
 #exec --no-startup-id xrandr HDMI-A-0 --primary --output DVI-I-1 --left-of HDMI-A-0
 # exec --no-startup-id hsetroot -solid "#333333"
 exec --no-startup-id ~/.fehbg
-exec --no-startup-id compton
+exec --no-startup-id picom
 
 # polybar
 # exec-always doesn't work for some reason?

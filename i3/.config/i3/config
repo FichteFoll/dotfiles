@@ -233,7 +233,9 @@ set $volume_step 5%
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master $volume_step+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master $volume_step-
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-bindsym Ctrl+XF86AudioMute exec --no-startup-id "amixer set Headphone toggle; exec amixer set Front toggle"
+# sink input 2 should be the "default" sink I use to map to my speakers and headphone sinks
+bindsym Ctrl+XF86AudioMute exec --no-startup-id "pactl move-sink-input 2 headphones"
+bindsym Ctrl+Shift+XF86AudioMute exec --no-startup-id "pactl move-sink-input 2 speakers"
 
 # media keys for mpd
 bindsym XF86AudioPrev exec --no-startup-id mpc prev

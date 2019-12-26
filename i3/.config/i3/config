@@ -228,14 +228,17 @@ bindsym --release button2 kill
 # $mod+middle mouse button toggles float
 bindsym --whole-window $mod+button2 floating toggle
 
-# volume
+# MEDIA KEYS #
+set $volume_sink 2
 set $volume_step 5%
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master $volume_step+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master $volume_step-
+set $default_sink_input 2
+# volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $volume_sink +$volume_step
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $volume_sink -$volume_step
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-# sink input 2 should be the "default" sink I use to map to my speakers and headphone sinks
-bindsym Ctrl+XF86AudioMute exec --no-startup-id "pactl move-sink-input 2 headphones"
-bindsym Ctrl+Shift+XF86AudioMute exec --no-startup-id "pactl move-sink-input 2 speakers"
+# switch between headphone and speaker output
+bindsym Ctrl+XF86AudioMute exec --no-startup-id pactl move-sink-input $default_sink_input headphones
+bindsym Ctrl+Shift+XF86AudioMute exec --no-startup-id pactl move-sink-input $default_sink_input speakers
 
 # media keys for mpd
 bindsym XF86AudioPrev exec --no-startup-id mpc prev

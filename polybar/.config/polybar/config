@@ -286,6 +286,7 @@ click-left = ~/.config/polybar/scripts/polyyad.py --calendar --undecorated --fix
 
 [module/pulseaudio]
 type = internal/pulseaudio
+sink = headphones
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%

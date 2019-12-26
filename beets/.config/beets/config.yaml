@@ -95,7 +95,7 @@ smartplaylist:
   playlist_dir: ~/.mpd/playlists
   playlists:
     - name: $Recently Added.m3u
-      query: 'added:-4w.. albumartist+ year+ album+ track+'
+      query: 'added:-4w.. albumartist+ year+ album+ disc+ track+'
     - name: $Anime Openings.m3u
       query: 'sourcetype:anime anime:Opening source+ anime+'
     - name: $Anime Endings.m3u

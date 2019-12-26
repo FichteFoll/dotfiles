@@ -1,4 +1,5 @@
 set editing-mode emacs
+set enable-bracketed-paste on
 
 # termite
 "\e[H": beginning-of-line

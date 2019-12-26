@@ -183,7 +183,7 @@ mode "$mode_monitor" {
     bindsym r $default_exec mons -e right
     bindsym p $default_exec mons -o
     bindsym s $default_exec mons -s
-    bindsym shift+p $default_exec mons-primary
+    bindsym Shift+p $default_exec mons-primary
     # back to normal
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -292,8 +292,8 @@ mode "$mode_focus" {
     bindsym t       [class="Thunderbird"] focus, $to_default
     bindsym z       [class="Zeal"] focus, $to_default
 
-    bindsym n       [class="Sublime_text" title="\\(notes\\) - Sublime Text$"] focus, $to_default
-    bindsym Shift+h [class="Sublime_text" title="\\(home\\) - Sublime Text$"] focus, $to_default
+    bindsym n       [class="Subl" title="^notes — .* - Sublime Text$"] focus, $to_default
+    bindsym Shift+h [class="Subl" title="^home — .* - Sublime Text$"] focus, $to_default
 
     bindsym Escape $to_default
     bindsym Return $to_default

@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+
+num_failed() {
+    systemctl $1 list-units --failed | rg '(\d+) loaded units listed.' -r '$1' -o
+}
+
+case $1 in
+    count)
+        failed=$(( $(num_failed --user) + $(num_failed --system) ))
+        if ((failed)); then
+            echo $failed
+        fi
+    ;;
+    print)
+        echo "SYSTEM"
+        systemctl --system list-units --failed
+        echo "\nUSER"
+        systemctl --user list-units --failed
+    ;;
+    *)
+        echo "Unknown command" >&2
+    ;;
+esac

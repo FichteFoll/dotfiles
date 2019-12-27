@@ -86,7 +86,7 @@ monitor = ${env:MONITOR:HDMI-A-0}
 
 modules-left = i3 xwindow
 modules-center = date wttr
-modules-right = picom updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
+modules-right = picom failed_units updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
 
 tray-position = right
 # tray-background = #0063ff
@@ -437,4 +437,13 @@ format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 click-left = feh "https://wttr.in/$_WTTR.png?F&lang=de" &
 
-; vim:ft=dosini
+
+[module/failed_units]
+type = custom/script
+exec = ~/.config/polybar/scripts/systemd-units count
+interval = 60
+click-left = ~/.config/polybar/scripts/systemd-units print | ~/.config/polybar/scripts/polyyadfile
+
+format-prefix = " "
+format-prefix-foreground = ${colors.prefix}
+format-underline = ${colors.alert}

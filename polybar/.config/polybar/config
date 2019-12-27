@@ -215,6 +215,7 @@ card = intel_backlight
 [module/cpu_usage]
 type = internal/cpu
 interval = 2
+
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 format-underline = #950095
@@ -224,6 +225,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
+
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 format-underline = ${colors.memory}
@@ -277,12 +279,13 @@ label-disconnected-foreground = ${colors.foreground-alt}
 type = custom/script
 exec = date +"%Y-%m-%d %H:%M:%S"
 interval = 1
+click-left = ~/.config/polybar/scripts/polyyad.py --calendar --undecorated --fixed --close-on-unfocus --no-buttons --width=250 &
+
 label = %output%
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 # format-underline = ${colors.secondary}
 
-click-left = ~/.config/polybar/scripts/polyyad.py --calendar --undecorated --fixed --close-on-unfocus --no-buttons --width=250 &
 
 
 [module/pulseaudio]
@@ -385,14 +388,14 @@ ramp-foreground = ${colors.prefix}
 [module/updates]
 type = custom/script
 exec = num=$(checkupdates | tee /tmp/updates | wc -l); ((num > 0)) && echo $num
+interval = 300
+click-left = cut /tmp/updates -d" " -f1 | ~/.config/polybar/scripts/polyyadfile
+
 # format-prefix = " "
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 format-underline = ${colors.warning}
-tail = true
-interval = 300
 
-click-left = cut /tmp/updates -d" " -f1 | ~/.config/polybar/scripts/polyyadfile
 
 
 [module/gpu_usage]
@@ -400,6 +403,7 @@ type = custom/script
 # TODO not working, but does in terminal?
 exec = sudo -n radeontop --dump - | rg 'gpu ([\d.]+)' -r '$1' -o
 tail = true
+
 label = %output%%
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
@@ -409,25 +413,28 @@ format-underline = ${colors.gpu}
 [module/cpu_load]
 type = custom/script
 exec = </proc/loadavg cut -f1 -d" "
-format-underline = ${colors.cpu}
 interval = 5
+
+format-underline = ${colors.cpu}
 
 
 [module/picom]
 type = custom/script
 exec-if = ! pgrep -x picom
 exec = echo "picom not running"
-label-foreground = ${colors.foreground-alt}
 interval = 5
+
+label-foreground = ${colors.foreground-alt}
 
 
 [module/wttr]
 type = custom/script
 exec = ~/.config/polybar/scripts/wttr.py "$_WTTR?format=%t+%c"
 interval = 300
+click-left = feh "https://wttr.in/$_WTTR.png?F&lang=de" &
+
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
-click-left = feh "https://wttr.in/$_WTTR.png?F&lang=de" &
 
 
 [module/wttr_humidity]

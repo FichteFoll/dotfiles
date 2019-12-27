@@ -258,10 +258,11 @@ type = internal/network
 interface = eno1
 interval = 5.0
 
-# format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.prefix}
-label-connected = %local_ip% %{F#555}%{F-} %downspeed:8% %{F#555}%{F-} %upspeed:8%
+# format-connected-prefix = " "
+# format-connected-prefix-foreground = ${colors.prefix}
+# label-connected = %local_ip%
+# TODO show IP info on click?
+label-connected = %{F#555}%{F-} %downspeed:8% %{F#555}%{F-} %upspeed:8%
 format-connected-underline = ${colors.network}
 
 format-disconnected = <label-disconnected>

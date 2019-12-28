@@ -16,5 +16,8 @@ wget -N https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/pla
 wget -N https://raw.githubusercontent.com/occivink/mpv-scripts/master/scripts/seek-to.lua
 wget -N https://raw.githubusercontent.com/rossy/mpv-repl/master/repl.lua
 wget -N https://raw.githubusercontent.com/SteveJobzniak/mpv-tools/master/scripts/cycle-video-rotate.lua
-wget -N https://raw.githubusercontent.com/torque/mpv-progressbar/build/progressbar.lua
+# has local changes:
+# wget -N https://raw.githubusercontent.com/torque/mpv-progressbar/build/progressbar.lua
 wget -N https://raw.githubusercontent.com/wiiaboo/mpv-scripts/master/auto-profiles.lua
+wget -N https://raw.githubusercontent.com/4e6/mpv-reload/master/reload.lua
+wget -N https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/master/youtube-quality.lua

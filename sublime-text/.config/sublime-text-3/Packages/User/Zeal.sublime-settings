@@ -15,9 +15,9 @@
     "CSS": {"lang": "css", "zeal_lang": "css"},
     "PHP": {"lang": "php", "zeal_lang": "php"},
     "Lua": {"lang": "lua", "zeal_lang": "lua"},
+    "Go": {"lang": "go", "zeal_lang": "go"},
     "Python": {"lang": "python", "zeal_lang": "python"},
-    // "Python 3": {"lang": "python", "zeal_lang": "python3"},
-    // "Python 2": {"lang": "python", "zeal_lang": "python2"},
+    "Haskell": {"lang": "haskell", "zeal_lang": "haskell"},
     "Ruby": {"lang": "ruby", "zeal_lang": "ruby"},
     "Rust": {"lang": "rust", "zeal_lang": "rust"}
   }

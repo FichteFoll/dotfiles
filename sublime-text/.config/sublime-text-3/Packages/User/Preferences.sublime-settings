@@ -28,15 +28,18 @@
 		"geospatial",
 		"toolchain"
 	],
-	"atomic_save": false,
+	"always_show_minimap_viewport": true,
 	"auto_complete_commit_on_tab": true,
 	"auto_complete_cycle": true,
 	"auto_complete_selector": "source - comment - string, meta.tag - punctuation.definition.tag.begin",
 	"auto_complete_triggers":
 	[
 		{
-			"characters": ".",
-			"selector": "(source.python | source.js) - comment - string"
+			"characters": "<",
+			"selector": "text.html - text.html source"
+		},
+		{
+			"selector": "punctuation.accessor"
 		},
 		{
 			"characters": "\\",
@@ -45,10 +48,17 @@
 	],
 	"auto_complete_with_fields": true,
 	"auto_find_in_selection": true,
-	"clear_selection": false,
+	"caret_extra_bottom": 2,
+	"caret_extra_top": 2,
+	"caret_style": "blink",
 	"color_scheme": "Packages/Theme - Nil/Tubnil_mod.tmTheme",
 	"dictionary": "Packages/Language - English_user/en_US.dic",
 	"drag_text": true,
+	"draw_white_space":
+	[
+		"selection",
+		"trailing"
+	],
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
 	"folder_exclude_patterns":
@@ -74,6 +84,7 @@
 		"ASCII Decorator",
 		"Floobits",
 		"GitGutter",
+		"InactivePanes",
 		"Jedi - Python autocompletion",
 		"MarkdownEditing",
 		"Open-Include",
@@ -96,12 +107,15 @@
 	[
 		"*.log"
 	],
+	"mini_auto_complete": true,
 	"mouse_wheel_switches_tabs": false,
 	"move_to_limit_on_up_down": true,
 	"remember_full_screen": true,
 	"shift_tab_unindent": true,
 	"show_encoding": true,
 	"show_line_endings": true,
+	"show_project_first": true,
+	"show_rel_path": true,
 	"theme": "Nil.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": false,

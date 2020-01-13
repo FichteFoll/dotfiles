@@ -1,0 +1,27 @@
+{
+    // Auto add extensions to language settings file in User folder.
+    "add_exts_to_lang_settings": false,
+
+    // Erase default settings
+    "default_syntaxes": [],
+    "syntaxes": [
+        {
+            "syntax": "i3wm config/i3wm config",
+            "rules": [
+                {"file_path": ".*i3/config$"}
+            ]
+        },
+        {
+            "syntax": "SimpleSyntax/ssHash",
+            "rules": [
+                {"file_path": ".*mpv/input\\.conf$"}
+            ]
+        },
+        {
+            "syntax": "INI/INI",
+            "rules": [
+                {"file_path": ".*polybar/config$"}
+            ]
+        },
+    ]
+}

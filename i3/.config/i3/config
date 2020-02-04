@@ -356,7 +356,7 @@ mode "$mode_launcher" {
     bindsym r       exec i3-sensible-terminal -e ranger, $to_default
     bindsym s       exec subl, $to_default
     bindsym Shift+t exec telegram-desktop, $to_default
-    bindsym t       exec thunderbird, $to_default
+    bindsym t       exec env LC_TIME=lt_LT.UTF-8 thunderbird, $to_default
     # alacritty supports URLs but apparently not in the alt view?
     bindsym w       exec termite -e weechat, $to_default
     bindsym z       exec zeal, [class="Zeal"] focus, $to_default

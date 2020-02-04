@@ -1,9 +1,8 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.2.3"}*//
-
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.0.0"}*//
 
 /**
- * Nicks are right-aligned, where possible (i.e. compact layout).
- * Space for timestamps is also reduced.
+ * Nicks are right-aligned in compact layout.
+ * Based grid.
  *
  * Requires compact mode for obvious reasons.
  *
@@ -12,67 +11,75 @@
  * You can adjust the width of the username column
  * with a variable in your user css
  * or yell at the people until they pick a shorter nick.
- *
  */
 
 /* Variables for configuration. You can override these in your user css. */
 :root {
     /* ch as unit makes the most sense here,
-     * but doesn't work properly with calculating offset of the .accessory div */
+     * but the column width is determined before the username text size */
     --username-width: 7.3rem;
     --timestamp-width: 3rem;
-    --header-offset: calc(0.3rem + 0.3em); /* first 0.3em from margin-left on timestamp */
-    /*--username-width: 13ch;
-    --timestamp-width: 9ch;*/ /* use `6ch` for 24h timestamps */
+    --message-gap: 0.4rem;
 }
 
-[class*=containerCompact-] { /* accessory */
-    padding-left: calc(70px - var(--timestamp-default-width) + var(--timestamp-width) + var(--username-width) );
-    position: relative;
+[class*=message-][class*=compact-] {
+    /* idk why there is negative padding on this */
+    padding-left: 1rem;
+    display: grid;
+    grid-template-columns: [header] calc(var(--timestamp-width) + var(--username-width))
+                           [content] auto;
 }
 
-[class*=containerCompact-] [class*=timestampCompactBase-] {
-    float: left;
-    top: 1.5ex;
-    width: var(--timestamp-width);
-    /*text-align: center;*/
-}
-
-/*.headerCompact-3wRt2W {*/
+/* the header (contains timestamp & username) */
 [class*=headerCompact-] {
-    position: absolute;
-    left: 0;
-    padding-bottom: 1px; /* for on-hover underline on border; user_style.css */
+    display: grid;
+    grid-template-columns: var(--timestamp-width) var(--username-width);
+    grid-template-columns: auto var(--username-width);
+    text-indent: 0; /* need to reset this */
 }
 
-/*.containerCompact-3V0ioj .usernameWrapper-1S-G5O {*/
-[class*=headerCompact-] > span {
-    display: inline-block !important; /* something overrides this to inline-flex */
-    text-align: right;
-    width: var(--username-width);
+/* timestamp */
+[class*=headerCompact-] [class*=timestampBase-][class*=timestampCompact-] {
+    text-align: left;
+}
+
+/* username */
+[class*=headerCompact-] > span[class*=username-] {
+    display: inline-block;
+    justify-self: end;
+    align-self: begin;
+    margin-right: var(--message-gap);
     overflow: hidden;
     text-overflow: ellipsis;
+    /* TODO can't get the text to overflow; it keeps being wrappd */
+    max-height: 1.2em;
+    word-break: break-all;
 }
 
-[class*=markup-][class*=isCompact-] {
-    margin-left: 0 !important;
-    padding-left: calc(var(--username-width) + var(--timestamp-width) + var(--header-offset)) !important;
+/* text */
+[class*=message-] > [class*=markup-][class*=compact-] {
+    display: block;
+    grid-column-start: content;
     text-indent: 0;
 }
 
-/*.containerCompact-3bB5aN {*/
-[class*=containerCompact-][class*=content-] ~ [class*=containerCompact-] {
-    padding-left: calc(var(--username-width) + var(--timestamp-width) + var(--header-offset) + 0rem);
+/* embed */
+[class*=message-][class*=compact-] [class*=container-] {
+    grid-column-start: content;
 }
 
-[class*=containerCompact-][class*=container-] [class*=isMentioned-] [class*=markup-] {
-    /*padding: 0;*/
-    /*margin: 0;*/
+/* edit box */
+[class*=message-] > h2 ~ div {
+    grid-column-start: content;
+}
+
+/* add highlight marker to the right as well */
+[class*=message-][class*=mentioned-] {
     border-right: solid #FAA61A;
     border-width: 0 2px;
 }
 
-/* Material theme sets this */
-.container-1YxwTf h2 {
-     margin-left: 0;
+/* show hidden timestamps */
+[class*=timestampVisibleOnHover-] {
+    opacity: 1;
 }

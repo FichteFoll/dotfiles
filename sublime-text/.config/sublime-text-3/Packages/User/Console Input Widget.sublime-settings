@@ -1,3 +1,4 @@
 {
-    "syntax": "Packages/Python/Python.sublime-syntax"
+    "syntax": "Packages/Python/Python.sublime-syntax",
+    "auto_match_enabled": true,
 }

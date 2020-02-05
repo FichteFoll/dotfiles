@@ -3,12 +3,6 @@
     font-weight: normal !important;
 }
 
-/* prevent follow-up timestamps from being hidden (currently hardcoded for dark mode) */
-.theme-dark [class*=timestampVisibleOnHover-] {
-    /*color: hsla(0,0%,100%,.2);*/
-    color: var(--text-muted);
-}
-
 /* reduce padding in member list */
 [class*="scroller-"][class*="members-"] [class*="member-"] {
     padding: 1px 0 !important;
@@ -23,32 +17,17 @@
     display:none;
 }
 
-/* "fix" blocked messages by making them Very Small */
-[class^="messageGroupBlockedBtn"], [class^="messageGroupBlocked"] {
-    font-size: 20%;
-    padding: 0;
-    margin: 0;
+/* Add hover underline */
+[class*=usernameWrapper-] [class*=username-]:hover {
+    border-bottom: 1px solid;
 }
 
 
 /* Nox theme adjustments */
 /* https://github.com/rauenzi/Nox */
 
-
 :root {
     --nox-level1: hsl(0, 0%, 17%);
-}
-
-/* Fix attachment button */
-/*[class*=attachButton-] {
-    width: 50px;
-}
-[class*=textArea-] {
-    padding: 16px 0 16px 50px !important;
-}*/
-
-[class*=usernameWrapper-] [class*=username-]:hover {
-    border-bottom: 1px solid;
 }
 
 [class*=containerCompact-][class*=container-][class*=isMentioned-] [class*=markup-],
@@ -60,17 +39,6 @@
 [class*=containerCompactBounded-] {
     padding: 0;
     margin: 0 !important;
-}
-
-/* Adjust divider size and backgrounds */
-[class*=divider-] {
-    height: 30px;
-}
-[class*=divider-] > span {
-    background: hsl(0, 0%, 25%) !important;
-}
-[class*=divider-][class*=dividerRed-] > span {
-    background: hsl(358, 22%, 30%) !important;
 }
 
 [class*=channels-] [class*=scrollerWrap-] {

@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.3.4"}*//
+/*//META{"name":"Right-aligned Nicks2","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.1.0"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -58,15 +58,14 @@
     display: inline-block;
     grid-row-start: 1;
     grid-column-start: 2;
-    z-index: 100;
+    z-index: 5; /* username popup uses 10 */
     justify-self: end;
     align-self: begin;
     margin-right: var(--message-gap);
+    max-width: var(--username-width);
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* TODO can't get the text to overflow; it keeps being wrappd */
-    max-height: 1.2em;
-    word-break: break-all;
 }
 
 /* text */

@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.3.1"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"0.3.4"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -95,4 +95,12 @@
 /* show hidden timestamps */
 [class*=timestampVisibleOnHover-] {
     opacity: 1;
+}
+
+/* Adjust pin and join messages to grid */
+[class*=markup-][class*=containerCozy-] {
+    grid-column-end: span 2;
+}
+[class*=markup-][class*=containerCozy-] > [class*=container-] {
+    margin-left: 0; /* reset this */
 }

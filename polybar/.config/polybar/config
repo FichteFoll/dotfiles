@@ -84,7 +84,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:HDMI-A-0}
 # monitor = HDMI-A-0
 
-modules-left = i3 xwindow
+modules-left = i3 xwindow kernel
 modules-center = date wttr
 modules-right = picom failed_units updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
 
@@ -455,3 +455,12 @@ click-left = ~/.config/polybar/scripts/systemd-units print | ~/.config/polybar/s
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 format-underline = ${colors.alert}
+
+
+[module/kernel]
+type = custom/script
+exec-if = [ $(pacman -Q linux | cut -d" " -f2 | tr - .) != $(uname -r | tr - .) ]
+exec = echo "kernel mismatch"
+interval = 600
+
+label-foreground = ${colors.foreground-alt}

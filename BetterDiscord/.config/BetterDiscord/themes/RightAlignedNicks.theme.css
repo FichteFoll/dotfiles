@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks2","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.1.1"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.1.2"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -17,12 +17,12 @@
 :root {
     /* ch as unit makes the most sense here,
      * but the column width is determined before the username text size */
-    --username-width: 7.3rem;
+    --username-width: 7.1rem;
     --timestamp-width: 3rem;
     --message-gap: 0.4rem;
 }
 
-[class*=message-][class*=compact-] {
+[class*=message-][class*=compact-] > [class*=container-] {
     /* idk why there is negative padding on this */
     padding-left: 1rem;
     display: grid;
@@ -31,14 +31,14 @@
 }
 
 /* the header (contains timestamp & username) */
-[class*=headerCompact-] {
-    display: grid;
+[class*=message-][class*=compact-] h2 {
+    display: inline-grid;
     grid-template-columns: var(--timestamp-width) var(--username-width);
     text-indent: 0; /* need to reset this */
 }
 
 /* timestamp */
-[class*=headerCompact-] [class*=timestampBase-][class*=timestampCompact-] {
+[class*=timestampBase-][class*=timestampCompact-] {
     text-align: left;
 }
 
@@ -54,13 +54,12 @@
 }
 
 /* username */
-[class*=headerCompact-] > span[class*=username-] {
+[class*=message-][class*=compact-] h2 > span[class*=username-] {
     display: inline-block;
     grid-row-start: 1;
     grid-column-start: 2;
     z-index: 2; /* username popup uses 10; new messages overlay 3 */
     justify-self: end;
-    align-self: begin;
     margin-right: var(--message-gap);
     max-width: var(--username-width);
     white-space: nowrap;
@@ -69,24 +68,24 @@
 }
 
 /* text */
-[class*=message-] > [class*=markup-][class*=compact-] {
+[class*=message-] > [class*=container-] > [class*=markup-][class*=compact-] {
     display: block;
     grid-column-start: content;
     text-indent: 0;
 }
 
 /* embed */
-[class*=message-][class*=compact-] [class*=container-] {
+[class*=message-][class*=compact-] > [class*=container-] [class*=container-] {
     grid-column-start: content;
 }
 
 /* edit box */
-[class*=message-][class*=compact-] > h2 ~ div {
+[class*=message-][class*=compact-] h2 ~ div {
     grid-column-start: content;
 }
 
 /* add highlight marker to the right as well */
-[class*=message-][class*=compact-][class*=mentioned-] {
+[class*=message-][class*=compact-][class*=mentioned-] > [class*=container-] {
     border-right: solid #FAA61A;
     border-width: 0 2px;
 }

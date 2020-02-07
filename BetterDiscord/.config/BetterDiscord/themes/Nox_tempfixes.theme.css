@@ -55,6 +55,7 @@ form .textArea-12jD-V {
 
 
 /*Embed color fix*/
-.embedWrapper-lXpS3L {
+.embedWrapper-lXpS3L, .markup-2BOw-j code {
     background-color: var(--nox-level2);
+    border: 1px solid var(--nox-level3) !important;
 }

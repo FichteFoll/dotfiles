@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.0"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.1"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -78,23 +78,6 @@
     text-overflow: ellipsis;
 }
 
-/* text */
-[class*=message-] > [class*=container-] > [class*=markup-][class*=compact-] {
-    display: block;
-    grid-column-start: content;
-    text-indent: 0;
-}
-
-/* embed */
-/*[class*=message-][class*=compact-] > [class*=container-] [class*=container-] {
-    grid-column-start: content;
-} */
-
-/* edit box */
-[class*=message-][class*=compact-] h2 ~ div {
-    grid-column-start: content;
-}
-
 /* add highlight marker to the right as well */
 [class*=message-][class*=compact-][class*=mentioned-] > [class*=container-] {
     border-right: solid #FAA61A;
@@ -107,9 +90,9 @@
 }
 
 /* Adjust pin and join messages to grid */
-[class*=markup-][class*=containerCozy-] {
-    grid-column-end: span 2;
+[class*=systemMessage-][class*=compact-] > [class*=contents-] {
+    display: block;
 }
-[class*=markup-][class*=containerCozy-] > [class*=container-] {
-    margin-left: 0; /* reset this */
+[class*=systemMessage-][class*=compact-] [class*=container-] {
+    margin-left: 1rem; /* reset */
 }

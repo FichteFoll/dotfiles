@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.1.2"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.0"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -22,12 +22,23 @@
     --message-gap: 0.4rem;
 }
 
-[class*=message-][class*=compact-] > [class*=container-] {
-    /* idk why there is negative padding on this */
-    padding-left: 1rem;
+[class*=message-][class*=compact-] {
+    padding-left: 1rem; /* reset negative padding */
+}
+
+/* base grid layout for the main message (first container) */
+[class*=message-][class*=compact-] > [class*=contents-] {
+    margin-left: 0; /* reset margin (same as padding above) */
+    padding-left: 0;
     display: grid;
     grid-template-columns: [header] calc(var(--timestamp-width) + var(--username-width))
                            [content] auto;
+}
+
+/* alignment for the rest of the message (embed, reactions) */
+[class*=message-][class*=compact-] > [class*=container-]:not(:empty) {
+    margin-left: calc(var(--timestamp-width) + var(--username-width)) !important;
+    display: inline-block;
 }
 
 /* the header (contains timestamp & username) */
@@ -75,9 +86,9 @@
 }
 
 /* embed */
-[class*=message-][class*=compact-] > [class*=container-] [class*=container-] {
+/*[class*=message-][class*=compact-] > [class*=container-] [class*=container-] {
     grid-column-start: content;
-}
+} */
 
 /* edit box */
 [class*=message-][class*=compact-] h2 ~ div {

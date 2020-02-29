@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
-python setup.py develop --install-dir "$HOME/.local/lib/python3.8/site-packages"
+local usersite="$(python -c "import site; print(site.getusersitepackages())")"
+python setup.py develop --install-dir "$usersite"

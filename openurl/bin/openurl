@@ -26,14 +26,12 @@ nohead = []
 patterns = []
 with Path("~/.config/openurl.conf").expanduser().open() as f:
     for line in f:
-        stripped = line.strip()
-        if not stripped or stripped.startswith("#"):
+        if not (stripped := line.strip()) or stripped.startswith("#"):
             continue  # Discard empty and commented lines
-        split = stripped.split(maxsplit=1)
         if stripped.startswith("nohead:"):
             nohead.append(stripped[7:])
         else:
-            patterns.append(split)
+            patterns.append(stripped.split(maxsplit=1))
 
 
 session = requests.Session()

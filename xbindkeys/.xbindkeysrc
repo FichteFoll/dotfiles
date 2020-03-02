@@ -1,0 +1,8 @@
+# Run `xbindkeys -d` to see an example configuration
+
+# Bind extra mouse buttons to page up & down
+"xdotool key Prior"
+  b:8
+
+"xdotool key Next"
+  b:9

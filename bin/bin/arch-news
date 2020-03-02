@@ -28,7 +28,9 @@ while ((id >= 0)); do
     epoch="$(date -d "${times[id]}" +%s)"
     if (( since < epoch )); then
         timestamp="$(date -d "${times[id]}" -Idate)"
-        content="$(<<< "${contents[id]}" html2text --protect-links --ignore-images)"
+        # piping into html2text broken in version on repos
+        # https://bugs.archlinux.org/task/64593
+        content="$(html2text <(echo "${contents[id]}") --protect-links --ignore-images)"
         printf -- "\e[1m%s | %s\e[0m\n\e[2m%s\e[0m\n" "${timestamp}" "${headers[id]}" "$content"
         echo "$epoch | ${headers[id]}" >> "$log_file"
         if ((id > 0)); then

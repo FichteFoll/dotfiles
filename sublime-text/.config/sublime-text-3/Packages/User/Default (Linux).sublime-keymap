@@ -256,6 +256,14 @@
   { "keys": ["ctrl+alt+d"], "command": "diff_changes" },
   { "keys": ["ctrl+alt+q"], "command": "quick_diff" },
 
+  // MultiEditUtils
+  { "keys": ["ctrl+alt+u"], "command": "add_last_selection" },
+  { "keys": ["alt+s", "f"], "command": "selection_fields" },
+  { "keys": ["alt+s", "p"], "command": "remove_empty_regions" },
+  { "keys": ["alt+s", "S"], "command": "strip_selection" },
+  { "keys": ["alt+s", "n"], "command": "normalize_region_ends" },
+  { "keys": ["alt+s", "s"], "command": "split_selection" },
+
   // AlignTab
   { "keys": ["ctrl+shift+a"], "command": "align_tab", "args": {"live_preview" : true} },
 

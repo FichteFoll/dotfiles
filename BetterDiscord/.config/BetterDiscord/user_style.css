@@ -22,6 +22,14 @@
     border-bottom: 1px solid;
 }
 
+/* bigger jumboable emoji in compact */
+[class*="compact-"] [class*=messageContent] img.emoji.jumboable {
+    max-width: 32px;
+    max-height: 32px;
+    min-height: 1em;
+    width: auto;
+    height: auto;
+}
 
 /* Nox theme adjustments */
 /* https://github.com/rauenzi/Nox */

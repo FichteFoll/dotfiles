@@ -1,0 +1,4 @@
+[
+	// Implemented in a Default Python plugin, unfortunately
+	{ "keys": ["alt+q"], "command": "wrap_lines", },
+]

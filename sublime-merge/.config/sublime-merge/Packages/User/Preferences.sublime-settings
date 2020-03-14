@@ -1,0 +1,19 @@
+{
+	"added_words":
+	[
+		"fixup",
+		"Changelog",
+		"online",
+		"plugin",
+		"plugins",
+		"namespace",
+		"intransparent"
+	],
+	"always_show_commit_graph": true,
+	"diff_style": "auto",
+	"draw_white_space": "all",
+	"font_face": "Operator Mono",
+	"theme": "Merge Dark.sublime-theme",
+	"time_format": "24h",
+	"translate_tabs_to_spaces": true
+}

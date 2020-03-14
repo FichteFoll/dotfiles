@@ -1,0 +1,11 @@
+[
+    { "caption": "-" },
+    {
+        "caption": "File History",
+        "command": "search", "args": { "query": "file:\"$path\"" }
+    },
+    {
+        "caption": "Blame",
+        "command": "blame", "args": { "path": "$path" }
+    },
+]

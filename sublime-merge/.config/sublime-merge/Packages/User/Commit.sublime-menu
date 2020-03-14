@@ -1,0 +1,13 @@
+[
+    {
+        "caption": "Create fixup! commit",
+        "command": "git",
+        "args": {"argv": ["commit", "--fixup", "$commit"]}
+    },
+    { "id": "end" },
+    {
+        "caption": "Start interactive rebase in terminal",
+        "command": "git",
+        "args": {"argv": ["rebase_terminal", "$commit"]}
+    },
+]

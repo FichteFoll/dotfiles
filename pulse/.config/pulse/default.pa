@@ -14,7 +14,7 @@ set-default-sink default
 # Add a remap sink to the default sink that is looped back to a recording sink,
 # along with a loopback for the mic whose monitor can be recorded.
 load-module module-remap-sink sink_name=default_record master=default sink_properties="device.description='Default+Record'"
-load-module module-null-sink sink_name=record sink_properties="device.description='Record'"
 
+load-module module-null-sink sink_name=record sink_properties="device.description='Record'"
 load-module module-loopback source=default_record.monitor sink=record
 load-module module-loopback source="alsa_input.usb-GeneralPlus_USB_Audio_Device-00.mono-fallback" sink=record

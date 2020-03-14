@@ -28,14 +28,18 @@
 	rebase = true
 
 [merge]
-	conflictstyle = diff3
+	conflictStyle = diff3
 	tool = smerge
+
 [core]
 	excludesfile = /home/fichte/.gitignore_global
+
 [rebase]
 	autoSquash = true
+
 [log]
 	follow = true
+
 [mergetool "smerge"]
 	cmd = smerge --wait mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
 	trustExitCode = true

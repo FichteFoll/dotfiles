@@ -10,5 +10,5 @@ echo "lines: $lines, chars: $chars"
 
 <$tmp_file \
     ~/.config/polybar/scripts/polyyad.py --nobuttons --text-info --no-buttons --close-on-unfocus \
-    --height $((lines * 19)) \
+    --height $((lines * 19 + 10)) \
     --width $((chars * 10))

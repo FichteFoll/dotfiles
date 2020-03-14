@@ -67,7 +67,7 @@ def watching_filter(entry):
 
 def string_filter(entry, patterns=(), negative=True):
     titles = [entry.show['title'], *entry.show['aliases']]
-    matched = any(re.search(p, title) for p in patterns for title in titles)
+    matched = any(re.search(p, title, re.IGNORECASE) for p in patterns for title in titles)
     return matched ^ negative
 
 

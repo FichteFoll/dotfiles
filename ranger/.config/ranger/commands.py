@@ -20,16 +20,18 @@ class z(Command):
             else:
                 self.fm.notify("No results from fasd", bad=True)
 
-    @staticmethod
-    def _get_directories(*args) -> List[str]:
-        import subprocess
-        output = subprocess.check_output(["fasd", "-dl", *args], universal_newlines=True)
-        return output.strip().split("\n")
-
     def tab(self, tabnum: int) -> Generator[str, None, None]:
         start, current = self.start(1), self.rest(1)
         for path in self._get_directories(*current.split()):
             yield start + path
+
+    @staticmethod
+    def _get_directories(*args) -> List[str]:
+        import subprocess
+        output = subprocess.check_output(["fasd", "-dl", *args], universal_newlines=True)
+        dirs = output.strip().split("\n")
+        dirs.sort(reverse=True)  # Listed in ascending frecency
+        return dirs
 
 
 # TODO make standalone script

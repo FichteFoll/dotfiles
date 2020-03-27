@@ -257,12 +257,23 @@
   { "keys": ["ctrl+alt+q"], "command": "quick_diff" },
 
   // MultiEditUtils
+  { "keys": ["ctrl+alt+c"], "command": "cycle_through_regions" },
   { "keys": ["ctrl+alt+u"], "command": "add_last_selection" },
-  { "keys": ["alt+s", "f"], "command": "selection_fields" },
-  { "keys": ["alt+s", "p"], "command": "remove_empty_regions" },
+  // { "keys": ["alt+s", "a"], "command": "add_last_selection" },
+  { "keys": ["alt+f", "f"], "command": "selection_fields" , "args": {"only_other": true}},
+  { "keys": ["alt+f", "a"], "command": "selection_fields", "args": {"mode": "add"} },
+  { "keys": ["alt+f", "s"], "command": "selection_fields", "args": {"mode": "subtract"} },
+  { "keys": ["alt+s", "p"], "command": "remove_empty_regions" }, // prune
   { "keys": ["alt+s", "S"], "command": "strip_selection" },
   { "keys": ["alt+s", "n"], "command": "normalize_region_ends" },
   { "keys": ["alt+s", "s"], "command": "split_selection" },
+  // JumpTo (fork)
+  { "keys": ["alt+s", "j"], "command": "jump_to_interactive" },
+  { "keys": ["alt+s", "J"], "command": "jump_to_interactive", "args": {"whole_match": true} },
+  { "keys": ["alt+s", "n"], "command": "jump_to_interactive", "args": {"create_new": true} },
+  { "keys": ["alt+s", "N"], "command": "jump_to_interactive", "args": {"create_new": true, "whole_match": true} },
+  { "keys": ["alt+s", "e"], "command": "jump_to_interactive", "args": {"extend": true} },
+  { "keys": ["alt+s", "E"], "command": "jump_to_interactive", "args": {"extend": true, "whole_match": true} },
 
   // AlignTab
   { "keys": ["ctrl+shift+a"], "command": "align_tab", "args": {"live_preview" : true} },

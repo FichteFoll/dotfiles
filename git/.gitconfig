@@ -17,7 +17,7 @@
 	prr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; } ; f"
 	pr = "!f() { git prr origin $1; } ; f"
 	pru = "!f() { git prr upstream $1; } ; f"
-	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do git branch -D ${ref#refs/heads/} ; done"
 
 [branch]
 	autosetuprebase = always

@@ -1,0 +1,7 @@
+[
+    {
+        "caption": "Open Terminal",
+        "command": "git",
+        "args": { "argv": ["terminal"] }
+    },
+]

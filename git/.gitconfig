@@ -8,6 +8,10 @@
 
 [alias]
 	lg = log --graph --oneline --decorate
+	caa = commit -a --amend -C HEAD
+	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+	terminal = !i3-sensible-terminal "$@" &
+	rebase-terminal = !GIT_EDITOR=$EDITOR i3-sensible-terminal --hold -e zsh -c \"git rebase -i $1\"
 
 	; https://gist.github.com/gnarf/5406589
 	prr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; } ; f"

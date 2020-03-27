@@ -8,6 +8,6 @@
     {
         "caption": "Start interactive rebase in terminal",
         "command": "git",
-        "args": {"argv": ["rebase_terminal", "$commit"]}
+        "args": {"argv": ["rebase-terminal", "$commit"]}
     },
 ]

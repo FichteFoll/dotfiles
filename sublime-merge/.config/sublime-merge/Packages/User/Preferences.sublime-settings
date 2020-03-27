@@ -15,5 +15,9 @@
 	"font_face": "Operator Mono",
 	"theme": "Merge Dark.sublime-theme",
 	"time_format": "24h",
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,
+	// Logging control
+	"log_control_tree": false,
+	"log_commands": true,
+	"log_input": false,
 }

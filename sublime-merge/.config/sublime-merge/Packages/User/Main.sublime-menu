@@ -1,0 +1,12 @@
+[
+    {
+        "id": "repository",
+        "children": [
+            {
+                "caption": "Open Terminal…",
+                "command": "git",
+                "args": { "argv": ["terminal"] }
+            },
+        ],
+    }
+]

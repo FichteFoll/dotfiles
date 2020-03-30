@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 
-local usersite="$(python -c "import site; print(site.getusersitepackages())")"
+usersite="$(python -c "import site; print(site.getusersitepackages())")"
+mkdir -p "$usersite"
 python setup.py develop --install-dir "$usersite"

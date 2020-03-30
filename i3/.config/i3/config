@@ -174,7 +174,7 @@ bindsym $mod+Pause mode "$mode_system"
 bindsym $mod+Ctrl+Shift+p mode "$mode_system"
 
 # monitor management
-set $mode_monitor Monitor Management: [d]uplicate, [m]irror, extend [l]eft or [r]ight, [p]rimary or [s]econdary only; [P] to select primary
+set $mode_monitor Monitor Management: [d]uplicate, [m]irror, extend [l]eft or [r]ight, [p]rimary, [s]econdary only; [w]orkplace, [h]ome office; [P] to select primary
 mode "$mode_monitor" {
     set $default_exec mode "default", exec --no-startup-id
     bindsym d $default_exec mons -d
@@ -183,7 +183,11 @@ mode "$mode_monitor" {
     bindsym r $default_exec mons -e right
     bindsym p $default_exec mons -o
     bindsym s $default_exec mons -s
+
+    bindsym w $default_exec ~/.screenlayout/work.sh
+    bindsym h $default_exec ~/.screenlayout/work-home.sh
     bindsym Shift+p $default_exec mons-primary
+
     # back to normal
     bindsym Return mode "default"
     bindsym Escape mode "default"

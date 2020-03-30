@@ -8,19 +8,32 @@
         {
             "syntax": "i3wm config/i3wm config",
             "rules": [
-                {"file_path": ".*i3/config$"}
+                {"file_path": ".*i3/config$"},
             ]
         },
         {
             "syntax": "SimpleSyntax/ssHash",
             "rules": [
-                {"file_path": ".*mpv/input\\.conf$"}
+                {"file_path": ".*mpv/input\\.conf$"},
             ]
         },
         {
             "syntax": "INI/INI",
             "rules": [
-                {"file_path": ".*polybar/config$"}
+                {"file_path": ".*/polybar/config$"},
+                {"file_path": ".*dunstrc$"},
+            ]
+        },
+        {
+            "syntax": "YAML/YAML",
+            "rules": [
+                {"file_path": ".*yml.tpl$"},
+            ]
+        },
+        {
+            "syntax": "TOML/TOML",
+            "rules": [
+                {"file_path": ".*poetry.lock$"},
             ]
         },
     ]

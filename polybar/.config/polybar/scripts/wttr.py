@@ -18,9 +18,9 @@ GLYPH_MAP = {
     "🌩": ("%{T5}\uf01e%{T-}", "#CE3C24"),   # ThunderyHeavyRain
     "⛈": ("%{T5}\uf01d%{T-}", "#CE3C24"),   # ThunderyShowers
     "🌨": ("%{T5}\uf064%{T-}", "#BDC7D3"),   # LightSnow(Showers)
-    "❄️": ("%{T5}\uf076%{T-}", "#CE3C24"),  # HeavySnow
-    "❄️": ("%{T5}\uf076%{T-}", "#CE3C24"),  # HeavySnowShowers
-    "⛅️": ("%{T5}\uf002%{T-}", "#E5C764"),  # PartlyCloudy
+    "❄️": ("%{T5}\uf076%{T-}", "#FFF"),       # HeavySnow
+    "❄️": ("%{T5}\uf076%{T-}", "#FFF"),       # HeavySnowShowers
+    "⛅️": ("%{T5}\uf002%{T-}", "#E5C764"),   # PartlyCloudy
     #
     # https://fontawesome.com/icons?d=gallery&q=weather
     # "✨": ("", "#E9E314"),   # Unknown <= not displayed

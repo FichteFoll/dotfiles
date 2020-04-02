@@ -1,19 +1,13 @@
 [
+    // Meta
+    { "keys": ["f8"], "command": "toggle_console" },
+
+    // Editing
     { "keys": ["alt+q"], "command": "wrap_lines", },
 
-    { "keys": ["ctrl+alt+t"], "command": "git", 
-      "args": { "argv": ["terminal"] }
-    },
-
-    {
-        "keys": ["ctrl+shift+g"],
-        "command": "show_command_palette",
-        "args": {"command": "create_tag"}
-    },
-    {
-        "keys": ["ctrl+g"],
-        "command": "show_command_palette",
-        "args": {"command": "push_tag", "remote": "origin"}
-    },
-    { "keys": ["f8"], "command": "toggle_console" },
+    // Git
+    { "keys": ["ctrl+alt+t"], "command": "git", "args": { "argv": ["terminal"] } },
+    { "keys": ["ctrl+shift+g"], "command": "show_command_palette", "args": {"command": "create_tag"} },
+    { "keys": ["ctrl+g"], "command": "show_command_palette", "args": {"command": "push_tag", "remote": "origin"} },
+    { "keys": ["ctrl+shift+down"], "command": "git", "args": {"argv": ["fetch", "--all", "--prune"]} },
 ]

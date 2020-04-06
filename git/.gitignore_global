@@ -52,5 +52,6 @@ venv/
 # Tool-specific files #
 #######################
 .idea/
+*.iml
 *.sublime-project
 *.sublime-workspace

@@ -97,7 +97,7 @@ cursor-scroll = ns-resize
 
 [bar/secondary]
 inherit = bar/base
-monitor = ${env:MONITOR_2:DVI-I-1}
+monitor = ${env:MONITOR:DVI-I-1}
 
 modules-left = i3 xwindow
 modules-center = date

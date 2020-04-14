@@ -1,7 +1,7 @@
 # source: /usr/share/dunst/dunstrc
 
 [global]
-    font = Monospace 9
+    font = Monospace 10
     allow_markup = yes
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -18,12 +18,13 @@
     alignment = left
     word_wrap = yes
     ignore_newline = no
-    geometry = "420x32-0+27"
+    # geometry = "420x32-0+27"
+    geometry = "500x5"
     shrink = no
     show_age_threshold = 60
     idle_threshold = 120
-    monitor = 1
-    #follow = mouse
+    # monitor = 0
+    follow = keyboard
     sticky_history = yes
     history_length = 20
     show_indicators = yes

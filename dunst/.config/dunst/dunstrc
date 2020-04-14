@@ -16,8 +16,8 @@
     format = "<b>%s %p (%a)</b>\n%b"
     width = 400
     idle_threshold = 120
-    monitor = 1
-    #follow = keyboard
+    #monitor = 1
+    follow = keyboard
     history_length = 30
     dmenu = /usr/bin/rofi -dmenu -p dunst:
     mouse_right_click = context

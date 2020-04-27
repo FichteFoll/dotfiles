@@ -326,11 +326,11 @@ format-charging = <animation-charging> <label-charging>
 format-charging-underline = ${colors.good}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${colors.warning}
+format-discharging-underline = ${colors.secondary}
 
 format-full-prefix = 
 format-full-prefix-foreground = ${colors.prefix}
-format-full-underline = ${colors.secondary}
+; format-full-underline = ${colors.secondary}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 

@@ -279,6 +279,7 @@ label-disconnected-foreground = ${colors.foreground-alt}
 
 
 [module/date]
+# can't use internal/date because of custom click-left script
 type = custom/script
 exec = date +"%Y-%m-%d %H:%M:%S"
 interval = 1
@@ -287,7 +288,6 @@ click-left = ~/.config/polybar/scripts/polyyad.py --calendar --undecorated --fix
 label = %output%
 format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
-# format-underline = ${colors.secondary}
 
 
 

@@ -341,12 +341,13 @@ bindsym $mod+Ctrl+Shift+s exec --no-startup-id killall screenkey
 
 # Press $mod+o followed by a letter to run applications
 # or Esc or Return to return the default mode.
-set $mode_launcher Launch: [a]egisub [c]antata [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [r]anger [s]ubl [T]elegram [t]hunderbird [w]eechat [Z]eal
+set $mode_launcher Launch: Teamspeak[3] [c]antata [C]hromium [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [r]anger [s]ubl [S]yncplay [T]elegram [t]hunderbird [w]eechat [Z]eal
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     set $to_default mode "default"
-    bindsym a       exec aegisub, $to_default
+    bindsym 3       exec teamspeak3, $to_default
     bindsym c       exec cantata, $to_default
+    bindsym Shift+c exec chromium, $to_default
     bindsym d       exec discord, $to_default
     bindsym f       exec firefox, $to_default
     # needs stdout redirect, doesn't start otherwise
@@ -355,6 +356,7 @@ mode "$mode_launcher" {
     bindsym m       exec smerge, $to_default
     bindsym r       exec i3-sensible-terminal -e ranger, $to_default
     bindsym s       exec subl, $to_default
+    bindsym Shift+s exec syncplay, $to_default
     bindsym Shift+t exec telegram-desktop, $to_default
     bindsym t       exec env LC_TIME=lt_LT.UTF-8 thunderbird, $to_default
     # alacritty supports URLs but apparently not in the alt view?

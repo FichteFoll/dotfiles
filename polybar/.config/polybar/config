@@ -81,7 +81,7 @@ font-6 = M+ 2m:size=10;2
 
 [bar/primary]
 inherit = bar/base
-monitor = ${env:MONITOR:HDMI-A-0}
+monitor = ${env:POLY_MONITOR:HDMI-A-0}
 # monitor = HDMI-A-0
 
 modules-left = i3 xwindow kernel
@@ -97,7 +97,7 @@ cursor-scroll = ns-resize
 
 [bar/secondary]
 inherit = bar/base
-monitor = ${env:MONITOR:DVI-I-1}
+monitor = ${env:POLY_MONITOR:DVI-I-1}
 
 modules-left = i3 xwindow
 modules-center = date
@@ -234,7 +234,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = ${env:POLY_WLAN:wlp4s0}
 interval = 5.0
 
 ; format-connected = <ramp-signal> <label-connected>
@@ -260,7 +260,7 @@ label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp0s31f6
+interface = ${env:POLY_ETH:eno1}
 interval = 5.0
 
 format-connected-prefix = " "

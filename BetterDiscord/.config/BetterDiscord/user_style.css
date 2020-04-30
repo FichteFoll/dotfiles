@@ -7,13 +7,12 @@
 [class*="scroller-"][class*="members-"] [class*="member-"] {
     padding: 1px 0 !important;
 }
-[class*="members-"] [class*="member-"] > [ckass=*="layout-"] {
+[class*="members-"] [class*="member-"] > [class=*="layout-"] {
     height: 39px;
 }
 
 /* hide stupid buttons */
-[class*="channelTextArea-"] button[tabindex="2"],
-[class*="channelTextArea-"] button[tabindex="3"]{
+[class*="channelTextArea-"] [class*="buttons-"] button:not([aria-label="Select emoji"]) {
     display:none;
 }
 

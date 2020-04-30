@@ -312,6 +312,8 @@ ramp-volume-foreground = ${colors.foreground-alt}
 # ramp-volume-1 = 🔉
 # ramp-volume-2 = 🔊
 
+click-right = pavucontrol
+
 
 [module/battery]
 # TODO

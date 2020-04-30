@@ -86,7 +86,7 @@ monitor = ${env:MONITOR:HDMI-A-0}
 
 modules-left = i3 xwindow kernel
 modules-center = date wttr
-modules-right = picom failed_units updates filesystem memory cpu_usage cpu_load cpu_temperature eth pulseaudio
+modules-right = picom failed_units updates filesystem memory cpu_usage cpu_load gpu_usage eth pulseaudio
 
 tray-position = right
 # tray-background = #0063ff
@@ -405,9 +405,10 @@ format-underline = ${colors.warning}
 
 [module/gpu_usage]
 type = custom/script
-# TODO not working, but does in terminal?
-exec = sudo -n radeontop --dump - | rg 'gpu ([\d.]+)' -r '$1' -o
-tail = true
+exec = sudo -n radeontop --dump - -l1 | rg 'gpu ([\d.]+)' -r '$1' -o
+# TODO tailing doesn't work for some reason (remove -l1 for that)
+# tail = true
+interval = 5
 
 label = %output%%
 format-prefix = " "

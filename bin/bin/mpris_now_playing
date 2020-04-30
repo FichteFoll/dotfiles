@@ -24,7 +24,7 @@ def main():
 def playerctl(*args, player=None, all=False):
     if player:
         args = [f"--player={player}", *args]
-    result = subprocess.check_output(["playerctl", *args], encoding="utf-8")
+    result = subprocess.check_output(["playerctl", *args], encoding="utf-8").strip()
     return result if not all else result.split()
 
 
@@ -36,10 +36,10 @@ def get_now_playing_str():
     players = list_players()
     statuses = playerctl('status', all=True)
 
-    if 'Playing' not in statuses:
+    try:
+        player = players[statuses.index('Playing')]
+    except ValueError:
         return
-    i = statuses.index('Playing')
-    player = players[i]
 
     artist = playerctl("metadata", "xesam:artist", player=player)
     title = playerctl("metadata", "xesam:title", player=player)

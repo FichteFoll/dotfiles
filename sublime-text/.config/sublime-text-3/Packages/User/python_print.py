@@ -14,10 +14,8 @@ class PythonPrintCommand(sublime_plugin.TextCommand):
             selected_text = self.view.substr(reg)
             if not selected_text:
                 continue
-            text = ('\nprint("%s: {}".format(%s))'
-                    % (selected_text.replace('\\', '\\\\').replace('"', '\\"'),
-                       selected_text)
-                    )
+            quote = "'" if '"' in selected_text else '"'
+            text = f"\nprint(f{quote}{{{selected_text}=}}{quote})"
             # view.insert does not auto-indent, so we run the insert command
             # self.view.insert(edit, line.end(), text)
             sel.clear()

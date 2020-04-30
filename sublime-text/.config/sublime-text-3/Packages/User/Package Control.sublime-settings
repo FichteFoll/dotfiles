@@ -82,10 +82,10 @@
 		"Vue Syntax Highlight",
 		"Wrap Plus",
 		"YAMLMacros",
-		"Zeal"
+		"Zeal",
 	],
 	"repositories":
 	[
 		"https://packagecontrol.io/prerelease/packages.json"
-	]
+	],
 }

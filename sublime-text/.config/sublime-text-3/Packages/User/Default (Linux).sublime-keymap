@@ -26,6 +26,14 @@
   { "keys": ["keypad_minus"], "command": "toggle_comment", "args": { "block": false } },
   { "keys": ["ctrl+shift+keypad_minus"], "command": "toggle_comment", "args": { "block": true } },
 
+  // Diff hunks
+  { "keys": ["ctrl+k", "ctrl+altgr+s"], "command": "toggle_inline_diff" },
+
+  // Make keypad keys work for font size changes
+  { "keys": ["ctrl+keypad_plus"],  "command": "increase_font_size" },
+  { "keys": ["ctrl+keypad_minus"], "command": "decrease_font_size" },
+
+
   // allow [] to trigger "Add Line in Braces.sublime-macro" (mainly for json)
   { "keys": ["enter"], "command": "run_macro_file",
     "args": {"file": "Packages/Default/Add Line in Braces.sublime-macro"},
@@ -46,7 +54,6 @@
       { "key": "setting.tab_completion", "operator": "equal", "operand": true }
     ]
   },
-
 
   // Word wrapping
   { "keys": ["ctrl+shift+w"], "command": "toggle_setting", "args": {"setting": "word_wrap"} },
@@ -247,7 +254,7 @@
   { "keys": ["alt+f", "s"], "command": "selection_fields", "args": {"mode": "subtract"} },
   { "keys": ["alt+s", "p"], "command": "remove_empty_regions" }, // prune
   { "keys": ["alt+s", "S"], "command": "strip_selection" },
-  { "keys": ["alt+s", "n"], "command": "normalize_region_ends" },
+  { "keys": ["alt+s", "r"], "command": "normalize_region_ends" },
   { "keys": ["alt+s", "s"], "command": "split_selection" },
   // JumpTo (fork)
   { "keys": ["alt+s", "j"], "command": "jump_to_interactive" },

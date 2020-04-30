@@ -37,14 +37,14 @@
 	[
 		{
 			"characters": "<",
-			"selector": "text.html - text.html source"
+			"selector": "text.html - text.html source",
 		},
 		{
-			"selector": "punctuation.accessor"
+			"selector": "punctuation.accessor",
 		},
 		{
 			"characters": "\\",
-			"selector": "text.tex.latex"
+			"selector": "text.tex.latex",
 		}
 	],
 	"auto_complete_with_fields": true,
@@ -92,9 +92,8 @@
 		"Table Editor",
 		"Theme - Freesia",
 		"UnitTesting",
-		"Vintage"
+		"Vintage",
 	],
-	"inactive_panes_dim_strength": 0.12,
 	"indent_guide_options":
 	[
 		"draw_normal",
@@ -118,5 +117,6 @@
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": false,
 	"trim_trailing_white_space_on_save": true,
-	"word_separators": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?"
+	// "trim_only_modified_white_space": false,
+	"word_separators": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 }

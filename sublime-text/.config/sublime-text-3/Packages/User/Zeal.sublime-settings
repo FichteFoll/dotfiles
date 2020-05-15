@@ -1,24 +1,6 @@
 {
-  /**
-   *  Zeal executable path.
-   *  For Linux: /usr/bin/zeal
-   *  For Windows: c:\\Program Files\\Zeal\\zeal.exe
-   */
-  // "zeal_command": "c:\\Program Files (x86)\\Zeal\\zeal.exe",
-
-  /**
-   * Language mapping.
-   */
-  "language_mapping": {
-    "HTML": {"lang": "html", "zeal_lang": "html"},
-    "JavaScript": {"lang": "javascript", "zeal_lang": "javascript"},
-    "CSS": {"lang": "css", "zeal_lang": "css"},
-    "PHP": {"lang": "php", "zeal_lang": "php"},
-    "Lua": {"lang": "lua", "zeal_lang": "lua"},
-    "Go": {"lang": "go", "zeal_lang": "go"},
-    "Python": {"lang": "python", "zeal_lang": "python"},
-    "Haskell": {"lang": "haskell", "zeal_lang": "haskell"},
-    "Ruby": {"lang": "ruby", "zeal_lang": "ruby"},
-    "Rust": {"lang": "rust", "zeal_lang": "rust"}
-  }
+  "docsets_user": [
+    { "name": "Sublime Text", "selector": "source.json.sublime, source.yaml.sublime, source.python" },
+  ],
+  "multi_match": "join",
 }

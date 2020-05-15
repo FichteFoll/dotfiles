@@ -1,4 +1,9 @@
-<snippet><description>URL file content</description><tabTrigger>url</tabTrigger><scope>source.ini</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 [InternetShortcut]
 URL=$1
-]]></content></snippet>
+]]></content>
+	<description>URL file content</description>
+	<scope>source.ini</scope>
+	<tabTrigger>url</tabTrigger>
+</snippet>

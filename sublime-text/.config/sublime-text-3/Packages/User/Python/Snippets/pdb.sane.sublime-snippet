@@ -1,3 +1,8 @@
-<snippet><description>Invoke pdb</description><tabTrigger>pdb</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 import pdb; pdb.set_trace()
-]]></content></snippet>
+]]></content>
+	<description>Invoke pdb</description>
+	<scope>source.python</scope>
+	<tabTrigger>pdb</tabTrigger>
+</snippet>

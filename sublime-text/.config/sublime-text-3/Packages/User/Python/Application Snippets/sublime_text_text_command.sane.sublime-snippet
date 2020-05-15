@@ -1,5 +1,10 @@
-<snippet><description>Sublime Text TextCommand</description><tabTrigger>st_text_cmd</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 class ${1:TestCommand}Command(sublime_plugin.TextCommand):
     def run(self, edit):
     	${2:pass}
-]]></content></snippet>
+]]></content>
+	<description>Sublime Text TextCommand</description>
+	<scope>source.python</scope>
+	<tabTrigger>st_text_cmd</tabTrigger>
+</snippet>

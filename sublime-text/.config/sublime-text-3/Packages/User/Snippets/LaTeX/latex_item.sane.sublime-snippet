@@ -1,3 +1,8 @@
-<snippet><description>Item</description><tabTrigger>i</tabTrigger><scope>text.tex.latex</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 \item $0
-]]></content></snippet>
+]]></content>
+	<description>Item</description>
+	<scope>text.tex.latex</scope>
+	<tabTrigger>i</tabTrigger>
+</snippet>

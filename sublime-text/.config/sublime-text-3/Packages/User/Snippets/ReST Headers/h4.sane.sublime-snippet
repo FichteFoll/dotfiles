@@ -1,4 +1,9 @@
-<snippet><description>Heading 4</description><tabTrigger>h3</tabTrigger><scope>text.html.markdown, text.restructuredtext</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 ${1:Heading 4}
 ${1/./-/g}
-]]></content></snippet>
+]]></content>
+	<description>Heading 4</description>
+	<scope>text.html.markdown, text.restructuredtext</scope>
+	<tabTrigger>h3</tabTrigger>
+</snippet>

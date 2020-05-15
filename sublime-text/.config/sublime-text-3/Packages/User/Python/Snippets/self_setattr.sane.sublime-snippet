@@ -1,3 +1,8 @@
-<snippet><description>self.… = …</description><tabTrigger>s</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 self.$1 = $1
-]]></content></snippet>
+]]></content>
+	<description>self.… = …</description>
+	<scope>source.python</scope>
+	<tabTrigger>s</tabTrigger>
+</snippet>

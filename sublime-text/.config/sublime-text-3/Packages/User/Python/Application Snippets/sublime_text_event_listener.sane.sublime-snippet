@@ -1,4 +1,9 @@
-<snippet><description>Sublime Text EventListener</description><tabTrigger>st_listener</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 class ${1:TestListener}(sublime_plugin.EventListener):
 	${2:pass}
-]]></content></snippet>
+]]></content>
+	<description>Sublime Text EventListener</description>
+	<scope>source.python</scope>
+	<tabTrigger>st_listener</tabTrigger>
+</snippet>

@@ -1,3 +1,8 @@
-<snippet><description>Doc String</description><tabTrigger>doc</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 """${1:$SELECTION}"""
-]]></content></snippet>
+]]></content>
+	<description>Doc String</description>
+	<scope>source.python</scope>
+	<tabTrigger>doc</tabTrigger>
+</snippet>

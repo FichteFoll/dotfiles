@@ -1,4 +1,9 @@
-<snippet><description>Hexchat Callback</description><tabTrigger>hcc</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 def ${1:event}_cb(word, word_eol, ${2:userdata}):
     ${3:pass}
-]]></content></snippet>
+]]></content>
+	<description>Hexchat Callback</description>
+	<scope>source.python</scope>
+	<tabTrigger>hcc</tabTrigger>
+</snippet>

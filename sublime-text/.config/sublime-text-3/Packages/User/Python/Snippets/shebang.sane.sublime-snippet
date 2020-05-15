@@ -1,3 +1,8 @@
-<snippet><description>Shebang</description><tabTrigger>sb</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 #!/usr/bin/env python${1:3}
-]]></content></snippet>
+]]></content>
+	<description>Shebang</description>
+	<scope>source.python</scope>
+	<tabTrigger>sb</tabTrigger>
+</snippet>

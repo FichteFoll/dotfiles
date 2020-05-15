@@ -1,5 +1,10 @@
-<snippet><description>Sublime Text WindowCommand</description><tabTrigger>st_win_cmd</tabTrigger><scope>source.python</scope><content><![CDATA[
+<snippet>
+	<content><![CDATA[
 class ${1:TestCommand}Command(sublime_plugin.WindowCommand):
     def run(self):
     	${2:pass}
-]]></content></snippet>
+]]></content>
+	<description>Sublime Text WindowCommand</description>
+	<scope>source.python</scope>
+	<tabTrigger>st_win_cmd</tabTrigger>
+</snippet>

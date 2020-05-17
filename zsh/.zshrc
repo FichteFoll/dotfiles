@@ -107,6 +107,9 @@ bindkey "\e\e" fuck-command-line
 export AUR_PAGER="ranger --cmd aur"
 export AUR_REPO="aur"  # default for aur packages
 
+export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
+
 
 # Load file with confidential information
 [[ -e $HOME/.zshrc-private ]] && source ~/.zshrc-private

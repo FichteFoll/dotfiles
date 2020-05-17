@@ -11,38 +11,39 @@ import:
   # autotag: false
   log: beetslog.txt
 
-# custom album fields:
+# Custom album fields:
 #   - source: (for albumtype:soundtrack)
 #     The name of the source for the soundtrack,
 #     e.g. the source of "Transistor Soundtrack" is "Transistor".
+#
 #   - sourcetype: (for albumtype:soundtrack)
 #     Type of the source.
 #     One out of "game", "movie", "anime".
 #     `beet list -af '%ifdef{sourcetype}' | sort -u`
+#
 #   - touhou:true
 #     If it is a Touhou arrangement (disc).
+#
 #   - doujin:true
 #     Released by a doujin circle (usually at some event).
+#
 #   - event:
 #     Event at which the doujin CD was released,
 #     e.g. "M3-41", "C-83", "Reitatsei-7".
 #     Refer to https://vgmdb.net/db/events.php for a reference list.
 #     `beet list -af '%ifdef{event}' | sort -u`
 #
-# custom track fields:
+# Custom track fields:
 #   - anime:
-#     For singles in the context of anime releases.
-#     Can be set to "Opening", "Ending", "Insert", etc.
+#     For songs in the context of anime releases.
+#     Can be set to "Opening (n)", "Ending (n)", "Insert".
+#
+#   - source: (for anime:)
+#     The name of the anime the song appeared in.
 
 # https://beets.readthedocs.io/en/stable/reference/pathformat.html
 paths:
   # special stuff
-  # TODO remove this
-  sourcetype:anime:
-    "#soundtrack\
-    /%ifdef{source,$source/}\
-    $album%aunique{}%ifdef{anime, [$anime]}\
-    /$disc_and_track - $maybe_artist$title"
   doujin:true:
     "#%ifdef{touhou,touhou,doujin}\
     /$albumartist_or_label\

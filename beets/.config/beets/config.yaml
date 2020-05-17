@@ -97,10 +97,8 @@ smartplaylist:
   playlists:
     - name: $Recently Added.m3u
       query: 'added:-4w.. albumartist+ year+ album+ disc+ track+'
-    - name: $Anime Openings.m3u
-      query: 'sourcetype:anime anime:Opening source+ anime+'
-    - name: $Anime Endings.m3u
-      query: 'sourcetype:anime anime:Ending source+ anime+'
+    - name: $Anime OPED.m3u
+      query: 'anime:Opening , anime:Ending source+ anime+'
 
 replaygain:
   backend: gstreamer

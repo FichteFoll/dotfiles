@@ -70,27 +70,49 @@ item_fields:
     else f"{track:0{max(2, len(str(tracktotal)))}}"
   maybe_artist: f"{artist} - " if artist != albumartist else ""
 
+########################################
+
 # TODO check out mpd-focused plugins like mpdstats
 # https://beets.readthedocs.io/en/latest/plugins/index.html
 plugins: >-
   duplicates
+  extrafiles
   fetchart
+  info
   inline
   lastgenre
   missing
+  play
   playlist
   replaygain
   smartplaylist
 # embedart convert
 # plugins: inline  # for testing album fallback
 
+extrafiles:
+  patterns:
+    scans: ['[sS]cans/', '[sS]can/']
+    misc: ['*.log', '*.nfo', '*.jpg', '*.jpeg', '*.png', '*.webp']
+  paths:
+    scans: $albumpath/Scans
+    misc: $albumpath/$basename
+
 lastgenre:
   count: 1
-  # separator: "\x00"  # multi-field ID3v2.4 text tags are separated by nulls - http://id3.org/id3v2.4.0-frames section 4.2 | doesn't seem to work out that well?
+  # Multi-field ID3v2.4 text tags are separated by nulls,
+  # but doesn't seem to work out well
+  # ref: http://id3.org/id3v2.4.0-frames section 4.2
+  # separator: "\x00"  
+
+play:
+  command: mpv
 
 playlist:
   auto: true
   playlist_dir: ~/.mpd/playlists
+
+replaygain:
+  backend: gstreamer
 
 smartplaylist:
   playlist_dir: ~/.mpd/playlists
@@ -99,6 +121,3 @@ smartplaylist:
       query: 'added:-4w.. albumartist+ year+ album+ disc+ track+'
     - name: $Anime OPED.m3u
       query: 'anime:Opening , anime:Ending source+ anime+'
-
-replaygain:
-  backend: gstreamer

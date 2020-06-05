@@ -1,0 +1,156 @@
+#!/usr/bin/env python
+
+"""Simple but flexible screenshotting utility.
+
+Uses flameshot for capturing the screen.
+Asks for operations to perform
+with the just created image (using rofi),
+such as saving uploading to a web host
+or copying the path.
+"""
+
+import argparse
+from functools import reduce
+from pathlib import Path
+from subprocess import Popen, check_output, run
+import sys
+import tempfile
+import time
+
+TOOL_NAME = "shot"
+TEMPLATE = "/data/Images/Screenshots/%Y-%m-%d_%H-%M-%S.png"
+URL = "https://x0.at/"
+
+MESG = """\
+Default: "sc"; negate with upper-case
+Options:
+  r: rename
+  s: save
+  c: copy image
+  u: upload &amp; copy url
+  d: dragon
+  p: copy image path (overrides cu)
+"""
+
+
+def rofi_prompt(prompt, *, mesg=None, default=None):
+    cmd = [
+        "rofi", "-dmenu",
+        "-lines", "0",
+        "-p", prompt,
+    ]
+    if mesg:
+        cmd += ["-mesg", mesg]
+    if default:
+        cmd += ["-filter", default]
+
+    return check_output(cmd, text=True)
+
+
+def clip_copy(text):
+    run(["xclip", "-s", "clipboard"], input=text, text=True)
+
+
+def notify(title, text="", icon=None):
+    # TODO icon
+    Popen(["notify-send", "-a", TOOL_NAME, title, text])
+
+
+def user_input(inp=None):
+    if not inp:
+        inp = rofi_prompt("opts [rscudp]", mesg=MESG)
+    opts = set(inp) - {" "}
+    opts |= set("sc")
+    opts = reduce(lambda x, c: x | {c} if c.islower() else x - {c.lower()},
+                  sorted(opts, reverse=True),
+                  set())
+
+    if 'p' in opts:
+        opts -= set("cu")
+    if 'r' in opts:
+        opts.add('s')
+
+    return opts
+
+
+def main(params):
+    path = Path(time.strftime(TEMPLATE))
+
+    cmd = ["flameshot", params.mode, "-r"]
+    if params.delay:
+        cmd += ["--delay", str(int(params.delay * 1000))]
+
+    image_data = check_output(cmd)
+    if image_data == b"screenshot aborted\n":
+        notify("Screenshot aborted")
+        return
+
+    opts = user_input(params.opts)
+    print(f"{opts=}")
+
+    actions = []
+
+    def ensure_path():
+        nonlocal path
+        if not path.is_file():
+            path = Path(tempfile.gettempdir(), TOOL_NAME, path.name)
+            path.parent.mkdir(exist_ok=True)
+            with path.open('bw') as file:
+                file.write(image_data)
+            actions.append(f"Saved to {path}")
+
+    def pops(c: str) -> bool:
+        if (has := c in opts):
+            opts.remove(c)
+        return has
+
+    if pops('r'):
+        new_stem = rofi_prompt("File name", default=path.stem,
+                               mesg=f"{path.parent}/{{}}{path.suffix}")
+        path = path.with_name(new_stem + path.suffix)
+
+    if pops('s'):
+        with path.open('bw') as file:
+            file.write(image_data)
+        actions.append(f"Saved to {path}")
+
+    if pops('p'):
+        ensure_path()
+        clip_copy(str(path))
+        actions.append("Copied path to clipboard")
+
+    if pops('c'):
+        # flameshot does this automatically; do we want to overwrite?
+        run(["xclip", "-s", "clipboard", "-t", "image/png"], input=image_data)
+        actions.append("Copied image to clipboard")
+
+    if pops('u'):
+        url = check_output(["curl", "-F", f'file=@-;filename="{path.name}"', URL],
+                           input=image_data).decode()
+        clip_copy(url)
+        actions.append(f"Uploaded to {url}")
+
+    if pops('d'):
+        ensure_path()
+        Popen(["dragon-drag-and-drop", str(path)])
+
+    if opts:
+        actions.append(f"Extraneous opts: {''.join(opts)}")
+
+    notify("Screenshot taken", "\n".join(actions))
+    for a in actions:
+        print(a)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("mode", nargs='?', default='gui', choices=['gui', 'screen', 'full'],
+                        help="Default: selection gui")
+    parser.add_argument("opts", nargs='?',
+                        help="rscudp; upper-case to disable; prompted if omitted")
+    parser.add_argument("-d", "--delay", type=float)
+    return parser.parse_args()
+
+
+if __name__ == '__main__':
+    sys.exit(main(parse_args()))

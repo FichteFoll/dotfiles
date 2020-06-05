@@ -2,15 +2,14 @@
 
 req_url='https://x0.at/'
 
+echo "arg: $1"
 if [ -z "$1" ]; then
-    file=/dev/stdin
-elif [ ! -f "$1" ]; then
+    curl -F "file=@/dev/stdin;filename=stdin.txt" $req_url | read -r url
+elif [ -f "$1" ]; then
+    curl -F "file=@\"$1\"" $req_url | read -r url
+else
     echo "File $1 does not exist"
     exit 1
-else
-    file="$1"
 fi
-echo "file: $file"
-curl -F "file=@\"$file\"" $req_url | read -r url
 echo -n "$url" | xsel -ib
 notify-send -a "share" "File uploaded" "$url"

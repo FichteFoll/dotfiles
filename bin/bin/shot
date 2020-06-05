@@ -44,11 +44,11 @@ def rofi_prompt(prompt, *, mesg=None, default=None):
     if default:
         cmd += ["-filter", default]
 
-    return check_output(cmd, text=True)
+    return check_output(cmd, text=True).strip()
 
 
 def clip_copy(text):
-    run(["xclip", "-s", "clipboard"], input=text, text=True)
+    run(["xclip", "-selection", "clipboard"], input=text, text=True)
 
 
 def notify(title, text="", icon=None):
@@ -120,8 +120,8 @@ def main(params):
         actions.append("Copied path to clipboard")
 
     if pops('c'):
-        # flameshot does this automatically; do we want to overwrite?
-        run(["xclip", "-s", "clipboard", "-t", "image/png"], input=image_data)
+        # flameshot does this automatically
+        # run(["xclip", "-selection", "clipboard", "-t", "image/png"], input=image_data)
         actions.append("Copied image to clipboard")
 
     if pops('u'):

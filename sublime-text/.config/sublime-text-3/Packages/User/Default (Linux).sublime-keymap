@@ -19,8 +19,8 @@
   { "keys": ["shift+f7"], "command": "build", "args": {"variant": "Run"} },
 
   // ctrl+tab overrides
-  { "keys": ["ctrl+tab"], "command": "next_view" },
-  { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+  // { "keys": ["ctrl+tab"], "command": "next_view" },
+  // { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
   // SciTE's 'KP_-' behaviour || previously "ctrl+/" and "ctrl+shift+/" (-> "#" key)
   { "keys": ["keypad_minus"], "command": "toggle_comment", "args": { "block": false } },

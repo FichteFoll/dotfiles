@@ -5,7 +5,7 @@
 Uses flameshot for capturing the screen.
 Asks for operations to perform
 with the just created image (using rofi),
-such as saving uploading to a web host
+such as uploading to a website
 or copying the path.
 """
 

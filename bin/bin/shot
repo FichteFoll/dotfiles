@@ -30,6 +30,7 @@ Options:
   u: upload &amp; copy url
   d: dragon
   p: copy image path (overrides cu)
+  o: open image
 """
 
 
@@ -58,7 +59,7 @@ def notify(title, text="", icon=None):
 
 def user_input(inp=None):
     if not inp:
-        inp = rofi_prompt("opts [rscudp]", mesg=MESG)
+        inp = rofi_prompt("opts [rscudpo]", mesg=MESG)
     opts = set(inp) - {" "}
     opts |= set("sc")
     opts = reduce(lambda x, c: x | {c} if c.islower() else x - {c.lower()},
@@ -134,6 +135,10 @@ def main(params):
         ensure_path()
         Popen(["dragon-drag-and-drop", str(path)])
 
+    if pops('o'):
+        ensure_path()
+        Popen(["feh", str(path)])
+
     if opts:
         actions.append(f"Extraneous opts: {''.join(opts)}")
 
@@ -147,7 +152,7 @@ def parse_args():
     parser.add_argument("mode", nargs='?', default='gui', choices=['gui', 'screen', 'full'],
                         help="Default: selection gui")
     parser.add_argument("opts", nargs='?',
-                        help="rscudp; upper-case to disable; prompted if omitted")
+                        help="rscudpo; upper-case to disable; prompted if omitted")
     parser.add_argument("-d", "--delay", type=float)
     return parser.parse_args()
 

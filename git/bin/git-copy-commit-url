@@ -1,0 +1,14 @@
+#!/usr/bin/zsh
+
+sha="$1"
+[[ -z $sha ]] && echo "no commit sha given" && exit 1
+
+origin="$(git remote get-url origin)"
+base_url="https://${${${${origin#https://}#git@}%.git}/://}"
+if [[ "$base_url" == *github* ]]; then
+    url="$base_url/commit/$sha";
+elif [[ "$base_url" == *bitbucket* ]]; then
+    url="$base_url/commits/$sha";
+fi
+echo -n "$url" | xsel -ib
+echo "$url"

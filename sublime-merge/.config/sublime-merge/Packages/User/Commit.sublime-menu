@@ -2,12 +2,17 @@
     {
         "caption": "Create fixup! commit",
         "command": "git",
-        "args": {"argv": ["commit", "--fixup", "$commit"]}
+        "args": {"argv": ["commit", "--fixup", "$commit"]},
+    },
+    {
+        "caption": "Copy commit URL",
+        "command": "git",
+        "args": {"argv": ["copy-commit-url", "$commit"]},
     },
     { "id": "end" },
     {
         "caption": "Start interactive rebase in terminal",
         "command": "git",
-        "args": {"argv": ["rebase-terminal", "$commit"]}
+        "args": {"argv": ["rebase-terminal", "$commit"]},
     },
 ]

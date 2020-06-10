@@ -322,7 +322,8 @@ bindsym Ctrl+Shift+Print exec shot -d 2
 # color picker
 bindsym $mod+$alt+c exec gcolor2
 
-# mpv with url in clipboard
+# do stuff with the clipboard
+bindsym $mod+Shift+o exec "openurl \\"`xsel -ob`\\""
 bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""
 # share files (or clipboard contents) by uploading them and replacing clipboard with the url
 # Prior = page up / Next = page down

@@ -16,11 +16,6 @@
     display:none;
 }
 
-/* Add hover underline */
-[class*=usernameWrapper-] [class*=username-]:hover {
-    border-bottom: 1px solid;
-}
-
 /* bigger jumboable emoji in compact */
 [class*="compact-"] [class*=messageContent] img.emoji.jumboable {
     max-width: 32px;
@@ -37,22 +32,30 @@
     --nox-level1: hsl(0, 0%, 17%);
 }
 
-[class*=containerCompact-][class*=container-][class*=isMentioned-] [class*=markup-],
-.containerCompact-3V0ioj.container-1YxwTf .isMentioned-N-h9aa .markup-2BOw-j {
-    border-left-width: 2px;
+/* Messages */
+[class*=message-][class*=compact-] {
+    padding-left: 1rem;
+    padding-right: 1rem !important;
 }
 
-/* reduce content spacing */
-[class*=containerCompactBounded-] {
-    padding: 0;
-    margin: 0 !important;
+[class*=message-][class*=mentioned-][class*=compact-] {
+    border-left: 2px solid #FAA61A;
 }
 
-[class*=channels-] [class*=scrollerWrap-] {
-    box-shadow: none;
-}
 
-/* remove main container's backround so there aren't random holes */
-.container-1YxwTf {
+/* remove main message backgrounds so there aren't random holes */
+.message-2qnXI6 {
     background: none;
+    margin: 0;
+}
+
+/* hide speech bubble nudges */
+.message-2qnXI6.groupStart-23k01U::before {
+    opacity: 0;
+}
+
+/* adjust input box spacing */
+.inner-MADQqc {
+    min-height: inherit;
+    padding: 0.2em 0;
 }

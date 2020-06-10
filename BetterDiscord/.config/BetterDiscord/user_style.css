@@ -51,7 +51,7 @@
 
 /* hide speech bubble nudges */
 .message-2qnXI6.groupStart-23k01U::before {
-    opacity: 0;
+    display: none;
 }
 
 /* adjust input box spacing */

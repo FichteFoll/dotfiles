@@ -12,7 +12,7 @@ or copying the path.
 import argparse
 from functools import reduce
 from pathlib import Path
-from subprocess import Popen, check_output, run
+from subprocess import CalledProcessError, Popen, check_output, run
 import sys
 import tempfile
 import time
@@ -74,15 +74,34 @@ def user_input(inp=None):
     return opts
 
 
+def capture(mode, delay):
+    if mode == 'window':
+        cmd = ["maim", "--select", "--nodecorations=1"]
+        if delay:
+            cmd += [f"--delay={delay}"]
+
+        try:
+            image_data = check_output(cmd)
+        except CalledProcessError:
+            return None
+
+    else:
+        cmd = ["flameshot", mode, "-r"]
+        if delay:
+            cmd += [f"--delay={int(delay * 1000)}"]
+
+        image_data = check_output(cmd)
+        if image_data == b"screenshot aborted\n":
+            return None
+
+    return image_data
+
+
 def main(params):
     path = Path(time.strftime(TEMPLATE))
 
-    cmd = ["flameshot", params.mode, "-r"]
-    if params.delay:
-        cmd += ["--delay", str(int(params.delay * 1000))]
-
-    image_data = check_output(cmd)
-    if image_data == b"screenshot aborted\n":
+    image_data = capture(params.mode, params.delay)
+    if not image_data:
         notify("Screenshot aborted")
         return
 
@@ -149,8 +168,8 @@ def main(params):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", nargs='?', default='gui', choices=['gui', 'screen', 'full'],
-                        help="Default: selection gui")
+    parser.add_argument("mode", nargs='?', choices=['gui', 'screen', 'full', 'window'],
+                        help="Capture mode (default: 'gui')", default='gui')
     parser.add_argument("opts", nargs='?',
                         help="rscudpo; upper-case to disable; prompted if omitted")
     parser.add_argument("-d", "--delay", type=float)

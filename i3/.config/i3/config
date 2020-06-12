@@ -314,10 +314,11 @@ bindsym $mod+Shift+s exec rofi -show ssh
 #bindsym button2 nop
 
 # make a screenshot
-bindsym $mod+Print exec teiler
-bindsym Shift+Print exec teiler --quick video area
-bindsym Ctrl+Print exec shot
-bindsym Ctrl+Shift+Print exec shot -d 2
+bindsym $mod+Print       exec teiler
+bindsym Shift+Print      exec teiler --quick video area
+bindsym Ctrl+Print       exec shot
+bindsym Ctrl+Shift+Print exec shot --delay 2
+bindsym Ctrl+$alt+Print  exec shot window
 
 # color picker
 bindsym $mod+$alt+c exec gcolor2

@@ -53,8 +53,10 @@ def clip_copy(text):
 
 
 def notify(title, text="", icon=None):
-    # TODO icon
-    Popen(["notify-send", "-a", TOOL_NAME, title, text])
+    cmd = ["notify-send", "-a", TOOL_NAME, title, text]
+    if icon:
+        cmd += ["--icon", str(icon)]
+    Popen(cmd)
 
 
 def user_input(inp=None):
@@ -161,7 +163,8 @@ def main(params):
     if opts:
         actions.append(f"Extraneous opts: {''.join(opts)}")
 
-    notify("Screenshot taken", "\n".join(actions))
+    notify("Screenshot taken", "\n".join(actions),
+           icon=path if path.exists() else None)
     for a in actions:
         print(a)
 

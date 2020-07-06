@@ -1,6 +1,8 @@
 import sublime
 import sublime_plugin
 
+quotes = ['"', "'", '"""', "'''"]
+
 
 class PythonPrintCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -14,7 +16,9 @@ class PythonPrintCommand(sublime_plugin.TextCommand):
             selected_text = self.view.substr(reg)
             if not selected_text:
                 continue
-            quote = "'" if '"' in selected_text else '"'
+            for quote in quotes:
+                if quote not in selected_text:
+                    break
             text = f"\nprint(f{quote}{{{selected_text}=}}{quote})"
             # view.insert does not auto-indent, so we run the insert command
             # self.view.insert(edit, line.end(), text)

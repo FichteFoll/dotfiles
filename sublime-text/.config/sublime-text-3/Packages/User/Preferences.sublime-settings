@@ -57,6 +57,7 @@
 	"drag_text": true,
 	"draw_white_space":
 	[
+		"isolated",
 		"selection",
 		"trailing"
 	],
@@ -74,7 +75,8 @@
 		".mypy_cache",
 		"*.egg-info",
 		".tox",
-		".venv*"
+		".venv*",
+		".pytest_cache"
 	],
 	"font_face": "Operator Mono",
 	"font_size": 12,
@@ -117,6 +119,5 @@
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": false,
 	"trim_trailing_white_space_on_save": true,
-	// "trim_only_modified_white_space": false,
 	"word_separators": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 }

@@ -5,6 +5,9 @@ alias ipy='ipython'
 alias lrc='source ~/.zshrc'
 alias rm='rm -i'
 alias xen='xe -N0'
+alias wcl='wc -l'
+alias vim='kak'
+alias cat='bat -pp'
 
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"
@@ -179,6 +182,7 @@ alias nanaone="mpv https://live1.brb.re:8082/html5/hls/nanaone.m3u8" # 30s delay
 alias nanaone2="mpv rtmp://live1.brb.re/live/nanaone_720p"
 alias nanaone3="mpv rtmp://live2.brb.re/live/nanaone"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"
+alias doujinstyle="mpa https://doujinstyle.com/listen.m3u"
 
 beet_mpa () {
     beet list $@ -f'$path' | xargs -d'\n' mpv --profile=audio

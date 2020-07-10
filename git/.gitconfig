@@ -14,6 +14,7 @@
 	ds = diff --staged
 	r = reset
 	rb = rebase
+	rba = rebase --abort
 	s = status -s
 
 	lg = log --graph --oneline --decorate

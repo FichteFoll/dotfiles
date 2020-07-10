@@ -91,9 +91,9 @@ img.avatar-1BDn8e.da-avatar {
 /*Context Menu Themed End*/
 
 /*Emoji Menu*/
-.positionContainer-3unAXC {
+.positionContainer-DEuh7X {
     left: -10px;
-    z-index: 12;
+    z-index: 6;
     top: -450px;
 }
 .contentWrapper-2txmjs.da-contentWrapper , .categoryWrapper-UZ5YNj.da-categoryWrapper , .inspector-sdLnLS.da-inspector.inspector-3LQtX9.da-inspector , .wrapper-2N7X54.da-wrapper.categoryList-2Kzf65.da-categoryList , .container-3ISnnM .header-1TOWci{
@@ -166,3 +166,13 @@ li.perk-2WeBWW.da-perk {
     background-color: var(--nox-level2);
 }
 /*Various Color Fixes End*/
+
+/* member list background color */
+.members-1998pB, .members-1998pB>div {
+    background-color: var(--nox-level2);
+}
+
+/*No one is playing, card*/
+.emptyCard-1RJw8n {
+    background-color:var(--nox-level2);
+}

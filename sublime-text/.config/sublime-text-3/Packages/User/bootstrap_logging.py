@@ -7,14 +7,11 @@ function_names = {
     'log_build_systems',
     'log_commands',
     'log_control_tree',
+    'log_fps',
     'log_indexing',
     'log_input',
     'log_result_regex',
 }
-
-# Cleanup
-if hasattr(sublime, 'logging_unbootstrap'):
-    sublime.logging_unbootstrap()
 
 # Ensure this exists
 if not hasattr(sublime, 'logging_cache'):
@@ -36,23 +33,12 @@ def toogle_logging(name, value=None):
 for name in function_names:
     setattr(sublime, name, partial(toogle_logging, name))
 
-
-# Register cleanup
-def unbootstrap():
-    for name, func in original_functions.items():
-        setattr(sublime, "log_" + name, func)
-    delattr(sublime, 'logging_unbootstrap')
-
-    print("Note: Original functionality for sublime.log_* methods has been "
-          "restored")
-
-
-setattr(sublime, 'logging_unbootstrap', unbootstrap)
-
-# Done
 print("Note: sublime.log_* methods have been overridden and now toggle when "
       "called without a parameter")
 
 
 def plugin_unloaded():
-    unbootstrap()
+    for name, func in original_functions.items():
+        setattr(sublime, "log_" + name, func)
+    print("Note: Original functionality for sublime.log_* methods has been "
+          "restored")

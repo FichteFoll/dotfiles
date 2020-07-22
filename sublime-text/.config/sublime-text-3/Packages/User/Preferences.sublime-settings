@@ -118,6 +118,7 @@
 	"theme": "Nil.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": false,
+	"trim_only_modified_white_space": false,
 	"trim_trailing_white_space_on_save": true,
 	"word_separators": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	// Default without `markup.raw`

@@ -23,8 +23,7 @@ tab-item.active tab-closebox:hover::before {
 
 /* Dim unloaded tabs */
 tab-item.discarded .label-content {
-  /* opacity: 0.85; */
-  color: hsla(0, 0%, 60%);
+   opacity: 0.65;
 }
 
 /* Add margin around favicon */

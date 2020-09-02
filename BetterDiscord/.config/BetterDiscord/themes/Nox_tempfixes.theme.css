@@ -171,8 +171,18 @@ li.perk-2WeBWW.da-perk {
 .members-1998pB, .members-1998pB>div {
     background-color: var(--nox-level2);
 }
+/* Chat background color */
+.theme-dark {
+  --background-tertiary: #303030;
+  --background-primary: #303030;
+}
 
 /*No one is playing, card*/
 .emptyCard-1RJw8n {
     background-color:var(--nox-level2);
+}
+
+/* Fix for Invite & Channel Settings icons on channels */
+.children-Bmpf2Q .iconItem-1-bXkn svg * {
+    display: initial !important;
 }

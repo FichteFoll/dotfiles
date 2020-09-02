@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.1"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.3"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -24,6 +24,7 @@
 
 [class*=message-][class*=compact-] {
     padding-left: 1rem; /* reset negative padding */
+    margin: 0; /* and margins */
 }
 
 /* base grid layout for the main message (first container) */
@@ -79,9 +80,8 @@
 }
 
 /* add highlight marker to the right as well */
-[class*=message-][class*=compact-][class*=mentioned-] > [class*=container-] {
-    border-right: solid #FAA61A;
-    border-width: 0 2px;
+[class*=message-][class*=compact-][class*=mentioned-] {
+    border-right: 2px solid #FAA61A;
 }
 
 /* show hidden timestamps */

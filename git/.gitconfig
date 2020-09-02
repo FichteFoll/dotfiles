@@ -66,3 +66,14 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[core]
+	pager = delta
+
+[delta]
+	line-numbers = true
+	minus-style = syntax auto
+    # side-by-side = true
+
+[interactive]
+	diffFilter = delta --color-only

@@ -102,7 +102,7 @@ lastgenre:
   # Multi-field ID3v2.4 text tags are separated by nulls,
   # but doesn't seem to work out well
   # ref: http://id3.org/id3v2.4.0-frames section 4.2
-  # separator: "\x00"  
+  # separator: "\x00"
 
 play:
   command: mpv

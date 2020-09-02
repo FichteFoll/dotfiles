@@ -4,8 +4,6 @@
   { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": "#"} },
   //["ctrl+`"] -> ctrl+ö
   { "keys": ["f8"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
-  // ["ctrl+g"]
-  // { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
 
   // ["ctrl+shift+k"]
   { "keys": ["alt+d"], "command": "run_macro_file",
@@ -68,7 +66,7 @@
   { "keys": ["ctrl+k", "ctrl+u"], "command": "unfold" },
 
   // 3-pane layout with single bottom group
-  { 
+  {
     "keys": ["alt+shift+4"],
     "command": "set_layout",
     "args":

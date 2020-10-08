@@ -264,7 +264,7 @@ alias venv="source .venv/bin/activate"
 
 # run locally installed npm scripts
 function npm-do {
-    (PATH=$(npm bin):$PATH; eval $@;)
+    PATH=$(npm bin):$PATH "$@"
 }
 
 alias aurb="aur build -d custom"

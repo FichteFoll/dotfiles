@@ -245,6 +245,20 @@ alias wine_tmp='env WINEPREFIX="$HOME/.wine_tmp" wine'
 alias winecfg_tmp='env WINEPREFIX="$HOME/.wine_tmp" winecfg'
 alias winetricks_tmp='env WINEPREFIX="$HOME/.wine_tmp" winetricks'
 
+
+# docker
+alias ds='sudo -g docker -s'
+function dc() {
+    # detach by default
+    if [ "$1" = "up" -a "$#" = 1 ]; then
+        docker-compose up -d
+        # docker-compose logs -f
+    else
+        docker-compose "$@"
+    fi
+}
+
+
 # python source venv
 alias venv="source .venv/bin/activate"
 

@@ -11,6 +11,7 @@ mkdir -p "$DIR/scripts"
 cd "$DIR/scripts"
 wget -N https://raw.githubusercontent.com/ElegantMonkey/mpv-webm/master/build/webm.lua
 wget -N https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/playlistmanager.lua
+wget -N https://raw.githubusercontent.com/jonniek/mpv-scripts/master/appendURL.lua
 wget -N https://raw.githubusercontent.com/occivink/mpv-scripts/master/scripts/seek-to.lua
 wget -N https://raw.githubusercontent.com/VideoPlayerCode/mpv-tools/master/scripts/cycle-video-rotate.lua
 # has local changes:

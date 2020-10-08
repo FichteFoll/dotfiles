@@ -143,7 +143,7 @@ img.avatar-1BDn8e.da-avatar {
 
 /*Embed themed*/
 .embedFull-2tM8-- {
-    border-left: var(--nox-level2);
+    /*border-left: var(--nox-level2);*/
     background: var(--nox-level2);
 }
 /*Embed themed End*/

@@ -1,4 +1,4 @@
 {
-    "syntax": "Packages/Git Formats/Git Commit.sublime-syntax",
+	"syntax": "Packages/Git Formats/Git Commit.sublime-syntax",
 	"rulers": [72, 50]
 }

@@ -33,6 +33,7 @@
 	"auto_complete_cycle": true,
 	"auto_complete_preserve_order": "none",
 	"auto_complete_selector": "source - comment - string, meta.tag - punctuation.definition.tag.begin",
+	"auto_complete_trailing_spaces": false,
 	"auto_complete_triggers":
 	[
 		{

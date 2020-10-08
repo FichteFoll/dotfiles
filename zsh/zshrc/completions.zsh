@@ -43,10 +43,12 @@ zstyle ':completion:*:man:*'      menu yes select
 autoload -Uz compinit
 compinit
 
-# fish-like auto completions
-# requires 'zsh-autosuggestions' package
+# Third-party packages for auto competions
+# - zsh-autosuggestions: fish-like auto completions
+# - git-flow-completion-git
 sources=(/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-         $HOME/zshrc/zsh-autosuggestions/zsh-autosuggestions.zsh)
+         $HOME/zshrc/zsh-autosuggestions/zsh-autosuggestions.zsh
+         /usr/share/git-flow/git-flow-completion.zsh)
 for src in $sources; do
     [[ -e "$src" ]] && source "$src"
 done

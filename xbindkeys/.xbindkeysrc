@@ -1,8 +1,9 @@
 # Run `xbindkeys -d` to see an example configuration
 
 # Bind extra mouse buttons to page up & down
+# swapped for CSL mouse
 "xdotool key Prior"
-  b:8
+  b:9
 
 "xdotool key Next"
-  b:9
+  b:8

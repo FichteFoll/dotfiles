@@ -15,4 +15,9 @@
         "command": "git",
         "args": {"argv": ["rebase-terminal", "$commit"]},
     },
+    {
+        "caption": "Start interactive rebase in ST",
+        "command": "git",
+        "args": {"argv": ["rebase", "-i", "$commit"]},
+    },
 ]

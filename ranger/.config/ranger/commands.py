@@ -1,4 +1,5 @@
 from functools import partial
+import os
 from pathlib import Path
 from typing import Generator, Iterable, Set, List
 
@@ -186,3 +187,24 @@ class unlink(Command):
                 shutil.move(dst, src)
             else:
                 shutil.copy2(dst, src)
+
+
+class aur_mark_new(Command):
+    """
+    :aur_mark_new
+
+    Scan directory of seen aurutils repos and tag new packages.
+    """
+    def execute(self):
+        seen_dir = (os.environ.get('XDG_DATA_HOME', os.path.expanduser("~/.local/share"))
+                    + "/aurutils/view")
+        dir_ = self.fm.thisdir
+        dir_.load_content(schedule=False)  # force load content, so we can use .files
+        print(f"{dir_=}; {dir_.files=}")
+        dir_.mark_all(False)
+        for f in dir_.files:
+            if not os.path.exists(os.path.join(seen_dir, f.basename)):
+                dir_.mark_item(f, True)  # f.mark()
+            # dir_.mark_item(f, not os.path.exists(os.path.join(seen_dir, f.basename)))
+
+        dir_.load_content()

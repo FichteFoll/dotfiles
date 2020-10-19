@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.3"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.4"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -66,7 +66,7 @@
 }
 
 /* username */
-[class*=message-][class*=compact-] h2 > span[class*=username-] {
+[class*=message-][class*=compact-] h2 span[class*=headerText-] {
     display: inline-block;
     grid-row-start: 1;
     grid-column-start: 2;

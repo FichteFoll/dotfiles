@@ -1,6 +1,11 @@
 .include /etc/pulse/default.pa
 unload-module module-role-cork
 
+# Load dummy sink and set as default, so we can remap the others
+# https://unix.stackexchange.com/a/606748
+load-module module-null-sink sink_name=dummy
+set-default-sink dummy
+
 # Use 4.0 surround output as separate speaker and headphone sinks.
 # https://wiki.archlinux.org/index.php/PulseAudio/Examples#Splitting_front/rear
 load-module module-remap-sink sink_name=speakers sink_properties="device.description='Speakers'" remix=no channels=2 master="alsa_output.pci-0000_00_1b.0.analog-surround-40" master_channel_map=front-left,front-right channel_map=front-left,front-right
@@ -10,6 +15,10 @@ load-module module-remap-sink sink_name=headphones sink_properties="device.descr
 # Should become module id 2
 load-module module-remap-sink sink_name=default sink_properties="device.description='DefaultSink'" remix=no channels=2 master=speakers
 set-default-sink default
+
+# Unload dummy module
+# TODO can I refer to it by name name somehow?
+unload-module 22
 
 # Stream setup
 # Add a remap sink to the default sink that is looped back to a recording sink,

@@ -229,8 +229,9 @@ bindsym --release button2 kill
 bindsym --whole-window $mod+button2 floating toggle
 
 # MEDIA KEYS #
-set $volume_sink 2
+set $volume_sink headphones
 set $volume_step 5%
+# pacmd list-sink-inputs
 set $default_sink_input 2
 # volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $volume_sink +$volume_step

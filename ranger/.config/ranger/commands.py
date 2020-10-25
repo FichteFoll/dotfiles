@@ -200,7 +200,6 @@ class aur_mark_new(Command):
                     + "/aurutils/view")
         dir_ = self.fm.thisdir
         dir_.load_content(schedule=False)  # force load content, so we can use .files
-        print(f"{dir_=}; {dir_.files=}")
         dir_.mark_all(False)
         for f in dir_.files:
             if not os.path.exists(os.path.join(seen_dir, f.basename)):

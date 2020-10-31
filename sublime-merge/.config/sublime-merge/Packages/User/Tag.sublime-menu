@@ -1,0 +1,7 @@
+[
+    {
+        "caption": "Delete remote tag from origin",
+        "command": "git",
+        "args": {"argv": ["push", "--delete", "origin", "$tag_name"]}
+    }
+]

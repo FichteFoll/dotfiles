@@ -242,10 +242,10 @@ bindsym $mod+F1 exec --no-startup-id pactl move-sink-input $default_sink_input s
 bindsym $mod+F2 exec --no-startup-id pactl move-sink-input $default_sink_input headphones
 
 # media keys for mpd
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym Ctrl+XF86AudioPlay exec --no-startup-id mpc seek 0 && mpc play
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
-bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpris-rofi prev
+bindsym Ctrl+XF86AudioPlay exec --no-startup-id mpris-rofi restart
+bindsym XF86AudioPlay exec --no-startup-id mpris-rofi playpause
+bindsym XF86AudioNext exec --no-startup-id mpris-rofi next
 
 # backlight control
 set $backlight_step 10

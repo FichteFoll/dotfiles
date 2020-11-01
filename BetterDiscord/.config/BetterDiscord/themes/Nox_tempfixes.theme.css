@@ -1,188 +1,61 @@
-/*//META{"name":"Nox-tempfixes","description":"Fixes for the Nox theme","author":"Various","version":"3.0.0"}*//**/
+/*//META{"name":"Nox-tempfixes","description":"Fixes for the Nox theme","author":"Various","version":"1.0.5"}*//**/
 
-:root{
-    --nox-folder-color: var(--nox-accent)
-}
-
-/*Pins*/
-img.avatar-1BDn8e.da-avatar {
-   left: -50px;
-}
-.messageGroupCozy-2iY6cT.da-messageGroupCozy.wrapper-2a6GCs.da-wrapper.cozy-3raOZG.da-cozy.zalgo-jN1Ica.da-zalgo {
-   left: -40px;
-   width: calc(100% - 40px);
-}
-.messageGroupCozy-2iY6cT.da-messageGroupCozy.wrapper-2a6GCs.da-wrapper.cozy-3raOZG.da-cozy.zalgo-jN1Ica.da-zalgo > .contents-2mQqc9.da-contents {
-   width: 100%;
-   height: 100%;
-}
-.messageGroupCozy-2iY6cT.da-messageGroupCozy.wrapper-2a6GCs.da-wrapper.cozy-3raOZG.da-cozy.zalgo-jN1Ica.da-zalgo > .container-1ov-mD.da-container > a.anchor-3Z-8Bb.da-anchor.anchorUnderlineOnHover-2ESHQB.da-anchorUnderlineOnHover.imageWrapper-2p5ogY.da-imageWrapper.imageZoom-1n-ADA.da-imageZoom.clickable-3Ya1ho.da-clickable.embedWrapper-lXpS3L.da-embedWrapper {
-  width: 100% !important;
-}
-/*Pins End*/
-
-/*White bar*/
-.wrapper-2qzCYF.minimum-28Z35l {
-    z-index: 4;
-}
-/*White bar End*/
-
-/*Weird Mention Hover*/
-.cozy-3raOZG.message-2qnXI6.groupStart-23k01U:hover{
-    background-color: var(--background-message-hover);
-}
-/*Weird Mention Hover End*/
-
-/*Bot Mention Blue Icon*/
-.localBot-GrCgVt:before {
-    background-color: transparent;
-}
-/*Bot Mention Blue Icon End*/
-
-/*Themed reaction / edit hover*/
-.wrapper-2aW0bm.da-wrapper {
-    background-color: #252525;
-}
-/*Themed reaction / edit hover End*/
-
-/*Themed upload*/
-.attachment-33OFj0 {
-    background-color: var(--nox-level2);
-    border: 1px solid transparent;
-}
-/*Themed upload end*/
-
-/*Themed Friends Action Buttons*/
-.actionButton-uPB8Fs.da-actionButton {
+.tutorial-3w5I9h /* Inbox Tutorial */ {
     background-color: var(--nox-level2);
 }
-/*Themed Friends Action Buttons End*/
-
-/*Mentions Menu*/
-.messageContainer-gbhlwo , .channelHeader-3Gd2xq , .channelHeader-3Gd2xq.da-channelHeader {
-    background-color: var(--background-message-hover);
-    position: static;
-}
-.messageContainer-gbhlwo.da-messageContainer > .message-2DieIs.da-message.wrapper-2a6GCs.da-wrapper.cozy-3raOZG.da-cozy.zalgo-jN1Ica.da-zalgo > .contents-2mQqc9.da-contents:before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: relative;
-    left: -20px;
-    top: 0px;
-    display: block;
-    transition: all 200ms ease;
-    border-style: solid;
-    border-width: 0 10px 10px 0;
-    border-color: transparent rgba(0, 0, 0, 0.1) transparent transparent;
-}
-.jumpButton-2F6EMx.da-jumpButton.button-1-5Aqk.da-button.tertiary-aMXF0g , .closeButton-1152MI.da-closeButton.button-1-5Aqk.da-button.tertiary-aMXF0g {
+.children-rWhLdy.da-children > .container-cMG81i.da-container.large-laZJpW > .inner-2P4tQO.da-inner , .theme-dark .bd-addon-list .bd-addon-card /* PluginRepo / ThemeRepo */ {
     background-color: var(--nox-level3);
 }
-/*Mentions Menu End*/
-
-/*Context Menu Themed*/
-.customItem-a8hq58 > .button-F9qN4n {
-    background-color: var(--nox-level3)
+.theme-dark .feature-2w65J5 , .banner-WELp4M /* Nitro stuff */ {
+   background-color: var(--nox-level1);
 }
-.customItem-a8hq58 > .button-F9qN4n:hover {
-    background-color: var(--nox-level1)
+.lookInverted-2D7oAl.colorBrand-3pXr91:disabled /* Nitro Subscribe button was a white block on :disabled */ {
+   background-color: var(--nox-accent) !important;
 }
-/*Context Menu Themed End*/
-
-/*Emoji Menu*/
-.positionContainer-DEuh7X {
-    left: -10px;
-    z-index: 6;
-    top: -450px;
-}
-.contentWrapper-2txmjs.da-contentWrapper , .categoryWrapper-UZ5YNj.da-categoryWrapper , .inspector-sdLnLS.da-inspector.inspector-3LQtX9.da-inspector , .wrapper-2N7X54.da-wrapper.categoryList-2Kzf65.da-categoryList , .container-3ISnnM .header-1TOWci{
-    background-color: var(--nox-level2)
-}
-.inner-3ErfOT.da-inner , .flex-1xMQg5.flex-1O1GKY.da-flex.da-flex.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignCenter-1dQNNs.noWrap-3jynv6 , .searchBar--fTZYa.da-searchBar.container-cMG81i.da-container.medium-1LLV3p {
-    background-color: var(--nox-level1);
-}
-.flex-1xMQg5.flex-1O1GKY.da-flex.da-flex.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignCenter-1dQNNs.noWrap-3jynv6 , .searchBar--fTZYa.da-searchBar.container-cMG81i.da-container.medium-1LLV3p {
-    position: relative;
-    top: 4px;
-    border-radius: 0px;
-}
-.tooltip-2QfLtc.da-tooltip.tooltipLeft-3EDOk1.tooltipBrand-g03Nz8.introductionTooltip-ydzjKT.da-introductionTooltip {
-    display: none;
-}
-/*Emoji Menu End*/
-
-/*Folder*/
-.expandedFolderIconWrapper-1xLaU-.da-expandedFolderIconWrapper > svg {
-    color: var(--nox-folder-color) !important;
-}
-.contentRegion-3nDuYy #bd-customcss-attach-controls::after {
-    content: "To add custom settings to the theme, copy the following\A code in your custom CSS and replace the things you want\A to change:\A \A :root {\A\9 --nox-accent: #7289DA !important;\A\9 --nox-notification-color: #FFFFFF !important;\A\9 --nox-important-notification: #F04747 !important;\A\9 --nox-folder-color: var(--nox-accent) !important;\A}\A\A Don't forget to save/update when you're done!\A\A To see all the variables in the theme, just go to bit.ly/NoxTheme. ";
-}
-/*Folder End*/
-
-/*New Messages Indicator*/
-.messagesWrapper-3lZDfY .messages-3amgkR .divider-3_HH5L.isUnread-3Ef-o9 {
-    top: -5px !important;
-}
-/*New Messages Indicator End*/
-
-/*Weird thing when mentioning a user (I broke this with a tempfix lol)*/
-
-.flex-1xMQg5.flex-1O1GKY.da-flex.da-flex.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignCenter-1dQNNs.noWrap-3jynv6.content-Qb0rXO.da-content{
-    background-color: transparent !important;
-}
-.flex-1xMQg5.flex-1O1GKY.da-flex.da-flex.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignCenter-1dQNNs.noWrap-3jynv6.content-Qb0rXO.da-content > .wrapper-3t9DeA.da-wrapper , .flex-1xMQg5.flex-1O1GKY.da-flex.da-flex.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignCenter-1dQNNs.noWrap-3jynv6.content-Qb0rXO.da-content > .marginLeft8-1YseBe.da-marginLeft8 {
-    bottom: 4px !important;
-    position: relative;
-}
-.autocomplete-1vrmpx.autocomplete-Z9HwQh.da-autocomplete {
-    transform: translate(0px, 7px)
-}
-/*Weird thing when mentioning a user (I broke this with a tempfix lol) End*/
-
-/*Embed themed*/
-.embedFull-2tM8-- {
-    /*border-left: var(--nox-level2);*/
-    background: var(--nox-level2);
-}
-/*Embed themed End*/
-
-/*Various Color Fixes*/
-.descriptionBox-1EKQKL {
-    background-color: var(--nox-level1);
-}
-.popoutListInput-1l9TUI.size14-3iUx6q.da-popoutListInput.da-size14.container-cMG81i.da-container.small-2oHLgT {
-    background-color: var(--nox-level1);
+.accountList-33MS45 , .connection-1fbD7X , .connectionHeader-2MDqhu , .flex-1xMQg5.flex-1O1GKY.da-flex.da-flex.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignCenter-1dQNNs.noWrap-3jynv6.header-1RC2Wb.da-header , .contentColumn-2hrIYH .notDetected-33MY4s, .table-39R0Oe.da-table.invoice-28DmWy.da-invoice /* Connected accounts make uniform-ey*/ {
+    background: #292929;
+    border: none;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.03) inset;
     border-radius: 3px;
 }
-.scroller-2FKFPG.da-scroller.perksModal-fSYqOq.da-perksModal {
-    background-color: var(--nox-level3);
+.connectionHeader-2MDqhu /* Nicer headers for connected accounts */ {
+   border-radius: 3px 3px 0 0;
 }
-.ctaBar-2UsjF2.da-ctaBar {
-    background-color: var(--nox-level2);
-}
-li.perk-2WeBWW.da-perk {
-    background-color: var(--nox-level2);
-}
-/*Various Color Fixes End*/
-
-/* member list background color */
-.members-1998pB, .members-1998pB>div {
-    background-color: var(--nox-level2);
-}
-/* Chat background color */
-.theme-dark {
-  --background-tertiary: #303030;
-  --background-primary: #303030;
+div#message-delete > .label-22pbtT.da-label /* Make "Delete Message" label colored, as it should be*/{
+    color: #f04747 !important;
 }
 
-/*No one is playing, card*/
-.emptyCard-1RJw8n {
-    background-color:var(--nox-level2);
+/* Emoji Menu Redo */
+.wrapper-1-Fsb8.da-wrapper.header-ywPcAE.da-header {
+    background: #292929;
+    border: none;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.03) inset;
+    border-radius: 3px;
+    width: calc(100% + 8px);
+    margin-bottom: 5px;
+    border-radius: 0;
+}
+.wrapper-1rqM3x .inspector-S2gM3e, .wrapper-1rqM3x .categoryList-2Kzf65 {
+background-color: var(--nox-level2);
+border-color: var(--nox-level2);
+}
+.header-8ilj5e.da-header {
+    box-shadow: none;
+}
+/* Emoji Menu Redo */
+
+#status-picker #status-picker-custom-status /* Status popup fix for opacity on text when hovering over selection */ {
+    z-index: -1;
 }
 
-/* Fix for Invite & Channel Settings icons on channels */
-.children-Bmpf2Q .iconItem-1-bXkn svg * {
-    display: initial !important;
+.searchResultMessage-1fxgXh.da-searchResultMessage.hit-1fVM9e.da-hit {
+    background: var(--nox-level2);
+    box-shadow: 0 0 10px 6px var(--nox-level3);
+    border-radius: 0
+}
+.searchResult-9tQ1uo:before, .searchResult-9tQ1uo:after {
+    background-image: none
+}
+.searchResult-9tQ1uo.expanded-w_LCGl {
+    background: var(--nox-level2)
 }

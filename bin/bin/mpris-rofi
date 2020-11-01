@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Requires: mpris-ctl
+# Requires: playerctl, more-itertools (pypi)
 
 import argparse
 import operator

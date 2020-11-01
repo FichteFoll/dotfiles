@@ -1,0 +1,10 @@
+/_commit.sh
+/_get_default-input.sh
+/_update.sh
+scripts/pitchcontrol.lua
+scripts/excerpt.lua
+watch_later/
+script-opts/
+/*.conf
+*.db
+sponsorblock.txt

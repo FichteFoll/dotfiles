@@ -15,7 +15,7 @@ SEP = "\uFFEF"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=['play', 'pause', 'playpause', 'next', 'prev', 'debug'])
+    parser.add_argument("action", choices=['play', 'pause', 'playpause', 'next', 'prev', 'debug', 'restart'])
     return parser.parse_args()
 
 
@@ -55,10 +55,11 @@ class Player(NamedTuple):
     def __str__(self) -> str:
         return f"{self.name} | {f'{self.artist} - ' if self.artist else ''}{self.track}"
 
-    def command(self, cmd: str) -> int:
-        if cmd == 'playpause':
-            cmd = 'pause' if self.playing else 'play'
-        return playerctl(cmd, player=self.identifier)
+    def command(self, *cmd: str) -> int:
+        cmd_ = list(cmd)
+        if cmd_ == ['playpause']:
+            cmd_ = ['pause' if self.playing else 'play']
+        return playerctl(*cmd_, player=self.identifier)
 
 
 def rofi_prompt(
@@ -102,7 +103,6 @@ def main(action: str) -> int:
             player = players[0]
         elif players:
             options = {str(p): p for p in players}
-            print(options)
             option = rofi_prompt("Player", options.keys(), mesg=f"Action: {action}")
             if not option:
                 return 0
@@ -112,7 +112,13 @@ def main(action: str) -> int:
             return 0
         else:
             continue
-        player.command(action)
+
+        if action == 'restart':
+            player.command("position", "0")
+            player.command("play")
+        else:
+            player.command(action)
+
         return 0
 
     print('No player found')

@@ -4,10 +4,9 @@
 
 import argparse
 import operator
-from subprocess import call, check_output
+from subprocess import CalledProcessError, check_output
 import sys
-from typing import Generator, List, NamedTuple
-# TODO find active player
+from typing import Iterable, Generator, NamedTuple
 
 from more_itertools import partition
 
@@ -20,34 +19,55 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def mpris_info(fields) -> Generator[List[str], None, None]:
-    output = check_output(['mpris-ctl', 'info', SEP.join('%' + f for f in fields)], text=True)
-    for line in output.splitlines():
-        yield line.split(SEP)
+def playerctl_info(fields: Iterable[str], player: str = None) -> Generator[str, None, None]:
+    args = ['metadata', '-f', SEP.join("{{%s}}" % f for f in fields)]
+    return playerctl(*args, player=player).split(SEP)
+
+
+def playerctl(*args: str, player: str = None, all: bool = False):
+    args_ = list(args)
+    if all:
+        args_.insert(0, "--all-players")
+    elif player:
+        args_.insert(0, f"--player={player}")
+    result = check_output(["playerctl", *args_], text=True).rstrip("\n")
+    return result if not all else result.split()
 
 
 class Player(NamedTuple):
+    identifier: str
     name: str
     playing: bool
     artist: str
     track: str
 
     @classmethod
-    def list(cls) -> List['Player']:
-        fields = ['player_name', 'play_status', 'artist_name', 'track_name']
-        return [cls(name, status == 'Playing', artist, track)
-                for name, status, artist, track in mpris_info(fields)]
+    def list(cls) -> Generator['Player', None, None]:
+        for identifier in playerctl('--list-all').split():
+            fields = ["playerName", "status", "artist", "title"]
+            try:
+                name, status, artist, title = playerctl_info(fields, player=identifier)
+                yield Player(identifier, name, status == 'Playing', artist, title)
+            except CalledProcessError:
+                print("Couldn't get details for", identifier)
+                pass
 
-    def for_rofi(self) -> str:
+    def __str__(self) -> str:
         return f"{self.name} | {f'{self.artist} - ' if self.artist else ''}{self.track}"
 
     def command(self, cmd: str) -> int:
         if cmd == 'playpause':
             cmd = 'pause' if self.playing else 'play'
-        return call(['mpris-ctl', '--player', self.name, cmd])
+        return playerctl(cmd, player=self.identifier)
 
 
-def rofi_prompt(prompt, options=(), *, mesg=None, default=None) -> str:
+def rofi_prompt(
+    prompt: str,
+    options: Iterable[str] = (),
+    *,
+    mesg: str = None,
+    default: str = None
+) -> str:
     cmd = [
         "rofi", "-dmenu",
         "-i",
@@ -63,12 +83,12 @@ def rofi_prompt(prompt, options=(), *, mesg=None, default=None) -> str:
     return check_output(cmd, text=True, input="\n".join(options)).rstrip("\n")
 
 
-def main(params) -> int:
+def main(action: str) -> int:
     all_players = Player.list()
     inactive_players, active_players = \
         map(list, partition(operator.attrgetter('playing'), all_players))
 
-    if params.action == "debug":
+    if action == "debug":
         print("Active players:")
         for p in active_players:
             print(p)
@@ -81,19 +101,18 @@ def main(params) -> int:
         if len(players) == 1:
             player = players[0]
         elif players:
-            # Show rofi
-            options = [p.for_rofi() for p in players]
+            options = {str(p): p for p in players}
             print(options)
-            option = rofi_prompt("Player", options, mesg=f"Action: {params.action}")
+            option = rofi_prompt("Player", options.keys(), mesg=f"Action: {action}")
             if not option:
                 return 0
-            player = players[options.index(option)]
-        elif params.action == 'pause':
+            player = options[option]
+        elif action == 'pause':
             # no active player
             return 0
         else:
             continue
-        player.command(params.action)
+        player.command(action)
         return 0
 
     print('No player found')
@@ -101,4 +120,4 @@ def main(params) -> int:
 
 
 if __name__ == '__main__':
-    sys.exit(main(parse_args()))
+    sys.exit(main(**vars(parse_args())))

@@ -418,13 +418,10 @@ format-prefix-foreground = ${colors.prefix}
 format-underline = ${colors.warning}
 
 
-
 [module/gpu_usage]
 type = custom/script
-exec = sudo -n radeontop --dump - -l1 | rg 'gpu ([\d.]+)' -r '$1' -o
-# TODO tailing doesn't work for some reason (remove -l1 for that)
-# tail = true
-interval = 5
+exec = sudo -n radeontop --dump - | rg --line-buffered 'gpu ([\d.]+)' -r '$1' -o
+tail = true
 
 label = %output%%
 format-prefix = " "

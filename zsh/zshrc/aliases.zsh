@@ -231,6 +231,10 @@ alias jc='journalctl'
 alias jcu='journalctl --user'
 alias nc='netctl'
 
+# java
+alias java8='sudo archlinux-java set java-8-openjdk'
+alias java11='sudo archlinux-java set java-11-openjdk'
+alias java14='sudo archlinux-java set java-14-openjdk'
 
 # wine stuff
 alias wine32='env WINEARCH=win32 WINEPREFIX="$HOME/.wine32" wine'

@@ -203,7 +203,7 @@ label-song-ellipsis = true
 [module/mpris]
 type = custom/script
 ; exec = i=0; while true; do ((i++)); echo $i; sleep 1; done
-exec = playerctl --follow metadata -f '{{status}}%{F#555}{{playerName}}%{F-} {{artist}} - {{title}}' | sed -u 's/^Paused.*/-/; s/^Playing//'
+exec = playerctl --follow metadata -f '{{status}}%{F#555}{{playerName}}%{F-} {{artist}} - {{title}}' | sed -u 's/^Paused.*/-/; s/^Stopped.*/-/; s/^Playing//'
 tail = true
 click-left = mpris-rofi playpause &
 

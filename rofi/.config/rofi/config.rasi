@@ -1,0 +1,6 @@
+configuration {
+	terminal: "termite";
+	drun-match-fields: "all";
+	tokenize: true;
+	theme: "/usr/share/rofi/themes/Arc-Dark.rasi";
+}

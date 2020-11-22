@@ -1,4 +1,4 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.2.4"}*//
+/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.3.0"}*//
 
 /**
  * Nicks are right-aligned in compact layout.
@@ -20,10 +20,11 @@
     --username-width: 7.1rem;
     --timestamp-width: 3rem;
     --message-gap: 0.4rem;
+    --message-padding: 1rem;
 }
 
 [class*=message-][class*=compact-] {
-    padding-left: 1rem; /* reset negative padding */
+    padding-left: var(--message-padding); /* reset negative padding */
     margin: 0; /* and margins */
 }
 
@@ -95,4 +96,10 @@
 }
 [class*=systemMessage-][class*=compact-] [class*=container-] {
     margin-left: 1rem; /* reset */
+}
+
+/* reply messages */
+[class*=compact] [class*=repliedMessage-] {
+    margin-left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 0.18rem);
+    /*idk where the 0.18 comes from */
 }

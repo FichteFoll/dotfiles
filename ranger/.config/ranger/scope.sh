@@ -66,7 +66,7 @@ handle_extension() {
             exit 1;;
 
         # BitTorrent
-        torrent)
+        torrent|added)
             transmission-show -- "${FILE_PATH}" && exit 5
             exit 1;;
 
@@ -83,6 +83,10 @@ handle_extension() {
             lynx -dump -- "${FILE_PATH}" && exit 5
             elinks -dump "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
+
+        # source
+        PKGBUILD)
+            highlight;;
     esac
 }
 
@@ -130,27 +134,8 @@ handle_mime() {
     local mimetype="${1}"
     case "${mimetype}" in
         # Text
-        text/* | */xml)
-            # Syntax highlight
-            if [[ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
-                exit 2
-            fi
-            if [[ "$( tput colors )" -ge 256 ]]; then
-                # terminal256 looks terrible in my terminal with the default style,
-                # but my custom style is fine
-                local pygmentize_format='terminal256'
-                # local pygmentize_format='terminal'
-                local highlight_format='xterm256'
-            else
-                local pygmentize_format='terminal'
-                local highlight_format='ansi'
-            fi
-            PYTHONDONTWRITEBYTECODE=1 \
-                pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}" \
-                -- "${FILE_PATH}" && exit 5
-            # highlight --replace-tabs="${HIGHLIGHT_TABWIDTH}" --out-format="${highlight_format}" \
-            #     --style="${HIGHLIGHT_STYLE}" --force -- "${FILE_PATH}" && exit 5
-            exit 2;;
+        text/* | */xml | application/json)
+            highlight;;
 
         # Image
         image/*)
@@ -165,6 +150,28 @@ handle_mime() {
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
     esac
+}
+
+highlight() {
+    if [[ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
+        exit 2
+    fi
+    if [[ "$( tput colors )" -ge 256 ]]; then
+        # terminal256 looks terrible in my terminal with the default style,
+        # but my custom style is fine
+        local pygmentize_format='terminal256'
+        # local pygmentize_format='terminal'
+        local highlight_format='xterm256'
+    else
+        local pygmentize_format='terminal'
+        local highlight_format='ansi'
+    fi
+    PYTHONDONTWRITEBYTECODE=1 \
+        pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}" \
+        -- "${FILE_PATH}" && exit 5
+    # highlight --replace-tabs="${HIGHLIGHT_TABWIDTH}" --out-format="${highlight_format}" \
+    #     --style="${HIGHLIGHT_STYLE}" --force -- "${FILE_PATH}" && exit 5
+    exit 2
 }
 
 handle_fallback() {

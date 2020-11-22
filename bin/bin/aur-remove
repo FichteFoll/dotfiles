@@ -5,9 +5,8 @@ if [ "$#" -eq 0 ]; then
   exit 1
 fi
 
-aur repo --repo-list | while read -r repo_path; do
-  if repo_path=$(readlink -e "$repo_path"); then
-    repo-remove "$repo_path" "$@"
-    paccache -c "${repo_path%/*}" -rvk0 "$@"
-  fi
+aur repo --repo-list | while read -r repo_name; do
+  repo_path=$(aur repo -d "$repo_name" -p)
+  repo-remove "$repo_path" "$@"
+  paccache -c "${repo_path%/*}" -rvk0 "$@"
 done

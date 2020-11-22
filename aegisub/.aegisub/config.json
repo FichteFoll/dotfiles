@@ -105,7 +105,7 @@
 		"Wheel Default to Zoom" : false,
 		"Zoom" : {
 			"Horizontal" : 3,
-			"Vertical" : 52
+			"Vertical" : 43
 		}
 	},
 	"Automation" : {
@@ -280,6 +280,13 @@
 		},
 		"Video Dummy" : {
 			"Last Colour" : "rgb(47, 163, 254)"
+		},
+		"Visual Tools" : {
+			"Highlight Primary" : "rgb(255, 169, 40)",
+			"Highlight Secondary" : "rgb(255, 253, 185)",
+			"Lines Primary" : "rgb(187, 0, 0)",
+			"Lines Secondary" : "rgb(106, 32, 19)",
+			"Shaded Area Alpha" : 0.5
 		}
 	},
 	"Limits" : {
@@ -303,9 +310,9 @@
 			"Audio" : "",
 			"Automation" : "",
 			"Keyframes" : "/data/fansub/AFK/Made in Abyss/01",
-			"Subtitles" : "/data/fansub/AFK/Made in Abyss",
+			"Subtitles" : "/home/fichte/.config/obs-studio/logs",
 			"Timecodes" : "",
-			"Video" : "/data/fansub/AFK/Made in Abyss/01"
+			"Video" : "/data/fansub/AFK/Shoujo Kageki Revue Starlight/BD raw/03"
 		},
 		"Screenshot" : "?video"
 	},
@@ -588,10 +595,10 @@
 			]
 		},
 		"Preferences" : {
-			"Page" : 5
+			"Page" : 6
 		},
 		"Search Replace" : {
-			"Affect" : 1,
+			"Affect" : 0,
 			"Field" : 0,
 			"Match Case" : false,
 			"RegExp" : true,
@@ -628,16 +635,16 @@
 			"Last" : {
 				"Height" : 451,
 				"Width" : 993,
-				"X" : 3256,
-				"Y" : 672
+				"X" : 2832,
+				"Y" : 628
 			},
 			"Maximized" : false,
 			"Preview Text" : "Aegisub\\N0123 月語"
 		},
 		"Style Manager" : {
 			"Last" : {
-				"X" : 2807,
-				"Y" : 482
+				"X" : 2393,
+				"Y" : 436
 			},
 			"Maximized" : false
 		},
@@ -661,6 +668,10 @@
 					"OUT" : false
 				}
 			},
+			"Lead" : {
+				"IN" : 100,
+				"OUT" : 350
+			},
 			"Only Selection" : false,
 			"Threshold" : {
 				"Adjacent Gap" : 300,
@@ -676,14 +687,15 @@
 				"X" : -1,
 				"Y" : -1
 			},
-			"Maximized" : false
+			"Maximized" : false,
+			"Skip Whitespace" : true
 		},
 		"Visual" : {
 			"Autohide" : true
 		}
 	},
 	"Version" : {
-		"Last Version" : 8908,
+		"Last Version" : 9044,
 		"Next Check" : 1511040090
 	},
 	"Video" : {
@@ -705,7 +717,6 @@
 			},
 			"Pattern" : false
 		},
-		"Force BT.601" : false,
 		"Last Script Resolution Mismatch Choice" : 2,
 		"Open Audio" : true,
 		"Overscan Mask" : false,

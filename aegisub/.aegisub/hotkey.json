@@ -122,10 +122,10 @@
 		"automation/lua/kara-templater/Apply karaoke template" : [
 			"Ctrl-K"
 		],
-		"automation/lua/test2/Test" : [
-			"Ctrl-T"
+		"automation/lua/l0.DependencyControl.Toolbox/DependencyControl/Install Script" : [
+			"Ctrl-Alt-I"
 		],
-		"automation/lua/ua.ApplyFade/Apply Fade" : [
+		"automation/lua/ua.FadeWorks/FadeWorkS" : [
 			"Alt-F"
 		],
 		"automation/lua/unapply_template/Unapply karaoke template" : [
@@ -235,6 +235,9 @@
 		"video/play/line" : [
 			"Alt-KP_5"
 		],
+		"video/subtitles_provider/cycle" : [
+			"Ctrl-Shift-R"
+		],
 		"video/zoom/in" : [
 			"Ctrl-KP_Add"
 		],
@@ -264,19 +267,15 @@
 	},
 	"Subtitle Edit Box" : {
 		"edit/color/outline" : [
-			"Alt-3",
 			"Alt-3"
 		],
 		"edit/color/primary" : [
-			"Alt-1",
 			"Alt-1"
 		],
 		"edit/color/secondary" : [
-			"Alt-2",
 			"Alt-2"
 		],
 		"edit/color/shadow" : [
-			"Alt-4",
 			"Alt-4"
 		],
 		"edit/font" : [
@@ -293,8 +292,6 @@
 		],
 		"grid/line/next/create" : [
 			"Enter",
-			"Enter",
-			"KP_Enter",
 			"KP_Enter"
 		]
 	},

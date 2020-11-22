@@ -1,0 +1,63 @@
+{
+  "autoCollapseExpandSubtreeOnAttach": false,
+  "autoCollapseExpandSubtreeOnSelect": false,
+  "cachedExternalAddons": [
+    "copy-selected-tabs-to-clipboard@piro.sakura.ne.jp",
+    "save-selected-tabs-to-files@piro.sakura.ne.jp"
+  ],
+  "chunkedUserStyleRules0": "LyogU2hvdyB0aXRsZSBvZiB1bnJlYWQgdGFicyB3aXRoIHJlZCBhbmQgaXRhbGljIGZvbnQgKi8KLyoKdGFiLWl0ZW0udW5yZWFkIC5sYWJlbC1jb250ZW50IHsKICBjb2xvcjogcmVkICFpbXBvcnRhbnQ7CiAgZm9udC1zdHlsZTogaXRhbGljICFpbXBvcnRhbnQ7Cn0KKi8KCi8qIEFkZCBwcml2YXRlIGJyb3dzaW5nIGluZGljYXRvciBwZXIgdGFiICovCi50YWIucHJpdmF0ZS1icm93c2luZyAubGFiZWw6YmVmb3JlIHsKICBjb250ZW50OiAi8J+VtiI7Cn0KCi8qIE9ubHkgc2hvdyBjbG9zZSBidXR0b24gb24gaG92ZXIsIGFuZCB0aW50IHJlZCAqLwojdGFiYmFyIHRhYi1pdGVtOm5vdCg6aG92ZXIpOm5vdCguYWN0aXZlKSB0YWItY2xvc2Vib3ggewogIGRpc3BsYXk6IG5vbmU7Cn0KdGFiLWl0ZW0gdGFiLWNsb3NlYm94OmhvdmVyOjpiZWZvcmUsCnRhYi1pdGVtLmFjdGl2ZSB0YWItY2xvc2Vib3g6aG92ZXI6OmJlZm9yZSB7CiAgYmFja2dyb3VuZDogaHNsYSgwLCA3MCUsIDYwJSk7CiAgb3BhY2l0eTogMC44OyAvKiBkZWZhdWx0cyB0byAwLjEgKi8KfQoKLyogRGltIHVubG9hZGVkIHRhYnMgKi8KdGFiLWl0ZW0uZGlzY2FyZGVkIC5sYWJlbC1jb250ZW50IHsKICAgb3BhY2l0eTogMC42NTsKfQoKLyogQWRkIG1hcmdpbiBhcm91bmQgZmF2aWNvbiAqLwp0YWItaXRlbSAuZmF2aWNvbiB7CiAgbWFyZ2luLWxlZnQ6IC4yZW07CiAgbWFyZ2luLXJpZ2h0OiAuMmVtOwp9CgovKiBUYWIgY291bnRzICh1c2Ugd2l0aCA8bnVtYmVyPmd0IHZpYSB2aW1pdW0tZmYpICovCiN0YWJiYXIgewogIGNvdW50ZXItcmVzZXQ6IHZ0YWJzIGF0YWJzIHRhYnM7CiAgLyogdnRhYnMgdHJhY2tzIHZpc2libGUgdGFicywgYXRhYnMgdHJhY2tzIGFjdGl2ZSB0YWJzLCB0YWJzIHRyYWNrcyBhbGwgdGFicyAqLwp9CnRhYi1pdGVtOm5vdCguY29sbGFwc2VkKTpub3QoLmRpc2NhcmRlZCkgewogIGNvdW50ZXItaW5jcmVtZW50OiB2dGFicyBhdGFicyB0YWJzOwp9CnRhYi1pdGVtOm5vdCguY29sbGFwc2VkKSB7CiAgY291bnRlci1pbmNyZW1lbnQ6IHZ0YWJzIHRhYnM7Cn0KdGFiLWl0ZW06bm90KC5kaXNjYXJkZWQpIHsKICBjb3VudGVyLWluY3JlbWVudDogYXRhYnMgdGFiczsKfQp0YWItaXRlbSB7CiAgY291bnRlci1pbmNyZW1lbnQ6IHRhYnM7Cn0KdGFiLWl0ZW0gLmV4dHJhLWl0ZW1zLWNvbnRhaW5lci5iZWhpbmQ6OmFmdGVyIHsKICBjb2xvcjogaHNsYSgwLCAwJSwgMTAwJSwgMC42NSk7CiAgY29udGVudDogY291bnRlcih0YWJzKTsKICBmb250LXNpemU6IHh4LXNtYWxsOwogIHJpZ2h0OiAwLjJlbTsKICBwYWRkaW5nOiAwLjJlbTsKICBwb2ludGVyLWV2ZW50czogbm9uZTsKICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgYm90dG9tOiAwLjJlbTsKICB6LWluZGV4OiAxMDAwOwp9Ci5uZXd0YWItYnV0dG9uOjphZnRlciB7CiAgY29udGVudDogdmFyKC0tdGFiLWNvdW50LXRleHQpOwogIGZvbnQtc2l6ZTogc21hbGw7CiAgcG9pbnRlci1ldmVudHM6IG5vbmU7CiAgICAKICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgbGVmdDogMC41ZW07CgogIC8qIFRTVCAyLjQuMCAtIEZpeCBmb3IgSXNzdWUgIzE2NjQgKi8KICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudCAhaW1wb3J0YW50OwogIG1hc2s6IG5vbmUgIWltcG9ydGFudDsKfQoubmV3dGFiLWJ1dHRvbjpob3ZlciB7CiAgLS10YWItY291bnQtdGV4dDogY291bnRlcihhdGFicykgIi8iIGNvdW50ZXIodGFicykgIiB0YWJzIjsKfQoKLyogQXBwbHkgZ3RrIHRoZW1lIGNvbG9ycyAqLwojYmFja2dyb3VuZCB7CiAgLyogaWRrIGhvdyB0byBnZXQgdGhpcyBjb2xvciAodXNlZCBpbiBndGsgd2luZG93IHRpdGxlcykgKi8KICBiYWNrZ3JvdW5kLWNvbG9yOiAjMkMyRjNCOwp9CgovKiByZW1vdmVkIHdpdGggaHR0cHM6Ly9naXRodWIuY29tL3Bpcm9vci90cmVlc3R5bGV0YWIvY29tbWl0L2QzZDM5ZTA1NDMyZjY0NGM2ZTBlZDQ2ZTBhNmIyMTRmM2E5MzYwY2I7IHZhcmlhYmxlcyByZW5hbWVkIGxhdGVyICovCjpyb290IHsKICAtLXRhYmJhci1iZzogIzJDMkYzQjsKICAtLXRhYi1zdXJmYWNlLXJlZ3VsYXI6IC1tb3otRGlhbG9nOwogIC8qLS10YWItc3VyZmFjZS1hY3RpdmU6IC1tb3otQ2VsbEhpZ2hsaWdodDsqLwogIC0tdGFiLXRleHQtcmVndWxhcjogLW1vei1EaWFsb2dUZXh0OwogIC0tdGFiLWJvcmRlcjogVGhyZWVEU2hhZG93OwogIC0tdGFiLXNpZGUtYm9yZGVyOiBUaHJlZURMaWdodFNoYWRvdzsKICAtLXRhYi1zdXJmYWNlLWhvdmVyOiAtbW96LUJ1dHRvbkhvdmVyRmFjZTsKICAtLXRhYi1kcm9wbWFya2VyOi1tb3otRGlhbG9nVGV4dDsKfQoK",
+  "configsVersion": 16,
+  "faviconizePinnedTabs": false,
+  "lastConfirmedToCloseTabs": 1601229892106,
+  "lastDraggedTabs": {
+    "tabIds": [
+      7
+    ],
+    "urlsDigest": "29134cd18f3c9abead854d437350efebdd32010f"
+  },
+  "migratedBookmarkUrls": [
+    "moz-extension://8e049a6e-ac6a-4156-a17a-9d650e48488b/resources/group-tab.html",
+    "moz-extension://8e049a6e-ac6a-4156-a17a-9d650e48488b/options/options.html",
+    "moz-extension://8e049a6e-ac6a-4156-a17a-9d650e48488b/resources/startup.html",
+    "moz-extension://8e049a6e-ac6a-4156-a17a-9d650e48488b/tests/runner.html",
+    "moz-extension://8e049a6e-ac6a-4156-a17a-9d650e48488b/sidebar/sidebar.html"
+  ],
+  "notifiedFeaturesVersion": 7,
+  "optionsExpandedGroups": [
+    "group-importedConfigsFromLegacy",
+    "group-importedTreeStructureFromLegacy"
+  ],
+  "optionsExpandedSections": [
+    "section-appearance",
+    "section-advanced",
+    "section-contextMenu",
+    "section-addons",
+    "section-shortcuts",
+    "section-drag",
+    "section-debug"
+  ],
+  "parentTabBehaviorForChanges": 1,
+  "syncDeviceInfo": {
+    "id": "device-1605033860489-36901",
+    "name": "Firefox on Linux",
+    "icon": "device-desktop",
+    "timestamp": 1605633062781
+  },
+  "syncDevices": {
+    "device-1605033860489-36901": {
+      "id": "device-1605033860489-36901",
+      "name": "Firefox on Linux",
+      "icon": "device-desktop",
+      "timestamp": 1605633062781
+    }
+  },
+  "syncDevicesLocalCache": {
+    "device-1605033860489-36901": {
+      "id": "device-1605033860489-36901",
+      "name": "Firefox on Linux",
+      "icon": "device-desktop",
+      "timestamp": 1605633062781
+    }
+  },
+  "userStyleRules": ""
+}

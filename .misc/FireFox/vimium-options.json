@@ -12,12 +12,28 @@
     {
       "pattern": "https?://animemusicquiz.com/*",
       "passKeys": ""
+    },
+    {
+      "pattern": "https?://app.roll20.net/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://openings.moe/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://www.figma.com/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://vtt.kageru.moe/*",
+      "passKeys": ""
     }
   ],
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "map et LinkHints.activateModeToOpenInNewForegroundTab\nmap zp togglePinTab\nmap zm toggleMuteTab\nmap I passNextKey\nmap J nextTab\nmap K previousTab\nmap yd LinkHints.activateModeToDownloadLink",
+  "keyMappings": "map F LinkHints.activateModeToOpenInNewForegroundTab\nmap et LinkHints.activateModeToOpenInNewTab\nmap zp togglePinTab\nmap zm toggleMuteTab\nmap I passNextKey\nmap J nextTab\nmap K previousTab\nmap yd LinkHints.activateModeToDownloadLink\nmap gn firstTab",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",

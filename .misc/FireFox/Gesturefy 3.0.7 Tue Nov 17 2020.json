@@ -1,0 +1,374 @@
+{
+  "Blacklist": [
+    "https://vtt.kageru.moe/*"
+  ],
+  "Gestures": [
+    {
+      "pattern": [
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          0
+        ]
+      ],
+      "command": {
+        "name": "SaveImage",
+        "settings": {
+          "promptDialog": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          1
+        ]
+      ],
+      "command": {
+        "name": "OpenLinkInNewTab",
+        "settings": {
+          "focus": false,
+          "emptyTab": false
+        }
+      },
+      "label": "Open link in background tab"
+    },
+    {
+      "pattern": [
+        [
+          0,
+          -1
+        ]
+      ],
+      "command": {
+        "name": "OpenLinkInNewTab",
+        "settings": {
+          "focus": true,
+          "emptyTab": false
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "command": {
+        "name": "OpenImageInNewTab",
+        "settings": {
+          "position": "default",
+          "focus": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          -1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "command": {
+        "name": "URLLevelUp"
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          -1
+        ],
+        [
+          -1,
+          0
+        ]
+      ],
+      "command": {
+        "name": "FocusLeftTab"
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          -1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "command": {
+        "name": "FocusRightTab"
+      }
+    },
+    {
+      "pattern": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "command": {
+        "name": "ScrollPageDown",
+        "settings": {
+          "duration": 300
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "command": {
+        "name": "ScrollPageUp",
+        "settings": {
+          "duration": 300
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "command": {
+        "name": "ScrollBottom",
+        "settings": {
+          "duration": 100
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "command": {
+        "name": "ScrollTop",
+        "settings": {
+          "duration": 100
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          1,
+          0
+        ]
+      ],
+      "command": {
+        "name": "PageForth"
+      }
+    },
+    {
+      "pattern": [
+        [
+          -1,
+          0
+        ]
+      ],
+      "command": {
+        "name": "PageBack"
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "command": {
+        "name": "RestoreTab",
+        "settings": {
+          "currentWindow": false
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "command": {
+        "name": "CloseTab",
+        "settings": {
+          "nextFocus": "default",
+          "closePinned": false
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "command": {
+        "name": "ReloadTab",
+        "settings": {
+          "cache": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "command": {
+        "name": "ReloadTab",
+        "settings": {
+          "cache": false
+        }
+      }
+    }
+  ],
+  "Settings": {
+    "Gesture": {
+      "mouseButton": "2",
+      "suppressionKey": "",
+      "distanceThreshold": 10,
+      "distanceSensitivity": 10,
+      "Timeout": {
+        "active": false,
+        "duration": 1
+      },
+      "Trace": {
+        "display": true,
+        "Style": {
+          "opacity": 0.8,
+          "strokeStyle": "#00AAA0cc",
+          "lineWidth": 10,
+          "lineGrowth": true
+        }
+      },
+      "Directions": {
+        "display": true,
+        "Style": {
+          "color": "#FFFFFF",
+          "backgroundColor": "#000000",
+          "backgroundOpacity": 0.2,
+          "fontSize": "3vh",
+          "textAlign": "left"
+        }
+      },
+      "Command": {
+        "display": true,
+        "Style": {
+          "backgroundColor": "#00000026",
+          "backgroundOpacity": 0.15,
+          "fontSize": "2vh",
+          "fontColor": "#FFFFFFff"
+        }
+      }
+    },
+    "Rocker": {
+      "active": false,
+      "leftMouseClick": {
+        "name": "PageBack"
+      },
+      "rightMouseClick": {
+        "name": "PageForth"
+      }
+    },
+    "Wheel": {
+      "active": true,
+      "mouseButton": "2",
+      "wheelUp": {
+        "name": "FocusLeftTab",
+        "settings": {
+          "cycling": false,
+          "excludeDiscarded": false
+        }
+      },
+      "wheelDown": {
+        "name": "FocusRightTab",
+        "settings": {
+          "cycling": false,
+          "excludeDiscarded": false
+        }
+      }
+    },
+    "General": {
+      "updateNotification": true,
+      "theme": "dark"
+    }
+  }
+}

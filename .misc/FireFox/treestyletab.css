@@ -91,6 +91,6 @@ tab-item .extra-items-container.behind::after {
   --tab-border: ThreeDShadow;
   --tab-side-border: ThreeDLightShadow;
   --tab-surface-hover: -moz-ButtonHoverFace;
-  --tab-dropmarker: -moz-DialogText;
+  --tab-dropmarker:-moz-DialogText;
 }
 

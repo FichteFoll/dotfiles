@@ -45,24 +45,6 @@
     width = 2
     color = "#aaaaaa"
 
-[shortcuts]
-    # Shortcuts are specified as [modifier+][modifier+]...key
-    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-    # "mod3" and "mod4" (windows-key).
-    # Xev might be helpful to find names for keys.
-
-    # Close notification.
-    close = mod4+n
-
-    # Close all notifications.
-    close_all = mod4+ctrl+mod1+n
-
-    # Redisplay last message(s).
-    history = mod4+shift+n
-
-    # Context menu.
-    context = mod4+mod1+n
-
 [urgency_low]
     background = "#222222"
     foreground = "#888888"

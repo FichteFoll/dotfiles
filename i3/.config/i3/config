@@ -253,6 +253,12 @@ bindsym XF86MonBrightnessUp exec ~/bin/backlightctl inc $backlight_step && pkill
 bindsym XF86MonBrightnessDown exec ~/bin/backlightctl dec $backlight_step && pkill -RTMIN+11 i3blocks
 
 
+# Notification Management #
+bindsym $mod+n exec --no-startup-id dunstctl close
+bindsym $mod+ctrl+$alt+n exec --no-startup-id dunstctl close-all
+bindsym $mod+shift+n exec --no-startup-id dunstctl history-pop
+bindsym $mod+$alt+n exec --no-startup-id dunstctl context
+
 # window-specific settings #
 
 # for_window [class="Doublecmd" title="Copying|Moving|Deleting|File operations|Options"] floating enable

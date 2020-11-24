@@ -1,11 +1,7 @@
 .include /etc/pulse/default.pa
 unload-module module-role-cork
 
-# Stream setup
-# Add a remap sink to the default sink that is looped back to a recording sink,
-# along with a loopback for the mic whose monitor can be recorded.
-load-module module-remap-sink sink_name=default_record master=default sink_properties="device.description='Default+Record'"
-
-load-module module-null-sink sink_name=record sink_properties="device.description='Record'"
-load-module module-loopback source=default_record.monitor sink=record
-load-module module-loopback source="alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y77R9F80B6C053-00.analog-stereo" sink=record
+# Noise cancelling
+# https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index45h3
+load-module module-echo-cancel source_name=usb-echo-cancelled
+set-default-source usb-echo-cancelled

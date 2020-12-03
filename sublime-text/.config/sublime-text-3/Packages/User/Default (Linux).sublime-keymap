@@ -21,8 +21,8 @@
   // { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
   // SciTE's 'KP_-' behaviour || previously "ctrl+/" and "ctrl+shift+/" (-> "#" key)
-  { "keys": ["keypad_minus"], "command": "toggle_comment", "args": { "block": false } },
-  { "keys": ["ctrl+shift+keypad_minus"], "command": "toggle_comment", "args": { "block": true } },
+  { "keys": ["keypad_minus"], "command": "toggle_comment", "args": {"block": false} },
+  { "keys": ["ctrl+shift+keypad_minus"], "command": "toggle_comment", "args": {"block": true} },
 
   // Diff hunks
   { "keys": ["ctrl+k", "ctrl+altgr+s"], "command": "toggle_inline_diff" },
@@ -34,23 +34,23 @@
 
   // allow [] to trigger "Add Line in Braces.sublime-macro" (mainly for json)
   { "keys": ["enter"], "command": "run_macro_file",
-    "args": {"file": "Packages/Default/Add Line in Braces.sublime-macro"},
+    "args": { "file": "Packages/Default/Add Line in Braces.sublime-macro" },
     "context": [
-      { "key": "setting.auto_indent", "operator": "equal", "operand": true },
-      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "setting.auto_indent", "operand": true },
+      { "key": "selection_empty", "operand": true, "match_all": true },
       { "key": "preceding_text", "operator": "regex_contains", "operand": "[\\{\\[]$", "match_all": true },
-      { "key": "following_text", "operator": "regex_contains", "operand": "^[\\}\\]]", "match_all": true }
-    ]
+      { "key": "following_text", "operator": "regex_contains", "operand": "^[\\}\\]]", "match_all": true },
+    ],
   },
 
   // Auto-complete popup
   { "keys": ["ctrl+space"], "command": "auto_complete", "args": {"disable_auto_insert": true} },
   { "keys": ["ctrl+space"], "command": "replace_completion_with_auto_complete",
     "context": [
-      { "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
-      { "key": "auto_complete_visible", "operator": "equal", "operand": false },
-      { "key": "setting.tab_completion", "operator": "equal", "operand": true }
-    ]
+      { "key": "last_command", "operand": "insert_best_completion" },
+      { "key": "auto_complete_visible", "operand": false },
+      { "key": "setting.tab_completion", "operand": true },
+    ],
   },
 
   // Word wrapping
@@ -73,8 +73,8 @@
     {
       "cols": [0.0, 0.5, 1.0],
       "rows": [0.0, 0.8, 1.0],
-      "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [0, 1, 2, 2]]
-    }
+      "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [0, 1, 2, 2]],
+    },
   },
 
   // goto definition
@@ -82,11 +82,11 @@
 
   // command palette
   { "keys": ["ctrl+alt+s"], "command": "show_overlay",
-    "args": {"overlay": "command_palette", "text": "Set Syntax: "} },
+    "args": { "overlay": "command_palette", "text": "Set Syntax: " } },
   { "keys": ["ctrl+alt+b"], "command": "show_overlay",
-    "args": {"overlay": "command_palette", "text": "Build With: "} },
+    "args": { "overlay": "command_palette", "text": "Build With: " } },
   { "keys": ["ctrl+alt+g"], "command": "show_overlay",
-    "args": {"overlay": "command_palette", "text": "git: "} },
+    "args": { "overlay": "command_palette", "text": "git: " } },
 
   // make the "Build: Cancel" binding accessable
   { "keys": ["pause"], "command": "cancel_build" },
@@ -98,15 +98,15 @@
   { "keys": ["ctrl+f4"], "command": "show_panel", "args": {"panel": "output.exec"} },
   { "keys": ["ctrl+f4"], "command": "hide_panel", "args": {"panel": "output.exec"},
     "context": [
-      { "key": "panel", "operand": "output.exec" }
-    ]
+      { "key": "panel", "operand": "output.exec" },
+    ],
   },
 
   // toggle selection in find panel
   { "keys": ["alt+s"], "command": "toggle_in_selection",
     "context": [
-      { "key": "setting.is_widget", "operator": "equal", "operand": true }
-    ]
+      { "key": "setting.is_widget", "operand": true },
+    ],
   },
 
   { "keys": ["ctrl+alt+f"], "command": "slurp_find_string" },
@@ -116,35 +116,35 @@
   // Auto-pair escaped curly brackets in tex
   { "keys": ["{"], "command": "insert_snippet", "args": {"contents": "{$0\\\\}"},
     "context": [
-      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "setting.auto_match_enabled", "operand": true },
+      { "key": "selection_empty", "operand": true, "match_all": true },
       { "key": "preceding_text", "operator": "regex_contains", "operand": "\\\\$", "match_all": true },
       { "key": "following_text", "operator": "regex_contains", "operand": "^(\\s|\\)|]|\\}|\\\\|$)", "match_all": true },
-      { "key": "selector", "operand": "text.tex", "match_all": true }
-    ]
+      { "key": "selector", "operand": "text.tex", "match_all": true },
+    ],
   },
   { "keys": ["backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/User/Delete Left Right Twice.sublime-macro"},
     "context": [
-      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "setting.auto_match_enabled", "operand": true },
+      { "key": "selection_empty", "operand": true, "match_all": true },
       { "key": "preceding_text", "operator": "regex_contains", "operand": "\\\\\\{$", "match_all": true },
       { "key": "following_text", "operator": "regex_contains", "operand": "^\\\\\\}", "match_all": true },
-      { "key": "selector", "operand": "text.tex", "match_all": true }
-    ]
+      { "key": "selector", "operand": "text.tex", "match_all": true },
+    ],
   },
-  { "keys": ["^"], "command": "insert_snippet", "args": {"contents": "^{${1:$SELECTION}}$0"},
+  { "keys": ["^"], "command": "insert_snippet", "args": {"contents": "^{${1:$SELECTION}}$0" },
     "context": [
-      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
-      { "key": "selector", "operator": "equal", "operand": "text.tex meta.environment.math" },
-    ]
+      { "key": "setting.auto_match_enabled", "operand": true },
+      { "key": "selection_empty", "operand": false, "match_all": true },
+      { "key": "selector", "operand": "text.tex meta.environment.math" },
+    ],
   },
   { "keys": ["_"], "command": "insert_snippet", "args": {"contents": "_{${1:$SELECTION}}$0"},
     "context": [
-      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
-      { "key": "selector", "operator": "equal", "operand": "text.tex meta.environment.math" },
-    ]
+      { "key": "setting.auto_match_enabled", "operand": true },
+      { "key": "selection_empty", "operand": false, "match_all": true },
+      { "key": "selector", "operand": "text.tex meta.environment.math" },
+    ],
   },
 
   // multi-selection (from Windows bindings)
@@ -160,34 +160,34 @@
 
   // testing
   // { "keys": ["ctrl+super+c"], "command": "convert_csscheme" },
-  // { "keys": ["ctrl+shift+b"], "command": "build", "args": {"variant": "Run"} },
+  // { "keys": ["ctrl+shift+b"], "command": "build", "args": {"variant": "Run" } },
   // { "keys": ["alt+shift+w"], "command": "insert_snippet", "args": { "name": "Packages/XML/long-tag.sublime-snippet" } },
   // the following crashes, do not test!
-  //{ "keys": ["ctrl+l"], "command": "insert_snippet", "args": {"contents": "${1/./=/g}"} },
-  //{ "keys": ["ctrl+h+r"], "command": "submit_code"},
+  //{ "keys": ["ctrl+l"], "command": "insert_snippet", "args": {"contents": "${1/./=/g}" } },
+  //{ "keys": ["ctrl+h+r"], "command": "submit_code" },
   // { "keys": ["enter"], "command": "jsdocs",
   //   "context": [
-  //     { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
-  //     { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*(\\/\\*|###)[*!]\\s*$", "match_all": true }
-  //   ]
+  //     { "key": "selection_empty", "operand": true, "match_all": true },
+  //     { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*(\\/\\*|###)[*!]\\s*$", "match_all": true },
+  //   ],
   // },
 
   // this is a test
   { "keys": [")"], "command": "run_macro_file",
-    "args": {"file": "Packages/User/Delete Right and Move Right.sublime-macro"},
+    "args": { "file": "Packages/User/Delete Right and Move Right.sublime-macro" },
     "context": [
-      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+      { "key": "setting.auto_match_enabled", "operand": true },
       { "key": "selection_empty", "operator": "not_equal", "operand": true, "match_all": true},
-      { "key": "eval: view.substr(sel.end()) != ')'", "match_all": true}
-    ]
+      { "key": "eval: view.substr(sel.end()) != ')'", "match_all": true},
+    ],
   },
 
 
   // Python help file
   { "keys": ["ctrl+super+d"], "command": "python_print",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "source.python"}
-    ]
+      { "key": "selector", "operand": "source.python" },
+    ],
   },
 
   // test.py
@@ -202,25 +202,25 @@
   // quick rulers
   { "keys": ["alt+r"], "command": "quick_rulers",
     "context": [
-      { "key": "setting.is_widget", "operator": "equal", "operand": false }
-    ]
+      { "key": "setting.is_widget", "operand": false },
+    ],
   },
 
 // other plugins:
 
   // select until
-  { "keys": ["alt+shift+g"], "command": "select_until", "args": { "extend": false } },
+  { "keys": ["alt+shift+g"], "command": "select_until", "args": {"extend": false} },
 
   // python doc strings
   { "keys": ["ctrl+k", "ctrl+p"], "command": "fold_python_docstrings",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "source.python"}
-    ]
+      { "key": "selector", "operand": "source.python" },
+    ],
   },
   { "keys": ["ctrl+k", "ctrl+shift+p"], "command": "unfold_python_docstrings",
     "context": [
-      {"key": "selector", "operator": "equal", "operand": "source.python"}
-    ]
+      { "key": "selector", "operand": "source.python" },
+    ],
   },
 
   // Package Control
@@ -229,8 +229,8 @@
   // PlainTasks
   { "keys": ["alt+x"], "command": "plain_tasks_complete",
     "context": [
-      { "key": "selector", "operator": "equal", "operand": "text.todo" }
-    ]
+      { "key": "selector", "operand": "text.todo" },
+    ],
   },
 
   // switch to file
@@ -247,7 +247,7 @@
   { "keys": ["ctrl+alt+c"], "command": "cycle_through_regions" },
   { "keys": ["ctrl+alt+u"], "command": "add_last_selection" },
   // { "keys": ["alt+s", "a"], "command": "add_last_selection" },
-  { "keys": ["alt+f", "f"], "command": "selection_fields" , "args": {"only_other": true}},
+  { "keys": ["alt+f", "f"], "command": "selection_fields" , "args": {"only_other": true} },
   { "keys": ["alt+f", "a"], "command": "selection_fields", "args": {"mode": "add"} },
   { "keys": ["alt+f", "s"], "command": "selection_fields", "args": {"mode": "subtract"} },
   { "keys": ["alt+s", "p"], "command": "remove_empty_regions" }, // prune
@@ -270,8 +270,8 @@
     "args": {
       "lines": true,
       "plugin": { "command": "bh_modules.swapquotes",
-                  "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"] }
-    }
+                  "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"] },
+    },
   },
 
   // Scope Hunter
@@ -290,8 +290,8 @@
   { "keys": ["ctrl+k", "f"],
     "command": "sublime_linter_addon_cycle_filter_patterns",
     "args": {
-      "patterns": ["-annotations:", "annotations:", ""]
-    }
+      "patterns": ["-annotations:", "annotations:", ""],
+    },
   },
   { "keys": ["ctrl+k", "h"], "command": "sublime_linter_toggle_highlights" },
 ]

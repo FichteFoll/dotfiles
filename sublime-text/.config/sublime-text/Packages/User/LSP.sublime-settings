@@ -1,0 +1,51 @@
+{
+	"clients":
+	{
+		"pyls":
+		{
+			"enabled": false,
+			"settings":
+			{
+				"pyls":
+				{
+					"plugins":
+					{
+						"flake8":
+						{
+							"enabled": false,
+						},
+						"mccabe":
+						{
+							"enabled": false,
+						},
+						"pycodestyle":
+						{
+							"enabled": false,
+						},
+						"pydocstyle":
+						{
+							"enabled": false,
+						},
+						"pyflakes":
+						{
+							"enabled": false,
+						},
+					},
+				},
+			},
+		},
+		"rust-analyzer":
+		{
+			"enabled": true
+		},
+	},
+	"diagnostics_highlight_style": "box",
+	"document_highlight_style": "box",
+	"only_show_lsp_completions": true,
+	"show_diagnostics_severity_level": 2,
+	"show_code_actions": "bulb",
+	"show_symbol_action_links": true,
+	"log_debug": true,
+	"log_stderr": true,
+	"log_server": ["panel"],
+}

@@ -103,3 +103,7 @@
     margin-left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 0.18rem);
     /*idk where the 0.18 comes from */
 }
+
+[class*=replyBadge] {
+    display: none;
+}

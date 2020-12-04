@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+# Inspired by https://git.fleshless.org/misc/tree/i3lock-extra
+
+import argparse
+from functools import partial
+import logging
+from pathlib import Path
+import os
+import subprocess
+import sys
+from typing import List
+
+
+logger = logging.getLogger(__name__)
+tmpdir = Path(f"/run/user/{os.getuid()}/i3lock-shot")
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Prepare an image to be used with i3lock. Outputs path on stdout.",
+    )
+    parser.add_argument("-u", "--umask", type=partial(int, base=8), default=0o077,
+                        help="User mask for created files. Base 8.")
+    parser.add_argument("-d", "--tmpdir", type=Path, default=tmpdir,
+                        help="Directory to store temporary files in.")
+    parser.add_argument("-i", "--image-file", type=Path,
+                        help="Use the provided image instead of making a screenshot.")
+    parser.add_argument("-g", "--grayscale", action='store_true',
+                        help="Apply a grayscale filter.")
+    parser.add_argument("-p", "--pixelize", action='store_true',
+                        help="Apply a pixelize filter.")
+    parser.add_argument("-P", "--pixelize-scale", type=float, default=10,
+                        help="Set the amount by which the image is down and upscaled"
+                        " using nearest neighbor to achieve the pixelize effect.")
+    parser.add_argument("-b", "--blur", action='store_true',
+                        help="Apply a blur filter.")
+    parser.add_argument("-t", "--tint", nargs=2, metavar=("color", "percent"),
+                        help="Tint image with the provided color and percentage.")
+
+    return parser.parse_args()
+
+
+def build_filter_chain(params: argparse.Namespace) -> List[str]:
+    filters: List[str] = []
+
+    if params.grayscale:
+        filters += ["-grayscale", "rec601luma"]
+
+    if params.pixelize:
+        filters += [
+            "-scale", f"{100 / params.pixelize_scale}%",
+            "-scale", f"{100 * params.pixelize_scale}%",
+        ]
+
+    if params.blur:
+        filters += ["-blur", "4x8"]
+
+    if params.tint:
+        filters += [
+            "-fill", params.tint[0],
+            "-colorize", params.tint[1],
+        ]
+
+    return filters
+
+
+def screenshot(target_path: Path):
+    subprocess.check_call(["scrot", "--overwrite", target_path])
+
+
+def apply_filters(filters: List[str], source_path: Path, target_path: Path):
+    subprocess.check_call(["convert", source_path, *filters, target_path])
+
+
+def main(args: List[str]) -> int:
+    params = parse_args()
+    os.umask(params.umask)
+    params.tmpdir.mkdir(parents=True, exist_ok=True)
+
+    if not params.image_file:
+        params.image_file = params.tmpdir / "shot.png"
+        screenshot(params.image_file)
+    elif not params.image_file.is_file():
+        logger.error("Provided image is not a file")
+        return 1
+
+    filters = build_filter_chain(params)
+    if filters:
+        bg_file = params.tmpdir / "bg.png"
+        apply_filters(filters, params.image_file, bg_file)
+    else:
+        bg_file = params.image_file
+
+    print(bg_file)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

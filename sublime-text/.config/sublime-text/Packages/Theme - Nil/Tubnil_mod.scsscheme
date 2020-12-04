@@ -1,0 +1,329 @@
+// Foundation
+* {
+    background: #131415;
+    caret: #FFFFFF;
+    foreground: #DAD6CD;
+    inactiveSelection: #ba44e73d;
+    // invisibles: #4040FF;
+    lineHighlight: #7B10552B;
+    selection: #ba44e76d;
+    selectionBorder: #c862e687;
+    /*shadowWidth: 32;
+    shadow: #f00;*/
+    tagsOptions: stippled_underline;
+}
+
+comment {
+    @name "Comment";
+    foreground: #747166;
+}
+
+keyword {
+    @name "Keyword";
+    foreground: #00D2E5;
+
+    &.operator {
+        @name "Operator";
+        foreground: #3D8F9A;
+    }
+
+    &.control {
+        @name "Keyword: Control";
+        foreground: #CB6A27;
+
+        &.import {
+            @name "Keyword: Import";
+            foreground: #CE3097;
+        }
+    }
+}
+
+keyword.control.memory,
+support.function.memory {
+    @name "Keyword: Memory";
+    foreground: #E23D36;
+    background: #351211;
+}
+
+storage {
+    // TODO differ more from keyword.control
+    // TODO something fore storage.modifier?
+    @name "Storage";
+    foreground: #E45B3E;
+}
+
+keyword.declaration {
+    foreground: #E45B3E;
+    background: #E45B3E28;
+}
+
+entity {
+    @name "Entity (fallback)";
+    foreground: #F26FBC;
+}
+
+entity.name.function,
+entity.name.class,
+entity.name.namespace,
+entity.name.interface,
+entity.name.enum,
+entity.name.trait,
+entity.name.section,
+// entity.name.type,
+entity.other.document {
+    @name "Entity special cases (big sections)";
+    background: #4A0A2F;
+}
+
+// entity.name.other {
+//     @name "Entity.Name.Other (definition)";
+//     background: #4A0A2F30;
+// }
+
+constant.numeric {
+    @name "Number";
+    foreground: #99CC66;
+}
+
+string {
+    @name "String";
+    foreground: #A9D158;
+}
+
+// string and interpolated string punctuation
+punctuation.section.interpolation,
+punctuation.definition.string/*.begin,
+punctuation.definition.string.end*/ {
+    @name "String Punctuation";
+    foreground: #E882B2;
+}
+
+variable.language,
+variable.other \- variable.other.readwrite \- variable.other.object.js \- variable.other.member \- variable.other.lua,
+string variable.other,
+variable.other.readwrite.shell,
+variable.label,
+variable.parameter \- variable.parameter.option.shell {
+    @name "Variable";
+    foreground: #3399CC;
+}
+variable.parameter.option.shell {
+    foreground: #7f8ee5;
+}
+
+// variable \- variable.other.readwrite,
+support.variable {
+    // TODO barely different
+    @name "Variable: Support";
+    foreground: #1786BD;
+}
+
+variable.function,
+variable.annotation {
+    @name "Functions (usage) and annotations";
+    fontStyle: italic;
+}
+
+constant {
+    @name "Constant";
+    foreground: #34A2D9;
+    // TODO much blue here
+    &.language {
+        @name "Constant (built-in)";
+        foreground: #3399CC;
+    }
+
+    &.character {
+        @name "String characters/escapes";
+        foreground: #797BE6;
+    }
+}
+
+variable.other.constant,
+variable.constant {
+    @name "User-defined constant";
+    // foreground: #99CC33;
+    foreground: #4ed3a3; // #9ED34E
+}
+
+support {
+    foreground: #C278D4;
+
+    &.function {
+        @name "Library function";
+        foreground: #7ACA3B;
+    }
+
+    &.type, &.class, &.interface {
+        @name "Library type";
+        foreground: #6E9CBE;
+    }
+
+    &.constant {
+        @name "Library constant";
+        foreground: #99CC33;
+    }
+}
+
+//meta.tag,
+punctuation.definition.tag,
+declaration.tag,
+entity.name.tag,
+entity.other.attribute-name {
+    @name "Markup tag";
+    foreground: #7f8ee5;
+}
+
+meta.mapping.key string {
+    @name "Mapping key (string)";
+    foreground: #7f8ee5;
+}
+
+invalid {
+    @name "Invalid";
+    foreground: #FFFFFF;
+    background: #CC0000;
+}
+
+invalid.deprecated {
+    @name "Invalid";
+    foreground: #FFFFFF;
+    background: #CC0000A0;
+}
+
+// This is a very complex selector because html embedding sucks
+\(source source,
+text source \- text.html\)
+\- \(source.js.embedded.html, source.css.embedded.html, source.sass.embedded.html\),
+markup.raw \- punctuation.definition.raw {
+    @name "Embedded Source";
+    background: #ffffff10;
+}
+
+// annotations
+meta.annotation {
+    @name "Annotations";
+    background: hsl(40, 5%, 12%);
+    // fontStyle: italic;
+}
+
+
+// Markup
+markup {
+    &.inserted {
+        @name "Diff Add";
+        foreground: #cae297;
+        background: #11401b;
+    }
+    &.deleted {
+        @name "Diff Remove";
+        foreground: #fdc3ba;
+        background: #531c16;
+    }
+    &.changed {
+        @name "Diff Change";
+        foreground: #f3e09c;
+        background: #49410d;
+    }
+}
+
+punctuation.definition.unchanged.diff {
+    @name "Diff Unchanged Line";
+    background: #4e1c6b;
+}
+
+markup {
+    &.italic {
+        fontStyle: italic;
+    }
+    &.bold {
+        fontStyle: bold;
+    }
+}
+
+markup.warning,
+sublimelinter.mark.warning {
+    foreground: #d1b00f;
+}
+
+markup.error,
+sublimelinter.mark.error {
+    foreground: #c62b0f;
+}
+
+markup.underline.link {
+    foreground: #34A2D9;
+}
+
+// Syntax-specific stuff
+meta.package,
+storage.modifier.package,
+keyword.other.package {
+    @name "Java: Package";
+    foreground: #00F6FF;
+    background: #00312F;
+}
+
+punctuation.definition.link,
+markup.strikethrough,
+punctuation.definition.heading {
+    @name "Markdown: Dimming";
+    foreground: #DAD6CDA0;
+}
+
+punctuation.definition.italic,
+punctuation.definition.bold {
+    @name "Markdown: Punctuation 'operators'";
+    foreground: #3D8F9A;
+}
+
+punctuation.definition.image,
+punctuation.definition.list_item,
+{
+    @name "Markdown: 'Flow' Punctuation";
+    foreground: #CB6A27;
+}
+
+meta.separator.thematic-break {
+    @name "Markdown: horizontal line";
+    background: #ffffff10;
+}
+
+text.tex punctuation.definition.table {
+    @name "Latex Tables";
+    foreground: #E882B2;
+}
+
+// Diff stuff
+meta.diff.git-commit {
+    @name "Git-Diff Background";
+    background: #22172b;
+}
+
+meta.diff.header,
+meta.separator.diff,
+meta.diff.index,
+meta.diff.range {
+    @name "Diff: Header";
+    background: #0b437a;
+}
+
+// GitGutter
+markup {
+    &.deleted.git_gutter {
+        @name "GitGutter deleted";
+        foreground: #E45B3E;
+    }
+    &.inserted.git_gutter {
+        @name "GitGutter inserted";
+        foreground: #A9D158;
+    }
+    &.changed.git_gutter {
+        @name "GitGutter changed";
+        foreground: #FFCC33;
+    }
+}
+
+test.bg {
+    background: #FFF;
+}

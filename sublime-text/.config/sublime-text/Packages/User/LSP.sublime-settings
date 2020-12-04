@@ -42,7 +42,7 @@
 	"diagnostics_highlight_style": "box",
 	"document_highlight_style": "box",
 	"only_show_lsp_completions": true,
-	"show_diagnostics_severity_level": 2,
+	"show_diagnostics_severity_level": 3,
 	"show_code_actions": "bulb",
 	"show_symbol_action_links": true,
 	"log_debug": true,

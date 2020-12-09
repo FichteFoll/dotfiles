@@ -3,5 +3,5 @@ unload-module module-role-cork
 
 # Noise cancelling
 # https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index45h3
-load-module module-echo-cancel source_name=usb-echo-cancelled
-set-default-source usb-echo-cancelled
+load-module module-echo-cancel source_name=echo-cancelled
+set-default-source echo-cancelled

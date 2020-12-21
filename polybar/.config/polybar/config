@@ -408,7 +408,7 @@ ramp-foreground = ${colors.prefix}
 
 [module/updates]
 type = custom/script
-exec = num=$(checkupdates | tee /tmp/updates | wc -l); ((num > 0)) && echo $num
+exec = num=$(checkupdates 2>/dev/null | tee /tmp/updates | wc -l); ((num > 0)) && echo $num
 interval = 300
 click-left = cut /tmp/updates -d" " -f1 | ~/.config/polybar/scripts/polyyadfile
 

@@ -1,0 +1,135 @@
+#!/usr/bin/env python
+
+import argparse
+from collections import defaultdict
+import difflib
+import os
+import re
+from pathlib import Path
+import time
+from typing import NamedTuple, Optional
+
+from colorama import init as c_init, Fore, Style
+
+
+class Episode(NamedTuple):
+    path: Path
+    ep: int
+    version: float
+    mtime: float
+
+    @classmethod
+    def from_path(cls, path: Path) -> Optional['Episode']:
+        if m := re.match(r".*(?:E|- )(\d\d)(?:v(\S+))?", path.name):
+            ep, version = m.groups()
+            return cls(
+                path,
+                int(ep),
+                float(version) if version else 1,
+                path.stat().st_mtime,
+            )
+        else:
+            return None
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("base_dir", type=Path)
+    return parser.parse_args()
+
+
+def main() -> None:
+    params = parse_args()
+    c_init()  # for Windows
+    for dirpath_str, _, filenames in os.walk(params.base_dir):
+        episodes = defaultdict(list)
+        dirpath = Path(dirpath_str)
+        for name in filenames:
+            if ep := Episode.from_path(dirpath / name):
+                episodes[ep.ep].append(ep)
+
+        if episodes:
+            print(f"Processing {dirpath}")
+        for ep_num, entries in episodes.items():
+            if len(entries) > 1:
+                entries.sort(key=lambda x: x.mtime, reverse=True)
+
+                print(f" Choices for episode {ep_num}:")
+                print_episodes(entries)
+
+                while True:
+                    try:
+                        line = input(f" File to keep, default 1 [1-{len(entries)}, skip]: ")
+                        if line in ("skip", "s"):
+                            break
+                        elif not line:
+                            choice = 1
+                        elif line.isdigit():
+                            choice = int(line)
+                            if not (1 <= choice <= len(entries)):
+                                print(" Number out of range!")
+                                continue
+                        else:
+                            continue
+                    except (EOFError, KeyboardInterrupt):
+                        print("\naborted")
+                        return
+                    except ValueError:
+                        continue
+
+                    to_delete = entries[0:choice - 1] + entries[choice:]
+                    for ep in to_delete:
+                        print(f"  Removing {Fore.RED}{ep.path.name}{Style.RESET_ALL}")
+                        ep.path.unlink()
+                    print()
+                    break
+
+
+def print_episodes(episodes):
+    # diff filenames
+    base, *rest = (e.path.name for e in episodes)
+    base_markers = []
+    rest_markers = []
+    matcher = difflib.SequenceMatcher(a=base)
+    for other in rest:
+        matcher.set_seq2(other)
+        other_markers = []
+        for (tag, i1, i2, j1, j2) in matcher.get_opcodes():
+            if tag in ('replace', 'delete'):
+                base_markers.append((i1, i2))
+            if tag in ('replace', 'insert'):
+                other_markers.append((j1, j2))
+        rest_markers.append(other_markers)
+    base_markers = insersected_markers(base_markers)
+
+    lines = []
+    for string, markers in zip([base, *rest], [base_markers, *rest_markers]):
+        chars = list(string)
+        for i1, i2 in reversed(markers):
+            chars.insert(i2, Style.RESET_ALL)
+            chars.insert(i1, Style.BRIGHT + Fore.YELLOW)
+        lines.append("".join(chars))
+
+    for i, (name, ep) in enumerate(zip(lines, episodes)):
+        timestamp = time.strftime("%Y-%m-%d %H-%M", time.gmtime(ep.mtime))
+        num_col = Fore.GREEN if i == 0 else Fore.YELLOW
+        print(f"  {num_col}{i + 1}{Fore.RESET}: {Fore.BLUE}{timestamp}{Fore.RESET} | {name}")
+
+
+def insersected_markers(markers):
+    markers = sorted(markers)
+    joined = []
+    current = (0, 0)
+    for next_ in markers:
+        if current[1] > next_[0]:
+            current[1] = max(current[1], next_[1])
+        else:
+            joined.append(current)
+            current = next_
+    if current[0] != current[1]:
+        joined.append(current)
+    return joined
+
+
+if __name__ == '__main__':
+    main()

@@ -274,6 +274,7 @@ for_window [class="Steam" title="Steam - News"] floating enable
 for_window [class="lxqt-openssh-askpass"] floating enable
 for_window [class="Yad"] floating enable
 # for_window [class="Steam" title="Friends List"] resize set 400 px
+for_window [class="jetbrains-" title="win0"] floating enable
 for_window [class="QjackCtl"] floating enable
 
 # add border for border-less gtk3 applications

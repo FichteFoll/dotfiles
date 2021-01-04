@@ -27,4 +27,4 @@ load-module module-remap-sink sink_name=default_record master=default sink_prope
 
 load-module module-null-sink sink_name=record sink_properties="device.description='Record'"
 load-module module-loopback source=default_record.monitor sink=record
-load-module module-loopback source="alsa_input.usb-GeneralPlus_USB_Audio_Device-00.mono-fallback" sink=record
+load-module module-loopback source="alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y77R9F80B6C053-00.analog-stereo" sink=record

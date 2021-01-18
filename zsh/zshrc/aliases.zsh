@@ -10,6 +10,9 @@ alias wcl='wc -l'
 alias cat='bat -pp'
 alias dragon="dragon-drag-and-drop"
 
+# TEMP
+alias t2si="python ~/tools/trackma2syncplay.py --include"
+
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"
 

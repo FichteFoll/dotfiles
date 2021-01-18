@@ -59,3 +59,11 @@ border-color: var(--nox-level2);
 .searchResult-9tQ1uo.expanded-w_LCGl {
     background: var(--nox-level2)
 }
+
+/*Emoji selection color fix*/
+.emojiSection-3Fb9ix.da-emojiSection {
+    background-color: var(--nox-level2);
+}
+.guildSection-1EoFKd.da-guildSection {
+    background-color: var(--nox-level1);
+}

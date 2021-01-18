@@ -2,3 +2,4 @@
 --format=bestvideo[height<=?1440]+bestaudio/best
 --output="%(title)s_%(id)s.%(ext)s"
 --no-mtime
+--netrc

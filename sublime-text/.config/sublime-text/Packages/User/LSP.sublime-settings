@@ -18,17 +18,20 @@
 			"enabled": true,
 		},
 		"LSP-pyright": {
-			"enabled": false
+			"enabled": true,
+		},
+		"LSP-json": {
+			"enabled": false,
 		},
 	},
 	"diagnostics_highlight_style": "box",
 	"document_highlight_style": "box",
 	"inhibit_snippet_completions": true,
-	"show_diagnostics_severity_level": 3,
-	"show_code_actions": "bulb",
 	"log_debug": true,
-	"log_stderr": true,
 	"log_server": ["panel"],
-	"auto_show_diagnostics_panel_level": 2,
+	"log_stderr": true,
+	"show_code_actions": "bulb",
 	"show_diagnostics_count_in_view_status": true,
+	"show_diagnostics_panel_on_save": 2,
+	"show_diagnostics_severity_level": 3,
 }

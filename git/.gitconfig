@@ -78,3 +78,5 @@
 
 [interactive]
 	diffFilter = delta --color-only
+[tag]
+	gpgSign = true

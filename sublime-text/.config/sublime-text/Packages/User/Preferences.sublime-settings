@@ -67,8 +67,7 @@
 	"auto_complete_preserve_order": "none",
 	"auto_complete_selector": "source - comment - string, meta.tag - punctuation.definition.tag.begin",
 	/*"auto_complete_trailing_spaces": false,*/
-	"auto_complete_triggers":
-	[
+	"auto_complete_triggers": [
 		{
 			"characters": "<",
 			"selector": "text.html - text.html source",
@@ -89,8 +88,7 @@
 	"color_scheme": "Packages/Theme - Nil/Tubnil_mod.tmTheme",
 	"dictionary": "Packages/Language - English_user/en_US.dic",
 	"drag_text": true,
-	"draw_white_space":
-	[
+	"draw_white_space": [
 		"isolated",
 		"all_mixed",
 		"selection",
@@ -98,8 +96,7 @@
 	],
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
-	"folder_exclude_patterns":
-	[
+	"folder_exclude_patterns": [
 		".svn",
 		".git",
 		".hg",
@@ -117,8 +114,7 @@
 	"font_size": 12,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
-	"ignored_packages":
-	[
+	"ignored_packages": [
 		"InactivePanes",
 		"Open-Include",
 		"RestructuredText Improved",
@@ -132,14 +128,12 @@
 		"UnitTesting",
 		"Vintage",
 	],
-	"indent_guide_options":
-	[
+	"indent_guide_options": [
 		"draw_normal",
 		"draw_active"
 	],
 	"indent_to_bracket": true,
-	"index_exclude_patterns":
-	[
+	"index_exclude_patterns": [
 		"*.log"
 	],
 	"mini_auto_complete": true,

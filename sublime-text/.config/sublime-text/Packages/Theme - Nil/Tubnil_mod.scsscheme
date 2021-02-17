@@ -92,18 +92,14 @@ string {
 
 // string and interpolated string punctuation
 punctuation.section.interpolation,
-punctuation.definition.string/*.begin,
-punctuation.definition.string.end*/ {
+punctuation.definition.string {
     @name "String Punctuation";
     foreground: #E882B2;
 }
 
-variable.language,
-variable.other \- variable.other.readwrite \- variable.other.object.js \- variable.other.member \- variable.other.lua,
-string variable.other,
-variable.other.readwrite.shell,
-variable.label,
-variable.parameter \- variable.parameter.option.shell {
+variable \- variable.other \- variable.function \- variable.parameter.option.shell,
+string variable,
+variable.other.readwrite.shell {
     @name "Variable";
     foreground: #3399CC;
 }
@@ -111,7 +107,6 @@ variable.parameter.option.shell {
     foreground: #7f8ee5;
 }
 
-// variable \- variable.other.readwrite,
 support.variable {
     // TODO barely different
     @name "Variable: Support";

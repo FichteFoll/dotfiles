@@ -174,7 +174,7 @@
 			<key>name</key>
 			<string>Variable</string>
 			<key>scope</key>
-			<string>variable.language, variable.other - variable.other.readwrite - variable.other.object.js - variable.other.member - variable.other.lua, string variable.other, variable.other.readwrite.shell, variable.label, variable.parameter - variable.parameter.option.shell</string>
+			<string>variable - variable.other - variable.function - variable.parameter.option.shell, string variable, variable.other.readwrite.shell</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>

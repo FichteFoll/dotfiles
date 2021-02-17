@@ -24,38 +24,3 @@
     width: auto;
     height: auto;
 }
-
-/* Nox theme adjustments */
-/* https://github.com/rauenzi/Nox */
-
-:root {
-    --nox-level1: hsl(0, 0%, 17%);
-}
-
-/* Messages */
-[class*=message-][class*=compact-] {
-    padding-left: 1rem;
-    padding-right: 1rem !important;
-}
-
-[class*=message-][class*=mentioned-][class*=compact-] {
-    border-left: 2px solid #FAA61A;
-}
-
-
-/* remove main message backgrounds so there aren't random holes */
-.message-2qnXI6 {
-    background: none;
-    margin: 0;
-}
-
-/* hide speech bubble nudges */
-.message-2qnXI6.groupStart-23k01U::before {
-    display: none;
-}
-
-/* adjust input box spacing */
-.inner-MADQqc {
-    min-height: inherit;
-    padding: 0.2em 0;
-}

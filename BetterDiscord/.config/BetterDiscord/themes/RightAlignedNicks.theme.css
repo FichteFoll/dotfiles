@@ -1,6 +1,12 @@
-/*//META{"name":"Right-aligned Nicks","description":"Nicknames are right-aligned","author":"FichteFoll","version":"1.3.1"}*//
-
 /**
+ * @name Right-aligned Nicks
+ * @description Nicknames are right-aligned in compact mode.
+ * @version 1.3.1
+ * @author FichteFoll
+ * @authorLink https://github.com/FichteFoll
+ * @website https://github.com/FichteFoll/dotfiles
+ * @source https://raw.githubusercontent.com/FichteFoll/dotfiles/master/BetterDiscord/.config/BetterDiscord/themes/RightAlignedNicks.theme.css
+ *
  * Nicks are right-aligned in compact layout.
  * Based grid.
  *

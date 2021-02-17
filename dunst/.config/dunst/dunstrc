@@ -18,7 +18,7 @@
     alignment = left
     word_wrap = yes
     ignore_newline = no
-    geometry = "370x5-0+20"
+    geometry = "420x32-0+27"
     shrink = no
     show_age_threshold = 60
     idle_threshold = 120

@@ -1,0 +1,15 @@
+{
+    // http://www.sublimetext.com/docs/3/color_schemes.html
+    "variables": {
+    },
+    "globals": {
+        "line_diff_width": "2",
+        // "brackets_options": "glow bold underline",
+    },
+    "rules": [
+        {
+            "scope": "markup.underline",
+            "font_style": "underline",
+        }
+    ],
+}

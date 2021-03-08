@@ -111,7 +111,7 @@ def print_episodes(episodes):
         lines.append("".join(chars))
 
     for i, (name, ep) in enumerate(zip(lines, episodes)):
-        timestamp = time.strftime("%Y-%m-%d %H-%M", time.gmtime(ep.mtime))
+        timestamp = time.strftime("%Y-%m-%d %H:%M", time.gmtime(ep.mtime))
         num_col = Fore.GREEN if i == 0 else Fore.YELLOW
         print(f"  {num_col}{i + 1}{Fore.RESET}: {Fore.BLUE}{timestamp}{Fore.RESET} | {name}")
 

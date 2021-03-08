@@ -8,7 +8,8 @@ alias xen='xe -N0'
 alias wcl='wc -l'
 #alias vim='kak'
 alias cat='bat -pp'
-alias dragon="dragon-drag-and-drop"
+alias dragon='dragon-drag-and-drop'
+alias gdiff='git diff --no-index'
 
 # TEMP
 alias t2si="python ~/tools/trackma2syncplay.py --include"

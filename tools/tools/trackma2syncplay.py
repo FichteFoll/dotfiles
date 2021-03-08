@@ -118,7 +118,8 @@ def to_syncplay(params, filenames):
         playlist = client.playlist
         logger.debug("old playlist: %s", playlist._playlist)
         # We could dedupe here, but it doesn't matter.
-        new_files = [*playlist._playlist, *filenames]
+        # Also insert a separator
+        new_files = [*playlist._playlist, "-" * 50, *filenames]
         playlist.changePlaylist(new_files)
         logger.debug("new playlist: %s", new_files)
         done = True

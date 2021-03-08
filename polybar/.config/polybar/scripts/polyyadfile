@@ -9,6 +9,7 @@ trap "rm -f '$tmp_file'" 0
 echo "lines: $lines, chars: $chars"
 
 <$tmp_file \
-    ~/.config/polybar/scripts/polyyad.py --nobuttons --text-info --no-buttons --close-on-unfocus \
+    ~/.config/polybar/scripts/polyyad.py \
+    --text-info --no-buttons --close-on-unfocus \
     --height $((lines * 19 + 10)) \
     --width $((chars * 10))

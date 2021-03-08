@@ -97,7 +97,11 @@ punctuation.definition.string {
     foreground: #E882B2;
 }
 
-variable \- variable.other \- variable.function \- variable.parameter.option.shell,
+variable
+    \- variable.other
+    \- variable.function
+    \- variable.annotatation
+    \- variable.parameter.option.shell,
 string variable,
 variable.other.readwrite.shell {
     @name "Variable";

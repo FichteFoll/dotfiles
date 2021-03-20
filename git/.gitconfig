@@ -12,6 +12,7 @@
 	co = checkout
 	d = diff
 	ds = diff --staged
+	fap = fetch --all --prune
 	r = reset
 	rb = rebase
 	rba = rebase --abort

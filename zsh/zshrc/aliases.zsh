@@ -193,6 +193,16 @@ beet_mpa () {
     beet list $@ -f'$path' | xargs -d'\n' mpv --profile=audio
 }
 
+hologra() {
+    youtube-dl --flat-playlist "https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg/videos" -j \
+        | grep Anime \
+        | jq .url \
+        | head -n $1 \
+        | tr -d '"' \
+        | sed 's/^/https:\/\/www.youtube.com\/watch?v=/' \
+        | tac \
+        | tee >(xsel -ib)
+}
 
 # check for and perform system updates
 cu () {

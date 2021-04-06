@@ -285,7 +285,7 @@ for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
 #for_window [class="Steam" title="Friends"] resize set width 350 or 14, move right
 
 # focus specific windows
-set $mode_focus Focus: [c]antata [D]eluge [d]iscord [f]irefox [h]exchat s[m]erge [T]elegram [t]hunderbird [z]eal | ST: [n]otes [H]ome
+set $mode_focus Focus: [c]antata [D]eluge [d]iscord [f]irefox [h]exchat s[m]erge [M]pv [T]elegram [t]hunderbird [z]eal | ST: [n]otes [H]ome
 bindsym $mod+g mode "$mode_focus"
 mode "$mode_focus" {
     set $to_default mode "default"
@@ -295,6 +295,7 @@ mode "$mode_focus" {
     bindsym f       [class="Firefox"] focus, $to_default
     bindsym h       [class="hexchat"] focus, $to_default
     bindsym m       [class="Sublime_merge"] focus, $to_default
+    bindsym Shift+m [class="mpv"] focus, $to_default
     bindsym Shift+t [class="TelegramDesktop"] focus, $to_default
     bindsym t       [class="Thunderbird"] focus, $to_default
     bindsym z       [class="Zeal"] focus, $to_default
@@ -351,26 +352,25 @@ bindsym $mod+Ctrl+Shift+s exec --no-startup-id killall screenkey
 
 # Press $mod+o followed by a letter to run applications
 # or Esc or Return to return the default mode.
-set $mode_launcher Launch: Teamspeak[3] [c]antata [C]hromium [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [r]anger [s]ubl [S]yncplay [T]elegram [t]hunderbird [w]eechat [Z]eal
+set $mode_launcher Launch: Teamspeak[3] [a]egisub [c]antata [C]hromium [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [p]avucontrol [r]anger [s]ubl [S]yncplay [T]elegram [t]hunderbird [Z]eal
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     set $to_default mode "default"
     bindsym 3       exec teamspeak3, $to_default
+    bindsym a       exec aegisub, $to_default
     bindsym c       exec cantata, $to_default
     bindsym Shift+c exec chromium, $to_default
     bindsym d       exec discord, $to_default
     bindsym f       exec firefox, $to_default
-    # needs stdout redirect, doesn't start otherwise
     bindsym h       exec hexchat, $to_default
     bindsym k       exec keepassxc, $to_default
     bindsym m       exec smerge, $to_default
+    bindsym p       exec pavucontrol, $to_default
     bindsym r       exec i3-sensible-terminal -e ranger, $to_default
     bindsym s       exec subl, $to_default
     bindsym Shift+s exec syncplay, $to_default
     bindsym Shift+t exec telegram-desktop, $to_default
     bindsym t       exec env LC_TIME=lt_LT.UTF-8 thunderbird, $to_default
-    # alacritty supports URLs but apparently not in the alt view?
-    bindsym w       exec termite -e weechat, $to_default
     bindsym z       exec zeal, [class="Zeal"] focus, $to_default
 
     bindsym Escape $to_default

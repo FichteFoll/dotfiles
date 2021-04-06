@@ -1,13 +1,8 @@
-/* Don't embold greentext on hover (why in the fuck?) */
-[class*=container-] .green-text:hover {
-    font-weight: normal !important;
-}
-
 /* reduce padding in member list */
 [class*="scroller-"][class*="members-"] [class*="member-"] {
     padding: 1px 0 !important;
 }
-[class*="members-"] [class*="member-"] > [class=*="layout-"] {
+[class*="members-"] [class*="member-"] > [class*="layout-"] {
     height: 39px;
 }
 
@@ -18,9 +13,6 @@
 
 /* bigger jumboable emoji in compact */
 [class*="compact-"] [class*=messageContent] img.emoji.jumboable {
-    max-width: 32px;
-    max-height: 32px;
-    min-height: 1em;
-    width: auto;
-    height: auto;
+    width: 32px;
+    height: 32px;
 }

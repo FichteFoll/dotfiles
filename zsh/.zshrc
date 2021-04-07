@@ -73,6 +73,8 @@ export WORKON_HOME=${HOME}/.virtualenvs
 # source /usr/bin/virtualenvwrapper.sh
 [[ -e /usr/bin/virtualenvwrapper_lazy.sh ]] && source /usr/bin/virtualenvwrapper_lazy.sh
 
+# nvm
+[[ -e /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 # quick directory jumping and file access (completions) through fasd(1)
 # provides default aliases:

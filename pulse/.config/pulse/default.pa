@@ -1,6 +1,9 @@
 .include /etc/pulse/default.pa
 unload-module module-role-cork
 
+# Causes blooping with my speakers and noise afterwards
+unload-module module-suspend-on-idle
+
 # Noise cancelling
 # https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index45h3
 #load-module module-echo-cancel source_name=echo-cancelled

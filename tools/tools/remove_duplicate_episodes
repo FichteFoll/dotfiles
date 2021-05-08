@@ -20,7 +20,7 @@ class Episode(NamedTuple):
 
     @classmethod
     def from_path(cls, path: Path) -> Optional['Episode']:
-        if m := re.match(r".*(?:E|- )(\d\d)(?:v(\S+))?", path.name):
+        if m := re.match(r".*(?:E|- )(\d\d)(?:v(\S+))?\b", path.name):
             ep, version = m.groups()
             return cls(
                 path,

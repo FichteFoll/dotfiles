@@ -1,6 +1,5 @@
 {
-	"added_words":
-	[
+	"added_words": [
 		"plugins",
 		"metadata",
 		"de",
@@ -54,7 +53,6 @@
 		"workgroups",
 		"bitmask",
 		"shitpost",
-		"",
 		"syntaxes",
 		"superset",
 		"changeset",
@@ -70,15 +68,16 @@
 	"auto_complete_triggers": [
 		{
 			"characters": "<",
-			"selector": "text.html - text.html source",
+			"selector": "(text.html | text.xml) - text source",
 		},
 		{
 			"selector": "punctuation.accessor",
+			"rhs_empty": true,
 		},
 		{
 			"characters": "\\",
 			"selector": "text.tex.latex",
-		}
+		},
 	],
 	"auto_complete_with_fields": true,
 	"auto_find_in_selection": true,
@@ -132,7 +131,7 @@
 		"draw_normal",
 		"draw_active"
 	],
-	"indent_to_bracket": true,
+	"indent_to_bracket": false,
 	"index_exclude_patterns": [
 		"*.log"
 	],
@@ -149,7 +148,7 @@
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": false,
 	"trim_only_modified_white_space": false,
-	"trim_trailing_white_space_on_save": true,
+	"trim_trailing_white_space_on_save": "all",
 	"word_separators": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	// Default without `markup.raw`
 	"spelling_selector": "source string.quoted - punctuation - meta.preprocessor.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",

@@ -196,9 +196,8 @@ beet_mpa () {
 hologra() {
     youtube-dl --flat-playlist "https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg/videos" -j \
         | grep Anime \
-        | jq .url \
+        | jq -r .url \
         | head -n $1 \
-        | tr -d '"' \
         | sed 's/^/https:\/\/www.youtube.com\/watch?v=/' \
         | tac \
         | tee >(xsel -ib)

@@ -100,7 +100,7 @@ punctuation.definition.string {
 variable
     \- variable.other
     \- variable.function
-    \- variable.annotatation
+    \- variable.annotation
     \- variable.parameter.option.shell,
 string variable,
 variable.other.readwrite.shell {

@@ -174,7 +174,7 @@
 			<key>name</key>
 			<string>Variable</string>
 			<key>scope</key>
-			<string>variable - variable.other - variable.function - variable.annotatation - variable.parameter.option.shell, string variable, variable.other.readwrite.shell</string>
+			<string>variable - variable.other - variable.function - variable.annotation - variable.parameter.option.shell, string variable, variable.other.readwrite.shell</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>

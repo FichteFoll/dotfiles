@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
 import argparse
+from configparser import ConfigParser
 from functools import partial
 import logging
+import json
 import os
 import re
 import sys
+import socket
 from typing import NamedTuple
+from pathlib import Path
 
+
+SYNCPLAY_CONFIG_PATH = Path("~/.syncplay").expanduser()
+DEFAULT_SERVER = "syncplay.pl:8999"
 
 logger = logging.getLogger(__name__)
 
@@ -85,59 +92,75 @@ def filter_chain(filters, iterable):
     return iterable
 
 
+def put_syncplay(server, room, name, filenames):
+    logger.info("Appending filenames to syncplay; server=%s, room=%s, name=%s",
+                server, room, name)
+
+    class JsonProtocolConnection:
+        def __init__(self, server):
+            host, port = server.split(":")
+            port = int(port)
+            self.recvbuf = b""
+            self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.sock.connect((host, port))
+
+        def send(self, obj):
+            obj = json.dumps(obj).encode("utf-8") + b"\r\n"
+            self.sock.sendall(obj)
+
+        def read_msg(self):
+            if b"\n" not in self.recvbuf:
+                return
+            msg, self.recvbuf = self.recvbuf.split(b"\n", maxsplit=1)
+            return json.loads(msg)
+
+        def recv(self):
+            o = self.read_msg()
+            if o:
+                return o
+            self.recvbuf += self.sock.recv(1024)
+            return self.read_msg()
+
+        def __del__(self):
+            self.sock.close()
+
+    con = JsonProtocolConnection(server)
+    con.send({"Hello": {"username": name, "room": {"name": room}, "version": "1.6.7"}})
+    playlist, hello = None, False
+    while playlist is None or not hello:
+        msg = con.recv()
+        logger.debug("received syncplay message: %s", msg)
+        if "Hello" in msg:
+            hello = True
+        if "Set" in msg:
+            playlist = msg['Set'].get('playlistChange', {}).get('files', playlist)
+
+    new_files = [*playlist, "-" * 50, *filenames]
+    con.send({'Set': {'playlistChange': {'user': name, 'files': new_files}}})
+    logger.debug("playlistChange event sent")
+    del con
+
+
 def to_syncplay(params, filenames):
-    # modify environment to make syncplay pick up the remaining args
-    sys.argv = ["syncplay", *params.syncplay_args]
-    sys.path.append(params.syncplay_path)
+    server = params.server
+    room = params.room
+    name = params.name
 
-    # load syncplay config
-    from syncplay.ui.ConfigurationGetter import ConfigurationGetter
-    config_getter = ConfigurationGetter()
-    config_getter._config['noGui'] = True
-    config = config_getter.getConfiguration()
-    config['name'] += "_trackma"
+    parser = ConfigParser(strict=False)
+    if SYNCPLAY_CONFIG_PATH.exists():
+        with SYNCPLAY_CONFIG_PATH.open(encoding='utf_8_sig') as fp:
+            parser.read_file(fp)
+        host = parser.get('server_data', 'host')
+        port = parser.get('server_data', 'port')
+        server = server or f"{host}:{port}" if host and port else None or DEFAULT_SERVER
+        room = room or parser.get('client_settings', 'room')
+        name = name or (parser.get('client_settings', 'name', fallback="") + "_trackma")
 
-    # load syncplay client
-    from syncplay.client import SyncplayClient  # Imported after config
-    from syncplay.ui.consoleUI import ConsoleUI
-    # interface = syncplay.ui.getUi(graphical=False)
-    from unittest import mock
-    interface = mock.MagicMock(ConsoleUI)
-    client = SyncplayClient(config["playerClass"], interface, config)
-    if not client:
-        logger.error("Error opening syncplay, somewhere…")
+    if not server or not room or not name:
+        logger.error(f"Syncplay configuration incomplete; {server=}, {room=}, {name=}")
+        return 1
 
-    _old_connected = client.connected
-    done = False
-
-    # override the client's `connected` method
-    def connected():
-        nonlocal done
-        _old_connected()
-        logger.debug("interface mock calls: %s", interface.method_calls)
-        playlist = client.playlist
-        logger.debug("old playlist: %s", playlist._playlist)
-        # We could dedupe here, but it doesn't matter.
-        # Also insert a separator
-        new_files = [*playlist._playlist, "-" * 50, *filenames]
-        playlist.changePlaylist(new_files)
-        logger.debug("new playlist: %s", new_files)
-        done = True
-        # TODO terminate
-
-    # add a timeout handler in case connection fails
-    def abort():
-        if done:
-            return
-        logger.error("Syncplay timeout!")
-        # TODO terminate
-
-    client.connected = connected
-    from twisted.internet import reactor
-    reactor.callLater(5, abort)
-
-    # TODO prevent player from opening
-    client.start(config['host'], config['port'])
+    return put_syncplay(server, room, name, filenames)
 
 
 def main(params):
@@ -157,14 +180,12 @@ def main(params):
 
     sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
     filenames = [os.path.basename(entry.path) for entry in sorted_entries]
-    to_syncplay(params, filenames)
+    return to_syncplay(params, filenames)
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Find unwatched episodes trough trackma and add them to a syncplay playlist. "
-                    " Any unmatched arguments are forwarded to syncplay."
-                    " Refer to `syncplay --help`."
     )
     parser.add_argument("-v", "--verbose", action='store_true', default=False,
                         help="Increase verbosity.")
@@ -181,8 +202,12 @@ def parse_args():
                         help="Regular expression for titles to include. Repeatable.")
     parser.add_argument("--exclude", action='append',
                         help="Regular expression for titles to exclude. Repeatable.")
-    parser.add_argument("--syncplay-path", default="/usr/lib/syncplay",
-                        help="Path to syncplay's install location.")
+    parser.add_argument("--server",
+                        help="Syncplay server with port. Overrides configuration.")
+    parser.add_argument("--room",
+                        help="Syncplay room. Overrides configuration.")
+    parser.add_argument("--name",
+                        help="Syncplay name. Overrides configuration.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args
@@ -197,4 +222,4 @@ if __name__ == '__main__':
     log_level = logging.DEBUG if params.verbose else logging.INFO
     logging.basicConfig(level=log_level, format="%(message)s")
     logger.debug("params: %r", params)
-    main(params)
+    sys.exit(main(params))

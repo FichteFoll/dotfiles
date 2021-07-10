@@ -128,7 +128,10 @@ def put_syncplay(server, room, name, filenames):
     con.send({"Hello": {"username": name, "room": {"name": room}, "version": "1.6.7"}})
     playlist, hello = None, False
     while playlist is None or not hello:
-        msg = con.recv()
+        if (msg := con.recv()) is None:
+            print("why are you None")
+            continue
+
         logger.debug("received syncplay message: %s", msg)
         if "Hello" in msg:
             hello = True

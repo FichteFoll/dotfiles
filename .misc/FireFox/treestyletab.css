@@ -64,7 +64,7 @@ tab-item .extra-items-container.behind::after {
   content: var(--tab-count-text);
   font-size: small;
   pointer-events: none;
-    
+
   position: absolute;
   left: 0.5em;
 
@@ -84,8 +84,8 @@ tab-item .extra-items-container.behind::after {
 
 /* removed with https://github.com/piroor/treestyletab/commit/d3d39e05432f644c6e0ed46e0a6b214f3a9360cb; variables renamed later */
 :root {
-  --tabbar-bg: #2C2F3B;
-  --tab-surface-regular: -moz-Dialog;
+  /*--tabbar-bg: #2C2F3B;*/ /* hsl(228, 25%, 23%) */
+  --tab-surface-regular: -moz-Dialog; /* hsl(227, 24%, 29%) */
   /*--tab-surface-active: -moz-CellHighlight;*/
   --tab-text-regular: -moz-DialogText;
   --tab-border: ThreeDShadow;
@@ -94,3 +94,7 @@ tab-item .extra-items-container.behind::after {
   --tab-dropmarker:-moz-DialogText;
 }
 
+/* this got lost somewhere during the proton update (89) */
+tab-item tab-item-substance:hover {
+  background: hsl(227, 22%, 34%) !important;
+}

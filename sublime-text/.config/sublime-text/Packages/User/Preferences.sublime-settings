@@ -149,6 +149,7 @@
 	"trim_automatic_white_space": false,
 	"trim_only_modified_white_space": false,
 	"trim_trailing_white_space_on_save": "all",
+	"update_check": false,
 	"word_separators": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	// Default without `markup.raw`
 	"spelling_selector": "source string.quoted - punctuation - meta.preprocessor.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",

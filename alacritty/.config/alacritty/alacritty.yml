@@ -10,7 +10,7 @@ font:
   # * https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
   # * file:///usr/share/doc/fontconfig/fontconfig-user.html
   normal:
-    family: xos4 Terminus
+    family: Terminus
   size: 10
 
 # Colors (Tomorrow Night Bright, modified)

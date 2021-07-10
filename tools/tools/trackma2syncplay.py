@@ -183,7 +183,11 @@ def main(params):
 
     sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
     filenames = [os.path.basename(entry.path) for entry in sorted_entries]
-    return to_syncplay(params, filenames)
+    if params.dry_run:
+        for filename in filenames:
+            print(filename)
+    else:
+        return to_syncplay(params, filenames)
 
 
 def parse_args():
@@ -211,6 +215,8 @@ def parse_args():
                         help="Syncplay room. Overrides configuration.")
     parser.add_argument("--name",
                         help="Syncplay name. Overrides configuration.")
+    parser.add_argument("--dry-run", action='store_true', default=False,
+                        help="Just print out the names without adding them to syncplay.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args

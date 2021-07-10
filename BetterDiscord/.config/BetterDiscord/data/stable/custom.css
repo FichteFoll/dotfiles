@@ -16,3 +16,14 @@
     width: 32px;
     height: 32px;
 }
+
+
+/* Adjust reaction padding & border */
+[class*="reaction-"] {
+    margin-top: 2px;
+    border-radius: 4px;
+}
+
+[class*="reactionInner-"] {
+    padding: 2px 4px;
+}

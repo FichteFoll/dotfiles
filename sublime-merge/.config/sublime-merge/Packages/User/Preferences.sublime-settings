@@ -21,4 +21,5 @@
 	"log_commands": true,
 	"log_input": false,
 	"editor_wait_args": "--wait --new-window",
+	"remember_workspace": false,
 }

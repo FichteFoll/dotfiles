@@ -57,6 +57,16 @@ colors:
     cyan:    '#66cccc'
     white:   '#dddddd'
 
+  search:
+    # Allowed values are CellForeground/CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    matches:
+      foreground: 'CellForeground'
+      background: '#707070'
+    focused_match:
+      foreground: 'CellBackground'
+      background: 'CellForeground'
+
 mouse:
   hide_when_typing: true
 

@@ -90,8 +90,6 @@
 
 [interactive]
 	diffFilter = delta --color-only
-[tag]
-	gpgSign = true
 [rerere]
 	enabled = true
 [init]

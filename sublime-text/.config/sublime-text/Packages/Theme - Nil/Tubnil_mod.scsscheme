@@ -101,6 +101,7 @@ variable
     \- variable.other
     \- variable.function
     \- variable.annotation
+    \- variable.namespace
     \- variable.parameter.option.shell,
 string variable,
 variable.other.readwrite.shell {

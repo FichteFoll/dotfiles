@@ -13,6 +13,7 @@ alias gdiff='git diff --no-index'
 
 # TEMP
 alias t2si="python ~/tools/trackma2syncplay.py --include"
+alias tracc="~/code/tracc/target/debug/tracc"
 
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"

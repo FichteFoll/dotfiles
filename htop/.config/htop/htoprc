@@ -2,7 +2,7 @@
 # The parser is also very primitive, and not human-friendly.
 fields=0 48 17 18 38 39 40 2 46 47 49 50 1
 sort_key=0
-sort_direction=1
+sort_direction=-1
 tree_sort_key=0
 tree_sort_direction=-1
 hide_kernel_threads=1
@@ -36,3 +36,4 @@ left_meters=LeftCPUs2 RightCPUs2 CPU
 left_meter_modes=1 1 3
 right_meters=CPU Memory Swap LoadAverage Tasks Blank Uptime
 right_meter_modes=1 1 1 2 2 2 2
+hide_function_bar=0

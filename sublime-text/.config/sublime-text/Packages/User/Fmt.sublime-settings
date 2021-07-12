@@ -1,0 +1,9 @@
+{
+    "rules": [
+        { "selector": "source.json", "cmd": ["jq"], },
+        { "selector": "text.xml", "cmd": ["xmlstarlet", "format"], },
+        { "selector": "text.html.basic", "cmd": ["tidy"], },
+    ],
+    "timeout": 15,
+    "merge_type": "replace",
+}

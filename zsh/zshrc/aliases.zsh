@@ -22,6 +22,8 @@ function t2si() {
     )
 }
 
+alias tracc="~/code/tracc/target/debug/tracc"
+
 # atop with a focus on memory usage analysis
 # -l: reduzed header size
 # -R: collect proportional memory size

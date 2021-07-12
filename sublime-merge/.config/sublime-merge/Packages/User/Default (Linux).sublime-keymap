@@ -4,6 +4,13 @@
 
   // Editing
   { "keys": ["alt+q"], "command": "wrap_lines", },
+  { "keys": ["alt+d"], "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"} },
+
+  { "keys": ["ctrl+d"], "command": "duplicate_line" },
+  { "keys": ["ctrl+shift+d"], "command": "find_under_expand" },
+
+  //{ "keys": ["ctrl+alt+up"], "command": "select_lines", "args": {"forward": false} },
+  //{ "keys": ["ctrl+alt+down"], "command": "select_lines", "args": {"forward": true} },
 
   // Git
   { "keys": ["ctrl+shift+g"],
@@ -15,7 +22,7 @@
   { "keys": ["ctrl+g"],
     "command": "show_command_palette",
     "args": {
-      "command": "push_tag", 
+      "command": "push_tag",
       "args": {"remote": "origin"},
     },
   },

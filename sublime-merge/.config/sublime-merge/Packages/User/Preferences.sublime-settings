@@ -7,7 +7,8 @@
 		"plugin",
 		"plugins",
 		"namespace",
-		"intransparent"
+		"intransparent",
+		"changelog",
 	],
 	"always_show_commit_graph": true,
 	"diff_style": "auto",

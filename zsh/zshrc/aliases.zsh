@@ -18,6 +18,8 @@ alias jest='npx jest -w 50%' # don't use 100% of cores
 alias t2s='python ~/tools/trackma2syncplay/t2s'
 alias t2si="python ~/tools/trackma2syncplay/trackma2syncplay.py --include"
 
+alias tracc="~/code/tracc/target/debug/tracc"
+
 # atop with a focus on memory usage analysis
 # -l: reduzed header size
 # -R: collect proportional memory size

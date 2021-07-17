@@ -12,6 +12,7 @@ wget -N https://github.com/jaimeadf/BetterDiscordPlugins/raw/release/dist/GuildP
 wget -N https://github.com/l0c4lh057/BetterDiscordStuff/raw/master/Plugins/ChannelTabs/ChannelTabs.plugin.js
 wget -N https://github.com/l0c4lh057/BetterDiscordStuff/raw/master/Plugins/TypingIndicator/TypingIndicator.plugin.js
 wget -N https://github.com/Metalloriff/BetterDiscordPlugins/raw/master/DoubleClickVoiceChannels.plugin.js
+wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Library/0BDFDB.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/DisplayServersAsChannels/DisplayServersAsChannels.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/EditUsers/EditUsers.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/MessageUtilities/MessageUtilities.plugin.js

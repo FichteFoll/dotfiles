@@ -12,7 +12,7 @@ tab-item.unread .label-content {
 }
 
 /* Only show close button on hover, and tint red */
-#tabbar tab-item:not(:hover):not(.active) tab-closebox {
+#tabbar tab-item:not(.active) tab-item-substance:not(:hover) tab-closebox {
   display: none;
 }
 tab-item tab-closebox:hover::before,
@@ -64,7 +64,7 @@ tab-item .extra-items-container.behind::after {
   content: var(--tab-count-text);
   font-size: small;
   pointer-events: none;
-
+    
   position: absolute;
   left: 0.5em;
 
@@ -77,24 +77,20 @@ tab-item .extra-items-container.behind::after {
 }
 
 /* Apply gtk theme colors */
-#background {
-  /* idk how to get this color (used in gtk window titles) */
-  background-color: #2C2F3B;
-}
-
 /* removed with https://github.com/piroor/treestyletab/commit/d3d39e05432f644c6e0ed46e0a6b214f3a9360cb; variables renamed later */
 :root {
-  /*--tabbar-bg: #2C2F3B;*/ /* hsl(228, 25%, 23%) */
-  --tab-surface-regular: -moz-Dialog; /* hsl(227, 24%, 29%) */
+  /* used in gtk window titles */
+  --sidebar-background: hsl(227, 14%, 20%);
+  
+  --tab-surface-regular: hsl(227, 14%, 25%);
   /*--tab-surface-active: -moz-CellHighlight;*/
-  --tab-text-regular: -moz-DialogText;
-  --tab-border: ThreeDShadow;
-  --tab-side-border: ThreeDLightShadow;
-  --tab-surface-hover: -moz-ButtonHoverFace;
-  --tab-dropmarker:-moz-DialogText;
+  --tab-text-regular: hsl(168, 6%, 83%);
+  --tab-border: var(--sidebar-background);
+  --tab-side-border: hsl(227, 14%, 20%);
+  --tab-surface-hover: hsl(227, 22%, 34%);
+  --tab-dropmarker: var(--tab-text-regular);
 }
 
-/* this got lost somewhere during the proton update (89) */
-tab-item tab-item-substance:hover {
-  background: hsl(227, 22%, 34%) !important;
+:root.sidebar #background {
+  background-color: var(--sidebar-background);
 }

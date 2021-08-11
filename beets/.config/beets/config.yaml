@@ -75,6 +75,7 @@ item_fields:
 # TODO check out mpd-focused plugins like mpdstats
 # https://beets.readthedocs.io/en/latest/plugins/index.html
 plugins: >-
+  convert
   duplicates
   extrafiles
   fetchart
@@ -86,7 +87,7 @@ plugins: >-
   playlist
   replaygain
   smartplaylist
-# embedart convert
+# embedart
 # plugins: inline  # for testing album fallback
 
 extrafiles:
@@ -121,3 +122,17 @@ smartplaylist:
       query: 'added:-4w.. albumartist+ year+ album+ disc+ track+'
     - name: $Anime OPED.m3u
       query: 'anime:Opening , anime:Ending source+ anime+'
+
+convert:
+  max_bitrate: 260
+  formats:
+    speex:
+      command: ffmpeg -i $source -y -vn -acodec speex $dest
+      extension: spx
+    opus:
+      command: ffmpeg -i $source -y -vn -acodec libopus -b:a 128k $dest
+      extension: opus
+    mp3: ffmpeg -i $source -y -vn -aq 3 $dest
+    aac:
+      command: ffmpeg -i $source -y -vn -acodec aac -aq 2 $dest
+      extension: m4a

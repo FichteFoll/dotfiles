@@ -1,7 +1,7 @@
 /**
  * @name Right-aligned Nicks
  * @description Nicknames are right-aligned in compact mode.
- * @version 1.3.2
+ * @version 1.3.3
  * @author FichteFoll
  * @authorLink https://github.com/FichteFoll
  * @website https://github.com/FichteFoll/dotfiles
@@ -84,6 +84,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* reply guide */
+[class*=compact-][class*=hasThread-] [class*=contents-]:before {
+    left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 3.5rem);
 }
 
 /* add highlight marker to the right as well */

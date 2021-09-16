@@ -19,7 +19,7 @@
     word_wrap = yes
     ignore_newline = no
     # geometry = "370x5-0+20"
-    geometry = "500x5"
+    geometry = "420x32"
     shrink = no
     show_age_threshold = 60
     idle_threshold = 120

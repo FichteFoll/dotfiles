@@ -1,51 +1,37 @@
 {
-	"clients":
-	{
-		"pyls":
-		{
+	"clients": {
+		"pyls": {
 			"enabled": false,
-			"settings":
-			{
-				"pyls":
-				{
-					"plugins":
-					{
-						"flake8":
-						{
-							"enabled": false,
-						},
-						"mccabe":
-						{
-							"enabled": false,
-						},
-						"pycodestyle":
-						{
-							"enabled": false,
-						},
-						"pydocstyle":
-						{
-							"enabled": false,
-						},
-						"pyflakes":
-						{
-							"enabled": false,
-						},
+			"settings": {
+				"pyls": {
+					"plugins": {
+						"flake8.enabled": false,
+						"mccabe.enabled": false,
+						"pycodestyle.enabled": false,
+						"pydocstyle.enabled": false,
+						"pyflakes.enabled": false,
 					},
 				},
 			},
 		},
-		"rust-analyzer":
-		{
-			"enabled": true
+		"rust-analyzer": {
+			"enabled": true,
+		},
+		"LSP-pyright": {
+			"enabled": true,
+		},
+		"LSP-json": {
+			"enabled": false,
 		},
 	},
 	"diagnostics_highlight_style": "box",
 	"document_highlight_style": "box",
-	"only_show_lsp_completions": true,
-	"show_diagnostics_severity_level": 3,
-	"show_code_actions": "bulb",
-	"show_symbol_action_links": true,
+	"inhibit_snippet_completions": true,
 	"log_debug": true,
-	"log_stderr": true,
 	"log_server": ["panel"],
+	"log_stderr": true,
+	"show_code_actions": "bulb",
+	"show_diagnostics_count_in_view_status": true,
+	"show_diagnostics_panel_on_save": 2,
+	"show_diagnostics_severity_level": 3,
 }

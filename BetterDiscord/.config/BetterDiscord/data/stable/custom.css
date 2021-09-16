@@ -1,0 +1,29 @@
+/* reduce padding in member list */
+[class*="scroller-"][class*="members-"] [class*="member-"] {
+    padding: 1px 0 !important;
+}
+[class*="members-"] [class*="member-"] > [class*="layout-"] {
+    height: 39px;
+}
+
+/* hide stupid buttons */
+[class*="channelTextArea-"] [class*="buttons-"] button:not([aria-label="Select emoji"]) {
+    display:none;
+}
+
+/* bigger jumboable emoji in compact */
+[class*="compact-"] [class*=messageContent] img.emoji.jumboable {
+    width: 32px;
+    height: 32px;
+}
+
+
+/* Adjust reaction padding & border */
+[class*="reaction-"] {
+    margin-top: 2px;
+    border-radius: 4px;
+}
+
+[class*="reactionInner-"] {
+    padding: 2px 4px;
+}

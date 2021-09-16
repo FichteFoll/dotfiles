@@ -14,14 +14,16 @@
         {
             "syntax": "SimpleSyntax/ssHash",
             "rules": [
-                {"file_path": ".*mpv/input\\.conf$"},
+                {"file_path": ".*/mpv/input\\.conf$"},
+                {"file_path": ".*/openurl\\.conf$"},
+                {"file_path": ".*/\\.(in|ex)clude$"},
             ]
         },
         {
             "syntax": "INI/INI",
             "rules": [
                 {"file_path": ".*/polybar/config$"},
-                {"file_path": ".*dunstrc$"},
+                {"file_path": ".*/dunstrc$"},
             ]
         },
         {
@@ -33,7 +35,7 @@
         {
             "syntax": "TOML/TOML",
             "rules": [
-                {"file_path": ".*poetry.lock$"},
+                {"file_path": ".*/poetry.lock$"},
             ]
         },
     ]

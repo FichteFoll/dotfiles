@@ -1,0 +1,80 @@
+#!/usr/bin/env python
+
+from functools import reduce
+import os
+import subprocess
+import sys
+import operator
+import itertools
+
+
+def powerset(iterable):
+    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
+    # itertools recipe
+    s = list(iterable)
+    return itertools.chain.from_iterable(itertools.combinations(s, r) for r in range(len(s) + 1))
+
+
+# Set of regular expressions to always exclude
+always_exclude = {
+    # "regex",
+}
+
+# Mapping of names to sets for regular expressions it include.
+# The individual sets are intersected,
+# so you should use the same expression for the same show in all sets.
+per_user = {
+    # 'user': {
+    #     "regex",
+    # },
+}
+
+
+def shows(names):
+    yield from (per_user[name] for name in names)
+
+
+def shows_for_names(names):
+    intersection = reduce(operator.and_, shows(names))
+    not_names = set(per_user.keys()) - names
+    return reduce(operator.sub, shows(not_names), intersection)
+
+
+includes = set()
+excludes = always_exclude
+
+names = set(sys.argv[1:])
+not_names = set(per_user.keys()) - names
+print(f"{names=}, {not_names=}\n")
+
+if names:
+    if includes := shows_for_names(names):
+        print(f"Matching shows: {', '.join(sorted(includes))}")
+    else:
+        print(f"No common matches for {names}!")
+
+    if not_names:
+        print("Shows additionally with…")
+        for extra_names in filter(None, powerset(not_names)):
+            alt_names = names | set(extra_names)
+            alt_shows = shows_for_names(alt_names)
+            extra_shows = alt_shows - includes
+            if not extra_shows:
+                continue
+            print(f"    {', '.join(sorted(extra_names))}"
+                  f": {', '.join(sorted(extra_shows)) or '-'}")
+
+    if not includes:
+        sys.exit(0)
+else:
+    excludes = reduce(operator.or_, shows(not_names), excludes)
+
+cmd = [
+    "python",
+    os.path.expanduser("~/tools/trackma2syncplay.py"),
+    *(["--exclude", "|".join(excludes)] if excludes else []),
+    *(["--include", "|".join(includes)] if includes else []),
+]
+# print(f"{cmd=}")
+print("Launching trackma2syncplay…\n")
+subprocess.run(cmd)

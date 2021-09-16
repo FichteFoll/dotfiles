@@ -8,7 +8,11 @@ alias xen='xe -N0'
 alias wcl='wc -l'
 #alias vim='kak'
 alias cat='bat -pp'
-alias dragon="dragon-drag-and-drop"
+alias dragon='dragon-drag-and-drop'
+alias gdiff='git diff --no-index'
+
+# TEMP
+alias t2si="python ~/tools/trackma2syncplay.py --include"
 
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"
@@ -189,6 +193,15 @@ beet_mpa () {
     beet list $@ -f'$path' | xargs -d'\n' mpv --profile=audio
 }
 
+hologra() {
+    youtube-dl --flat-playlist "https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg/videos" -j \
+        | grep Anime \
+        | jq -r .url \
+        | head -n $1 \
+        | sed 's/^/https:\/\/www.youtube.com\/watch?v=/' \
+        | tac \
+        | tee >(xsel -ib)
+}
 
 # check for and perform system updates
 cu () {

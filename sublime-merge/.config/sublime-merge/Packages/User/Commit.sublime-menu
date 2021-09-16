@@ -1,6 +1,6 @@
 [
     {
-        "caption": "Create fixup! commit",
+        "caption": "Create \"fixup!\" commit",
         "command": "git",
         "args": {"argv": ["commit", "--fixup", "$commit"]},
     },
@@ -11,13 +11,13 @@
     },
     { "id": "end" },
     {
-        "caption": "Start interactive rebase in terminal",
+        "caption": "Start interactive rebase… (terminal)",
         "command": "git",
         "args": {"argv": ["rebase-terminal", "$commit"]},
     },
     {
-        "caption": "Start interactive rebase in ST",
+        "caption": "Start interactive rebase… (ST)",
         "command": "git",
-        "args": {"argv": ["rebase", "-i", "$commit"]},
+        "args": {"argv": ["rebase", "-i", "$commit~1"]},
     },
 ]

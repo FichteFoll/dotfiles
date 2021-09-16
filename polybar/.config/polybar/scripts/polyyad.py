@@ -74,7 +74,7 @@ def main():
     if screen_size:
         width = min(width, screen_size[0])
         height = min(height, screen_size[1] - y)
-    
+
     x = int(mouse['X']) - width / 2
 
     print(f"{x=}, {y=}")
@@ -83,8 +83,9 @@ def main():
 
     cmd = ["yad",
            f"--width={width}", f"--height={height}",
-           f"--posx={x}", f"--posy={y}", "--fixed",
+           f"--posx={x}", f"--posy={y}",  # "--fixed",
            *rest]
+    print("cmd:", " ".join(cmd))
     subprocess.call(cmd, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)
 
 

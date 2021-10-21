@@ -9,6 +9,7 @@
 [alias]
 	b = branch
 	c = commit
+	cm = commit --message
 	co = checkout
 	d = diff
 	ds = diff --staged

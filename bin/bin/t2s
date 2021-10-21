@@ -6,6 +6,7 @@ import subprocess
 import sys
 import operator
 import itertools
+from typing import Iterator
 
 
 def powerset(iterable):
@@ -30,11 +31,11 @@ per_user = {
 }
 
 
-def shows(names):
+def shows(names: set[str]) -> Iterator[set[str]]:
     yield from (per_user[name] for name in names)
 
 
-def shows_for_names(names):
+def shows_for_names(names: set[str]) -> set[str]:
     intersection = reduce(operator.and_, shows(names))
     not_names = set(per_user.keys()) - names
     return reduce(operator.sub, shows(not_names), intersection)
@@ -43,7 +44,13 @@ def shows_for_names(names):
 includes = set()
 excludes = always_exclude
 
-names = set(sys.argv[1:])
+if (i := sys.argv.index("--")) != -1:
+    names = set(sys.argv[1:i])
+    syncplay_args = sys.argv[i + 1:]
+else:
+    names = set(sys.argv[1:])
+    syncplay_args = []
+
 not_names = set(per_user.keys()) - names
 print(f"{names=}, {not_names=}\n")
 
@@ -55,6 +62,7 @@ if names:
 
     if not_names:
         print("Shows additionally with…")
+        extra_names: Iterator[list[str]]
         for extra_names in filter(None, powerset(not_names)):
             alt_names = names | set(extra_names)
             alt_shows = shows_for_names(alt_names)
@@ -74,6 +82,7 @@ cmd = [
     os.path.expanduser("~/tools/trackma2syncplay.py"),
     *(["--exclude", "|".join(excludes)] if excludes else []),
     *(["--include", "|".join(includes)] if includes else []),
+    *syncplay_args,
 ]
 # print(f"{cmd=}")
 print("Launching trackma2syncplay…\n")

@@ -44,10 +44,11 @@ def shows_for_names(names: set[str]) -> set[str]:
 includes = set()
 excludes = always_exclude
 
-if (i := sys.argv.index("--")) != -1:
+try:
+    i = sys.argv.index("--")
     names = set(sys.argv[1:i])
     syncplay_args = sys.argv[i + 1:]
-else:
+except ValueError:
     names = set(sys.argv[1:])
     syncplay_args = []
 

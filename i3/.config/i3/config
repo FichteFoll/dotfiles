@@ -264,6 +264,7 @@ for_window [class="feh"] floating enable
 for_window [class="Sxiv"] floating enable
 for_window [class="Firefox" window_role="page-info"] floating enable
 for_window [class="Thunderbird" window_role="EventDialog"] floating enable
+for_window [class="Thunderbird" instance="Calendar"] floating enable
 for_window [class="Deluge"] floating enable
 for_window [class="Pinentry"] floating enable
 for_window [class="Pavucontrol"] floating enable

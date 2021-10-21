@@ -22,4 +22,5 @@
 	"theme": "Merge Dark.sublime-theme",
 	"time_format": "24h",
 	"translate_tabs_to_spaces": true,
+	"side_bar_layout": "commit_graph_as_column",
 }

@@ -25,7 +25,7 @@
   { "keys": ["ctrl+shift+keypad_minus"], "command": "toggle_comment", "args": {"block": true} },
 
   // Diff hunks
-  { "keys": ["ctrl+k", "ctrl+altgr+s"], "command": "toggle_inline_diff" },
+  { "keys": ["ctrl+k", "ctrl+h"], "command": "toggle_inline_diff" },
 
   // Make keypad keys work for font size changes
   { "keys": ["ctrl+keypad_plus"],  "command": "increase_font_size" },
@@ -150,6 +150,10 @@
   // multi-selection (from Windows bindings)
   { "keys": ["ctrl+alt+up"], "command": "select_lines", "args": {"forward": false} },
   { "keys": ["ctrl+alt+down"], "command": "select_lines", "args": {"forward": true} },
+
+  // navigation by blocks
+  { "keys": ["alt+down"], "command": "move", "args": { "by": "stops", "empty_line": true, "forward": true } },
+  { "keys": ["alt+up"], "command": "move", "args": { "by": "stops", "empty_line": true, "forward": false } },
 
   // OVERRIDES
 

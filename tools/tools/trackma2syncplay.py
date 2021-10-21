@@ -2,6 +2,7 @@
 
 import argparse
 from configparser import ConfigParser
+from dataclasses import dataclass
 from functools import partial
 import logging
 import json
@@ -9,7 +10,7 @@ import os
 import re
 import sys
 import socket
-from typing import NamedTuple
+from typing import Any, NamedTuple, Optional
 from pathlib import Path
 
 
@@ -17,6 +18,40 @@ SYNCPLAY_CONFIG_PATH = Path("~/.syncplay").expanduser()
 DEFAULT_SERVER = "syncplay.pl:8999"
 
 logger = logging.getLogger(__name__)
+
+
+def _int_or_none(s: str) -> Optional[int]:
+    return int(s) if s else None
+
+
+@dataclass
+class EpisodeRange():
+
+    slices: list[slice]
+
+    def __init__(self, string: str = ""):
+        self.slices = [self._parse_slice(term) for term in string.split(",")]
+
+    def __contains__(self, num: Any) -> bool:
+        if not isinstance(num, int):
+            return False
+        elif not self.slices:
+            return True
+
+        return any(
+            not s.start or num >= s.start
+            and not s.stop or num <= s.stop
+            for s in self.slices
+        )
+
+    @staticmethod
+    def _parse_slice(term: str) -> slice:
+        start_s, sep, stop_s = term.partition("-")
+        start, stop = _int_or_none(start_s), _int_or_none(stop_s)
+        if not sep:
+            return slice(start, start)
+        else:
+            return slice(start, stop)
 
 
 class LibraryEntry(NamedTuple):
@@ -60,6 +95,10 @@ def get_library_entries(params):
             yield LibraryEntry(show, ep, path)
 
     engine.unload()
+
+
+def episode_filter(entry: LibraryEntry, ep_range: EpisodeRange) -> bool:
+    return entry.ep in ep_range
 
 
 def unwatched_filter(entry):
@@ -167,8 +206,6 @@ def to_syncplay(params, filenames):
 
 
 def main(params):
-    # blacklist_patterns = [r"Starlight|Zombie|Shinsekai"]
-
     entries = get_library_entries(params)
     filters = [
         # (filter, reason)
@@ -176,6 +213,7 @@ def main(params):
         (unwatched_filter, "watched"),
         (partial(string_filter, patterns=params.include or [r"^"], negative=False), "not on whitelist"),
         (partial(string_filter, patterns=params.exclude or [], negative=True), "blacklisted"),
+        (partial(episode_filter, ep_range=params.episodes), "not in episode list"),
     ]
     filtered_entries = list(filter_chain(filters, entries))
     for entry in filtered_entries:
@@ -196,27 +234,31 @@ def parse_args():
     )
     parser.add_argument("-v", "--verbose", action='store_true', default=False,
                         help="Increase verbosity.")
-    parser.add_argument("--accountnum", help="For overriding the trackma account number to use."
-                        " You can look this up in trackma's account switcher."
-                        " Will use your default otherwise.")
+    parser.add_argument("--accountnum",
+                        help="For overriding the trackma account number to use."
+                             " You can look this up in trackma's account switcher."
+                             " Will use your default otherwise.")
     parser.add_argument("--force-sync", action='store_true', default=False,
                         help="Resync trackma cache with remote.")
     parser.add_argument("--force-rescan", action='store_true', default=False,
                         help="Rescan local trackma library.")
     parser.add_argument("-f", "--force-all", action='store_true', default=False,
                         help="Force all refreshes.")
-    parser.add_argument("--include", action='append',
+    parser.add_argument("--include", type=str, action='append',
                         help="Regular expression for titles to include. Repeatable.")
-    parser.add_argument("--exclude", action='append',
+    parser.add_argument("--exclude", type=str, action='append',
                         help="Regular expression for titles to exclude. Repeatable.")
-    parser.add_argument("--server",
+    parser.add_argument("--server", type=str,
                         help="Syncplay server with port. Overrides configuration.")
-    parser.add_argument("--room",
+    parser.add_argument("--room", type=str,
                         help="Syncplay room. Overrides configuration.")
-    parser.add_argument("--name",
+    parser.add_argument("--name", type=str,
                         help="Syncplay name. Overrides configuration.")
     parser.add_argument("--dry-run", action='store_true', default=False,
                         help="Just print out the names without adding them to syncplay.")
+    parser.add_argument("-e", "--episodes", type=EpisodeRange, default=EpisodeRange(),
+                        help="Query for episodes to be selected."
+                             " Comma-separate and supports open ranges, e.g. '1,4-6,10-'.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args

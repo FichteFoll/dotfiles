@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
 import argparse
+from collections import defaultdict
 from configparser import ConfigParser
 from dataclasses import dataclass
 from functools import partial
 import logging
 import json
 import os
+import random
 import re
 import sys
 import socket
@@ -131,6 +133,21 @@ def filter_chain(filters, iterable):
     return iterable
 
 
+def randomize(entries: list[LibraryEntry]) -> list[LibraryEntry]:
+    entries_by_show = defaultdict(list)
+    for entry in entries:
+        entries_by_show[entry.show['id']].append(entry)
+    # TODO pick by show or by episode? for the latter, use random.choices with weights
+    randomized_entries = []
+    while entries_by_show:
+        show_id = random.choice(list(entries_by_show.keys()))
+        entry = entries_by_show[show_id].pop(0)
+        if not entries_by_show[show_id]:
+            del entries_by_show[show_id]
+        randomized_entries.append(entry)
+    return randomized_entries
+
+
 def put_syncplay(server, room, name, filenames):
     logger.info("Appending filenames to syncplay; server=%s, room=%s, name=%s",
                 server, room, name)
@@ -220,7 +237,8 @@ def main(params):
         logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
 
     sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
-    filenames = [os.path.basename(entry.path) for entry in sorted_entries]
+    final_entries = randomize(sorted_entries) if params.randomize else sorted_entries
+    filenames = [os.path.basename(entry.path) for entry in final_entries]
     if params.dry_run:
         for filename in filenames:
             print(filename)
@@ -256,6 +274,8 @@ def parse_args():
                         help="Syncplay name. Overrides configuration.")
     parser.add_argument("--dry-run", action='store_true', default=False,
                         help="Just print out the names without adding them to syncplay.")
+    parser.add_argument("-r", "--randomize", action='store_true', default=False,
+                        help="Randomize the playlist (without violating episode order).")
     parser.add_argument("-e", "--episodes", type=EpisodeRange, default=EpisodeRange(),
                         help="Query for episodes to be selected."
                              " Comma-separate and supports open ranges, e.g. '1,4-6,10-'.")

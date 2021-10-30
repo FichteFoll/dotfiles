@@ -37,7 +37,7 @@ Options:
 def rofi_prompt(prompt, *, mesg=None, default=None):
     cmd = [
         "rofi", "-dmenu",
-        "-lines", "0",
+        "-l", "0",
         "-p", prompt,
     ]
     if mesg:

@@ -90,6 +90,8 @@ export WORKON_HOME=${HOME}/.virtualenvs
 command -v fasd >/dev/null && eval "$(fasd --init auto)"
 # source /usr/lib/z.sh
 
+# Java environment management
+command -v jenv >/dev/null && eval "$(jenv init -)"
 
 # The Fuck smart corrections
 command -v thefuck >/dev/null && eval "$(thefuck --alias)" # --enable-experimental-instant-mode

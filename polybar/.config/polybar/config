@@ -102,7 +102,7 @@ monitor = ${env:POLY_MONITOR:DVI-I-1}
 
 modules-left = i3 xwindow
 modules-center = date
-modules-right = mpris pulsesink pulseaudio
+modules-right = mpris pulsesource pulsesink pulseaudio
 
 
 [module/xwindow]
@@ -301,7 +301,6 @@ format-prefix = " "
 format-prefix-foreground = ${colors.prefix}
 
 
-
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -325,11 +324,21 @@ ramp-volume-foreground = ${colors.foreground-alt}
 click-right = pavucontrol &
 
 
-
 [module/pulsesink]
 type = custom/script
 
 exec = pactl subscribe | rg --line-buffered 'on server' | while true ; do read; pactl info | rg -q 'Default Sink:.*Focusrite' && echo "" || echo; done
+tail = true
+
+label-foreground = ${colors.foreground-alt}
+
+click-right = pavucontrol &
+
+
+[module/pulsesource]
+type = custom/script
+
+exec = pactl subscribe | rg --line-buffered 'on source' | while true ; do read; pactl get-source-mute $(pactl get-default-source) | rg -q 'yes' && echo "" || echo; done
 tail = true
 
 label-foreground = ${colors.foreground-alt}

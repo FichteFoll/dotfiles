@@ -181,7 +181,7 @@ mode "$mode_monitor" {
     bindsym m $default_exec mons -m
     bindsym l $default_exec mons -e left
     bindsym r $default_exec mons -e right
-    bindsym p $default_exec mons -o
+    bindsym p $default_exec ~/.screenlayout/primary.sh || mons -o
     bindsym s $default_exec mons -s
     bindsym Shift+p $default_exec mons-primary
     # back to normal

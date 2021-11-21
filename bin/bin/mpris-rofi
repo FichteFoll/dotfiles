@@ -6,7 +6,7 @@ import argparse
 import operator
 from subprocess import CalledProcessError, check_output
 import sys
-from typing import Iterable, Generator, NamedTuple
+from typing import Collection, Iterable, Generator, NamedTuple
 
 from more_itertools import partition
 
@@ -67,10 +67,11 @@ class Player(NamedTuple):
 
 def rofi_prompt(
     prompt: str,
-    options: Iterable[str] = (),
+    options: Collection[str] = (),
     *,
     mesg: str = None,
-    default: str = None
+    default: str = None,
+    max_lines: int = 15,
 ) -> str:
     cmd = [
         "rofi", "-dmenu",
@@ -78,6 +79,7 @@ def rofi_prompt(
         "-no-custom",
         "-matching", "fuzzy",
         "-p", prompt,
+        "-l", str(min(max_lines, len(options)))
     ]
     if mesg:
         cmd += ["-mesg", mesg]

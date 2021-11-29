@@ -212,6 +212,13 @@
 
 // other plugins:
 
+  // Terminal
+  { "keys": ["ctrl+k", "ctrl+t"], "command": "open_terminal" },
+  { "keys": ["ctrl+k", "ctrl+shift+t"], "command": "open_terminal_project_folder" },
+
+  // Restore File History binding (overridden by Terminal)
+  { "keys": ["ctrl+shift+t"], "command": "open_recently_closed_file", "args": { "action": "open_latest_closed" } },
+
   // select until
   { "keys": ["alt+shift+g"], "command": "select_until", "args": {"extend": false} },
 

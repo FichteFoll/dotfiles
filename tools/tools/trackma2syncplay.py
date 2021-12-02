@@ -228,15 +228,15 @@ def main(params):
         # (filter, reason)
         (watching_filter, "not watching"),
         (unwatched_filter, "watched"),
-        (partial(string_filter, patterns=params.include or [r"^"], negative=False), "not on whitelist"),
-        (partial(string_filter, patterns=params.exclude or [], negative=True), "blacklisted"),
+        (partial(string_filter, patterns=params.include, negative=False), "not on whitelist"),
+        (partial(string_filter, patterns=params.exclude, negative=True), "blacklisted"),
         (partial(episode_filter, ep_range=params.episodes), "not in episode list"),
     ]
     filtered_entries = list(filter_chain(filters, entries))
-    for entry in filtered_entries:
+    sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
+    for entry in sorted_entries:
         logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
 
-    sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
     final_entries = randomize(sorted_entries) if params.randomize else sorted_entries
     filenames = [os.path.basename(entry.path) for entry in final_entries]
     if params.dry_run:
@@ -284,6 +284,8 @@ def parse_args():
     params.syncplay_args = syncplay_args
     if params.force_all:
         params.force_sync = params.force_rescan = True
+    params.include = params.include or [r"^"]  # match everything
+    params.exclude = params.exclude or []
 
     return params
 

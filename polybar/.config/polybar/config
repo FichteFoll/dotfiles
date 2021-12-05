@@ -87,7 +87,7 @@ monitor = ${env:POLY_MONITOR:HDMI-A-0}
 
 modules-left = i3 xwindow kernel
 modules-center = date wttr
-modules-right = picom failed_units updates filesystem memory cpu_usage cpu_load gpu_usage eth pulsesink pulseaudio
+modules-right = picom failed_units updates filesystem memory cpu_usage cpu_load gpu_usage eth pulsesinksource pulseaudio
 
 tray-position = right
 # tray-background = #0063ff
@@ -102,7 +102,7 @@ monitor = ${env:POLY_MONITOR:DVI-I-1}
 
 modules-left = i3 xwindow
 modules-center = date
-modules-right = mpris pulsesource pulsesink pulseaudio
+modules-right = mpris pulsesinksource pulseaudio
 
 
 [module/xwindow]
@@ -324,21 +324,10 @@ ramp-volume-foreground = ${colors.foreground-alt}
 click-right = pavucontrol &
 
 
-[module/pulsesink]
+[module/pulsesinksource]
 type = custom/script
 
-exec = pactl subscribe | rg --line-buffered 'on server' | while true ; do read; pactl info | rg -q 'Default Sink:.*Focusrite' && echo "" || echo; done
-tail = true
-
-label-foreground = ${colors.foreground-alt}
-
-click-right = pavucontrol &
-
-
-[module/pulsesource]
-type = custom/script
-
-exec = pactl subscribe | rg --line-buffered 'on source' | while true ; do read; pactl get-source-mute $(pactl get-default-source) | rg -q 'yes' && echo "" || echo; done
+exec = ~/.config/polybar/scripts/pulse-sink-source
 tail = true
 
 label-foreground = ${colors.foreground-alt}

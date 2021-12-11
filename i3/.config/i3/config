@@ -241,7 +241,7 @@ bindsym $mod+F2 exec --no-startup-id pactl set-default-sink alsa_output.usb-Focu
 
 # media keys for mpd
 bindsym XF86AudioPrev exec --no-startup-id mpris-rofi previous
-bindsym $mod+F7 exec --no-startup-id mpris-rofi restart
+bindsym XF86AudioStop exec --no-startup-id mpris-rofi restart
 bindsym XF86AudioPlay exec --no-startup-id mpris-rofi playpause
 bindsym XF86AudioNext exec --no-startup-id mpris-rofi next
 

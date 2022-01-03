@@ -386,8 +386,7 @@ exec --no-startup-id fcitx
 exec --no-startup-id setxkbmap de neo_qwertz
 
 # desktop
-# for some reason my setup in `/etc/X11/xorg.conf.d/50-video.conf` just doesn't work
-exec --no-startup-id ~/.screenlayout/$(cat /etc/hostname).sh; ~/.fehbg; picom
+exec --no-startup-id ~/.screenlayout/"$(cat /etc/hostname)".sh; ~/.fehbg; picom
 
 # polybar
 # exec-always doesn't work for some reason?

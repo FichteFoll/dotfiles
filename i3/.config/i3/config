@@ -382,8 +382,6 @@ mode "$mode_launcher" {
 
 # Initial startup #
 exec --no-startup-id fcitx
-# to circumvent fcitx workaround (https://github.com/fcitx/fcitx/issues/324)
-exec --no-startup-id setxkbmap de neo_qwertz
 
 # desktop
 exec --no-startup-id ~/.screenlayout/"$(cat /etc/hostname)".sh; ~/.fehbg; picom

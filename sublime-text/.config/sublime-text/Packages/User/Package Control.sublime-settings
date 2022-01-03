@@ -39,6 +39,7 @@
 		"LaTeX-cwl",
 		"LaTeXTools",
 		"LSP",
+		"LSP-rust-analyzer",
 		"MarkdownPreview",
 		"MarkdownTOC",
 		"Meson",

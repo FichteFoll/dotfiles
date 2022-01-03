@@ -14,9 +14,6 @@
 				},
 			},
 		},
-		"rust-analyzer": {
-			"enabled": true,
-		},
 		"LSP-pyright": {
 			"enabled": true,
 		},

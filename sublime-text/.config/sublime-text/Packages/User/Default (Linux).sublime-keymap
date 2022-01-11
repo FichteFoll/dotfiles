@@ -331,6 +331,19 @@
       { "key": "auto_complete_visible", "operator": "equal", "operand": false },
     ],
   },
+  { "keys": ["f4"],
+    "command": "lsp_goto_diagnostic",
+    "args": { "uri": "$view_uri" },
+    "context": [
+      { "key": "panel_visible", "operator": "output.diagnostics" },
+    ],
+  },
+  { "keys": ["alt+f4"],
+    "command": "lsp_goto_diagnostic",
+    "context": [
+      { "key": "panel_visible", "operator": "output.diagnostics" },
+    ],
+  },
   { "keys": ["shift+f6"],
     "command": "lsp_symbol_rename",
     "context": [

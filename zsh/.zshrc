@@ -93,6 +93,9 @@ command -v fasd >/dev/null && eval "$(fasd --init auto)"
 # Java environment management
 command -v jenv >/dev/null && eval "$(jenv init -)"
 
+# fzf key bindings
+[[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+
 # The Fuck smart corrections
 command -v thefuck >/dev/null && eval "$(thefuck --alias)" # --enable-experimental-instant-mode
 

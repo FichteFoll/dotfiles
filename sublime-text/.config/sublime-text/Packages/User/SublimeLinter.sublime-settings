@@ -6,15 +6,19 @@
         "annotations": {
             "errors": [
                 "FIXME",
-                "TOFIX"
+                "TOFIX",
+                "ERROR",
             ],
             "warnings": [
                 "TODO",
+                "todo!", // Rust macro
                 "XXX",
                 "TOCHECK",
                 "TOTEST",
-                "README"
             ],
+            "infos": ["NOTE", "README", "INFO"],
+            "mark_message": true,
+            "comment_selector": "comment - punctuation.definition.comment, support.macro.rust",
             "styles": [
                 {
                     "mark_style": "outline", // solid_underline

@@ -285,7 +285,10 @@ function npm-do {
     PATH=$(npm bin):$PATH "$@"
 }
 
+# aurutils
 alias aurb="aur build -d custom"
+
+alias aurs="sudo -u build aur sync -c -d aur"
 
 
 # utilities

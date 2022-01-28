@@ -9,4 +9,14 @@
         "command": "git",
         "args": {"argv": ["rebase-terminal", "$commit"]}
     },
+    {
+        "caption": "Change Theme: Default",
+        "command": "set_preference",
+        "args": { "setting": "theme", "value": "Merge.sublime-theme" },
+    },
+    {
+        "caption": "Change Theme: Merge Dark",
+        "command": "set_preference",
+        "args": { "setting": "theme", "value": "Merge Dark.sublime-theme" },
+    },
 ]

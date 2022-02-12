@@ -1,5 +1,6 @@
 [
-// basic overrides:
+// BASIC REBINDS
+
   //["ctrl+;"] -> ctrl+ü; "/" is actually the "#" key
   // { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": "#" } },
   //["ctrl+`"] -> ctrl+ö
@@ -122,6 +123,9 @@
   { "keys": ["ctrl+alt+f"], "command": "slurp_find_string" },
   { "keys": ["ctrl+alt+shift+f"], "command": "slurp_replace_string" },
 
+  // Improved auto-pairing in general
+  // TODO ( [ { < " '
+  // https://github.com/sublimehq/Packages/pull/2889
 
   // Auto-pair escaped curly brackets in tex
   { "keys": ["{"], "command": "insert_snippet", "args": {"contents": "{$0\\\\}"},
@@ -142,6 +146,7 @@
       { "key": "selector", "operand": "text.tex", "match_all": true },
     ],
   },
+  // wrap selection with subscript or superscript
   { "keys": ["^"], "command": "insert_snippet", "args": {"contents": "^{${1:$SELECTION}}$0" },
     "context": [
       { "key": "setting.auto_match_enabled", "operand": true },
@@ -165,12 +170,12 @@
   { "keys": ["alt+down"], "command": "move", "args": { "by": "stops", "empty_line": true, "forward": true } },
   { "keys": ["alt+up"], "command": "move", "args": { "by": "stops", "empty_line": true, "forward": false } },
 
-  // OVERRIDES
+// REVERT PACKAGE OVERRIDES
 
   // open url
   { "keys": ["ctrl+u"], "command": "soft_undo" },
 
-// my small plugins:
+// CUSTOM PLUGINS
 
   // testing
   // { "keys": ["ctrl+super+c"], "command": "convert_csscheme" },
@@ -220,7 +225,7 @@
     ],
   },
 
-// other plugins:
+// OTHER PLUGINS
 
   // Terminal
   { "keys": ["ctrl+k", "ctrl+t"], "command": "open_terminal" },

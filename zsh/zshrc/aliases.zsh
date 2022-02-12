@@ -49,6 +49,8 @@ alias lsed='exa -d *(/^F)'
 
 # Shorthands for directory navigation
 alias ..='cd ../'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # cd to directoy and list files
 cl() {

@@ -46,7 +46,6 @@ alias lsd='exa -d *(/)'
 # Only show empty directories
 alias lsed='exa -d *(/^F)'
 
-
 # Shorthands for directory navigation
 alias ..='cd ../'
 alias ...='cd ../..'
@@ -82,7 +81,6 @@ rmcdir () {
     builtin cd ..
     command rmdir $OLDPWD || builtin cd $OLDPWD
 }
-
 
 # OpenSSL cert shorthands
 ssl_hashes=( sha512 sha256 sha1 md5 )
@@ -123,7 +121,6 @@ ssl-cert-info() {
 # insecure ssh and scp
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
-
 
 # Find history events by search pattern and list them by date.
 whatwhen()  {
@@ -245,7 +242,6 @@ Syu () {
     sudo pacman -Syu $@
 }
 
-
 # systemd aliases
 alias sc='sudo systemctl'
 alias scu='systemctl --user'
@@ -272,9 +268,9 @@ alias wine_tmp='env WINEPREFIX="$HOME/.wine_tmp" wine'
 alias winecfg_tmp='env WINEPREFIX="$HOME/.wine_tmp" winecfg'
 alias winetricks_tmp='env WINEPREFIX="$HOME/.wine_tmp" winetricks'
 
-
 # docker
 alias ds='sudo -g docker -s'
+
 function dc() {
     # detach by default
     if [ "$1" = "up" -a "$#" = 1 ]; then
@@ -284,7 +280,6 @@ function dc() {
         docker-compose "$@"
     fi
 }
-
 
 # python source venv
 alias venv="source .venv/bin/activate"

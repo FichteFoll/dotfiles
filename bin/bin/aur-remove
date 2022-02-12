@@ -1,12 +1,12 @@
 #!/bin/sh --
 # aur-remove - remove listed packages from all local repositories
+
 if [ "$#" -eq 0 ]; then
-  printf 'usage: aur remove package [package ...]\en' >&2
-  exit 1
+    printf 'usage: aur remove package [package ...]\n' >&2
+    exit 1
 fi
 
-aur repo --repo-list | while read -r repo_name; do
-  repo_path=$(aur repo -d "$repo_name" -p)
-  repo-remove "$repo_path" "$@"
-  paccache -c "${repo_path%/*}" -rvk0 "$@"
+aur repo --list-path | while read -r repo_path; do
+    repo-remove "$repo_path" "$@"
+    paccache -c "${repo_path%/*}" -rvk0 "$@"
 done

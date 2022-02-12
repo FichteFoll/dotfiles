@@ -287,11 +287,6 @@ function dc() {
 # python source venv
 alias venv="source .venv/bin/activate"
 
-# run locally installed npm scripts
-function npm-do {
-    PATH=$(npm bin):$PATH "$@"
-}
-
 # aurutils
 alias aurb="aur build -d custom"
 

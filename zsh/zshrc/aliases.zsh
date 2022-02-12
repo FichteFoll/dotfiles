@@ -194,11 +194,18 @@ beet_mpa () {
 }
 
 hologra() {
-    youtube-dl --flat-playlist "https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg/videos" -j \
+    yt-dlp --flat-playlist "https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg/videos" -j \
         | grep Anime \
         | jq -r .url \
         | head -n $1 \
-        | sed 's/^/https:\/\/www.youtube.com\/watch?v=/' \
+        | tac \
+        | tee >(xsel -ib)
+}
+
+staco() {
+    yt-dlp --flat-playlist "https://www.youtube.com/playlist?list=PLNQov5ZpSSWclbG0Rvs-CDWqybmOKNbhO" -j \
+        | jq -r .url \
+        | head -n $1 \
         | tac \
         | tee >(xsel -ib)
 }

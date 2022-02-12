@@ -29,7 +29,6 @@ wget -N https://github.com/rauenzi/BDPluginLibrary/raw/master/release/0PluginLib
 wget -N https://github.com/Strencher/BetterDiscordStuff/raw/master/SuppressReplyMentions/SuppressReplyMentions.plugin.js
 wget -N https://github.com/Strencher/BetterDiscordStuff/raw/master/PlatformIndicators/APlatformIndicators.plugin.js
 
-
 cd "$DIR/themes"
 wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/showURLs.theme.css
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Themes/RadialStatus/RadialStatus.theme.css

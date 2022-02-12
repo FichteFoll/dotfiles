@@ -137,7 +137,7 @@ def randomize(entries: list[LibraryEntry]) -> list[LibraryEntry]:
     entries_by_show = defaultdict(list)
     for entry in entries:
         entries_by_show[entry.show['id']].append(entry)
-    # TODO pick by show or by episode? for the latter, use random.choices with weights
+    # TODO add option to get at least N epiodes from the same show
     randomized_entries = []
     while entries_by_show:
         show_id = random.choice(list(entries_by_show.keys()))

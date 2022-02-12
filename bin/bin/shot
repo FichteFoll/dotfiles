@@ -21,6 +21,7 @@ TOOL_NAME = "shot"
 TEMPLATE = "/data/Images/Screenshots/%Y-%m-%d_%H-%M-%S.png"
 URL = "https://x0.at/"
 
+# TODO convert to jpeg/webp
 MESG = """\
 Default: "sc"; negate with upper-case
 Options:

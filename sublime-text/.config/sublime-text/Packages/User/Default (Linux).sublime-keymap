@@ -321,6 +321,14 @@
   },
   { "keys": ["ctrl+k", "h"], "command": "sublime_linter_toggle_highlights" },
 
+  // Fmt
+  { "keys": ["ctrl+alt+l"], "command": "fmt_format_selection" },
+  { "keys": ["ctrl+alt+l"], "command": "fmt_format_buffer",
+    "context": [
+      { "key": "selection_empty", "match_all": true },
+    ],
+  },
+
   // LSP //////
   { "keys": ["alt+enter"],
     "command": "lsp_code_actions",

@@ -28,8 +28,6 @@
 	cAa = commit --all --amend -C HEAD
 	cAan = commit --all --amend --no-edit
 	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
-	terminal = !i3-sensible-terminal "$@" & disown
-	rebase-terminal = !GIT_EDITOR=$EDITOR i3-sensible-terminal --hold -e $SHELL -c \"git rebase -i $1\" & disown
 
 	; Pull request management
 	; https://gist.github.com/gnarf/5406589
@@ -37,6 +35,10 @@
 	pr = "!f() { git prr origin $1; } ; f"
 	pru = "!f() { git prr upstream $1; } ; f"
 	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do git branch -D ${ref#refs/heads/} ; done"
+
+	; Sublime Merge integrations
+	terminal = !i3-sensible-terminal "$@" & disown
+	rebase-terminal = !GIT_EDITOR=$EDITOR i3-sensible-terminal --hold -e $SHELL -c \"git rebase -i $1\" & disown
 
 [branch]
 	autosetuprebase = always

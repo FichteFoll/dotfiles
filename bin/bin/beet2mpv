@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# mpv --playlist <(beet list $@ -f '$path')
+beet list -p $@ | xe -N0 mpv

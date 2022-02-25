@@ -1,0 +1,7 @@
+#!/bin/sh
+FORMAT=$(echo -e "\n\033[1;33m ==> %w%f written\033[0m")
+"$@"
+while inotifywait -qre close_write --format "$FORMAT" . --exclude /target/
+do
+    "$@"
+done

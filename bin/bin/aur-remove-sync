@@ -1,0 +1,13 @@
+#!/bin/sh --
+# aur-remove-sync - Remove listed packages from $AURDEST
+
+if [ "$#" -eq 0 ]; then
+    printf 'usage: aur remove-sync package [package ...]\n' >&2
+    exit 1
+fi
+
+XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+AURDEST="${AURDEST:-$XDG_CACHE_HOME/aurutils/sync}"
+
+cd "$AURDEST"
+rm -vrf -- "$@"

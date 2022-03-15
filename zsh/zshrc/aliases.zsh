@@ -8,7 +8,7 @@ alias xen='xe -N0'
 alias wcl='wc -l'
 #alias vim='kak'
 alias cat='bat -pp'
-alias dragon='dragon-drag-and-drop'
+alias dragon='dragon-drop'
 alias gdiff='git diff --no-index'
 
 # TEMP

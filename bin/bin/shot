@@ -29,7 +29,7 @@ Options:
   s: save
   c: copy image
   u: upload &amp; copy url
-  d: dragon
+  d: dragon-drop
   p: copy image path (overrides cu)
   o: open image
 """
@@ -155,7 +155,7 @@ def main(params):
 
     if pops('d'):
         ensure_path()
-        Popen(["dragon-drag-and-drop", str(path)])
+        Popen(["dragon-drop", str(path)])
 
     if pops('o'):
         ensure_path()

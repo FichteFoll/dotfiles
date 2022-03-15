@@ -39,5 +39,5 @@
   },
 
   // Special
-  { "keys": ["ctrl+alt+t"], "command": "git", "args": { "argv": ["terminal"] } },
+  { "keys": ["ctrl+k", "ctrl+t"], "command": "git", "args": { "argv": ["terminal"] } },
 ]

@@ -3,9 +3,9 @@
 pactl subscribe \
     | while :; do
         sinkicon=$(pactl info | rg -q 'Default Sink:.*Focusrite' && echo -n "")
-        sourceicon=$([[ "$(pactl get-source-mute $(pactl get-default-source))" = "Mute: yes" ]] && echo -n "")
-        [[ -z "$sinkicon$sourceicon" ]] && echo || echo $sourceicon $sinkicon
+        sourceicon=$([[ "$(pactl get-source-mute "$(pactl get-default-source)")" = "Mute: yes" ]] && echo -n "")
+        [[ -z "$sinkicon$sourceicon" ]] && echo || echo "$sourceicon $sinkicon"
         while
-            read -r line && [[ ! "$line" =~ "on sink" ]] && [[ ! "$line" =~ "on source" ]]
+            read -r line && [[ ! "$line" =~ "on sink" ]] && [[ ! "$line" =~ "on source" ]] && [[ ! "$line" =~ "on server" ]]
         do :; done
     done

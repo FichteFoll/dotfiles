@@ -143,8 +143,7 @@ def main(params):
         actions.append("Copied path to clipboard")
 
     if pops('c'):
-        # flameshot does this automatically
-        # run(["xclip", "-selection", "clipboard", "-t", "image/png"], input=image_data)
+        run(["xclip", "-selection", "clipboard", "-t", "image/png"], input=image_data)
         actions.append("Copied image to clipboard")
 
     if pops('u'):

@@ -22,6 +22,7 @@ def notify(summary, body=""):
     subprocess.Popen(args)
 
 
+repl = []
 nohead = []
 patterns = []
 with Path("~/.config/openurl.conf").expanduser().open() as f:
@@ -30,6 +31,11 @@ with Path("~/.config/openurl.conf").expanduser().open() as f:
             continue  # Discard empty and commented lines
         if stripped.startswith("nohead:"):
             nohead.append(stripped[7:])
+        elif stripped.startswith("repl:"):
+            repl_line = stripped[5:]
+            split = repl_line.split(repl_line[0])
+            assert len(split) == 4 and split[0] == "" and split[3] == "", "Bad repl: line"
+            repl.append((re.compile(split[1]), split[2]))
         else:
             patterns.append(stripped.split(maxsplit=1))
 
@@ -38,6 +44,12 @@ session = requests.Session()
 session.headers['User-Agent'] = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 openurl/0.0 Safari/537.36"
 
 for url in urls:
+    for reg_pattern, sub in repl:
+        if re.search(reg_pattern, url):
+            new_url = re.sub(reg_pattern, sub, url)
+            print(f"Replaced {url!r} with {new_url!r}", file=sys.stderr)
+            url = new_url
+
     if not any(re.search(reg, url) for reg in nohead):
         try:
             req = session.head(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)

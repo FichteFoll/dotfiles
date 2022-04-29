@@ -1,0 +1,18 @@
+# https://github.com/lawl/NoiseTorch/wiki/Start-automatically-with-Systemd#create-systemd-unit
+[Unit]
+Description=Noisetorch Noise Cancelling
+Requires=pipewire.socket
+StartLimitIntervalSec=35
+StartLimitBurst=9
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/bin/noisetorch -i -s '%i'
+ExecStop=/usr/bin/noisetorch -u
+Restart=on-failure
+RestartSec=3
+
+
+[Install]
+WantedBy=default.target

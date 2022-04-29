@@ -1,3 +1,4 @@
 {
-	"tz_in": "CET"
+	"tz_in": "CET",
+	"format": "%x",
 }

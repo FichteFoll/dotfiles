@@ -22,8 +22,9 @@
   // { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
   // SciTE's 'KP_-' behaviour || previously "ctrl+/" and "ctrl+shift+/" (-> "#" key)
-  { "keys": ["keypad_minus"], "command": "toggle_comment", "args": {"block": false} },
-  { "keys": ["ctrl+shift+keypad_minus"], "command": "toggle_comment", "args": {"block": true} },
+  { "keys": ["keypad_minus"], "command": "toggle_comment", "args": { "block": false } },
+  { "keys": ["ctrl+shift+keypad_minus"], "command": "toggle_comment", "args": { "block": true } },
+  { "keys": ["ctrl+7"], "command": "toggle_comment", "args": { "block": false } },
 
   // Diff hunks
   { "keys": ["ctrl+k", "ctrl+h"], "command": "toggle_inline_diff" },

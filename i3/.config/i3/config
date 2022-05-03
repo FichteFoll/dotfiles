@@ -283,9 +283,6 @@ for_window [class="QjackCtl"] floating enable
 for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
 # for_window [class="mpv"] border pixel 2
 
-# not supported https://github.com/i3/i3/issues/2608
-#for_window [class="Steam" title="Friends"] resize set width 350 or 14, move right
-
 # focus specific windows
 set $mode_focus Focus: [c]antata [D]eluge [d]iscord [f]irefox [h]exchat s[m]erge [M]pv [T]elegram [t]hunderbird [z]eal | ST: [n]otes [H]ome
 bindsym $mod+g mode "$mode_focus"

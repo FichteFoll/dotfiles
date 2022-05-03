@@ -35,7 +35,8 @@
             ],
         },
         "eslint": {
-            "selector": "source.js - source.js.embedded.vue - meta.attribute-with-value"
+            // Use `vue-eslint-parser` in .eslintrc's parser setting
+            "selector": "source.js, source.ts, text.html.vue"
         },
         "flake8": {
             "args": [

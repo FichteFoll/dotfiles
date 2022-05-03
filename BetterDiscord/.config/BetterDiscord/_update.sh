@@ -16,8 +16,8 @@ wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Library/0BDF
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/DisplayServersAsChannels/DisplayServersAsChannels.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/EditUsers/EditUsers.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/MessageUtilities/MessageUtilities.plugin.js
-wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/RemoveBlockedMessages/RemoveBlockedMessages.plugin.js
-wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/ServerHider/ServerHider.plugin.js
+wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/RemoveBlockedUsers/RemoveBlockedUsers.plugin.js
+# wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/ServerHider/ServerHider.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/AccountDetailsPlus/AccountDetailsPlus.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/BetterRoleColors/BetterRoleColors.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/HideDisabledEmojis/HideDisabledEmojis.plugin.js
@@ -31,5 +31,5 @@ wget -N https://github.com/Strencher/BetterDiscordStuff/raw/master/PlatformIndic
 
 cd "$DIR/themes"
 wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/showURLs.theme.css
-wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Themes/RadialStatus/RadialStatus.theme.css
-wget -N https://github.com/rauenzi/Nox/raw/master/release/Nox.theme.css
+# wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Themes/RadialStatus/RadialStatus.theme.css
+# wget -N https://github.com/rauenzi/Nox/raw/master/release/Nox.theme.css

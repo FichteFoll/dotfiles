@@ -10,6 +10,7 @@ alias wcl='wc -l'
 alias cat='bat -pp'
 alias dragon='dragon-drop'
 alias gdiff='git diff --no-index'
+alias hx='helix'
 
 # TEMP
 alias t2si="python ~/tools/trackma2syncplay.py --include"

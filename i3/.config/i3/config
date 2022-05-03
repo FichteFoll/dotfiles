@@ -284,7 +284,7 @@ for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
 # for_window [class="mpv"] border pixel 2
 
 # focus specific windows
-set $mode_focus Focus: [c]antata [D]eluge [d]iscord [f]irefox [h]exchat s[m]erge [M]pv [T]elegram [t]hunderbird [z]eal | ST: [n]otes [H]ome
+set $mode_focus Focus: [c]antata [D]eluge [d]iscord [f]irefox [h]exchat s[m]erge [M]pv [T]elegram [t]hunderbird Spotif[y] [z]eal | ST: [n]otes [H]ome
 bindsym $mod+g mode "$mode_focus"
 mode "$mode_focus" {
     set $to_default mode "default"
@@ -297,6 +297,7 @@ mode "$mode_focus" {
     bindsym Shift+m [class="mpv"] focus, $to_default
     bindsym Shift+t [class="TelegramDesktop"] focus, $to_default
     bindsym t       [class="Thunderbird"] focus, $to_default
+    bindsym y       [class="Spotify"] focus, $to_default
     bindsym z       [class="Zeal"] focus, $to_default
 
     bindsym n       [class="Subl" title="^notes — .* - Sublime Text$"] focus, $to_default
@@ -352,7 +353,7 @@ bindsym $mod+Ctrl+Shift+s exec --no-startup-id killall screenkey
 
 # Press $mod+o followed by a letter to run applications
 # or Esc or Return to return the default mode.
-set $mode_launcher Launch: Teamspeak[3] [a]egisub [c]antata [C]hromium [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [p]avucontrol [r]anger [s]ubl [S]yncplay [T]elegram [t]hunderbird [Z]eal
+set $mode_launcher Launch: Teamspeak[3] [a]egisub [c]antata [C]hromium [d]iscord [f]irefox [h]exchat [k]eepass s[m]erge [p]avucontrol [r]anger [s]ubl [S]yncplay [T]elegram [t]hunderbird Spotif[y] [Z]eal
 bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     set $to_default mode "default"
@@ -371,6 +372,7 @@ mode "$mode_launcher" {
     bindsym Shift+s exec syncplay, $to_default
     bindsym Shift+t exec env LC_TIME=lt_LT.UTF-8 telegram-desktop, $to_default
     bindsym t       exec env LC_TIME=lt_LT.UTF-8 thunderbird, $to_default
+    bindsym y       exec spotify, $to_default
     bindsym z       exec zeal, [class="Zeal"] focus, $to_default
 
     bindsym Escape $to_default

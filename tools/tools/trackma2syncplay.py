@@ -149,8 +149,8 @@ def randomize(entries: list[LibraryEntry]) -> list[LibraryEntry]:
 
 
 def put_syncplay(server, room, name, filenames):
-    logger.info("Appending filenames to syncplay; server=%s, room=%s, name=%s",
-                server, room, name)
+    logger.info("Appending %d filenames to syncplay; server=%s, room=%s, name=%s",
+                len(filenames), server, room, name)
 
     class JsonProtocolConnection:
         def __init__(self, server):

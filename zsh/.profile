@@ -33,3 +33,7 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
     echo "Starting X server"
     exec startx
 fi
+# if [ "$(tty)" = "/dev/tty1" ]; then
+    # echo "Starting Sway"
+#     exec sway
+# fi

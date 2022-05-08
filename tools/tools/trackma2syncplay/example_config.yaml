@@ -11,14 +11,14 @@
 # they SHOULD also use identical patterns for them
 # for additional show info with other users to be useful.
 _never: !!set
-  - Attack on Titan
+  ? Attack on Titan
 
 user1: !!set
-  - Death Note
+  ? Death Note
 
 user2: !!set
-  - ^Re:Zero
+  ? ^Re:Zero
 
 user3: !!set
-  - ^Re:Zero
-  - Death Note
+  ? ^Re:Zero
+  ? Death Note

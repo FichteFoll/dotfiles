@@ -1,0 +1,111 @@
+#!/usr/bin/env python
+
+import argparse
+from functools import reduce
+import subprocess
+import sys
+import operator
+import itertools
+from pathlib import Path
+from typing import Iterator
+
+from ruamel.yaml import YAML
+
+# type alias
+Config = dict[str, set[str]]
+
+dir_path = Path(__file__).parent
+config_path = dir_path / "config.yaml"
+t2s_path = dir_path / "trackma2syncplay.py"
+
+yaml = YAML()
+
+
+def main() -> int:
+    try:
+        i = sys.argv.index("--")
+        names = set(sys.argv[1:i])
+        syncplay_args = sys.argv[i + 1:]
+    except ValueError:
+        names = set(sys.argv[1:])
+        syncplay_args = []
+
+    config = load_config()
+    # This simply does not work as I want it to.
+    # params, syncplay_args = parse_args(config)
+    # print(f"{params=}")
+    # names = set(params.names)
+
+    includes: set[str] = set()
+    excludes: set[str] = set()
+
+    not_names = set(config.keys()) - names
+    print(f"{names=}, {not_names=}\n")
+    print(f"{syncplay_args=}")
+
+    if names:
+        if includes := shows_for_names(config, names):
+            print(f"Matching shows: {', '.join(sorted(includes))}")
+        else:
+            print(f"No common matches for {names}!")
+
+        if not_names:
+            print("Shows additionally with…")
+            extra_names: Iterator[list[str]]
+            for extra_names in filter(None, powerset(not_names)):
+                alt_names = names | set(extra_names)
+                alt_shows = shows_for_names(config, alt_names)
+                extra_shows = alt_shows - includes
+                if not extra_shows:
+                    continue
+                print(f"    {', '.join(sorted(extra_names))}"
+                      f": {', '.join(sorted(extra_shows)) or '-'}")
+
+        if not includes:
+            return 0
+            sys.exit(0)
+    else:
+        excludes = reduce(operator.or_, shows(config, not_names), excludes)
+
+    cmd = [
+        "python",
+        t2s_path,
+        *(["--exclude", "|".join(excludes)] if excludes else []),
+        *(["--include", "|".join(includes)] if includes else []),
+        *syncplay_args,
+    ]
+    print("Launching trackma2syncplay…\n")
+    subprocess.run(cmd)
+    return 0
+
+
+def load_config() -> Config:
+    with config_path.open() as fp:
+        return yaml.load(fp)
+
+
+def parse_args(config: Config) -> tuple[argparse.Namespace, list[str]]:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('names', nargs='*', action='extend', choices=sorted(config.keys()))
+    return parser.parse_known_args()
+
+
+def powerset(iterable):
+    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
+    # itertools recipe
+    s = list(iterable)
+    return itertools.chain.from_iterable(itertools.combinations(s, r) for r in range(len(s) + 1))
+
+
+def shows(config: Config, names: set[str]) -> Iterator[set[str]]:
+    yield from (config[name] for name in names)
+
+
+def shows_for_names(config: Config, names: set[str]) -> set[str]:
+    intersection = reduce(operator.and_, shows(config, names))
+    not_names = set(config.keys()) - names
+    return reduce(operator.sub, shows(config, not_names), intersection)
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -12,8 +12,8 @@ alias dragon='dragon-drop'
 alias gdiff='git diff --no-index'
 alias hx='helix'
 
-# TEMP
-alias t2si="python ~/tools/trackma2syncplay.py --include"
+alias t2s='python ~/tools/trackma2syncplay/t2s'
+alias t2si="python ~/tools/trackma2syncplay/trackma2syncplay.py --include"
 
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"

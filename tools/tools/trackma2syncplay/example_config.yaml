@@ -1,0 +1,24 @@
+# This file is used by the `t2s` script.
+# The file MUST be named `config.yaml`.
+#
+# It MUST hold a mapping of 'identifiers' to a set of show names
+# that are treated as regular expressions,
+# joined with `|`
+# and used as inputs for the `--include` and `--exclude` parameters
+# of `trackma2syncplay.py` respectively.
+#
+# When multiple users share the same show,
+# they SHOULD also use identical patterns for them
+# for additional show info with other users to be useful.
+_never: !!set
+  - Attack on Titan
+
+user1: !!set
+  - Death Note
+
+user2: !!set
+  - ^Re:Zero
+
+user3: !!set
+  - ^Re:Zero
+  - Death Note

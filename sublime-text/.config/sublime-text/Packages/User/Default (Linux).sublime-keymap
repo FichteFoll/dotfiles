@@ -292,12 +292,35 @@
   // AlignTab
   { "keys": ["ctrl+shift+a"], "command": "align_tab", "args": {"live_preview" : true} },
 
-  // bracket highlighter
-  { "keys": ["ctrl+shift+q"], "command": "bh_async_key",
+  // Bracket Highlighter
+  // https://facelessuser.github.io/BracketHighlighter/customize/#run-instance-plugins
+  { "keys": ["ctrl+shift+q"], "command": "bh_key",
     "args": {
       "lines": true,
-      "plugin": { "command": "bh_modules.swapquotes",
-                  "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"] },
+      "plugin": {
+        "command": "bh_modules.swapquotes",
+        "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"],
+      },
+    },
+  },
+  { "keys": ["ctrl+m"], "command": "bh_key",
+    "args": {
+      "no_outside_adj": null,
+      "lines": true,
+      "plugin": {
+        "command": "bh_modules.bracketselect",
+        "type": ["__all__"],
+        "args": { "select": "right", "alternate": true },
+      },
+    },
+  },
+  { "keys": ["ctrl+shift+m"], "command": "bh_key",
+    "args": {
+      "no_outside_adj": null,
+      "plugin": {
+        "command": "bh_modules.bracketselect",
+        "type": ["__all__"],
+      },
     },
   },
 

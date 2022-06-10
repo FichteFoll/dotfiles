@@ -81,9 +81,11 @@
 [delta]
 	line-numbers = true
 	minus-style = syntax auto
-    # side-by-side = true
+	# side-by-side = true
 
 [interactive]
 	diffFilter = delta --color-only
 [tag]
 	gpgSign = true
+[rerere]
+	enabled = true

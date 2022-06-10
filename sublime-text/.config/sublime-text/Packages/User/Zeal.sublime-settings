@@ -2,6 +2,7 @@
   "docsets_user": [
     { "name": "Sublime Text", "selector": "source.json.sublime, source.yaml.sublime, source.python" },
     { "name": "Docker", "selector": "source.dockerfile", "namespace": "docker" },
+    { "name": "JavaScript", "selector": "source.ts" },
   ],
   "multi_match": "join",
 }

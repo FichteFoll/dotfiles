@@ -133,18 +133,20 @@ def filter_chain(filters, iterable):
     return iterable
 
 
-def randomize(entries: list[LibraryEntry]) -> list[LibraryEntry]:
+def randomize(entries: list[LibraryEntry], batch: int) -> list[LibraryEntry]:
     entries_by_show = defaultdict(list)
     for entry in entries:
         entries_by_show[entry.show['id']].append(entry)
-    # TODO add option to get at least N epiodes from the same show
+
     randomized_entries = []
     while entries_by_show:
         show_id = random.choice(list(entries_by_show.keys()))
-        entry = entries_by_show[show_id].pop(0)
-        if not entries_by_show[show_id]:
-            del entries_by_show[show_id]
-        randomized_entries.append(entry)
+        for i in range(batch):
+            entry = entries_by_show[show_id].pop(0)
+            randomized_entries.append(entry)
+            if not entries_by_show[show_id]:
+                del entries_by_show[show_id]
+                break
     return randomized_entries
 
 
@@ -237,7 +239,7 @@ def main(params):
     for entry in sorted_entries:
         logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
 
-    final_entries = randomize(sorted_entries) if params.randomize else sorted_entries
+    final_entries = randomize(sorted_entries, params.batch) if params.randomize else sorted_entries
     filenames = [os.path.basename(entry.path) for entry in final_entries]
     if params.dry_run:
         for filename in filenames:
@@ -279,6 +281,8 @@ def parse_args():
     parser.add_argument("-e", "--episodes", type=EpisodeRange, default=EpisodeRange(),
                         help="Query for episodes to be selected."
                              " Comma-separate and supports open ranges, e.g. '1,4-6,10-'.")
+    parser.add_argument("-b", "--batch", type=int, default=1,
+                        help="Number of episodes to select per show in random mode.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args

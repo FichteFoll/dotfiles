@@ -231,7 +231,8 @@ bindsym --whole-window $mod+button2 floating toggle
 # MEDIA KEYS #
 set $volume_step 5%
 set $speakers_sink alsa_output.pci-0000_00_1b.0.analog-stereo
-set $headphones_sink alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y77R9F80B6C053-00.analog-stereo
+#set $headphones_sink alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y77R9F80B6C053-00.analog-stereo
+set $headphones_sink alsa_output.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.analog-stereo
 # volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +$volume_step
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -$volume_step

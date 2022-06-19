@@ -237,6 +237,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -$volume_step
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+F4 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $mod+$alt+m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # switch between headphone and speaker output
 bindsym $mod+F1 exec --no-startup-id pactl set-default-sink $speakers_sink
 bindsym $mod+F2 exec --no-startup-id pactl set-default-sink $headphones_sink

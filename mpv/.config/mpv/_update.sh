@@ -9,6 +9,7 @@ wget -N https://pastebin.com/raw/yacMe6EZ -O noise_static_luma.hook
 
 mkdir -p "$DIR/scripts"
 cd "$DIR/scripts"
+wget -N https://gist.githubusercontent.com/CyberShadow/2f71a97fb85ed42146f6d9f522bc34ef/raw/autosave.lua
 wget -N https://raw.githubusercontent.com/ElegantMonkey/mpv-webm/master/build/webm.lua
 wget -N https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/playlistmanager.lua
 wget -N https://raw.githubusercontent.com/jonniek/mpv-scripts/master/appendURL.lua

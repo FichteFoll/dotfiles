@@ -49,15 +49,19 @@ def main() -> None:
 
 
 def scan_dir(base_dir: Path):
-    for dirpath_str, _, filenames in os.walk(base_dir):
+    for dirpath_str, subdirs, filenames in os.walk(base_dir):
         episodes = defaultdict(list)
         dirpath = Path(dirpath_str)
+        print(f"Processing {dirpath}")
+
         for name in filenames:
             if ep := Episode.from_path(dirpath / name):
                 episodes[ep.ep].append(ep)
 
-        if episodes:
-            print(f"Processing {dirpath}")
+        if not episodes and not subdirs:
+            print(" No episodes found")
+            continue
+
         for ep_num, entries in episodes.items():
             if len(entries) > 1:
                 entries.sort(key=lambda x: x.mtime, reverse=True)

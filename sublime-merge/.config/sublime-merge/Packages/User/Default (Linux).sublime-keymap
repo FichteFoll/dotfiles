@@ -37,6 +37,12 @@
       "args": {"mode": "push --force-with-lease", "prompt": true}
     },
   },
+  { "keys": ["ctrl+p"],
+    "command": "show_command_palette",
+    "args": {
+      "command": "checkout_branch",
+    },
+  },
 
   // Special
   { "keys": ["ctrl+k", "ctrl+t"], "command": "git", "args": { "argv": ["terminal"] } },

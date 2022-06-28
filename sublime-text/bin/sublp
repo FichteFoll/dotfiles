@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#
+# This script is a wrapper for the `subl` command
+# that ensures a project file exists for a folder
+# and opens that when provided with a folder path.
+#
+# If no folder is provided,
+# it falls back to the current working directory.
+
+path="${1-.}"
+path="$(realpath "$path")"
+folder_name="$(basename "$path")"
+
+if [[ ! -d "$path" ]]; then
+    echo >/dev/stderr "error: $path is not a folder"
+    exit 1
+fi
+
+project_path="$path/$folder_name.sublime-project"
+
+if [[ ! -f "$project_path" ]]; then
+    cat > "$project_path" << JSON
+{
+    "folders": [
+        {
+            "path": ".",
+        },
+    ],
+}
+JSON
+fi
+
+echo "opening $project_path ..."
+subl --background --project "$project_path"

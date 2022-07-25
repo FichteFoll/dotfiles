@@ -104,7 +104,7 @@ rprompt_() {
     # number of background jobs
     echo -n "%(1j/ [%j bg]/)"
     # shell level
-    echo -n "%(4L/ [lvl $((SHLVL - 2))]/)"
+    echo -n "%(3L/ [lvl $((SHLVL - 1))]/)"
 }
 
 PROMPT=$(prompt_)

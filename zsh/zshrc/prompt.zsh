@@ -28,10 +28,10 @@ zstyle ':vcs_info:*' check-for-changes true
 
 # "(vcs:reponame@branch)" "[action]"
 zstyle ':vcs_info:*' actionformats "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f)" " %F{3}[%F{1}%a%F{3}]%f"
-zstyle ':vcs_info:*' formats       "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f) %F{6}\${the_groups_}%f"
+zstyle ':vcs_info:*' formats       "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f)\${the_groups_:+ (%F{6\}\${the_groups_}%f)}"
 zstyle ':vcs_info:*' branchformat  "%b%F{1}:%F{3}%r"
 # fallback: "[user(special groups)@host]"
-zstyle ':vcs_info:*' nvcsformats   "[%(!/%F{1}/%F{14})%n%F{6}\${the_groups_}%F{12}@%F{4}%m%f]"
+zstyle ':vcs_info:*' nvcsformats   "[%(!/%F{1}/%F{14})%n%f\${the_groups_:+(%F{6\}\${the_groups_}%f)}@%F{4}%m%f]"
 
 # change color of "vcs" part if (un-)staged
 zstyle ':vcs_info:*' unstagedstr   "%B%F{11}"
@@ -69,8 +69,7 @@ groups_format_() {
     all_groups=($(groups))
 
     # print the intersection of the two arrays
-    groups=${all_groups:*special_groups_}
-    echo -n "${groups:+($groups)}"
+    echo -n ${all_groups:*special_groups_}
 }
 
 precmd() {

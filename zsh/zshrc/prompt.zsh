@@ -39,7 +39,7 @@ zstyle ':vcs_info:*' stagedstr     "%B%F{10}"
 
 # since I can't decide on a symbol, pick one at random
 symbol_candidates_=(▚ ▞ Σ ∀ ∃ Δ ∇ Λ λ $ \> ¬ ↻ ♦ ж Ξ ▶)
-# more, but look bad-ish with my font: ε ⛼ ♦ ϟ ᐅ
+# more, but look bad-ish with my font: ε ⛼ ϟ ᐅ
 # even more: https://unicode-table.com
 
 # disable Python's standard virtualenv prompt modifications

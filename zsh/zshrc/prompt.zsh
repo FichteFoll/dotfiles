@@ -28,9 +28,11 @@ zstyle ':vcs_info:*' check-for-changes true
 
 # "(vcs:reponame@branch)" "[action]"
 zstyle ':vcs_info:*' actionformats "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f)" " %F{3}[%F{1}%a%F{3}]%f"
-zstyle ':vcs_info:*' formats       "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f)"
+zstyle ':vcs_info:*' formats       "%m(%u%c%s%%f%%b:%F{14}%r%F{9}@%F{10}%b%f) %F{6}\${the_groups_}%f"
 zstyle ':vcs_info:*' branchformat  "%b%F{1}:%F{3}%r"
-zstyle ':vcs_info:*' nvcsformats   "[%(!/%F{1}/%F{14})%n%F{12}@%F{4}%m%f]" # "[user@host]"
+# fallback: "[user(special groups)@host]"
+zstyle ':vcs_info:*' nvcsformats   "[%(!/%F{1}/%F{14})%n%F{6}\${the_groups_}%F{12}@%F{4}%m%f]"
+
 # change color of "vcs" part if (un-)staged
 zstyle ':vcs_info:*' unstagedstr   "%B%F{11}"
 zstyle ':vcs_info:*' stagedstr     "%B%F{10}"
@@ -56,9 +58,27 @@ virtualenv_prompt_info_() {
     fi
 }
 
+# Show a list of special groups if the current user is part of them.
+# Useful for groups that are explicitly requested e.g. using `sudo -g docker -s`.
+special_groups_=(docker)
+
+groups_format_() {
+    # cannot use `%(${}gid}g..)`` check because `g` checks only for the effective group.
+    # instead, we fetch the groups in `precmd`
+    local groups all_groups
+    all_groups=($(groups))
+
+    # print the intersection of the two arrays
+    groups=${all_groups:*special_groups_}
+    echo -n "${groups:+($groups)}"
+}
+
 precmd() {
+    local the_groups
     vcs_info
     the_symbol_="$symbol_candidates_[$((RANDOM % $#symbol_candidates_ + 1))]"
+    the_groups_=$(groups_format_)
+
     # title bar: "user@host | cwd"
     print -Pn "\e]2;%n@%M | %~\a"
 }
@@ -79,8 +99,8 @@ prompt_() {
 }
 
 rprompt_() {
-    # VCS stuff
-    echo -n "\${vcs_info_msg_0_}"
+    # VCS stuff or fallback (expanding recusively for the groups)
+    echo -n "\${(e)vcs_info_msg_0_}"
     # number of background jobs
     echo -n "%(1j/ [%j bg]/)"
     # shell level

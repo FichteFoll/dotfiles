@@ -24,4 +24,5 @@
 	"translate_tabs_to_spaces": true,
 	"side_bar_layout": "commit_graph_as_column",
 	"update_check": false,
+	"display_author_date": true,
 }

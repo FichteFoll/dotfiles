@@ -1,10 +1,14 @@
 {
     "rules": [
-        { "selector": "source.json", "cmd": ["jq"], },
-        { "selector": "text.xml", "cmd": ["xmlstarlet", "format"], },
-        { "selector": "text.html.basic", "cmd": ["tidy"], },
-        { "selector": "source.python", "cmd": ["black", "-q", "-"], },
-        { "selector": "source.rust", "cmd": ["rustfmt"], },
+        { "selector": "source.json", "cmd": ["jq"] },
+        { "selector": "text.xml", "cmd": ["xmlstarlet", "format"] },
+        { "selector": "text.html.basic", "cmd": ["tidy"] },
+        // needs ufmt>=v2.0.0b1 for accepting stdin
+        { "selector": "source.python", "cmd": ["ufmt", "format", "-"] },
+        // the above in individual steps:
+        // { "selector": "source.python", "cmd": ["usort", "format", "-"] },
+        // { "selector": "source.python", "cmd": ["black", "-q", "-"] },
+        { "selector": "source.rust", "cmd": ["rustfmt"] },
     ],
     "timeout": 15,
     "merge_type": "replace",

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-req_url='https://x0.at/'
+req_url='https://0x0.st/'
 
 targets=$(xclip -t TARGETS -o)
 if { grep image/png -q <<< "$targets" }; then

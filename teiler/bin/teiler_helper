@@ -6,7 +6,7 @@
 # define uploaders
 # images
 uploadFile () {
-    url=$(curl -F "file=@$1" https://x0.at)
+    url=$(curl -F "file=@$1" https://0x0.st)
     echo -n "$url" | xclip -selection clipboard
     notify-send -a "teiler" "Image Uploaded" "$url"
 }

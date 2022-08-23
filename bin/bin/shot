@@ -19,7 +19,7 @@ import time
 
 TOOL_NAME = "shot"
 TEMPLATE = "/data/Images/Screenshots/%Y-%m-%d_%H-%M-%S.png"
-URL = "https://x0.at/"
+URL = "https://0x0.st/"
 
 # TODO convert to jpeg/webp
 MESG = """\

@@ -22,7 +22,7 @@ function t2si() {
     )
 }
 
-alias tracc="~/code/tracc/target/debug/tracc"
+alias tracc="~/code/tracc/target/release/tracc"
 
 # atop with a focus on memory usage analysis
 # -l: reduzed header size

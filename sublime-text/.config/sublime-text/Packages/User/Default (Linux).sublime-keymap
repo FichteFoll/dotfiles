@@ -1,7 +1,7 @@
 [
 // BASIC REBINDS
 
-  //["ctrl+;"] -> ctrl+ü; "/" is actually the "#" key
+  //["ctrl+;"] -> ctrl+ü
   // { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": "#" } },
   //["ctrl+`"] -> ctrl+ö
   { "keys": ["f8"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
@@ -21,10 +21,15 @@
   // { "keys": ["ctrl+tab"], "command": "next_view" },
   // { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
-  // SciTE's 'KP_-' behaviour || previously "ctrl+/" and "ctrl+shift+/" (-> "#" key)
-  { "keys": ["keypad_minus"], "command": "toggle_comment", "args": { "block": false } },
-  { "keys": ["ctrl+shift+keypad_minus"], "command": "toggle_comment", "args": { "block": true } },
+  // Toggle comments (originally "ctrl+/", which uses "#" on the German keyboard (which I don't have with neo))
   { "keys": ["ctrl+7"], "command": "toggle_comment", "args": { "block": false } },
+  { "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": { "block": true } },
+
+  // Alternative binding for opening auto complete links
+  { "keys": ["f1"], "command": "auto_complete_open_link", "context": [
+      { "key": "auto_complete_visible", "operator": "equal", "operand": true },
+    ]
+  },
 
   // Diff hunks
   { "keys": ["ctrl+k", "ctrl+h"], "command": "toggle_inline_diff" },
@@ -32,7 +37,6 @@
   // Make keypad keys work for font size changes
   { "keys": ["ctrl+keypad_plus"],  "command": "increase_font_size" },
   { "keys": ["ctrl+keypad_minus"], "command": "decrease_font_size" },
-
 
   // allow [] to trigger "Add Line in Braces.sublime-macro" (mainly for json)
   { "keys": ["enter"], "command": "run_macro_file",

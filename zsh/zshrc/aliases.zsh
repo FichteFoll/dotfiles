@@ -286,8 +286,8 @@ function dc() {
 alias venv="source .venv/bin/activate"
 
 # aurutils
-alias aurb="aur build -d custom"
-alias aurs="aur sync -c -d aur"
+alias aurb="aur build -d custom -c"
+alias aurs="aur sync -d aur -c"
 
 # utilities
 colorpicker () {

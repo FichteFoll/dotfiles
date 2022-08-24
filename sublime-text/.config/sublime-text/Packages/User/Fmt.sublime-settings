@@ -4,6 +4,7 @@
         { "selector": "text.xml", "cmd": ["xmlstarlet", "format"], },
         { "selector": "text.html.basic", "cmd": ["tidy"], },
         { "selector": "source.python", "cmd": ["black", "-q", "-"], },
+        { "selector": "source.rust", "cmd": ["rustfmt"], },
     ],
     "timeout": 15,
     "merge_type": "replace",

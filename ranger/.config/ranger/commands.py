@@ -1,5 +1,6 @@
 from functools import partial
 import os
+import os.path
 from pathlib import Path
 from typing import Generator, Iterable, Set, List
 
@@ -91,7 +92,6 @@ class dot(Command):
             self._import_dotfiles(pkg_name, rel_paths)
 
     def _import_dotfiles(self, pkg_name: str, rel_paths: Iterable[Path]) -> None:
-        import os
         import shutil
 
         pkg_dir = self.DOTFILES_DIR / pkg_name
@@ -207,3 +207,23 @@ class aur_mark_new(Command):
             # dir_.mark_item(f, not os.path.exists(os.path.join(seen_dir, f.basename)))
 
         dir_.load_content()
+
+
+class mkcd(Command):
+    """
+    :mkcd <dirname>
+
+    Create a directory with the name <dirname> if it does not exist
+    and switch to it.
+    """
+    def execute(self):
+        dirname = self.rest(1)
+        if not dirname:
+            self.fm.notify("No dirname given!", bad=True)
+            return
+        target = os.path.join(self.fm.thisdir.path, os.path.expanduser(dirname))
+        os.makedirs(target, exist_ok=True)
+        self.fm.cd(target)
+
+    def tab(self, tabnum):
+        return self._tab_directory_content()

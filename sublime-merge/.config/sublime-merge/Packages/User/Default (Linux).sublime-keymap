@@ -2,6 +2,16 @@
   // Meta
   { "keys": ["f8"], "command": "toggle_console" },
 
+  // Use ctrl+pageup/down for switch repo tabs
+  // and alt+… for file tabs.
+  // Unbind ctrl+(shift+)tab because it doesn't support recency.
+  { "keys": ["ctrl+shift+tab"], "command": "noop" },
+  { "keys": ["ctrl+tab"], "command": "noop" },
+  { "keys": ["ctrl+pageup"], "command": "prev_tab" },
+  { "keys": ["ctrl+pagedown"], "command": "next_tab" },
+  { "keys": ["alt+pageup"], "command": "prev_file_tab" },
+  { "keys": ["alt+pagedown"], "command": "next_file_tab" },
+
   // Editing
   { "keys": ["alt+q"], "command": "wrap_lines", },
   { "keys": ["alt+d"], "command": "run_macro_file", "args": {"file": "Packages/Default/Delete Line.sublime-macro"} },

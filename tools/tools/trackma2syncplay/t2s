@@ -63,19 +63,10 @@ def main() -> int:
 
         if not includes:
             return 0
-            sys.exit(0)
     else:
         excludes = reduce(operator.or_, shows(config, not_names), excludes)
 
-    cmd = [
-        "python",
-        t2s_path,
-        *(["--exclude", "|".join(excludes)] if excludes else []),
-        *(["--include", "|".join(includes)] if includes else []),
-        *syncplay_args,
-    ]
-    print("Launching trackma2syncplay…\n")
-    subprocess.run(cmd)
+    trackma2syncplay(includes, excludes, syncplay_args)
     return 0
 
 
@@ -105,6 +96,19 @@ def shows_for_names(config: Config, names: set[str]) -> set[str]:
     intersection = reduce(operator.and_, shows(config, names))
     not_names = set(config.keys()) - names
     return reduce(operator.sub, shows(config, not_names), intersection)
+
+
+def trackma2syncplay(includes, excludes, syncplay_args):
+    cmd = [
+        "python",
+        str(t2s_path),
+        *(["--exclude", "|".join(excludes)] if excludes else []),
+        *(["--include", "|".join(includes)] if includes else []),
+        *syncplay_args,
+    ]
+    print("Launching trackma2syncplay…\n")
+    subprocess.run(cmd)
+    return 0
 
 
 if __name__ == '__main__':

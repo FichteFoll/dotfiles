@@ -383,13 +383,13 @@
     "command": "lsp_goto_diagnostic",
     "args": { "uri": "$view_uri" },
     "context": [
-      { "key": "panel_visible", "operator": "output.diagnostics" },
+      { "key": "panel_visible", "operand": "output.diagnostics" },
     ],
   },
   { "keys": ["alt+f4"],
     "command": "lsp_goto_diagnostic",
     "context": [
-      { "key": "panel_visible", "operator": "output.diagnostics" },
+      { "key": "panel_visible", "operand": "output.diagnostics" },
     ],
   },
   { "keys": ["shift+f6"],

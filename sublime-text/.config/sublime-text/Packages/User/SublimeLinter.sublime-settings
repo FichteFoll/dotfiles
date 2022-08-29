@@ -36,7 +36,11 @@
         },
         "eslint": {
             // Use `vue-eslint-parser` in .eslintrc's parser setting
-            "selector": "source.js, source.ts, text.html.vue"
+            "selector": "source.js, source.ts, text.html.vue",
+            "args": [
+                "--rule",
+                "no-trailing-spaces: off",
+            ],
         },
         "flake8": {
             "args": [

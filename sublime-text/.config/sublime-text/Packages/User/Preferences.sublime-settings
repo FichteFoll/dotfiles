@@ -85,6 +85,7 @@
 	"caret_extra_top": 2,
 	"caret_style": "solid",
 	"color_scheme": "Packages/Theme - Nil/Tubnil_mod.tmTheme",
+	"control_character_style": "names",
 	"dictionary": "Packages/Language - English_user/en_US.dic",
 	"drag_text": true,
 	"draw_white_space": [

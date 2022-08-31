@@ -2,7 +2,7 @@
 // BASIC REBINDS
 
   //["ctrl+;"] -> ctrl+ü
-  // { "keys": ["ctrl+."], "command": "show_overlay", "args": {"overlay": "goto", "text": "#" } },
+  { "keys": ["ctrl+e"], "command": "show_overlay", "args": {"overlay": "goto", "text": "#" } },
   //["ctrl+`"] -> ctrl+ö
   { "keys": ["f8"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
 

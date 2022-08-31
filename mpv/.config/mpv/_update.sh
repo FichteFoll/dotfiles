@@ -19,10 +19,14 @@ wget -N https://raw.githubusercontent.com/VideoPlayerCode/mpv-tools/master/scrip
 # wget -N https://raw.githubusercontent.com/torque/mpv-progressbar/build/progressbar.lua
 wget -N https://raw.githubusercontent.com/4e6/mpv-reload/master/reload.lua
 wget -N https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/master/youtube-quality.lua
-wget -N https://raw.githubusercontent.com/darsain/uosc/master/uosc.lua
+wget -N https://raw.githubusercontent.com/tomasklaen/uosc/master/uosc.lua
 
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock.lua
 mkdir -p sponsorblock_shared
 cd sponsorblock_shared
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py
+
+mkdir -p "$DIR/fonts"
+cd "$DIR/fonts"
+wget -N https://raw.githubusercontent.com/tomasklaen/uosc/master/fonts/MaterialIconsSharp-Regular.otf

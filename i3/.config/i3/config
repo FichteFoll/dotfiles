@@ -393,11 +393,8 @@ mode "$mode_launcher" {
 exec --no-startup-id fcitx
 
 # desktop
-exec --no-startup-id ~/.screenlayout/"$(cat /etc/hostname)".sh; ~/.fehbg; picom
-
-# polybar
-# exec-always doesn't work for some reason?
-exec --no-startup-id ~/.config/polybar/launch.sh
+#exec --no-startup-id ~/.fehbg
+exec --no-startup-id sleep 5; ~/.screenlayout/"$(cat /etc/hostname)".sh; sleep 2; ~/.fehbg; ~/.config/polybar/launch.sh
 
 # applications
 exec --no-startup-id parcellite

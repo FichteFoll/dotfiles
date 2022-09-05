@@ -174,18 +174,19 @@ bindsym $mod+Pause mode "$mode_system"
 bindsym $mod+Ctrl+Shift+p mode "$mode_system"
 
 # monitor management
-set $mode_monitor Monitor Management: [d]uplicate, [m]irror, extend [l]eft or [r]ight, [p]rimary, [s]econdary only; [w]orkplace, [h]ome office; [P] to select primary
+set $mode_monitor Monitor Management: [a]utomatic, [c]ommon, [h]orizontal, [v]ertical, [d]efault, [p]rimary; [W]orkplace, [H]ome office; [C]ycle; [P] to select primary
 mode "$mode_monitor" {
     set $default_exec mode "default", exec --no-startup-id
-    bindsym d $default_exec mons -d
-    bindsym m $default_exec mons -m
-    bindsym l $default_exec mons -e left
-    bindsym r $default_exec mons -e right
-    bindsym p $default_exec ~/.screenlayout/primary.sh || mons -o
-    bindsym s $default_exec mons -s
+    bindsym a $default_exec autorandr --change
+    bindsym c $default_exec autorandr --load common
+    bindsym h $default_exec autorandr --load horizontal
+    bindsym v $default_exec autorandr --load vertical
+    bindsym d $default_exec autorandr --load default
+    bindsym p $default_exec autorandr --load mobile
+    bindsym Shift+w $default_exec autorandr --load work
+    bindsym Shift+h $default_exec autorandr --load home
+    bindsym Shift+c $default_exec autorandr --cycle
 
-    bindsym w $default_exec ~/.screenlayout/work.sh
-    bindsym h $default_exec ~/.screenlayout/work-home.sh
     bindsym Shift+p $default_exec mons-primary
 
     # back to normal
@@ -402,8 +403,10 @@ mode "$mode_launcher" {
 exec --no-startup-id xset -dpms && xset s off
 
 # desktop
-#exec --no-startup-id ~/.fehbg
-exec --no-startup-id sleep 2; ~/.screenlayout/"$(cat /etc/hostname)".sh; sleep 2; ~/.fehbg; ~/.config/polybar/launch.sh
+exec --no-startup-id autorandr --change; picom
+
+# polybar
+# exec --no-startup-id ~/.config/polybar/launch.sh
 
 # application daemons (in the tray)
 exec --no-startup-id blueman-applet

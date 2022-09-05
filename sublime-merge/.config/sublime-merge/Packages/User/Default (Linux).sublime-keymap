@@ -19,8 +19,19 @@
   { "keys": ["ctrl+d"], "command": "duplicate_line" },
   { "keys": ["ctrl+shift+d"], "command": "find_under_expand" },
 
-  //{ "keys": ["ctrl+alt+up"], "command": "select_lines", "args": {"forward": false} },
-  //{ "keys": ["ctrl+alt+down"], "command": "select_lines", "args": {"forward": true} },
+  { "keys": ["ctrl+alt+up"], "command": "select_lines", "args": { "forward": false },
+    "context": [{ "key": "control", "operator": "equal", "operand": "text_control" }],
+  },
+  { "keys": ["ctrl+alt+down"], "command": "select_lines", "args": { "forward": true },
+    "context": [{ "key": "control", "operator": "equal", "operand": "text_control" }],
+  },
+
+  { "keys": ["alt+left"], "command": "move", "args": {"by": "subwords", "forward": false},
+    "context": [{ "key": "control", "operator": "equal", "operand": "text_control" }],
+  },
+  { "keys": ["alt+right"], "command": "move", "args": {"by": "subword_ends", "forward": true},
+    "context": [{ "key": "control", "operator": "equal", "operand": "text_control" }],
+  },
 
   // Git
   { "keys": ["ctrl+shift+g"],

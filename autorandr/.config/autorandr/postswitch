@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+notify-send -i display "Display profile changed" "
+Profile: $AUTORANDR_CURRENT_PROFILE
+Monitors: $AUTORANDR_MONITORS
+"
+
+~/.config/polybar/launch.sh

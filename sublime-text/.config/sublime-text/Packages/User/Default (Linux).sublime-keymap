@@ -313,7 +313,6 @@
       "lines": true,
       "plugin": {
         "command": "bh_modules.bracketselect",
-        "type": ["__all__"],
         "args": { "select": "right", "alternate": true },
       },
     },
@@ -323,7 +322,6 @@
       "no_outside_adj": null,
       "plugin": {
         "command": "bh_modules.bracketselect",
-        "type": ["__all__"],
       },
     },
   },

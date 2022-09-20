@@ -29,4 +29,5 @@ wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblo
 
 mkdir -p "$DIR/fonts"
 cd "$DIR/fonts"
-wget -N https://github.com/tomasklaen/uosc/raw/main/fonts/MaterialIconsRound-Regular.otf
+wget -N https://github.com/tomasklaen/uosc/raw/main/fonts/uosc_icons.otf
+wget -N https://github.com/tomasklaen/uosc/raw/main/fonts/uosc_textures.ttf

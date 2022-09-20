@@ -92,3 +92,5 @@
 	enabled = true
 [init]
 	defaultBranch = main
+[diff]
+	algorithm = histogram

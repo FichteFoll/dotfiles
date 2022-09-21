@@ -16,6 +16,7 @@ wget -N https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/master/yout
 wget -N https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/playlistmanager.lua
 wget -N https://raw.githubusercontent.com/jonniek/mpv-scripts/master/appendURL.lua
 wget -N https://raw.githubusercontent.com/occivink/mpv-scripts/master/scripts/seek-to.lua
+wget -N https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua
 wget -N https://raw.githubusercontent.com/tomasklaen/uosc/master/scripts/uosc.lua
 wget -N https://raw.githubusercontent.com/VideoPlayerCode/mpv-tools/master/scripts/cycle-video-rotate.lua
 

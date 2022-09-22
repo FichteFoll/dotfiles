@@ -39,6 +39,7 @@
 		"LaTeX-cwl",
 		"LaTeXTools",
 		"LSP",
+		"LSP-file-watcher-chokidar",
 		"LSP-rust-analyzer",
 		"MarkdownPreview",
 		"MarkdownTOC",

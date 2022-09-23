@@ -3,3 +3,4 @@
 --output="%(title)s_%(id)s.%(ext)s"
 --no-mtime
 --netrc
+--embed-chapters

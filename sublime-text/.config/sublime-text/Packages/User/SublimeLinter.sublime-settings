@@ -102,4 +102,5 @@
             "annotation": "{linter}:{code}",
         },
     },
+    "statusbar.messages_template": "{linter} ({code}): {message}",
 }

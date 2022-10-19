@@ -2,6 +2,22 @@
     "debug": false,
     "delay": 0.5,
     "no_column_highlights_line": true,
+    "styles": [
+        {
+            "types": ["warning"],
+            "scope": "region.yellowish markup.warning.sublime_linter",
+            "annotation": "{linter}:{code}",
+            "phantom": "",
+        },
+        {
+            "priority": 1,
+            "mark_style": "outline",
+            "icon": "dot",
+            "scope": "region.redish markup.error.sublime_linter",
+            "annotation": "{linter}:{code}",
+            "phantom": "",
+        },
+    ],
     "linters": {
         "annotations": {
             "errors": [
@@ -21,16 +37,18 @@
             "comment_selector": "comment - punctuation.definition.comment, support.macro.rust",
             "styles": [
                 {
+                    "types": ["error"],
                     "mark_style": "outline", // solid_underline
-                    "scope": "region.orangish markup.info.todo.important.sublime_linter",
                     "icon": "dot",
-                    "types": ["error"]
+                    "scope": "region.orangish markup.info.todo.important.sublime_linter",
+                    "annotation": "",
                 },
                 {
+                    "types": ["warning"],
                     "mark_style": "outline", // solid_underline
                     "scope": "region.bluish markup.info.todo.sublime_linter",
                     "icon": "dot",
-                    "types": ["warning"]
+                    "annotation": "",
                 },
             ],
         },
@@ -81,6 +99,7 @@
         },
         "mypy": {
             "args": ["--ignore-missing-imports"],
+            "annotation": "{linter}:{code}",
         },
     },
 }

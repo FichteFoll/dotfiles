@@ -1,0 +1,9 @@
+[Unit]
+Description=Forward notifications for the system user to the current user
+
+[Service]
+ExecStart=/usr/bin/systembus-notify
+Type=simple
+
+[Install]
+WantedBy=default.target

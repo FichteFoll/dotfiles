@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR/plugins"
 # wget -N https://github.com/Arashiryuu/crap/raw/master/greenText.plugin.js
 wget -N https://github.com/Finicalmist/CopyCode/raw/master/copyCode.plugin.js
-wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/plugins/linkProfilePicture.plugin.js
+# wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/plugins/linkProfilePicture.plugin.js
 # wget -N https://github.com/Jiiks/BetterDiscordApp/raw/master/Plugins/dblClickEdit.plugin.js
 wget -N https://github.com/jaimeadf/BetterDiscordPlugins/raw/release/dist/WhoReacted/WhoReacted.plugin.js
 wget -N https://github.com/jaimeadf/BetterDiscordPlugins/raw/release/dist/GuildProfile/GuildProfile.plugin.js

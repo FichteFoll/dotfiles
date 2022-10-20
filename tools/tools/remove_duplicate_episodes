@@ -21,7 +21,7 @@ class Episode(NamedTuple):
     @classmethod
     def from_path(cls, path: Path) -> Optional['Episode']:
         if m := re.match(
-            r"^(?:\[[^\]]+\])?[^\[]*(?:E|-?(?<!PV)(?<!NC\w{2})(?<!OP|ED) )(\d\d)(?:v(\S+))?\b.*\.(?:mkv|mp4)$",
+            r"^(?:\[[^\]]+\])?[^\[]*(?:E|-?(?<!PV)(?<!NC\w{2})(?<!OP|ED)[ _])(\d\d)(?:v([\d.]+))?.*\.(?:mkv|mp4)$",
             path.name,
         ):
             ep, version = m.groups()

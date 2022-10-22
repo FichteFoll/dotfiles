@@ -1,0 +1,38 @@
+/*
+ * Various sources for userChrome tweaks.
+ *
+ * https://www.reddit.com/r/FirefoxCSS/
+ * https://github.com/eoger/tabcenter-redux/wiki/Custom-CSS-tweaks
+ * https://www.reddit.com/r/firefox/comments/7dvtw0/guide_how_to_edit_your_context_menu/
+ * https://github.com/Timvde/UserChrome-Tweaks
+ * https://github.com/Aris-t2/CustomCSSforFx
+ *
+ * TODO https://www.reddit.com/r/FirefoxCSS/comments/7das2k/cant_change_aboutnewtab/
+ */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+
+:root {
+    --content-background: #262626;
+}
+
+/* Hide top horizontal tabs in favor of Tree Style Tab sidebar */
+#tabbrowser-tabs, #TabsToolbar {
+  visibility: collapse !important;
+}
+
+
+/* Hide/Shrink sidebar header */
+/*#sidebar-box #sidebar-header {
+  visibility: collapse;
+}*/
+#sidebar-box #sidebar-header * {
+  margin-top: -3px !important;
+  margin-bottom: -3px !important;
+}
+
+
+/* Get rid of that annoying flash of white when loading new pages. */
+browser, browser.display.background_color, tabbrowser tabpanels {
+  background-color: var(--content-background);
+}

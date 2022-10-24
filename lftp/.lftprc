@@ -1,0 +1,6 @@
+alias ll cls -lah --si --filesize --sortnocase --basename
+alias .. cd ..
+alias ... cd ../..
+
+# .netrc is only used for the default protocol (idk why)
+set cmd:default-protocol sftp

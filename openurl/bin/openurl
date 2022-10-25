@@ -32,10 +32,9 @@ with Path("~/.config/openurl.conf").expanduser().open() as f:
         if stripped.startswith("nohead:"):
             nohead.append(stripped[7:])
         elif stripped.startswith("repl:"):
-            repl_line = stripped[5:]
-            split = repl_line.split(repl_line[0])
-            assert len(split) == 4 and split[0] == "" and split[3] == "", "Bad repl: line"
-            repl.append((re.compile(split[1]), split[2]))
+            pattern, replacement = stripped[5:].split()
+            assert pattern and replacement, "Bad repl: line"
+            repl.append((re.compile(pattern), replacement))
         else:
             patterns.append(stripped.split(maxsplit=1))
 

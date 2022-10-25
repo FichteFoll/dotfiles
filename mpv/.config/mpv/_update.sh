@@ -17,7 +17,6 @@ wget -N https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/pla
 wget -N https://raw.githubusercontent.com/jonniek/mpv-scripts/master/appendURL.lua
 wget -N https://raw.githubusercontent.com/occivink/mpv-scripts/master/scripts/seek-to.lua
 wget -N https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua
-wget -N https://raw.githubusercontent.com/tomasklaen/uosc/master/scripts/uosc.lua
 wget -N https://raw.githubusercontent.com/VideoPlayerCode/mpv-tools/master/scripts/cycle-video-rotate.lua
 wget -N https://raw.githubusercontent.com/christoph-heinrich/mpv-quality-menu/master/quality-menu.lua
 
@@ -27,7 +26,7 @@ cd sponsorblock_shared
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py
 
-mkdir -p "$DIR/fonts"
-cd "$DIR/fonts"
-wget -N https://github.com/tomasklaen/uosc/raw/main/fonts/uosc_icons.otf
-wget -N https://github.com/tomasklaen/uosc/raw/main/fonts/uosc_textures.ttf
+cd "$DIR"
+wget -N https://github.com/tomasklaen/uosc/releases/latest/download/uosc.zip
+unzip -vo uosc.zip
+rm -v uosc.zip

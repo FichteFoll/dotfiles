@@ -19,6 +19,7 @@ wget -N https://raw.githubusercontent.com/occivink/mpv-scripts/master/scripts/se
 wget -N https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua
 wget -N https://raw.githubusercontent.com/tomasklaen/uosc/master/scripts/uosc.lua
 wget -N https://raw.githubusercontent.com/VideoPlayerCode/mpv-tools/master/scripts/cycle-video-rotate.lua
+wget -N https://raw.githubusercontent.com/christoph-heinrich/mpv-quality-menu/master/quality-menu.lua
 
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock.lua
 mkdir -p sponsorblock_shared

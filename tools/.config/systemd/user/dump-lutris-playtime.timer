@@ -1,0 +1,9 @@
+[Unit]
+Description=Record playtimes every day at 0600 or after boot
+
+[Timer]
+OnCalendar=06:00
+Persistent=true
+
+[Install]
+WantedBy=default.target

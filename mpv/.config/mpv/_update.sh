@@ -28,5 +28,6 @@ wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblo
 
 cd "$DIR"
 wget -N https://github.com/tomasklaen/uosc/releases/latest/download/uosc.zip
-unzip -vo uosc.zip
+rm -rf scripts/uosc_shared
+unzip -o uosc.zip
 rm -v uosc.zip

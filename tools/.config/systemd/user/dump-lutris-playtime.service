@@ -2,7 +2,9 @@
 Description=Fetch current lutris playtime and dump it to files
 
 [Service]
-ExecStart=/home/fichte/tools/track_lutris_playtime/track_lutris_playtime.py
+Type=oneshot
+ExecStart=%h/tools/track_lutris_playtime/track_lutris_playtime.py
 
-[Install]
-WantedBy=default.target
+# To be triggered by a timer
+# [Install]
+# WantedBy=default.target

@@ -1,9 +1,9 @@
 [Unit]
-Description=Record playtimes every day at 0600 or after boot
+Description=Record playtimes in Lutris every day (at 0600)
 
 [Timer]
 OnCalendar=06:00
 Persistent=true
 
 [Install]
-WantedBy=default.target
+WantedBy=timers.target

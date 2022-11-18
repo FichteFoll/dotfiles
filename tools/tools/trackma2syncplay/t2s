@@ -112,4 +112,7 @@ def trackma2syncplay(includes, excludes, syncplay_args):
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        sys.exit(1)

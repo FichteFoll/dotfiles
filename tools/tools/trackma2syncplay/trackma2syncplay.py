@@ -299,4 +299,7 @@ if __name__ == '__main__':
     log_level = logging.DEBUG if params.verbose else logging.INFO
     logging.basicConfig(level=log_level, format="%(message)s")
     logger.debug("params: %r", params)
-    sys.exit(main(params))
+    try:
+        sys.exit(main(params))
+    except KeyboardInterrupt:
+        sys.exit(1)

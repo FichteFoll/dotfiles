@@ -3,5 +3,5 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
-git add scripts/ shaders/ .gitignore
+git add scripts/ shaders/ fonts/ .gitignore
 git commit -m "$(date -Iseconds)"

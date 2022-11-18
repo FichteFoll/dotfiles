@@ -114,6 +114,7 @@ def main(params):
     actions = []
 
     def ensure_path():
+        """Write to a temporary file if it has not been saved already."""
         nonlocal path
         if not path.is_file():
             path = Path(tempfile.gettempdir(), TOOL_NAME, path.name)
@@ -136,6 +137,7 @@ def main(params):
         with path.open('bw') as file:
             file.write(image_data)
         actions.append(f"Saved to {path}")
+        run(["recently_used", "--appname", "shot", str(path)])
 
     if pops('p'):
         ensure_path()

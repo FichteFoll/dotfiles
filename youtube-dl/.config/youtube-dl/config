@@ -1,5 +1,5 @@
 --force-ipv4
---format=bestvideo[height<=?1440]+bestaudio/best
+--format=bestvideo[height<=?1080]+bestaudio/best[height<=?1080]
 --output="%(title)s_%(id)s.%(ext)s"
 --no-mtime
 --netrc

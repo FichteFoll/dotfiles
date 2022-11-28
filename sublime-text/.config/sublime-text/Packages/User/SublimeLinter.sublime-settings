@@ -4,6 +4,7 @@
     "no_column_highlights_line": true,
     "styles": [
         {
+            "priority": 2,
             "types": ["warning"],
             "scope": "region.yellowish markup.warning.sublime_linter",
             "annotation": "{linter}:{code}<br>&nbsp;&nbsp;{msg}",
@@ -32,23 +33,31 @@
                 "TOCHECK",
                 "TOTEST",
             ],
-            "infos": ["NOTE", "README", "INFO"],
+            "infos": [
+                "NOTE",
+                "README",
+                "INFO",
+            ],
             "mark_message": true,
             "comment_selector": "comment - punctuation.definition.comment, support.macro.rust",
             "styles": [
                 {
+                    "priority": 3,
                     "types": ["error"],
-                    "mark_style": "outline", // solid_underline
+                    "mark_style": "outline",
                     "icon": "dot",
                     "scope": "region.orangish markup.info.todo.important.sublime_linter",
                     "annotation": "",
+                    "phantom": "",
                 },
                 {
-                    "types": ["warning"],
-                    "mark_style": "outline", // solid_underline
+                    "priority": 3,
+                    "types": ["warning", "info"],
+                    "mark_style": "outline",
                     "scope": "region.bluish markup.info.todo.sublime_linter",
                     "icon": "dot",
                     "annotation": "",
+                    "phantom": "",
                 },
             ],
         },
@@ -58,6 +67,7 @@
             "args": [
                 "--rule",
                 "no-trailing-spaces: off",
+                "eol-last: off",
             ],
         },
         "flake8": {

@@ -25,10 +25,11 @@
 	"document_highlight_style": "box",
 	"inhibit_snippet_completions": true,
 	"log_debug": true,
-	// "log_server": ["panel"],
+	// "log_server": [""],
 	"show_code_actions": "bulb",
 	"show_diagnostics_count_in_view_status": true,
 	"show_diagnostics_panel_on_save": 2,
 	"show_diagnostics_severity_level": 4,
+	"show_inlay_hints": true,
 	"diagnostics_panel_include_severity_level": 4,
 }

@@ -6,7 +6,7 @@
         {
             "types": ["warning"],
             "scope": "region.yellowish markup.warning.sublime_linter",
-            "annotation": "{linter}:{code}",
+            "annotation": "{linter}:{code}<br>&nbsp;&nbsp;{msg}",
             "phantom": "",
         },
         {
@@ -14,7 +14,7 @@
             "mark_style": "outline",
             "icon": "dot",
             "scope": "region.redish markup.error.sublime_linter",
-            "annotation": "{linter}:{code}",
+            "annotation": "{linter}:{code}<br>&nbsp;&nbsp;{msg}",
             "phantom": "",
         },
     ],

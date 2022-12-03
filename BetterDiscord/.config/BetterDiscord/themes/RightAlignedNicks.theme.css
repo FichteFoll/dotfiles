@@ -1,7 +1,7 @@
 /**
  * @name Right-aligned Nicks
  * @description Nicknames are right-aligned in compact mode.
- * @version 1.3.4
+ * @version 1.3.5
  * @author FichteFoll
  * @authorLink https://github.com/FichteFoll
  * @website https://github.com/FichteFoll/dotfiles
@@ -50,7 +50,7 @@
 }
 
 /* the header (contains timestamp & username) */
-[class*=message-][class*=compact-] h3 {
+[class*=message-][class*=compact-] h3[class*=header-] {
     display: inline-grid !important;
     grid-template-columns: var(--timestamp-width) var(--username-width);
     text-indent: 0; /* need to reset this */

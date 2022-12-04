@@ -1,0 +1,4 @@
+[
+    { "caption": "Developer: Open API Files", "command": "open_api_files" },
+    { "caption": "Open Locate", "command": "open_locate" },
+]

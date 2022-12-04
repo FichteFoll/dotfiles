@@ -1,0 +1,4 @@
+{
+    "terminal": "alacritty",
+    "parameters": ["--working-directory", "%CWD%"],
+}

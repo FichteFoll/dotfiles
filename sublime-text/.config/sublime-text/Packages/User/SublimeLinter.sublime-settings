@@ -67,6 +67,7 @@
             "args": [
                 "--rule",
                 "no-trailing-spaces: off",
+                "--rule",
                 "eol-last: off",
             ],
         },

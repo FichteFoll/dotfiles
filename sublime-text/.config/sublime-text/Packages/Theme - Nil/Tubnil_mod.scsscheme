@@ -194,7 +194,7 @@ invalid.deprecated {
 // This is a very complex selector because html embedding sucks
 \(source source,
 text source \- text.html\)
-\- \(source.js.embedded.html, source.css.embedded.html, source.sass.embedded.html\),
+\- \(source.js.embedded.html, source.ts.embedded.html, source.css.embedded.html, source.sass.embedded.html\),
 markup.raw \- punctuation.definition.raw {
     @name "Embedded Source";
     background: #ffffff10;

@@ -76,7 +76,7 @@ def get_library_entries(params):
     engine.config['tracker_enabled'] = False  # don't need this
     engine.config['library_autoscan'] = False  # prevent double scanning
     if params.force_sync:
-        engine.config['autoretrieve'] == 'always'
+        engine.config['autoretrieve'] = 'always'
     engine.start()
 
     # Not necessary but we'll re-scan the library just in case something has changed

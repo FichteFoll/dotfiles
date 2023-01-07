@@ -22,6 +22,79 @@ DEFAULT_SERVER = "syncplay.pl:8999"
 logger = logging.getLogger(__name__)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Find unwatched episodes trough trackma and add them to a syncplay playlist. "
+    )
+    parser.add_argument("-v", "--verbose", action='store_true', default=False,
+                        help="Increase verbosity.")
+    parser.add_argument("--accountnum",
+                        help="For overriding the trackma account number to use."
+                             " You can look this up in trackma's account switcher."
+                             " Will use your default otherwise.")
+    parser.add_argument("--force-sync", action='store_true', default=False,
+                        help="Resync trackma cache with remote.")
+    parser.add_argument("--force-rescan", action='store_true', default=False,
+                        help="Rescan local trackma library.")
+    parser.add_argument("-f", "--force-all", action='store_true', default=False,
+                        help="Force all refreshes.")
+    parser.add_argument("--include", type=str, action='append',
+                        help="Regular expression for titles to include. Repeatable.")
+    parser.add_argument("--exclude", type=str, action='append',
+                        help="Regular expression for titles to exclude. Repeatable.")
+    parser.add_argument("--server", type=str,
+                        help="Syncplay server with port. Overrides configuration.")
+    parser.add_argument("--room", type=str,
+                        help="Syncplay room. Overrides configuration.")
+    parser.add_argument("--name", type=str,
+                        help="Syncplay name. Overrides configuration.")
+    parser.add_argument("--dry-run", action='store_true', default=False,
+                        help="Just print out the names without adding them to syncplay.")
+    parser.add_argument("-r", "--randomize", action='store_true', default=False,
+                        help="Randomize the playlist (without violating episode order).")
+    parser.add_argument("-e", "--episodes", type=EpisodeRange, default=EpisodeRange(),
+                        help="Query for episodes to be selected."
+                             " Comma-separate and supports open ranges, e.g. '1,4-6,10-'.")
+    parser.add_argument("-b", "--batch", type=int, default=1,
+                        help="Number of episodes to select per show in random mode.")
+    parser.add_argument("--min-score", type=float, default=0,
+                        help="Minimum score for show.")
+
+    params, syncplay_args = parser.parse_known_args()
+    params.syncplay_args = syncplay_args
+    if params.force_all:
+        params.force_sync = params.force_rescan = True
+    params.include = params.include or [r"^"]  # match everything
+    params.exclude = params.exclude or []
+
+    return params
+
+
+def main(params):
+    entries = get_library_entries(params)
+    filters = [
+        # (filter, reason)
+        (watching_filter, "not watching"),
+        (unwatched_filter, "watched"),
+        (partial(string_filter, patterns=params.include, negative=False), "not on whitelist"),
+        (partial(string_filter, patterns=params.exclude, negative=True), "blacklisted"),
+        (partial(episode_filter, ep_range=params.episodes), "not in episode list"),
+        (partial(min_score_filter, min_score=params.min_score), "below minimum score"),
+    ]
+    filtered_entries = list(filter_chain(filters, entries))
+    sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
+    for entry in sorted_entries:
+        logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
+
+    final_entries = randomize(sorted_entries, params.batch) if params.randomize else sorted_entries
+    filenames = [os.path.basename(entry.path) for entry in final_entries]
+    if params.dry_run:
+        for filename in filenames:
+            print(filename)
+    else:
+        return to_syncplay(params, filenames)
+
+
 def _int_or_none(s: str) -> Optional[int]:
     return int(s) if s else None
 
@@ -154,6 +227,28 @@ def randomize(entries: list[LibraryEntry], batch: int) -> list[LibraryEntry]:
     return randomized_entries
 
 
+def to_syncplay(params, filenames):
+    server = params.server
+    room = params.room
+    name = params.name
+
+    parser = ConfigParser(strict=False)
+    if SYNCPLAY_CONFIG_PATH.exists():
+        with SYNCPLAY_CONFIG_PATH.open(encoding='utf_8_sig') as fp:
+            parser.read_file(fp)
+        host = parser.get('server_data', 'host')
+        port = parser.get('server_data', 'port')
+        server = server or f"{host}:{port}" if host and port else None or DEFAULT_SERVER
+        room = room or parser.get('client_settings', 'room')
+        name = name or (parser.get('client_settings', 'name', fallback="") + "_trackma")
+
+    if not server or not room or not name:
+        logger.error(f"Syncplay configuration incomplete; {server=}, {room=}, {name=}")
+        return 1
+
+    return put_syncplay(server, room, name, filenames)
+
+
 def put_syncplay(server, room, name, filenames):
     logger.info("Appending %d filenames to syncplay; server=%s, room=%s, name=%s",
                 len(filenames), server, room, name)
@@ -204,101 +299,6 @@ def put_syncplay(server, room, name, filenames):
     con.send({'Set': {'playlistChange': {'user': name, 'files': new_files}}})
     logger.debug("playlistChange event sent")
     del con
-
-
-def to_syncplay(params, filenames):
-    server = params.server
-    room = params.room
-    name = params.name
-
-    parser = ConfigParser(strict=False)
-    if SYNCPLAY_CONFIG_PATH.exists():
-        with SYNCPLAY_CONFIG_PATH.open(encoding='utf_8_sig') as fp:
-            parser.read_file(fp)
-        host = parser.get('server_data', 'host')
-        port = parser.get('server_data', 'port')
-        server = server or f"{host}:{port}" if host and port else None or DEFAULT_SERVER
-        room = room or parser.get('client_settings', 'room')
-        name = name or (parser.get('client_settings', 'name', fallback="") + "_trackma")
-
-    if not server or not room or not name:
-        logger.error(f"Syncplay configuration incomplete; {server=}, {room=}, {name=}")
-        return 1
-
-    return put_syncplay(server, room, name, filenames)
-
-
-def main(params):
-    entries = get_library_entries(params)
-    filters = [
-        # (filter, reason)
-        (watching_filter, "not watching"),
-        (unwatched_filter, "watched"),
-        (partial(string_filter, patterns=params.include, negative=False), "not on whitelist"),
-        (partial(string_filter, patterns=params.exclude, negative=True), "blacklisted"),
-        (partial(episode_filter, ep_range=params.episodes), "not in episode list"),
-        (partial(min_score_filter, min_score=params.min_score), "below minimum score"),
-    ]
-    filtered_entries = list(filter_chain(filters, entries))
-    sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
-    for entry in sorted_entries:
-        logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
-
-    final_entries = randomize(sorted_entries, params.batch) if params.randomize else sorted_entries
-    filenames = [os.path.basename(entry.path) for entry in final_entries]
-    if params.dry_run:
-        for filename in filenames:
-            print(filename)
-    else:
-        return to_syncplay(params, filenames)
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Find unwatched episodes trough trackma and add them to a syncplay playlist. "
-    )
-    parser.add_argument("-v", "--verbose", action='store_true', default=False,
-                        help="Increase verbosity.")
-    parser.add_argument("--accountnum",
-                        help="For overriding the trackma account number to use."
-                             " You can look this up in trackma's account switcher."
-                             " Will use your default otherwise.")
-    parser.add_argument("--force-sync", action='store_true', default=False,
-                        help="Resync trackma cache with remote.")
-    parser.add_argument("--force-rescan", action='store_true', default=False,
-                        help="Rescan local trackma library.")
-    parser.add_argument("-f", "--force-all", action='store_true', default=False,
-                        help="Force all refreshes.")
-    parser.add_argument("--include", type=str, action='append',
-                        help="Regular expression for titles to include. Repeatable.")
-    parser.add_argument("--exclude", type=str, action='append',
-                        help="Regular expression for titles to exclude. Repeatable.")
-    parser.add_argument("--server", type=str,
-                        help="Syncplay server with port. Overrides configuration.")
-    parser.add_argument("--room", type=str,
-                        help="Syncplay room. Overrides configuration.")
-    parser.add_argument("--name", type=str,
-                        help="Syncplay name. Overrides configuration.")
-    parser.add_argument("--dry-run", action='store_true', default=False,
-                        help="Just print out the names without adding them to syncplay.")
-    parser.add_argument("-r", "--randomize", action='store_true', default=False,
-                        help="Randomize the playlist (without violating episode order).")
-    parser.add_argument("-e", "--episodes", type=EpisodeRange, default=EpisodeRange(),
-                        help="Query for episodes to be selected."
-                             " Comma-separate and supports open ranges, e.g. '1,4-6,10-'.")
-    parser.add_argument("-b", "--batch", type=int, default=1,
-                        help="Number of episodes to select per show in random mode.")
-    parser.add_argument("--min-score", type=float, default=0,
-                        help="Minimum score for show.")
-
-    params, syncplay_args = parser.parse_known_args()
-    params.syncplay_args = syncplay_args
-    if params.force_all:
-        params.force_sync = params.force_rescan = True
-    params.include = params.include or [r"^"]  # match everything
-    params.exclude = params.exclude or []
-
-    return params
 
 
 if __name__ == '__main__':

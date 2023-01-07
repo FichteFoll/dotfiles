@@ -3,6 +3,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$DIR/plugins"
+wget -N https://github.com/BetterDiscordPlugins/userscripts/raw/master/NRM.plugin.js
+wget -N https://raw.githubusercontent.com/jaimeadf/BetterDiscordPlugins/build/BiggerStreamPreview/dist/BiggerStreamPreview.plugin.js
 wget -N https://github.com/l0c4lh057/BetterDiscordStuff/raw/master/Plugins/TypingIndicator/TypingIndicator.plugin.js
 wget -N https://github.com/Metalloriff/BetterDiscordPlugins/raw/master/DoubleClickVoiceChannels.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Library/0BDFDB.plugin.js
@@ -15,7 +17,6 @@ wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/DoNotT
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/HideDisabledEmojis/HideDisabledEmojis.plugin.js
 wget -N https://github.com/Strencher/BetterDiscordStuff/raw/master/PlatformIndicators/APlatformIndicators.plugin.js
 wget -N https://github.com/Strencher/BetterDiscordStuff/raw/master/SuppressReplyMentions/SuppressReplyMentions.plugin.js
-
 
 # the following have been broken by a discord update and have not yet been fixed
 #wget -N https://github.com/Arashiryuu/crap/raw/master/greenText.plugin.js

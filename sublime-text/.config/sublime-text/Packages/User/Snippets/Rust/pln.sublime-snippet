@@ -1,0 +1,11 @@
+<snippet>
+	<!--
+		Overwrite the `TcpListener` completion that rust-analyzer likes to complete to when I type `pln<tab>`.
+		The contents are a copy of the standard `println` snippet,
+		with an enhancement to recognize the new `{var_in_scope}` feature that I should probably upstream.
+	-->
+	<content><![CDATA[println!("${1:\{${2::?}\}}"${1/([^\{])*(\{(?::.*?)?\})?.*/(?2:, :\);)/}$3${1/([^\{])*(\{(?::.*?)?\})?.*/(?2:\);:)/}]]></content>
+	<scope>source.rust</scope>
+	<tabTrigger>pln</tabTrigger>
+	<description>println!(…)</description>
+</snippet>

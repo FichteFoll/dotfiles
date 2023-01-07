@@ -24,18 +24,31 @@
             "rules": [
                 {"file_path": ".*/polybar/config$"},
                 {"file_path": ".*/dunstrc$"},
+                {"file_path": ".*/\\.icsv2ledgerrc$"},
+            ]
+        },
+        {
+            "syntax": "rainbow_csv/pregenerated_grammars/CSV (Rainbow)",
+            "rules": [
+                {"file_path": ".*\\.icsv2ledgerrc-mapping$"},
             ]
         },
         {
             "syntax": "YAML/YAML",
             "rules": [
-                {"file_path": ".*yml.tpl$"},
+                {"file_path": ".*yml\\.tpl$"},
             ]
         },
         {
             "syntax": "TOML/TOML",
             "rules": [
-                {"file_path": ".*/poetry.lock$"},
+                {"file_path": ".*/poetry\\.lock$"},
+            ]
+        },
+        {
+            "syntax": "Ledger/Ledger",
+            "rules": [
+                {"file_path": ".*/accounting/.*\\.txt$"},
             ]
         },
     ]

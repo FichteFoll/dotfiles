@@ -103,6 +103,10 @@ def episode_filter(entry: LibraryEntry, ep_range: EpisodeRange) -> bool:
     return entry.ep in ep_range
 
 
+def min_score_filter(entry: LibraryEntry, min_score: float) -> bool:
+    return not min_score or entry.show['my_score'] >= min_score
+
+
 def unwatched_filter(entry):
     last_episode_watched = entry.show['my_progress']
     return entry.ep > last_episode_watched
@@ -233,6 +237,7 @@ def main(params):
         (partial(string_filter, patterns=params.include, negative=False), "not on whitelist"),
         (partial(string_filter, patterns=params.exclude, negative=True), "blacklisted"),
         (partial(episode_filter, ep_range=params.episodes), "not in episode list"),
+        (partial(min_score_filter, min_score=params.min_score), "below minimum score"),
     ]
     filtered_entries = list(filter_chain(filters, entries))
     sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
@@ -283,6 +288,8 @@ def parse_args():
                              " Comma-separate and supports open ranges, e.g. '1,4-6,10-'.")
     parser.add_argument("-b", "--batch", type=int, default=1,
                         help="Number of episodes to select per show in random mode.")
+    parser.add_argument("--min-score", type=float, default=0,
+                        help="Minimum score for show.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args

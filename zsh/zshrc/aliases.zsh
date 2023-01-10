@@ -15,6 +15,14 @@ alias hx='helix'
 alias t2s='python ~/tools/trackma2syncplay/t2s'
 alias t2si="python ~/tools/trackma2syncplay/trackma2syncplay.py --include"
 
+# atop with a focus on memory usage analysis
+# -l: reduzed header size
+# -R: collect proportional memory size
+# -m: memory view (and order by memory)
+# -p: aggregate by process name
+# -1: show per second where reasonable
+alias atopm='sudo atop -lRmp1'
+
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"
 

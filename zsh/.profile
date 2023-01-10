@@ -1,7 +1,7 @@
 # default applications
 export TERMINAL=alacritty
 export TERM=alacritty
-export EDITOR=vim  # "subl -nw"
+export EDITOR=helix  # "subl -nw" # kak
 export PAGER=less
 
 # prepend user scripts

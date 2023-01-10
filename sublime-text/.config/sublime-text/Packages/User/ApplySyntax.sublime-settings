@@ -2,6 +2,8 @@
     // Auto add extensions to language settings file in User folder.
     "add_exts_to_lang_settings": false,
 
+    "debug": false,
+
     // Erase default settings
     "default_syntaxes": [],
     "syntaxes": [
@@ -51,5 +53,5 @@
                 {"file_path": ".*/accounting/.*\\.txt$"},
             ]
         },
-    ]
+    ],
 }

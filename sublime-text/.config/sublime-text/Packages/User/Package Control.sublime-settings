@@ -35,6 +35,7 @@
 		"LaTeX-cwl",
 		"LaTeXTools",
 		"LSP",
+		"LSP-eslint",
 		"LSP-pyright",
 		"LSP-rust-analyzer",
 		"LSP-vue",

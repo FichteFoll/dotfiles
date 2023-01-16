@@ -197,6 +197,20 @@ alias nanaone3="mpv rtmp://live2.brb.re/live/nanaone"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"
 alias doujinstyle="mpa https://doujinstyle.com/listen.m3u"
 
+ffmpeg_grab() {
+    # double-click to select the hovered window
+    ffmpeg -f x11grab \
+        -framerate 30 \
+        $(slop -D -f "-video_size %wx%h -i $DISPLAY+%x,%y") \
+        -c:v libx264 \
+        -tune film \
+        -preset slow \
+        -crf 22 \
+        -x264opts fast_pskip=0 \
+        -aq 4 \
+        /home/mhm/screenshots/recordings/$(date +"%Y-%m-%d_%H-%M-%S").mp4
+}
+
 beet_mpa () {
     beet list $@ -f'$path' | xargs -d'\n' mpv --profile=audio
 }

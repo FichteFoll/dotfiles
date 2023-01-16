@@ -1,0 +1,37 @@
+{
+    "selector": "text.html.vue | source.ts | source.tsx | source.js | source.jsx",
+    "settings": {
+        // > NOTE: Inlay hints require TypeScript 4.4+.
+        // javascript inlay hints options.
+        "javascript.inlayHints.enumMemberValues.enabled": true,
+        "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+        "javascript.inlayHints.parameterNames.enabled": "none",
+        "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+        "javascript.inlayHints.parameterTypes.enabled": true,
+        "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+        "javascript.inlayHints.variableTypes.enabled": true,
+        // typescript inlay hints options.
+        "typescript.inlayHints.enumMemberValues.enabled": true,
+        "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+        "typescript.inlayHints.parameterNames.enabled": "none",
+        "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+        "typescript.inlayHints.parameterTypes.enabled": true,
+        "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+        "typescript.inlayHints.variableTypes.enabled": true,
+    },
+    "disabled_capabilities": {
+        // the trigger characters are too blunt, the default `punctuation.accessor` is enough
+        // https://github.com/sublimelsp/LSP-volar/issues/114
+        "completionProvider": {
+            "triggerCharacters": true
+        }
+    },
+    "initializationOptions": {
+        "preferences": {
+            // Addresses slowness in ST due to many, many completions.
+            // https://github.com/sublimelsp/LSP-typescript/issues/129
+            // I'm hoping this is forwarded by volar to tsserver.
+            "includeCompletionsForModuleExports": false
+        }
+    }
+}

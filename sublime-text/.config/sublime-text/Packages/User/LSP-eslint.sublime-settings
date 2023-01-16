@@ -1,0 +1,9 @@
+// Settings in here override those in "LSP-eslint/LSP-eslint.sublime-settings"
+{
+    "settings": {
+        "rulesCustomizations": [
+            { "rule": "no-trailing-spaces", "severity": "off" },
+            { "rule": "eol-last", "severity": "off" },
+        ],
+    },
+}

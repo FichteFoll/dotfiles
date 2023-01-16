@@ -1,0 +1,11 @@
+// Settings in here override those in "LSP-rust-analyzer/LSP-rust-analyzer.sublime-settings"
+{
+    "settings": {
+        "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"],
+        "rust-analyzer.inlayHints.enable": false,
+        "rust-analyzer.lens.run": false,
+        "rust-analyzer.lens.debug": false,
+        "rust-analyzer.hoverActions.run": false,
+        "rust-analyzer.hoverActions.disable": false,
+    }
+}

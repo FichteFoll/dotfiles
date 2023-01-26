@@ -18,6 +18,9 @@ from pathlib import Path
 
 SYNCPLAY_CONFIG_PATH = Path("~/.syncplay").expanduser()
 DEFAULT_SERVER = "syncplay.pl:8999"
+# Syncplay refuses to update the playlist with lots of entries.
+# This is an approximation of the maximum.
+LIMIT = 120
 
 logger = logging.getLogger(__name__)
 
@@ -245,6 +248,10 @@ def to_syncplay(params, filenames):
     if not server or not room or not name:
         logger.error(f"Syncplay configuration incomplete; {server=}, {room=}, {name=}")
         return 1
+
+    if len(filenames) > LIMIT:
+        logger.info('Truncating %d filenames to %d', len(filenames), LIMIT)
+        filenames = filenames[:LIMIT]
 
     return put_syncplay(server, room, name, filenames)
 

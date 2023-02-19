@@ -37,7 +37,7 @@ def main():
 
 def load() -> list[GameInfo]:
     with sqlite3.connect(DB_PATH) as sql:
-        rows = sql.execute("SELECT id, name, playtime FROM games").fetchall()
+        rows = sql.execute("SELECT id, name, playtime FROM games WHERE playtime > 0").fetchall()
     return [GameInfo(*row) for row in rows]
 
 

@@ -17,8 +17,13 @@
             "syntax": "SimpleSyntax/ssHash",
             "rules": [
                 {"file_path": ".*/mpv/input\\.conf$"},
-                {"file_path": ".*/openurl\\.conf$"},
                 {"file_path": ".*/\\.(in|ex)clude$"},
+            ]
+        },
+        {
+            "syntax": "Regular Expressions/RegExp",
+            "rules": [
+                {"file_path": ".*/openurl\\.conf$"},
             ]
         },
         {

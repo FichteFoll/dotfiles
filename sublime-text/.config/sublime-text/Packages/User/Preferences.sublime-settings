@@ -74,6 +74,23 @@
 	"index_exclude_patterns": [
 		"*.log"
 	],
+	"inline_fold.rules": [
+		{
+			// Example: <div class="..."></div>
+			"fold_selector": "text.html string.quoted.single - punctuation.definition.string, text.html string.quoted.double - punctuation.definition.string",
+			"preceding_text": "class,className",
+		},
+		{
+			// Example:
+			// def func():
+			//     """summary
+			//
+			//     details
+			//     """
+			//     pass
+			"fold_selector": "meta.function.parameters.annotation.python, meta.function.annotation.return.python, meta.variable.annotation, comment.block.documentation.python - punctuation.definition.comment",
+		}
+	],
 	"mini_auto_complete": true,
 	"mouse_wheel_switches_tabs": false,
 	"move_to_limit_on_up_down": true,

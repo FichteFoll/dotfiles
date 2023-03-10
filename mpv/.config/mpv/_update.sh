@@ -27,7 +27,7 @@ wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblo
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py
 
 cd "$DIR"
+rm -rf fonts/uosc_* scripts/uosc*
 wget -N https://github.com/tomasklaen/uosc/releases/latest/download/uosc.zip
-rm -rf scripts/uosc_shared
 unzip -o uosc.zip
 rm -v uosc.zip

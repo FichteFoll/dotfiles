@@ -257,9 +257,8 @@ bindsym $mod+$alt+Shift+p exec --no-startup-id mpris-rofi restart
 
 # backlight control
 set $backlight_step 5%
-bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl +$backlight_step
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl $backlight_step-
-
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set $backlight_step-
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +$backlight_step
 
 # Notification Management #
 bindsym $mod+n exec --no-startup-id dunstctl close

@@ -4,7 +4,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$DIR/plugins"
 wget -N https://github.com/BetterDiscordPlugins/userscripts/raw/master/NRM.plugin.js
-wget -N https://raw.githubusercontent.com/jaimeadf/BetterDiscordPlugins/build/BiggerStreamPreview/dist/BiggerStreamPreview.plugin.js
+wget -N https://github.com/jaimeadf/BetterDiscordPlugins/raw/build/BiggerStreamPreview/dist/BiggerStreamPreview.plugin.js
+wget -N https://github.com/jaimeadf/BetterDiscordPlugins/raw/build/WhoReacted/dist/WhoReacted.plugin.js
 wget -N https://github.com/l0c4lh057/BetterDiscordStuff/raw/master/Plugins/TypingIndicator/TypingIndicator.plugin.js
 wget -N https://github.com/Metalloriff/BetterDiscordPlugins/raw/master/DoubleClickVoiceChannels.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Library/0BDFDB.plugin.js
@@ -30,8 +31,8 @@ wget -N https://github.com/Strencher/BetterDiscordStuff/raw/master/SuppressReply
 #wget -N https://github.com/Jiiks/BetterDiscordApp/raw/master/Plugins/dblClickEdit.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/DisplayServersAsChannels/DisplayServersAsChannels.plugin.js
 wget -N https://github.com/mwittrien/BetterDiscordAddons/raw/master/Plugins/MessageUtilities/MessageUtilities.plugin.js
-wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/RoleMembers/RoleMembers.plugin.js
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/PermissionsViewer/PermissionsViewer.plugin.js
+wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/RoleMembers/RoleMembers.plugin.js
 
 cd "$DIR/themes"
 wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/showURLs.theme.css

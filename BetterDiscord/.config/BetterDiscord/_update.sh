@@ -35,6 +35,6 @@ wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/Permis
 wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Plugins/RoleMembers/RoleMembers.plugin.js
 
 cd "$DIR/themes"
-wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/showURLs.theme.css
+# wget -N https://github.com/Inve1951/BetterDiscordStuff/raw/master/themes/showURLs.theme.css
 # wget -N https://github.com/rauenzi/BetterDiscordAddons/raw/master/Themes/RadialStatus/RadialStatus.theme.css
 # wget -N https://github.com/rauenzi/Nox/raw/master/release/Nox.theme.css

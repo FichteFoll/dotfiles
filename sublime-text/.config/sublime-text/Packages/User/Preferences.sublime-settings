@@ -88,7 +88,7 @@
 			//     details
 			//     """
 			//     pass
-			"fold_selector": "meta.function.parameters.annotation.python, meta.function.annotation.return.python, meta.variable.annotation, comment.block.documentation.python - punctuation.definition.comment",
+			"fold_selector": "comment.block.documentation.python - punctuation.definition.comment",
 		}
 	],
 	"mini_auto_complete": true,

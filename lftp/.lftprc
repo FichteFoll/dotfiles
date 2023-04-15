@@ -2,5 +2,6 @@ alias ll cls -lah --si --filesize --sortnocase --basename
 alias .. cd ..
 alias ... cd ../..
 
+set cmd:prompt '\nlftp \S\? \u\@\h\n  >\e[35m\w\e[0m\n  <\e[34m\l\e[0m\n$ '
 # .netrc is only used for the default protocol (idk why)
 set cmd:default-protocol sftp

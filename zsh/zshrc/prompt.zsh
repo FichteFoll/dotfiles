@@ -65,7 +65,7 @@ special_groups_=(docker)
 groups_format_() {
     # cannot use `%(${}gid}g..)`` check because `g` checks only for the effective group.
     # instead, we fetch the groups in `precmd`
-    local groups all_groups
+    local all_groups
     all_groups=($(groups))
 
     # print the intersection of the two arrays
@@ -73,7 +73,6 @@ groups_format_() {
 }
 
 precmd() {
-    local the_groups
     vcs_info
     the_symbol_="$symbol_candidates_[$((RANDOM % $#symbol_candidates_ + 1))]"
     the_groups_=$(groups_format_)

@@ -229,11 +229,8 @@ bindsym --release button2 kill
 bindsym --whole-window $mod+button2 floating toggle
 
 # MEDIA KEYS #
-set $volume_step 5%
-set $speakers_sink alsa_output.pci-0000_00_1b.0.analog-stereo
-#set $headphones_sink alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y77R9F80B6C053-00.analog-stereo
-set $headphones_sink alsa_output.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.analog-stereo
 # volume control
+set $volume_step 5%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +$volume_step
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -$volume_step
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -241,8 +238,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SOUCE
 bindsym $mod+F4 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym $mod+$alt+m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # switch between headphone and speaker output
-bindsym $mod+F1 exec --no-startup-id pactl set-default-sink $speakers_sink
-bindsym $mod+F2 exec --no-startup-id pactl set-default-sink $headphones_sink
+bindsym $mod+F1 exec --no-startup-id set-default-sink speakers
+bindsym $mod+F2 exec --no-startup-id set-default-sink headphones
+bindsym $mod+F3 exec --no-startup-id set-default-sink headphones2
 
 # media keys for mpris-aware media players
 bindsym XF86AudioPlay exec --no-startup-id mpris-rofi playpause

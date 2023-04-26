@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+# usage: set-default-sink [{speakers,headphones,headphones2}]
+#
+# Set the default sink (for PipeWire) using `pactl`
+# and a pre-defined hash array of regular expressions.
+# If no short name is provided, falls back to `speakers`.
+
+set -eo pipefail
+
+typeset -A sinks
+# double-escape because the regexes are specified in a string
+sinks[speakers]='alsa_output\\.pci-0000_00_1f\\..*\\.analog-stereo'
+# sinks[headphones]='alsa_output\\.usb-Focusrite_Scarlett_Solo_USB.*\\.analog-stereo'
+sinks[headphones]='alsa_output\\.usb-C-Media_Electronics_Inc\\._USB_Audio_Device.*\\.analog-stereo'
+sinks[headphones2]='alsa_output\\.usb-Plantronics_Plantronics_Blackwire_5220_Series_.*\\.analog-stereo'
+
+regex=$sinks[${1-speakers}]
+if [[ -z $regex ]]; then
+    echo "unknown sink identifier"
+    exit 1
+fi
+
+pactl --format json list sinks \
+    | jq "map(.name | select(test(\"$regex\")))[0]" -r \
+    | read -r the_sink
+if [[ -z $the_sink ]]; then
+    echo "sink for $1 not found"
+    exit 1
+fi
+
+echo "setting default sink to: $the_sink"
+pactl set-default-sink $the_sink

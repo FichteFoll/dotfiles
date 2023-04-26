@@ -297,10 +297,10 @@ alias ds='sudo -g docker -s'
 function dc() {
     # detach by default
     if [ "$1" = "up" -a "$#" = 1 ]; then
-        docker-compose up -d
-        # docker-compose logs -f
+        docker compose up -d
+        # docker compose logs -f
     else
-        docker-compose "$@"
+        docker compose "$@"
     fi
 }
 

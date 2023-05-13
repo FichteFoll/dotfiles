@@ -4,3 +4,4 @@
 --no-mtime
 --netrc
 --embed-chapters
+--extractor-args="youtube:player_client=ios,android"

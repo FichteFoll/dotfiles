@@ -12,6 +12,9 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
 # docker rootless
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
+# docker rootless
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+
 # Disable gtk scrolling overlays.
 # This is supposed to also work via
 # `gsettings set org.gnome.desktop.interface overlay-scrolling false`

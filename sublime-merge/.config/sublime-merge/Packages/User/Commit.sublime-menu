@@ -1,4 +1,5 @@
 [
+    { "id": "end" },
     {
         "caption": "Create \"fixup!\" commit",
         "command": "git",
@@ -9,7 +10,12 @@
         "command": "git",
         "args": {"argv": ["copy-commit-url", "$commit"]},
     },
-    { "id": "end" },
+    {
+        "caption": "Show Branches containing this commit...",
+        "command": "git",
+        "args": {"argv": ["branch", "-a", "--contains", "$commit"]}
+    },
+    { "id": "rebase", "caption": "-" },
     {
         "caption": "Start interactive rebase… (terminal)",
         "command": "git",

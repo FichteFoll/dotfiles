@@ -19,6 +19,9 @@ systemctl --user import-environment PATH
 # https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 
+# docker rootless
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+
 # Disable gtk scrolling overlays.
 # This is supposed to also work via
 # `gsettings set org.gnome.desktop.interface overlay-scrolling false`

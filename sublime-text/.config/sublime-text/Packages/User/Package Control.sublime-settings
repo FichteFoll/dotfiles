@@ -40,7 +40,7 @@
 		"LSP-basedpyright",
 		"LSP-ruff",
 		"LSP-rust-analyzer",
-		"LSP-vue",
+		"LSP-volar",
 		"MarkdownPreview",
 		"MarkdownTOC",
 		"Missing Palette Commands",

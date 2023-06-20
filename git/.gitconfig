@@ -41,8 +41,8 @@
 	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do git branch -D ${ref#refs/heads/} ; done"
 
 	; Sublime Merge integrations
-	terminal = !i3-sensible-terminal "$@" & disown
-	rebase-terminal = !GIT_EDITOR=$EDITOR i3-sensible-terminal --hold -e $SHELL -c \"git rebase -i $1\" & disown
+	terminal = !i3-msg exec \"alacritty --working-directory \\\"$(pwd)\\\"\"
+	rebase-terminal = !i3-msg exec \"alacritty --working-directory \\\"$(pwd)\\\" --hold -e $SHELL -c \\\"git rebase -i $1\\\"\"
 
 [branch]
 	autosetuprebase = always

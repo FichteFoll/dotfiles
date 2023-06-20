@@ -309,7 +309,8 @@ alias venv="source .venv/bin/activate"
 
 # aurutils
 alias aurb="aur build -d custom -c"
-alias aurs="aur sync -d aur -c"
+alias aurs="sudo aur sync-asroot -d aur"
+alias aurs_="aur sync -d aur -c"
 
 # utilities
 colorpicker () {

@@ -29,6 +29,10 @@
 	cAan = commit --all --amend --no-edit
 	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
+	; Manage "gone" local branches (branches whose tracking branch doesn't exist anymore)
+	ls-gone = !git for-each-ref --format '%(refname:strip=2) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {print $1}'
+	rm-gone = !git branch -D $(git ls-gone)
+
 	; Pull request management
 	; https://gist.github.com/gnarf/5406589
 	prr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; } ; f"

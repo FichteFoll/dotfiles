@@ -295,10 +295,11 @@ alias winetricks_tmp='env WINEPREFIX="$HOME/.wine_tmp" winetricks'
 alias ds='sudo -g docker -s'
 
 function dc() {
-    # detach by default
-    if [ "$1" = "up" -a "$#" = 1 ]; then
-        docker compose up -d
-        # docker compose logs -f
+    # Wrap `docker compose`.
+    # Additionally, always detach when using `up` subcommand.
+    if [ "$1" = "up" ]; then
+        shift
+        docker compose up --detach "$@"
     else
         docker compose "$@"
     fi

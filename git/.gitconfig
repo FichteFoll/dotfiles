@@ -35,14 +35,14 @@
 
 	; Pull request management
 	; https://gist.github.com/gnarf/5406589
-	prr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; } ; f"
-	pr = "!f() { git prr origin $1; } ; f"
-	pru = "!f() { git prr upstream $1; } ; f"
-	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do git branch -D ${ref#refs/heads/} ; done"
+	prr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; }; f"
+	pr = prr origin
+	pru = prr upstream
+	pr-clean = !git branch -D $(git for-each-ref --format='%(refname:strip=2)' refs/heads/pr)
 
 	; Sublime Merge integrations
 	terminal = !i3-msg exec \"alacritty --working-directory \\\"$(pwd)\\\"\"
-	rebase-terminal = !i3-msg exec \"alacritty --working-directory \\\"$(pwd)\\\" --hold -e $SHELL -c \\\"git rebase -i $1\\\"\"
+	rebase-terminal = "!f() { i3-msg exec \"alacritty --working-directory \\\"$(pwd)\\\" --hold -e $SHELL -c \\\"git rebase -i $1\\\"\"; }; f"
 
 [branch]
 	autosetuprebase = always

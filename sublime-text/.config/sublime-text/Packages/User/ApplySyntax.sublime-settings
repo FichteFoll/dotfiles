@@ -27,6 +27,13 @@
             ]
         },
         {
+            "syntax": "SSH Config/SSH Config",
+            "rules": [
+                {"file_path": ".*/\\.ssh/config$"},
+                {"file_path": ".*/ssh_config$"},
+            ],
+        },
+        {
             "syntax": "Regular Expressions/RegExp",
             "rules": [
                 {"file_path": ".*/openurl\\.conf$"},

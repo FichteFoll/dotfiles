@@ -1,0 +1,60 @@
+/* reduce padding in member list */
+[class*="scroller-"][class*="members-"] [class*="member-"] {
+    padding: 1px 0 !important;
+}
+[class*="members-"] [class*="member-"] > [class*="layout-"] {
+    height: 39px;
+}
+
+/* hide stupid buttons */
+[class*="channelTextArea-"] [class*="buttons-"] button:not([aria-label="Select emoji"]),
+[class*="colorPremiumGradient-"],
+[aria-label="Add Super Reaction"] {
+    display:none;
+}
+
+/* hide Library & Nitro & Birthday Buttons on DM */
+[class*="privateChannels-"] [href="/store"],
+[class*="privateChannels-"] [href="/library"],
+[class*="privateChannels-"] [href="/activities"] {
+    display: none;
+}
+
+/* bigger jumboable emoji in compact */
+[class*="compact-"] [class*=messageContent] img.emoji.jumboable {
+    width: 32px;
+    height: 32px;
+}
+
+
+/* Adjust reaction padding & border */
+[class*="reaction-"] {
+    margin-top: 2px;
+    border-radius: 4px;
+}
+
+[class*="reactionInner-"] {
+    padding: 2px 4px;
+}
+
+/* add `@` to new usernames */
+:is([class*=userTagWithNickname], [class*=nameTagSmall]) span:only-child:before {
+    content: '@';
+}
+
+/* hide avatar decorations */
+[class^=avatarDecoration-] {
+  display: none;
+}
+svg[class^=bannerSVGWrapper-] > mask > image {
+  display: none;
+}
+svg[class*=avatarDecorationHint-] {
+  top: 0;
+  left: 0;
+}
+svg[class*=avatarDecorationHint-] > foreignObject {
+  width: 80px;
+  height: 80px;
+  mask: url(#svg-mask-avatar-status-round-80);
+}

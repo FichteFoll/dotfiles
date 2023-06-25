@@ -2,17 +2,13 @@
 	"bootstrapped": 4,
 	"debug": false,
 	"ignore_vcs_packages": true,
-	"in_process_packages":
-	[
+	"in_process_packages": [
 	],
-	"install_prereleases":
-	[
+	"install_prereleases": [
 		"Package Control",
 		"PackageDev",
-		"SublimeLinter"
 	],
-	"installed_packages":
-	[
+	"installed_packages": [
 		"AdvancedNewFile",
 		"Alignment",
 		"AlignTab",
@@ -20,7 +16,6 @@
 		"AutomaticPackageReloader",
 		"BetterFindBuffer",
 		"BracketHighlighter",
-		"Chain of Command",
 		"ChannelRepositoryTools",
 		"ColorHelper",
 		"Decent Swift Syntax",
@@ -29,8 +24,8 @@
 		"Edit Preferences",
 		"File History",
 		"FileIcons",
+		"FindKeyConflicts",
 		"Fmt",
-		"InactivePanes",
 		"INI",
 		"Insert Nums",
 		"InsertDate",
@@ -38,7 +33,6 @@
 		"LaTeX-cwl",
 		"LaTeXTools",
 		"LSP",
-		"LSP-file-watcher-chokidar",
 		"LSP-rust-analyzer",
 		"MarkdownPreview",
 		"MarkdownTOC",
@@ -46,7 +40,6 @@
 		"Missing Palette Commands",
 		"MultiEditUtils",
 		"Open URL",
-		"OpenGL Shading Language (GLSL)",
 		"Origami",
 		"OverrideAudit",
 		"Package Control",
@@ -62,7 +55,6 @@
 		"SelectUntil",
 		"SimpleSyntax",
 		"SSH Config",
-		"Stylus",
 		"SublimeLinter",
 		"SublimeLinter-addon-filter",
 		"SublimeLinter-addon-toggler",
@@ -71,12 +63,10 @@
 		"SublimeLinter-contrib-yamllint",
 		"SublimeLinter-eslint",
 		"SublimeLinter-flake8",
-		"SublimeLinter-hlint",
 		"SublimeLinter-lua",
 		"SublimeLinter-mypy",
 		"Table Editor",
 		"Terminal",
-		"Theme - Freesia",
 		"Theme - Nil",
 		"TodoReview",
 		"TOML",
@@ -86,8 +76,7 @@
 		"YAMLMacros",
 		"Zeal",
 	],
-	"repositories":
-	[
-		"https://packagecontrol.io/prerelease/packages.json"
+	"repositories": [
+		"https://packagecontrol.io/prerelease/packages.json",
 	],
 }

@@ -55,14 +55,9 @@
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages": [
-		"InactivePanes",
-		"Open-Include",
 		"RestructuredText Improved",
-		"SSH Config",
-		"Stylus",
 		"SublimeLinter-addon-filter",
 		"Table Editor",
-		"Theme - Freesia",
 		"UnitTesting",
 		"Vintage",
 	],
@@ -112,4 +107,5 @@
 	"spelling_selector": "source string.quoted - punctuation - meta.preprocessor.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
 	"scroll_context_lines": 4,
 	"overlay_scroll_bars": "disabled",
+	"index_files": true,
 }

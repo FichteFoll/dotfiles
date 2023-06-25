@@ -1,0 +1,9 @@
+{
+    "*": {
+        "*": [
+            "pathlib",
+            "sublime_lib",
+            "resumeback",
+        ]
+    }
+}

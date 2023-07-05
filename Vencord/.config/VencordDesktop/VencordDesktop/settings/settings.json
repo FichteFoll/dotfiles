@@ -239,7 +239,7 @@
             "enabled": true,
             "userList": "1234567890123445,1234567890123445",
             "shouldPingListed": true,
-            "inverseShiftReply": true
+            "inverseShiftReply": false
         },
         "NoScreensharePreview": {
             "enabled": false
@@ -408,7 +408,7 @@
             "enabled": false
         },
         "ViewRaw": {
-            "enabled": true,
+            "enabled": false,
             "clickMethod": "Left"
         },
         "WebContextMenus": {
@@ -435,6 +435,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1687701894090
+        "settingsSyncVersion": 1688413201291
     }
 }

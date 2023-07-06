@@ -198,10 +198,12 @@ alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA
 alias doujinstyle="mpa https://doujinstyle.com/listen.m3u"
 
 ffmpeg_grab() {
+    local size_params
     # double-click to select the hovered window
+    size_params=($(slop -D -f "-video_size %wx%h -i $DISPLAY+%x,%y"))
     ffmpeg -f x11grab \
         -framerate 30 \
-        $(slop -D -f "-video_size %wx%h -i $DISPLAY+%x,%y") \
+        "${size_params[@]}" \
         -c:v libx264 \
         -tune film \
         -preset slow \

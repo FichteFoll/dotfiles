@@ -191,9 +191,9 @@ twitch() {
     mpv $@ -- "https://twitch.tv/$channel"
 }
 
-alias nanaone="mpv https://live1.brb.re:8082/html5/hls/nanaone.m3u8" # 30s delay
-alias nanaone2="mpv rtmp://live1.brb.re/live/nanaone_720p"
-alias nanaone3="mpv rtmp://live2.brb.re/live/nanaone"
+alias nanaone="mpv rtmp://nolive.brb.re/live/nanaone_720p"
+alias nanaone720="mpv rtmp://nolive.brb.re/live/nanaone_720p"
+alias nanaone1080="mpv rtmp://nolive.brb.re/live/nanaone_1080p"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"
 alias doujinstyle="mpa https://doujinstyle.com/listen.m3u"
 

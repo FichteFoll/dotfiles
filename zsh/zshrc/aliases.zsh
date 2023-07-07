@@ -294,7 +294,7 @@ alias winecfg_tmp='env WINEPREFIX="$HOME/.wine_tmp" winecfg'
 alias winetricks_tmp='env WINEPREFIX="$HOME/.wine_tmp" winetricks'
 
 # docker
-alias ds='sudo -g docker -s'
+alias ds='sudo -g docker DOCKER_HOST=unix:///var/run/docker.sock -s'
 
 function dc() {
     # Wrap `docker compose`.

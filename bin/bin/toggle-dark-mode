@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+get_theme() {
+    gsettings get org.gnome.desktop.interface color-scheme
+}
+
+set_theme() {
+    gsettings set org.gnome.desktop.interface color-scheme $1
+}
+
+if [[ $(get_theme) == "'prefer-dark'" ]]; then
+    set_theme 'prefer-light'
+else
+    set_theme 'prefer-dark'
+fi
+
+get_theme

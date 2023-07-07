@@ -339,6 +339,9 @@ bindsym Ctrl+$alt+Print  exec shot window
 # color picker
 bindsym $mod+$alt+c exec gcolor2
 
+# toggle system theme (light vs dark)
+bindsym $mod+Shift+t exec toggle-dark-mode
+
 # do stuff with the clipboard
 bindsym $mod+Shift+o exec "openurl \\"`xsel -ob`\\""
 bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""

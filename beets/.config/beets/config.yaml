@@ -65,9 +65,8 @@ album_fields:
 
 item_fields:
   disc_and_track:
-    f"{disc}.{track:0{max(2, len(str(tracktotal)))}}"
-    if disctotal > 1
-    else f"{track:0{max(2, len(str(tracktotal)))}}"
+    (f"{disc}." if disctotal > 1 else "")
+    + f"{track:0{max(2, len(str(tracktotal)))}}"
   maybe_artist: f"{artist} - " if artist != albumartist else ""
 
 ########################################

@@ -3,5 +3,8 @@
 # set steam to minimize to tray
 export STEAM_FRAME_FORCE_CLOSE=1
 
+# disable "bell" beeper
+xset b off
+
 # start applications
 # blabla &

@@ -10,7 +10,7 @@ set -eo pipefail
 
 typeset -A sinks
 # double-escape because the regexes are specified in a string
-sinks[speakers]='alsa_output\\.pci-0000_00_\\w{2}\\..*\\.analog-stereo'
+sinks[speakers]='alsa_output\\.pci-0000_00_\\w{2}\\..*\\.analog-stereo|alsa_output\\.usb-Lenovo_ThinkPad_USB-C_Dock_Audio_.*\\.analog-stereo'
 # sinks[headphones]='alsa_output\\.usb-Focusrite_Scarlett_Solo_USB.*\\.analog-stereo'
 sinks[headphones]='alsa_output\\.usb-C-Media_Electronics_Inc\\._USB_Audio_Device.*\\.analog-stereo'
 sinks[headphones2]='alsa_output\\.usb-Plantronics_Plantronics_Blackwire_5220_Series_.*\\.analog-stereo'

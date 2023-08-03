@@ -374,23 +374,3 @@ kreboot() {
     sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline \
         && sudo systemctl kexec
 }
-
-# rsync-based move
-#
-# usage: rmove <src> <options, including dest>
-#
-# Copy files over using rsync (and showing its process indicator),
-# then remove source files.
-# Also need to remove empty directories since rsync doesn't,
-# but don't do that for now.
-rmove() {
-    rsync \
-        --archive \
-        -hhh \
-        --verbose \
-        --progress \
-        --remove-source-files \
-        $@
-
-    # find "$1" -type d -empty -print -delete
-}

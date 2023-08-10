@@ -16,6 +16,7 @@ wget -N https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/master/yout
 wget -N https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/playlistmanager.lua
 wget -N https://raw.githubusercontent.com/jonniek/mpv-scripts/master/appendURL.lua
 wget -N https://raw.githubusercontent.com/occivink/mpv-scripts/master/scripts/seek-to.lua
+wget -N https://raw.githubusercontent.com/po5/memo/master/memo.lua
 wget -N https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua
 wget -N https://raw.githubusercontent.com/VideoPlayerCode/mpv-tools/master/scripts/cycle-video-rotate.lua
 wget -N https://raw.githubusercontent.com/christoph-heinrich/mpv-quality-menu/master/quality-menu.lua
@@ -26,6 +27,7 @@ cd sponsorblock_shared
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py
 
+# will probably need to be updated once 0.5.0 is released
 cd "$DIR"
 rm -rf fonts/uosc_* scripts/uosc*
 wget -N https://github.com/tomasklaen/uosc/releases/latest/download/uosc.zip

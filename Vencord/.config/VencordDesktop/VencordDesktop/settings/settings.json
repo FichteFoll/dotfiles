@@ -123,7 +123,7 @@
             "enabled": false
         },
         "FakeNitro": {
-            "enabled": true,
+            "enabled": false,
             "enableEmojiBypass": false,
             "emojiSize": 48,
             "transformEmojis": true,
@@ -190,7 +190,9 @@
         },
         "MessageLinkEmbeds": {
             "enabled": true,
-            "automodEmbeds": "prefer"
+            "automodEmbeds": "prefer",
+            "listMode": "blacklist",
+            "idList": ""
         },
         "MessageLogger": {
             "enabled": false,
@@ -423,6 +425,18 @@
         },
         "Wikisearch": {
             "enabled": false
+        },
+        "FavoriteGifSearch": {
+            "enabled": false
+        },
+        "OpenInApp": {
+            "enabled": false
+        },
+        "VoiceMessages": {
+            "enabled": false
+        },
+        "WebKeybinds": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -435,6 +449,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1688413201291
+        "settingsSyncVersion": 1691013411769
     }
 }

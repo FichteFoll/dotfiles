@@ -64,10 +64,9 @@ def main():
     print(f"{screen_size=}")
 
     if params.bottom:
-        # TODO this logic doesn't make sense
         y = int(geometry['Y']) - params.height
     else:
-        y = int(geometry['HEIGHT'])
+        y = int(geometry['Y']) + int(geometry['HEIGHT'])
 
     width = params.width
     height = params.height
@@ -83,7 +82,7 @@ def main():
 
     cmd = ["yad",
            f"--width={width}", f"--height={height}",
-           f"--posx={x}", f"--posy={y}",  # "--fixed",
+           f"--posx={x}", f"--posy={y}",
            *rest]
     print("cmd:", " ".join(cmd))
     subprocess.call(cmd, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr)

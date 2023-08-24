@@ -71,11 +71,13 @@
 	],
 	"inline_fold.rules": [
 		{
+			// HTML: Class specifications
 			// Example: <div class="..."></div>
 			"fold_selector": "text.html string.quoted.single - punctuation.definition.string, text.html string.quoted.double - punctuation.definition.string",
 			"preceding_text": "class,className",
 		},
 		{
+			// Python: docstrings, excluding the summary line.
 			// Example:
 			// def func():
 			//     """summary

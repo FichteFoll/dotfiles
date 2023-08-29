@@ -18,9 +18,12 @@ from pathlib import Path
 
 SYNCPLAY_CONFIG_PATH = Path("~/.syncplay").expanduser()
 DEFAULT_SERVER = "syncplay.pl:8999"
-# Syncplay refuses to update the playlist with lots of entries.
-# This is an approximation of the maximum.
-LIMIT = 120
+# Official syncplay servers refuse to update the playlist with lots of entries,
+# presumably because of a message length limit.
+# 120 is an approximation of the maximum.
+# Since we now use a custom-hosted server,
+# I have raised the limit.
+LIMIT = 1200
 
 logger = logging.getLogger(__name__)
 

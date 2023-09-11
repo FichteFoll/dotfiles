@@ -19,7 +19,7 @@ import time
 
 TOOL_NAME = "shot"
 TEMPLATE = "/data/Images/Screenshots/%Y-%m-%d_%H-%M-%S.png"
-URL = "https://0x0.st/"
+UPLOAD_URL = "https://0x0.st/"
 
 # TODO convert to jpeg/webp
 MESG = """\
@@ -149,8 +149,11 @@ def main(params):
         actions.append("Copied image to clipboard")
 
     if pops('u'):
-        url = check_output(["curl", "-F", f'file=@-;filename="{path.name}"', URL],
-                           input=image_data).decode()
+        output = check_output(
+            ["curl", "-F", f'file=@-;filename="{path.name}"', UPLOAD_URL],
+            input=image_data,
+        )
+        url = output.decode().strip()
         clip_copy(url)
         actions.append(f"Uploaded to {url}")
 
@@ -165,8 +168,11 @@ def main(params):
     if opts:
         actions.append(f"Extraneous opts: {''.join(opts)}")
 
-    notify("Screenshot taken", "\n".join(actions),
-           icon=path if path.exists() else None)
+    notify(
+        "Screenshot taken",
+        "\n".join(actions),
+        icon=path if path.exists() else None,
+    )
     for a in actions:
         print(a)
 

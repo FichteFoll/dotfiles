@@ -45,7 +45,7 @@
             "enabled": false
         },
         "SettingsStoreAPI": {
-            "enabled": false
+            "enabled": true
         },
         "NoTrack": {
             "enabled": true
@@ -421,7 +421,7 @@
             "enabled": false
         },
         "WhoReacted": {
-            "enabled": false
+            "enabled": true
         },
         "Wikisearch": {
             "enabled": false
@@ -437,6 +437,34 @@
         },
         "WebKeybinds": {
             "enabled": true
+        },
+        "CopyUserURLs": {
+            "enabled": false
+        },
+        "FixSpotifyEmbeds": {
+            "enabled": true,
+            "volume": 10
+        },
+        "NormalizeMessageLinks": {
+            "enabled": false
+        },
+        "PreviewMessage": {
+            "enabled": true
+        },
+        "AI Noise Suppression": {
+            "enabled": false
+        },
+        "SecretRingToneEnabler": {
+            "enabled": false
+        },
+        "ServerProfile": {
+            "enabled": true
+        },
+        "ShowTimeouts": {
+            "enabled": false
+        },
+        "ThemeAttributes": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -449,6 +477,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1691013411769
-    }
+        "settingsSyncVersion": 1694376805119
+    },
+    "enabledThemes": []
 }

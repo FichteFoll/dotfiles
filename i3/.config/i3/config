@@ -371,7 +371,7 @@ mode "$mode_launcher" {
     bindsym a       exec aegisub, $to_default
     bindsym c       exec cantata, $to_default
     bindsym Shift+c exec chromium, $to_default
-    bindsym d       exec vencord || discord, $to_default
+    bindsym d       exec command -v vencord && exec vencord || exec discord, $to_default
     bindsym f       exec firefox, $to_default
     bindsym h       exec hexchat, $to_default
     bindsym k       exec keepassxc, $to_default

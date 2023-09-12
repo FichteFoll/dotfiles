@@ -27,33 +27,32 @@ alias atopm='sudo atop -lRmp1'
 alias ssh="TERM=xterm-256color ssh"
 
 # File/dir listing
-alias ls='exa --time-style=long-iso'
-alias lst='exa --tree --level=3'
-alias exat='exa --tree --level=3'
+alias ls='eza --time-style=long-iso'
+alias lst='eza --tree --level=3'
 alias ols='command ls --color=auto'
 
 # All entries in table mode
-alias ll="exa -la"
+alias ll="eza -la"
 # All entries
-alias lsa='exa -a'
-# Only show dot-files
-alias lsa='exa -a .*(.)'
-# Only show dot-directories
-alias lsad='exa -d .*(/)'
-# Only files with setgid/setuid/sticky flag
-alias lss='exa -l *(s,S,t)'
-# Only show symlinks
-alias lsl='exa -l *(@)'
-# Display only executables
-alias lsx='exa -l *(*)'
-# Display world-{readable,writable,executable} files
-alias lsw='exa -ld *(R,W,X.^ND/)'
-# Display the ten biggest files
-alias lsbig='exa -lr --sort=size | head -n10'
+alias lsa='eza -a'
 # Only show directories
-alias lsd='exa -d *(/)'
+alias lsd='eza -d *(/)'
 # Only show empty directories
-alias lsed='exa -d *(/^F)'
+alias lsed='eza -d *(/^F)'
+# Only show dot-directories
+alias lsad='eza -d .*(/)'
+# Only show dot-files
+alias lsa='eza -a .*(.)'
+# Only files with setgid/setuid/sticky flag
+alias lss='eza -l *(s,S,t)'
+# Only show symlinks
+alias lsl='eza -l *(@)'
+# Display only executables
+alias lsx='eza -l *(*)'
+# Display world-{readable,writable,executable} files
+alias lsw='eza -ld *(R,W,X.^ND/)'
+# Display the ten biggest files
+alias lsbig='eza -lr --sort=size | head -n10'
 
 # Shorthands for directory navigation
 alias ..='cd ../'

@@ -465,6 +465,12 @@
         },
         "ThemeAttributes": {
             "enabled": false
+        },
+        "Dearrow": {
+            "enabled": true
+        },
+        "PictureInPicture": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -477,7 +483,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1694376805119
+        "settingsSyncVersion": 1694802540944
     },
     "enabledThemes": []
 }

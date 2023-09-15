@@ -421,7 +421,7 @@
             "enabled": false
         },
         "WhoReacted": {
-            "enabled": true
+            "enabled": false
         },
         "Wikisearch": {
             "enabled": false

@@ -49,7 +49,7 @@
   },
   { "keys": ["ctrl+down"],
     "command": "git",
-    "args": { "argv": ["fetch", "--all", "--prune"] }
+    "args": { "argv": ["fetch", "--all", "--tags", "--prune"] }
   },
   { "keys": ["ctrl+alt+shift+up"],
     "command": "show_command_palette",

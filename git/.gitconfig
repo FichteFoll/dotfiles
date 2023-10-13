@@ -14,7 +14,7 @@
 	co = checkout
 	d = diff
 	ds = diff --staged
-	fap = fetch --all --prune
+	fap = fetch --all --tags --prune
 	r = reset
 	rb = rebase
 	rba = rebase --abort

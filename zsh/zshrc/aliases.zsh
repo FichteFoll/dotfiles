@@ -11,6 +11,7 @@ alias cat='bat -pp'
 alias dragon='dragon-drop'
 alias gdiff='git diff --no-index'
 alias hx='helix'
+alias jest='npx jest -w 50%' # don't use 100% of cores
 
 alias t2s='python ~/tools/trackma2syncplay/t2s'
 alias t2si="python ~/tools/trackma2syncplay/trackma2syncplay.py --include"

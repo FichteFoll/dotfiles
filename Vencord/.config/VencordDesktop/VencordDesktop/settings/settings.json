@@ -471,6 +471,12 @@
         },
         "PictureInPicture": {
             "enabled": false
+        },
+        "OnePingPerDM": {
+            "enabled": true
+        },
+        "PermissionFreeWill": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -483,7 +489,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1694802540944
+        "settingsSyncVersion": 1697132258600
     },
     "enabledThemes": []
 }

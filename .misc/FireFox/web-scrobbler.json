@@ -1,0 +1,58 @@
+[
+  {
+    "search": {
+      "album": "(.*) - Single"
+    },
+    "replace": {
+      "album": "$1"
+    }
+  },
+  {
+    "search": {
+      "album": "(.*) - EP"
+    },
+    "replace": {
+      "album": "$1"
+    }
+  },
+  {
+    "search": {
+      "artist": "(.*) - Topic"
+    },
+    "replace": {
+      "artist": "$1"
+    }
+  },
+  {
+    "search": {
+      "track": "\\s*\\(?Lyrics? Video\\)?"
+    },
+    "replace": {
+      "track": ""
+    }
+  },
+  {
+    "search": {
+      "track": "\\s*- Lyrics"
+    },
+    "replace": {
+      "track": ""
+    }
+  },
+  {
+    "search": {
+      "track": "\\s*- HQ"
+    },
+    "replace": {
+      "track": ""
+    }
+  },
+  {
+    "search": {
+      "track": "\\s*\\(?Original( Mix)?\\)?"
+    },
+    "replace": {
+      "track": ""
+    }
+  }
+]

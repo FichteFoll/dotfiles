@@ -15,6 +15,7 @@ wget -N https://raw.githubusercontent.com/4e6/mpv-reload/master/reload.lua
 wget -N https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/master/youtube-quality.lua
 wget -N https://raw.githubusercontent.com/jonniek/mpv-playlistmanager/master/playlistmanager.lua
 wget -N https://raw.githubusercontent.com/jonniek/mpv-scripts/master/appendURL.lua
+wget -N https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autocrop.lua
 wget -N https://raw.githubusercontent.com/occivink/mpv-scripts/master/scripts/seek-to.lua
 wget -N https://raw.githubusercontent.com/po5/memo/master/memo.lua
 wget -N https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua

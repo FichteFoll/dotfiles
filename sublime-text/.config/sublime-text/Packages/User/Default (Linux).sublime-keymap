@@ -182,31 +182,6 @@
 
 // CUSTOM PLUGINS
 
-  // testing
-  // { "keys": ["ctrl+super+c"], "command": "convert_csscheme" },
-  // { "keys": ["ctrl+shift+b"], "command": "build", "args": {"variant": "Run" } },
-  // { "keys": ["alt+shift+w"], "command": "insert_snippet", "args": { "name": "Packages/XML/long-tag.sublime-snippet" } },
-  // the following crashes, do not test!
-  //{ "keys": ["ctrl+l"], "command": "insert_snippet", "args": {"contents": "${1/./=/g}" } },
-  //{ "keys": ["ctrl+h+r"], "command": "submit_code" },
-  // { "keys": ["enter"], "command": "jsdocs",
-  //   "context": [
-  //     { "key": "selection_empty", "operand": true, "match_all": true },
-  //     { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*(\\/\\*|###)[*!]\\s*$", "match_all": true },
-  //   ],
-  // },
-
-  // this is a test
-  { "keys": [")"], "command": "run_macro_file",
-    "args": { "file": "Packages/User/Delete Right and Move Right.sublime-macro" },
-    "context": [
-      { "key": "setting.auto_match_enabled", "operand": true },
-      { "key": "selection_empty", "operator": "not_equal", "operand": true, "match_all": true},
-      { "key": "eval: view.substr(sel.end()) != ')'", "match_all": true},
-    ],
-  },
-
-
   // Python help file
   { "keys": ["ctrl+super+d"], "command": "python_print",
     "context": [

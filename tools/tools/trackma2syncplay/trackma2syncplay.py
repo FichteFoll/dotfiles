@@ -18,12 +18,6 @@ from pathlib import Path
 
 SYNCPLAY_CONFIG_PATH = Path("~/.syncplay").expanduser()
 DEFAULT_SERVER = "syncplay.pl:8999"
-# Official syncplay servers refuse to update the playlist with lots of entries,
-# presumably because of a message length limit.
-# 120 is an approximation of the maximum.
-# Since we now use a custom-hosted server,
-# I have raised the limit.
-LIMIT = 1200
 DIVIDER = "-" * 50
 
 logger = logging.getLogger(__name__)
@@ -68,6 +62,8 @@ def parse_args():
                         help="Minimum score for show.")
     parser.add_argument("-q", "--queue-next", action='store_true', default=False,
                         help="Insert the matched episodes directly before the divider.")
+    parser.add_argument("-l", "--limit", type=int, default=None,
+                        help="Limit to n results.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args
@@ -255,9 +251,9 @@ def to_syncplay(params, filenames):
         logger.error(f"Syncplay configuration incomplete; {server=}, {room=}, {name=}")
         return 1
 
-    if len(filenames) > LIMIT:
-        logger.info('Truncating %d filenames to %d', len(filenames), LIMIT)
-        filenames = filenames[:LIMIT]
+    if params.limit and len(filenames) > params.limit:
+        logger.info('Truncating %d filenames to %d', len(filenames), params.limit)
+        filenames = filenames[:params.limit]
 
     return put_syncplay(server, room, name, filenames, params.queue_next)
 

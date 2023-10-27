@@ -24,6 +24,7 @@ DEFAULT_SERVER = "syncplay.pl:8999"
 # Since we now use a custom-hosted server,
 # I have raised the limit.
 LIMIT = 1200
+DIVIDER = "-" * 50
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +66,8 @@ def parse_args():
                         help="Number of episodes to select per show in random mode.")
     parser.add_argument("--min-score", type=float, default=0,
                         help="Minimum score for show.")
+    parser.add_argument("-q", "--queue-next", action='store_true', default=False,
+                        help="Insert the matched episodes directly before the divider.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args
@@ -224,7 +227,7 @@ def randomize(entries: list[LibraryEntry], batch: int) -> list[LibraryEntry]:
     randomized_entries = []
     while entries_by_show:
         show_id = random.choice(list(entries_by_show.keys()))
-        for i in range(batch):
+        for _ in range(batch):
             entry = entries_by_show[show_id].pop(0)
             randomized_entries.append(entry)
             if not entries_by_show[show_id]:
@@ -256,10 +259,10 @@ def to_syncplay(params, filenames):
         logger.info('Truncating %d filenames to %d', len(filenames), LIMIT)
         filenames = filenames[:LIMIT]
 
-    return put_syncplay(server, room, name, filenames)
+    return put_syncplay(server, room, name, filenames, params.queue_next)
 
 
-def put_syncplay(server, room, name, filenames):
+def put_syncplay(server, room, name, filenames, queue_next):
     logger.info("Appending %d filenames to syncplay; server=%s, room=%s, name=%s",
                 len(filenames), server, room, name)
 
@@ -305,10 +308,28 @@ def put_syncplay(server, room, name, filenames):
         if "Set" in msg:
             playlist = msg['Set'].get('playlistChange', {}).get('files', playlist)
 
-    new_files = [*playlist, "-" * 50, *filenames]
-    con.send({'Set': {'playlistChange': {'user': name, 'files': new_files}}})
+    new_playlist = build_new_playlist(playlist, filenames, queue_next)
+
+    con.send({'Set': {'playlistChange': {'user': name, 'files': new_playlist}}})
     logger.debug("playlistChange event sent")
     del con
+
+
+def build_new_playlist(playlist: list[str], new_files: list[str], queue_next: bool) -> list[str]:
+    new_playlist = playlist[:]
+    if queue_next:
+        index = len(playlist)
+        try:
+            index = playlist.index(DIVIDER)
+        except IndexError:
+            pass
+        logger.info("Inserting files at position %d of %d", index, len(playlist))
+        new_playlist[index:index] = new_files
+        new_playlist.append(DIVIDER)
+    else:
+        new_playlist.append(DIVIDER)
+        new_playlist.extend(new_files)
+    return new_playlist
 
 
 if __name__ == '__main__':

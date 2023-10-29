@@ -17,9 +17,8 @@
   // run on shift+f7
   { "keys": ["shift+f7"], "command": "build", "args": {"variant": "Run"} },
 
-  // ctrl+tab overrides
-  // { "keys": ["ctrl+tab"], "command": "next_view" },
-  // { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+  // smart-expand selection (overridden by LSP)
+  { "keys": ["ctrl+shift+x"], "command": "expand_selection", "args": {"to": "smart"} },
 
   // Toggle comments (originally "ctrl+/", which uses "#" on the German keyboard (which I don't have with neo))
   { "keys": ["ctrl+7"], "command": "toggle_comment", "args": { "block": false } },

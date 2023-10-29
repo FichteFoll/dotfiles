@@ -21,6 +21,7 @@ wget -N https://raw.githubusercontent.com/po5/memo/master/memo.lua
 wget -N https://raw.githubusercontent.com/po5/thumbfast/master/thumbfast.lua
 wget -N https://raw.githubusercontent.com/VideoPlayerCode/mpv-tools/master/scripts/cycle-video-rotate.lua
 wget -N https://raw.githubusercontent.com/christoph-heinrich/mpv-quality-menu/master/quality-menu.lua
+wget -N https://raw.githubusercontent.com/christoph-heinrich/mpv-subtitle-lines/master/subtitle-lines.lua
 
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock.lua
 mkdir -p sponsorblock_shared

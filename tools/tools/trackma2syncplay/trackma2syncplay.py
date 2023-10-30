@@ -30,9 +30,9 @@ def parse_args():
     parser.add_argument("-v", "--verbose", action='store_true', default=False,
                         help="Increase verbosity.")
     parser.add_argument("--accountnum",
-                        help="For overriding the trackma account number to use."
-                             " You can look this up in trackma's account switcher."
-                             " Will use your default otherwise.")
+                        help=("For overriding the trackma account number to use."
+                              " You can look this up in trackma's account switcher."
+                              " Will use your default otherwise."))
     parser.add_argument("--force-sync", action='store_true', default=False,
                         help="Resync trackma cache with remote.")
     parser.add_argument("--force-rescan", action='store_true', default=False,
@@ -54,8 +54,8 @@ def parse_args():
     parser.add_argument("-r", "--randomize", action='store_true', default=False,
                         help="Randomize the playlist (without violating episode order).")
     parser.add_argument("-e", "--episodes", type=EpisodeRange, default=EpisodeRange(),
-                        help="Query for episodes to be selected."
-                             " Comma-separate and supports open ranges, e.g. '1,4-6,10-'.")
+                        help=("Query for episodes to be selected."
+                              " Comma-separate and supports open ranges, e.g. '1,4-6,10-'."))
     parser.add_argument("-b", "--batch", type=int, default=1,
                         help="Number of episodes to select per show in random mode.")
     parser.add_argument("--min-score", type=float, default=0,

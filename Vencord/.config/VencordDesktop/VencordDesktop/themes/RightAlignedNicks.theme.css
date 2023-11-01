@@ -1,0 +1,120 @@
+/**
+ * @name Right-aligned Nicks
+ * @description Nicknames are right-aligned in compact mode.
+ * @version 1.4.0
+ * @author FichteFoll
+ * @authorLink https://github.com/FichteFoll
+ * @website https://github.com/FichteFoll/dotfiles
+ * @source https://raw.githubusercontent.com/FichteFoll/dotfiles/master/BetterDiscord/.config/BetterDiscord/themes/RightAlignedNicks.theme.css
+ *
+ * Nicks are right-aligned in compact layout.
+ * Based grid.
+ *
+ * Requires compact mode for obvious reasons.
+ *
+ * Nicknames that are too long for the associated space
+ * are collapsed with an ellipse.
+ * You can adjust the width of the username column
+ * with a variable in your user css
+ * or yell at the people until they pick a shorter nick.
+ */
+
+/* Variables for configuration. You can override these in your user css. */
+:root {
+    /* ch as unit makes the most sense here,
+     * but the column width is determined before the username text size */
+    --username-width: 7.1rem;
+    --timestamp-width: 3rem;
+    --message-gap: 0.4rem;
+    --message-padding: 1rem;
+}
+
+[class*=message_][class*=compact_] {
+    padding-left: var(--message-padding); /* reset negative padding */
+    margin: 0; /* and margins */
+}
+
+/* base grid layout for the main message (first container) */
+[class*=message_][class*=compact_] > [class*=contents_] {
+    margin-left: 0; /* reset margin (same as padding above) */
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: [header] calc(var(--timestamp-width) + var(--username-width))
+                           [content] auto;
+}
+
+/* alignment for the rest of the message (embed, reactions) */
+[class*=message_][class*=compact_] > [class*=container_]:not(:empty) {
+    margin-left: calc(var(--timestamp-width) + var(--username-width)) !important;
+    display: inline-block;
+}
+
+/* the header (contains timestamp & username) */
+[class*=message_][class*=compact_] h3[class*=header_] {
+    display: inline-grid !important;
+    grid-template-columns: var(--timestamp-width) var(--username-width);
+    text-indent: 0; /* need to reset this */
+}
+
+/* timestamp */
+[class*=timestampBase_][class*=timestampCompact_] {
+    text-align: left;
+}
+
+/* bot marker */
+[class*=botTagCompact_] {
+    /* I'm trying to show this *behind* the name
+     * because I can't adjust the name's width */
+    opacity: 0.7;
+    grid-row-start: 1;
+    grid-column-start: 2;
+    width: 2em;
+    position: initial;
+}
+
+/* username */
+[class*=message_][class*=compact_] h3 span[class*=headerText_] {
+    display: inline-block;
+    grid-row-start: 1;
+    grid-column-start: 2;
+    z-index: 2; /* username popup uses 10; new messages overlay 3 */
+    justify-self: end;
+    margin-right: var(--message-gap);
+    max-width: var(--username-width);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* reply guide */
+[class*=compact_][class*=hasThread_] [class*=contents_]:before {
+    left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 3.5rem);
+}
+
+/* add highlight marker to the right as well */
+[class*=message_][class*=compact_][class*=mentioned_] {
+    border-right: 2px solid #FAA61A;
+}
+
+/* show hidden timestamps */
+[class*=timestampVisibleOnHover_] {
+    opacity: 1;
+}
+
+/* Adjust pin and join messages to grid */
+[class*=systemMessage_][class*=compact_] > [class*=contents_] {
+    display: block;
+}
+[class*=systemMessage_][class*=compact_] [class*=container_] {
+    margin-left: 1rem; /* reset */
+}
+
+/* reply messages */
+[class*=compact] [class*=repliedMessage_] {
+    margin-left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 0.18rem);
+    /*idk where the 0.18 comes from */
+}
+
+[class*=replyBadge] {
+    display: none;
+}

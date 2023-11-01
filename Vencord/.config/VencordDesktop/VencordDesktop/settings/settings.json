@@ -3,9 +3,7 @@
     "autoUpdate": false,
     "autoUpdateNotification": true,
     "useQuickCss": true,
-    "themeLinks": [
-        "https://raw.githubusercontent.com/FichteFoll/dotfiles/master/BetterDiscord/.config/BetterDiscord/themes/RightAlignedNicks.theme.css"
-    ],
+    "themeLinks": [],
     "enableReactDevtools": false,
     "frameless": false,
     "transparent": false,
@@ -491,5 +489,7 @@
         "settingsSync": false,
         "settingsSyncVersion": 1697132258600
     },
-    "enabledThemes": []
+    "enabledThemes": [
+        "RightAlignedNicks.theme.css"
+    ]
 }

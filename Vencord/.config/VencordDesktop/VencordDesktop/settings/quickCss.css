@@ -1,38 +1,37 @@
 /* reduce padding in member list */
-[class*="scroller-"][class*="members-"] [class*="member-"] {
-    padding: 1px 0 !important;
-}
-[class*="members-"] [class*="member-"] > [class*="layout-"] {
+[class*="scrollerBase_"][class*="members_"] [class*="memberInner_"] {
+    padding-top: 0px;
+    padding-bottom: 0px;
     height: 36px;
 }
 
 /* hide stupid buttons */
-[class*="channelTextArea-"] [class*="buttons-"] button:not([aria-label="Select emoji"]),
-[class*="colorPremiumGradient-"],
+[class*="channelTextArea_"] [class*="buttons_"] button:not([aria-label="Select emoji"]),
+[class*="colorPremiumGradient_"],
 [aria-label="Add Super Reaction"] {
     display:none;
 }
 
-/* hide Library & Nitro & Birthday Buttons on DM */
-[class*="privateChannels-"] [href="/store"],
-[class*="privateChannels-"] [href="/library"],
-[class*="privateChannels-"] [href="/activities"] {
+/* hide Nitro & Shop & Birthday Buttons on DM */
+[class*="privateChannels_"] [href="/store"],
+[class*="privateChannels_"] [href="/shop"],
+[class*="privateChannels_"] [href="/activities"] {
     display: none;
 }
 
 /* bigger jumboable emoji in compact */
-[class*="compact-"] [class*=messageContent] img.emoji.jumboable {
+[class*="compact_"] [class*=messageContent] img.emoji.jumboable {
     width: 32px;
     height: 32px;
 }
 
 /* decrease reaction padding & border radius */
-[class*="reaction-"] {
+[class*="reaction_"] {
     margin-top: 0;
     border-radius: 4px;
 }
 
-[class*="reactionInner-"] {
+[class*="reactionInner_"] {
     padding: 2px 4px;
 }
 
@@ -42,17 +41,17 @@
 }
 
 /* hide avatar decorations */
-[class^=avatarDecoration-] {
+[class^=avatarDecoration_] {
   display: none;
 }
-svg[class^=bannerSVGWrapper-] > mask > image {
+svg[class^=bannerSVGWrapper_] > mask > image {
   display: none;
 }
-svg[class*=avatarDecorationHint-] {
+svg[class*=avatarDecorationHint_] {
   top: 0;
   left: 0;
 }
-svg[class*=avatarDecorationHint-] > foreignObject {
+svg[class*=avatarDecorationHint_] > foreignObject {
   width: 80px;
   height: 80px;
   mask: url(#svg-mask-avatar-status-round-80);

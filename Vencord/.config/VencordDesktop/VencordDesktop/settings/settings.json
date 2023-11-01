@@ -475,6 +475,12 @@
         },
         "PermissionFreeWill": {
             "enabled": false
+        },
+        "NoMosaic": {
+            "enabled": false
+        },
+        "NoTypingAnimation": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -487,7 +493,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1697132258600
+        "settingsSyncVersion": 1698867431657
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

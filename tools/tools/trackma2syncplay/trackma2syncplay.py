@@ -56,8 +56,8 @@ def parse_args():
     parser.add_argument("-e", "--episodes", type=EpisodeRange, default=EpisodeRange(),
                         help=("Query for episodes to be selected."
                               " Comma-separate and supports open ranges, e.g. '1,4-6,10-'."))
-    parser.add_argument("-b", "--batch", type=int, default=1,
-                        help="Number of episodes to select per show in random mode.")
+    parser.add_argument("-b", "--batch", type=int, default=0,
+                        help="Number of episodes to select per show in random mode (0 means all).")
     parser.add_argument("--min-score", type=float, default=0,
                         help="Minimum score for show.")
     parser.add_argument("-q", "--queue-next", action='store_true', default=False,
@@ -230,12 +230,17 @@ def randomize(entries: list[LibraryEntry], batch: int) -> list[LibraryEntry]:
     randomized_entries = []
     while entries_by_show:
         show_id = random.choice(list(entries_by_show.keys()))
+        if not batch:
+            randomized_entries.extend(entries_by_show.pop(show_id))
+            continue
+
         for _ in range(batch):
             entry = entries_by_show[show_id].pop(0)
             randomized_entries.append(entry)
             if not entries_by_show[show_id]:
                 del entries_by_show[show_id]
                 break
+
     return randomized_entries
 
 

@@ -329,7 +329,6 @@ bindsym $mod+Shift+s exec rofi -show ssh
 #bindsym button2 nop
 
 # make a screenshot
-bindsym $mod+Print       exec teiler
 bindsym Shift+Print      exec teiler --quick video area
 bindsym Ctrl+Print       exec shot
 bindsym Ctrl+Shift+Print exec shot --delay 2

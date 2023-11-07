@@ -64,6 +64,8 @@ def parse_args():
                         help="Insert the matched episodes directly before the divider.")
     parser.add_argument("-l", "--limit", type=int, default=None,
                         help="Limit to n results.")
+    parser.add_argument("--min-progress", type=int, default=None,
+                        help="Only include shows with a progress of at least n.")
 
     params, syncplay_args = parser.parse_known_args()
     params.syncplay_args = syncplay_args
@@ -85,6 +87,7 @@ def main(params):
         (partial(string_filter, patterns=params.exclude, negative=True), "blacklisted"),
         (partial(episode_filter, ep_range=params.episodes), "not in episode list"),
         (partial(min_score_filter, min_score=params.min_score), "below minimum score"),
+        (partial(min_progress_filter, min_progress=params.min_progress), "below minimum score"),
     ]
     filtered_entries = list(filter_chain(filters, entries))
     sorted_entries = sorted(filtered_entries, key=lambda entry: (entry.show['title'], entry.ep))
@@ -183,6 +186,10 @@ def episode_filter(entry: LibraryEntry, ep_range: EpisodeRange) -> bool:
 
 def min_score_filter(entry: LibraryEntry, min_score: float) -> bool:
     return not min_score or entry.show['my_score'] >= min_score
+
+
+def min_progress_filter(entry: LibraryEntry, min_progress: int) -> bool:
+    return not min_progress or entry.show['my_progress'] >= min_progress
 
 
 def unwatched_filter(entry):

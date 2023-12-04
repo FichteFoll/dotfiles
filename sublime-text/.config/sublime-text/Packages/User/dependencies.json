@@ -3,7 +3,7 @@
         "*": [
             "pathlib",
             "sublime_lib",
-            "resumeback",
+            "resumeback"
         ]
     }
 }

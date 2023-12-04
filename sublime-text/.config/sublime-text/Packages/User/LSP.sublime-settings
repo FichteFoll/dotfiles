@@ -20,6 +20,11 @@
 		"LSP-json": {
 			"enabled": false,
 		},
+		"haskell-language-server": {
+			"enabled": true,
+			"command": ["haskell-language-server-wrapper", "--lsp"],
+			"selector": "source.haskell"
+		}
 	},
 	"diagnostics_highlight_style": "box",
 	"document_highlight_style": "box",

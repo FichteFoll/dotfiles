@@ -85,7 +85,8 @@ def capture(mode, delay):
 
         try:
             image_data = check_output(cmd)
-        except CalledProcessError:
+        except CalledProcessError as e:
+            notify(f"Unable to call `maim`; {e}")
             return None
 
     else:

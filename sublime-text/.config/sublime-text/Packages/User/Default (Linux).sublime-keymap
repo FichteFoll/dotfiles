@@ -117,13 +117,7 @@
     ],
   },
 
-  // toggle selection in find panel
-  { "keys": ["alt+s"], "command": "toggle_in_selection",
-    "context": [
-      { "key": "setting.is_widget", "operand": true },
-    ],
-  },
-
+  // Open special find panels
   { "keys": ["ctrl+alt+f"], "command": "slurp_find_string" },
   { "keys": ["ctrl+alt+shift+f"], "command": "slurp_replace_string" },
 
@@ -393,5 +387,25 @@
     "context": [
       { "key": "lsp.session_with_capability", "operand": "selectionRangeProvider" },
     ],
+  },
+
+  // toggle options in find panels (overrides alt+s from MultiEditTools)
+  { "keys": ["alt+s"], "command": "toggle_in_selection",
+    "context": [{"key": "panel_type", "operand": "find"}, {"key": "panel_has_focus"}]
+  },
+  { "keys": ["alt+c"], "command": "toggle_show_context",
+    "context": [{"key": "panel_type", "operand": "find"}, {"key": "panel_has_focus"}]
+  },
+  { "keys": ["alt+w"], "command": "toggle_wrap",
+    "context": [{"key": "panel_type", "operand": "find"}, {"key": "panel_has_focus"}]
+  },
+  { "keys": ["alt+shift+w"], "command": "toggle_whole_word",
+    "context": [{"key": "panel_type", "operand": "find"}, {"key": "panel_has_focus"}]
+  },
+  { "keys": ["alt+c"], "command": "toggle_case_sensitive",
+    "context": [{"key": "panel_type", "operand": "find"}, {"key": "panel_has_focus"}]
+  },
+  { "keys": ["alt+shift+c"], "command": "toggle_preserve_case",
+    "context": [{"key": "panel_type", "operand": "find"}, {"key": "panel_has_focus"}]
   },
 ]

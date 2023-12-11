@@ -1,34 +1,69 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env python
 
-# usage: set-default-sink [{speakers,headphones,headphones2}]
+# usage: set-default-sink [{speakers,headphones,hdmi}]
 #
-# Set the default sink (for PipeWire) using `pactl`
-# and a pre-defined hash array of regular expressions.
-# If no short name is provided, falls back to `speakers`.
+# Set the default sink (for PipeWire) using `pactl`,
+# using a set of pre-defined conditions
+# that can be selected with the first argument.
 
-set -eo pipefail
+import json
+import sys
+import re
+from functools import partial
+from subprocess import check_call, check_output
+from typing import Any, Callable, TypeAlias
 
-typeset -A sinks
-# double-escape because the regexes are specified in a string
-sinks[speakers]='alsa_output\\.pci-0000_00_\\w{2}\\..*\\.analog-stereo|alsa_output\\.usb-Lenovo_ThinkPad_USB-C_Dock_Audio_.*\\.analog-stereo'
-sinks[headphones]='alsa_output\\.usb-Focusrite_Scarlett_Solo_USB_.*|alsa_output\\.usb-Plantronics_Plantronics_Blackwire_5220_Series_.*\\.analog-stereo'
-# sinks[headphones]='alsa_output\\.usb-Focusrite_Scarlett_Solo_USB_.*'
-# sinks[headphones]='alsa_output\\.usb-C-Media_Electronics_Inc\\._USB_Audio_Device.*\\.analog-stereo'
-# sinks[headphones2]='alsa_output\\.usb-Plantronics_Plantronics_Blackwire_5220_Series_.*\\.analog-stereo'
+Sink: TypeAlias = dict[str, Any]
 
-regex=$sinks[${1-speakers}]
-if [[ -z $regex ]]; then
-    echo "unknown sink identifier"
-    exit 1
-fi
 
-pactl --format json list sinks \
-    | jq "map(.name | select(test(\"$regex\")))[0]" -r \
-    | read -r the_sink
-if [[ -z $the_sink ]]; then
-    echo "sink for $1 not found"
-    exit 1
-fi
+def is_available_hdmi_sink(sink: Sink) -> bool:
+    if not sink.get('ports'):
+        return False
+    return any(
+        p.get('type') == 'HDMI' and p.get('availability') != 'not available'
+        for p in sink['ports']
+    )
 
-echo "setting default sink to: $the_sink"
-pactl set-default-sink $the_sink
+
+def is_sink_name_matching_regex(sink: Sink, regex: str) -> bool:
+    return bool(re.match(regex, sink['name']))
+
+
+FILTERS: dict[str, Callable[[Sink], bool]] = {
+    'speakers': partial(
+        is_sink_name_matching_regex,
+        regex=(
+            r'alsa_output\.pci-0000_00_\w{2}\..*\.analog-stereo'
+            r'|alsa_output\.usb-Lenovo_ThinkPad_USB-C_Dock_Audio_.*\.analog-stereo'
+        ),
+    ),
+    'headphones': partial(
+        is_sink_name_matching_regex,
+        regex=(
+            r'alsa_output\.usb-Focusrite_Scarlett_Solo_USB_.*'
+            r'|alsa_output\.usb-Plantronics_Plantronics_Blackwire_5220_Series_.*\.analog-stereo'
+        ),
+    ),
+    'hdmi': is_available_hdmi_sink,
+}
+
+
+def main() -> int:
+    if not (sink_filter := FILTERS.get(sys.argv[1])):
+        print("unknown sink identifier")
+        return 1
+
+    output = check_output(["pactl", "--format", "json", "list", "sinks"])
+    sinks: list[Sink] = json.loads(output)
+
+    if sink := next(filter(sink_filter, sinks), None):
+        print(f"setting default sink to: {sink['name']}")
+        check_call(["pactl", "set-default-sink", sink['name']])
+        return 0
+    else:
+        print("no matching sink found")
+        return 2
+
+
+if __name__ == '__main__':
+    sys.exit(main())

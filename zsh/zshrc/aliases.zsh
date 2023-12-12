@@ -197,6 +197,13 @@ alias nanaone1080="mpv rtmp://nolive.brb.re/live/nanaone_1080p"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"
 alias doujinstyle="mpa https://doujinstyle.com/listen.m3u"
 
+# German TV
+alias 3sat="mpv https://www.3sat.de/programm/3sat-livestream-100.html"
+alias zdf="mpv https://www.zdf.de/sender/zdf/zdf-live-beitrag-100.html"
+alias ard="mpv https://www.ardmediathek.de/live/das-erste/Y3JpZDovL2Rhc2Vyc3RlLmRlL0xpdmVzdHJlYW0tRGFzRXJzdGU"
+alias t24="mpv https://www.ardmediathek.de/live/Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhZ2Vzc2NoYXUvbGl2ZXN0cmVhbQ"
+alias phoenix="mpv https://www.ardmediathek.de/live/Y3JpZDovL3dkci5kZS9CZWl0cmFnLTE3YTg4ZDdmLWI5NTAtNDcyNy05M2E0LWE3NzI3YjkxNjVkZQ"
+
 ffmpeg_grab() {
     local size_params
     # double-click to select the hovered window

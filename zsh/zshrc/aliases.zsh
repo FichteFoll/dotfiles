@@ -207,7 +207,8 @@ alias phoenix="mpv https://www.ardmediathek.de/live/Y3JpZDovL3dkci5kZS9CZWl0cmFn
 ffmpeg_grab() {
     local size_params
     # double-click to select the hovered window
-    size_params=($(slop -D -f "-video_size %wx%h -i $DISPLAY+%x,%y"))
+    size_params=($(slop -f "-video_size %wx%h -i $DISPLAY+%x,%y"))
+    if (( $? )); then return; fi
     ffmpeg -f x11grab \
         -framerate 30 \
         "${size_params[@]}" \

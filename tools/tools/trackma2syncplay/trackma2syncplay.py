@@ -49,6 +49,8 @@ def parse_args():
                         help="Syncplay room. Overrides configuration.")
     parser.add_argument("--name", type=str,
                         help="Syncplay name. Overrides configuration.")
+    parser.add_argument("-c", "--clear", action='store_true', default=False,
+                        help="Clear the playlist before appending.")
     parser.add_argument("--dry-run", action='store_true', default=False,
                         help="Just print out the names without adding them to syncplay.")
     parser.add_argument("-r", "--randomize", action='store_true', default=False,
@@ -267,10 +269,10 @@ def to_syncplay(params, filenames):
         logger.info('Truncating %d filenames to %d', len(filenames), params.limit)
         filenames = filenames[:params.limit]
 
-    return put_syncplay(server, room, name, filenames, params.queue_next)
+    return put_syncplay(server, room, name, filenames, params)
 
 
-def put_syncplay(server, room, name, filenames, queue_next):
+def put_syncplay(server, room, name, filenames, params):
     logger.info("Appending %d filenames to syncplay; server=%s, room=%s, name=%s",
                 len(filenames), server, room, name)
 
@@ -315,16 +317,16 @@ def put_syncplay(server, room, name, filenames, queue_next):
         if "Set" in msg:
             playlist = msg['Set'].get('playlistChange', {}).get('files', playlist)
 
-    new_playlist = build_new_playlist(playlist, filenames, queue_next)
+    new_playlist = build_new_playlist(playlist, filenames, params)
 
     con.send({'Set': {'playlistChange': {'user': name, 'files': new_playlist}}})
     logger.debug("playlistChange event sent")
     del con
 
 
-def build_new_playlist(playlist: list[str], new_files: list[str], queue_next: bool) -> list[str]:
-    new_playlist = playlist[:]
-    if queue_next:
+def build_new_playlist(playlist: list[str], new_files: list[str], params) -> list[str]:
+    new_playlist = [] if params.clear else playlist[:]
+    if params.queue_next:
         index = len(playlist)
         try:
             index = playlist.index(DIVIDER)

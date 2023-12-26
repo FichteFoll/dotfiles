@@ -237,7 +237,7 @@
         },
         "NoReplyMention": {
             "enabled": true,
-            "userList": "1234567890123445,1234567890123445",
+            "userList": "",
             "shouldPingListed": true,
             "inverseShiftReply": false
         },
@@ -481,6 +481,28 @@
         },
         "NoTypingAnimation": {
             "enabled": true
+        },
+        "ClientTheme": {
+            "enabled": false,
+            "color": "313338"
+        },
+        "Decor": {
+            "enabled": false
+        },
+        "FixImagesQuality": {
+            "enabled": true
+        },
+        "NotificationVolume": {
+            "enabled": false
+        },
+        "SuperReactionTweaks": {
+            "enabled": false,
+            "superReactByDefault": true,
+            "unlimitedSuperReactionPlaying": false,
+            "superReactionPlayingLimit": 20
+        },
+        "XSOverlay": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -493,7 +515,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1698867431657
+        "settingsSyncVersion": 1702589611055
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

@@ -1,0 +1,34 @@
+# Documentation:
+# - alacritty(5)
+# - alacritty-bindings(5)
+# - https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
+
+[[keyboard.bindings]]
+key = "Home"
+mods = "Control"
+action = "ScrollToTop"
+
+[[keyboard.bindings]]
+key = "End"
+mods = "Control"
+action = "ScrollToBottom"
+
+[[keyboard.bindings]]
+key = "Up"
+mods = "Control|Shift"
+action = "ScrollLineUp"
+
+[[keyboard.bindings]]
+key = "Down"
+mods = "Control|Shift"
+action = "ScrollLineDown"
+
+[[keyboard.bindings]]
+key = "T"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "Delete"
+mods = "Control"
+chars = "\u001B[3;5~"

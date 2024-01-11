@@ -1,0 +1,51 @@
+# Documentation:
+# - alacritty(5)
+# - https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
+
+# Colors (Tomorrow Night Bright, modified)
+[colors.primary]
+background = "#0a0a0a"
+foreground = "#eaeaea"
+
+[colors.cursor]
+# Colors the cursor will use if `custom_cursor_colors` is true
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.normal]
+black = "#000000"
+blue = "#7aa6da"
+cyan = "#70c0ba"
+green = "#9ec400"
+magenta = "#c397d8"
+red = "#d54e53"
+white = "#ffffff"
+yellow = "#e6c547"
+
+[colors.bright]
+black = "#666666"
+blue = "#7aa6da"
+cyan = "#54ced6"
+green = "#b6f430"
+magenta = "#b77ee0"
+red = "#ff3334"
+white = "#ffffff"
+yellow = "#e7c547"
+
+[colors.dim]
+black = "#333333"
+blue = "#6699cc"
+cyan = "#66cccc"
+green = "#99cc99"
+magenta = "#cc99cc"
+red = "#f2777a"
+white = "#dddddd"
+yellow = "#ffcc66"
+
+[colors.search.focused_match]
+background = "CellForeground"
+foreground = "CellBackground"
+
+[colors.search.matches]
+background = "#707070"
+foreground = "CellForeground"

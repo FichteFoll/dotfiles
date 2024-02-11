@@ -313,7 +313,8 @@
             "enabled": false
         },
         "SendTimestamps": {
-            "enabled": true
+            "enabled": true,
+            "replaceMessageContents": true
         },
         "ServerListIndicators": {
             "enabled": false
@@ -369,7 +370,8 @@
         "TypingIndicator": {
             "enabled": true,
             "includeMutedChannels": false,
-            "includeBlockedUsers": false
+            "includeBlockedUsers": false,
+            "includeCurrentChannel": true
         },
         "TypingTweaks": {
             "enabled": false
@@ -503,6 +505,18 @@
         },
         "XSOverlay": {
             "enabled": false
+        },
+        "ChatInputButtonAPI": {
+            "enabled": true
+        },
+        "BetterGifPicker": {
+            "enabled": true
+        },
+        "FixCodeblockGap": {
+            "enabled": true
+        },
+        "FixYoutubeEmbeds": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -515,7 +529,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1702589611055
+        "settingsSyncVersion": 1707648900394
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

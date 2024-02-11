@@ -132,7 +132,6 @@ def make_request(url: str) -> tuple[str | None, str | None]:
             timeout=REQUEST_TIMEOUT,
             allow_redirects=True,
             stream=True,
-            headers={'User-Agent': USER_AGENT},
         ) as res:
             content_type = res.headers.get('content-type')
             code = res.status_code

@@ -35,3 +35,4 @@ rm -rf fonts/uosc_* scripts/uosc*
 wget -N https://github.com/tomasklaen/uosc/releases/latest/download/uosc.zip
 unzip -o uosc.zip
 rm -v uosc.zip
+rm -v scripts/uosc/bin/ziggy-{darwin,windows.exe}

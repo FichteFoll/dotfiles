@@ -55,3 +55,4 @@ venv/
 *.iml
 *.sublime-project
 *.sublime-workspace
+.java-version

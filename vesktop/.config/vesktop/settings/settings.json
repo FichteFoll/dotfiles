@@ -108,9 +108,6 @@
         "CustomRPC": {
             "enabled": false
         },
-        "DisableDMCallIdle": {
-            "enabled": false
-        },
         "EmoteCloner": {
             "enabled": true
         },
@@ -517,6 +514,9 @@
         },
         "FixYoutubeEmbeds": {
             "enabled": true
+        },
+        "DisableCallIdle": {
+            "enabled": false
         }
     },
     "notifications": {

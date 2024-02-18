@@ -36,7 +36,7 @@ def main() -> int:
 
         mime_type = None
         if any(re.search(reg, url) for reg in config.noreq):
-            log.info(f"Skipping request due to a `noreq:` match.")
+            log.info("Skipping request due to a `noreq:` match.")
         else:
             new_url, mime_type = make_request(url)
             if not new_url:

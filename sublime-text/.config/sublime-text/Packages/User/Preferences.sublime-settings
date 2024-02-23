@@ -52,6 +52,7 @@
 	],
 	"font_face": "Operator Mono",
 	"font_size": 12,
+	"goto_anything_exclude_gitignore": true,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages": [

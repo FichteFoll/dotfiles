@@ -79,7 +79,7 @@
 		"YAMLMacros",
 		"Zeal",
 	],
-	"repositories": [
-		"https://packagecontrol.io/prerelease/packages.json",
-	],
+	// "repositories": [
+	// 	"https://packagecontrol.io/prerelease/packages.json",
+	// ],
 }

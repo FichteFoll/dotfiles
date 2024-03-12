@@ -1,6 +1,5 @@
 # This override has fixes/improvements for the following issues:
 # - https://github.com/sublimehq/sublime_text/issues/3022
-# - https://github.com/sublimehq/sublime_text/issues/6275
 
 import os
 import re
@@ -14,7 +13,10 @@ PACKAGES_FILE_REGEX = r'^Packages/(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$'
 
 
 class RunSyntaxTestsCommand(sublime_plugin.WindowCommand):
-    def run(self, find_all=False, **kwargs):
+    def run(self,
+            find_all=False,
+            syntax='Packages/Default/Syntax Tests.sublime-syntax',
+            **kwargs):
 
         if not hasattr(self, 'output_view'):
             # Try not to call get_output_panel until the regexes are assigned
@@ -27,7 +29,7 @@ class RunSyntaxTestsCommand(sublime_plugin.WindowCommand):
         settings.set('line_numbers', False)
         settings.set('gutter', False)
         settings.set('scroll_past_end', False)
-        settings.set("syntax", kwargs.get("syntax", "Packages/Default/Syntax Tests.sublime-syntax"))
+        settings.set('syntax', syntax)
 
         # Call create_output_panel a second time after assigning the above
         # settings, so that it'll be picked up as a result buffer
@@ -43,17 +45,17 @@ class RunSyntaxTestsCommand(sublime_plugin.WindowCommand):
             if is_syntax(relative_path):
                 tests = []
                 for t in sublime.find_resources('syntax_test*'):
-                    lines = sublime.load_resource(t).splitlines()
+                    lines = sublime.load_binary_resource(t).splitlines()
                     if len(lines) == 0:
                         continue
                     first_line = lines[0]
 
-                    match = re.match(r'^.*SYNTAX TEST (?:[\w-]+ )*"(.*?)"', first_line)
+                    match = re.match(b'^.*SYNTAX TEST .*"(.*?)"', first_line)
                     if not match:
                         continue
 
                     syntax = match.group(1)
-                    if syntax == relative_path or syntax == file_name:
+                    if syntax == relative_path.encode('utf-8') or syntax == file_name.encode('utf-8'):
                         tests.append(t)
             elif file_name.startswith('syntax_test'):
                 tests = [relative_path]
@@ -300,11 +302,11 @@ def package_relative_path(view):
         # of the Packages repository.
         if relative_path:
             try:
-                loader_version = sublime.load_resource(relative_path)
+                loader_version = sublime.load_binary_resource(relative_path)
             except IOError:
                 relative_path = None
             else:
-                with open(path, 'r', encoding='utf-8', newline='') as f:
+                with open(path, 'rb', newline='') as f:
                     fs_version = f.read()
                 if fs_version != loader_version:
                     relative_path = None

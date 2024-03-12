@@ -60,8 +60,10 @@ def parse_args():
                               " Comma-separate and supports open ranges, e.g. '1,4-6,10-'."))
     parser.add_argument("-b", "--batch", type=int, default=0,
                         help="Number of episodes to select per show in random mode (0 means all).")
-    parser.add_argument("--min-score", type=float, default=0,
+    parser.add_argument("--min-score", type=float, default=None,
                         help="Minimum score for show.")
+    parser.add_argument("--max-score", type=float, default=None,
+                        help="Maximum score for show.")
     parser.add_argument("-q", "--queue-next", action='store_true', default=False,
                         help="Insert the matched episodes directly before the divider.")
     parser.add_argument("-l", "--limit", type=int, default=None,
@@ -89,6 +91,7 @@ def main(params):
         (partial(string_filter, patterns=params.exclude, negative=True), "blacklisted"),
         (partial(episode_filter, ep_range=params.episodes), "not in episode list"),
         (partial(min_score_filter, min_score=params.min_score), "below minimum score"),
+        (partial(max_score_filter, max_score=params.max_score), "above maximum score"),
         (partial(min_progress_filter, min_progress=params.min_progress), "below minimum score"),
     ]
     filtered_entries = list(filter_chain(filters, entries))
@@ -188,6 +191,10 @@ def episode_filter(entry: LibraryEntry, ep_range: EpisodeRange) -> bool:
 
 def min_score_filter(entry: LibraryEntry, min_score: float) -> bool:
     return not min_score or entry.show['my_score'] >= min_score
+
+
+def max_score_filter(entry: LibraryEntry, max_score: float) -> bool:
+    return not max_score or entry.show['my_score'] <= max_score
 
 
 def min_progress_filter(entry: LibraryEntry, min_progress: int) -> bool:

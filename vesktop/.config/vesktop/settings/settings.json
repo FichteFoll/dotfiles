@@ -211,9 +211,6 @@
         "Moyai": {
             "enabled": false
         },
-        "MuteNewGuild": {
-            "enabled": false
-        },
         "MutualGroupDMs": {
             "enabled": false
         },
@@ -516,6 +513,9 @@
             "enabled": true
         },
         "DisableCallIdle": {
+            "enabled": false
+        },
+        "NewGuildSettings": {
             "enabled": false
         }
     },

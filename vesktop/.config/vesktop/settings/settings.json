@@ -174,7 +174,9 @@
             "enabled": false
         },
         "MemberCount": {
-            "enabled": true
+            "enabled": true,
+            "memberList": true,
+            "toolTip": true
         },
         "MessageClickActions": {
             "enabled": false,
@@ -517,6 +519,15 @@
         },
         "NewGuildSettings": {
             "enabled": false
+        },
+        "BetterRoleContext": {
+            "enabled": false
+        },
+        "FriendsSince": {
+            "enabled": true
+        },
+        "ResurrectHome": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -529,7 +540,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1707648900394
+        "settingsSyncVersion": 1710507243630
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

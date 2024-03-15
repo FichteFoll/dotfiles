@@ -5,11 +5,18 @@
     height: 36px;
 }
 
-/* hide stupid buttons */
+/* hide stupid premium buttons */
 [class*="channelTextArea_"] [class*="buttons_"] button:not([aria-label="Select emoji"]),
 [class*="colorPremiumGradient_"],
 [aria-label="Add Super Reaction"] {
-    display:none;
+    display: none;
+}
+
+/* hide premium emoji completions */
+[class*=premiumSectionDivider_],
+[class*=premiumHeader_],
+[class*=premiumEmoji_] {
+    display: none;
 }
 
 /* hide Nitro & Shop & Birthday Buttons on DM */

@@ -417,7 +417,7 @@
             "enabled": false
         },
         "WhoReacted": {
-            "enabled": false
+            "enabled": true
         },
         "Wikisearch": {
             "enabled": false
@@ -528,6 +528,15 @@
         },
         "ResurrectHome": {
             "enabled": false
+        },
+        "BetterSettings": {
+            "enabled": true,
+            "disableFade": true,
+            "organizeMenu": true,
+            "eagerLoad": true
+        },
+        "OverrideForumDefaults": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -540,7 +549,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1710507243630
+        "settingsSyncVersion": 1712450482683
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

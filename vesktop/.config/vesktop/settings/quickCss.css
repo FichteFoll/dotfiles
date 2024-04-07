@@ -43,14 +43,22 @@
 }
 
 /* adjust avatar size for who-reacted */
-[class*=reactionInner_] [class*=size24_] * {
-    height: 18px;
-    width: 18px;
-}
+[class*=reactionInner_] {
+    [class*=size24_] {
+        :not(svg *) {
+            height: 18px;
+            width: 18px;
+        }
 
-[class*=reactionInner_] > div:not([class]):last-child {
-    /* the original `scale(0.9)` messes with size calculation and there is no class on this element */
-    transform: none !important;
+        svg {
+            margin-right: -5px;
+        }
+    }
+
+    & > div:not([class]):last-child {
+        /* the original `scale(0.9)` messes with size calculation and there is no class on this element */
+        transform: none !important;
+    }
 }
 
 /* add `@` to new usernames */

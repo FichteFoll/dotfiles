@@ -1,7 +1,7 @@
 /**
  * @name Right-aligned Nicks
  * @description Nicknames are right-aligned in compact mode.
- * @version 1.4.0
+ * @version 1.4.1
  * @author FichteFoll
  * @authorLink https://github.com/FichteFoll
  * @website https://github.com/FichteFoll/dotfiles
@@ -46,7 +46,7 @@
 /* alignment for the rest of the message (embed, reactions) */
 [class*=message_][class*=compact_] > [class*=container_]:not(:empty) {
     margin-left: calc(var(--timestamp-width) + var(--username-width)) !important;
-    display: inline-block;
+/*    display: inline-block;*/
 }
 
 /* the header (contains timestamp & username) */

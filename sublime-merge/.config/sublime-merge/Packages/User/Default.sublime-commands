@@ -17,7 +17,7 @@
     {
         "caption": "Start interactive rebase in terminal",
         "command": "git",
-        "args": {"argv": ["rebase-terminal", "$commit"]}
+        "args": {"argv": ["rebase-terminal", "$select_commit"]}
     },
     {
         "caption": "Change Theme: Default",

@@ -29,4 +29,9 @@
         "command": "set_preference",
         "args": { "setting": "theme", "value": "Merge Dark.sublime-theme" },
     },
+    {
+        "caption": "Create \"fixup!\" commit",
+        "command": "git",
+        "args": {"argv": ["commit", "--fixup", "$select_commit", "-m", "$text"]},
+    },
 ]

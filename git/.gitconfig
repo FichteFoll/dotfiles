@@ -58,7 +58,7 @@
 	rebase = true
 
 [merge]
-	conflictStyle = diff3
+	conflictStyle = zdiff3
 	tool = smerge
 
 [core]

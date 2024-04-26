@@ -1,0 +1,19 @@
+# https://github.com/jesseduffield/lazydocker/blob/master/docs/Config.md
+# https://pkg.go.dev/github.com/jesseduffield/lazydocker/pkg/config
+
+gui:
+  expandFocusedSidePanel: true
+  returnImmediately: true
+
+commandTemplates:
+  dockerCompose: docker compose
+
+logs:
+  tail: 500
+
+customCommands:
+  containers:
+    - name: bash
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} bash'
+      serviceNames: []

@@ -456,9 +456,6 @@
         "ServerProfile": {
             "enabled": true
         },
-        "ShowTimeouts": {
-            "enabled": false
-        },
         "ThemeAttributes": {
             "enabled": false
         },
@@ -537,6 +534,26 @@
         },
         "OverrideForumDefaults": {
             "enabled": false
+        },
+        "ShowHiddenThings": {
+            "enabled": true,
+            "showTimeouts": true,
+            "showInvitesPaused": true
+        },
+        "BetterSessions": {
+            "enabled": true,
+            "backgroundCheck": false,
+            "checkInterval": 20
+        },
+        "ImplicitRelationships": {
+            "enabled": true,
+            "sortByAffinity": true
+        },
+        "StreamerModeOnStream": {
+            "enabled": false
+        },
+        "UnlockedAvatarZoom": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -549,7 +566,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1712450482683
+        "settingsSyncVersion": 1714233462881
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

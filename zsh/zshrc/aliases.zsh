@@ -183,7 +183,7 @@ whatwhen()  {
 # mpv/ytdl
 alias mpa="command mpv --profile=audio"
 alias mpv="command mpv --profile=terminal"
-alias ytdl="youtube-dl"
+alias ytdl="yt-dlp"
 
 twitch() {
     local channel=$1

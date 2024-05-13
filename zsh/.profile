@@ -4,9 +4,13 @@ export TERM=alacritty
 export EDITOR=helix  # "subl -nw" # kak
 export PAGER=less
 
-# prepend user scripts
-# and append executables from python, cargo and ruby to PATH
-export PATH="$HOME/bin:$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.5.0/bin"
+# volta
+export VOLTA_HOME="$HOME/.volta"
+
+# prepend user scripts (for overrides) and volta dir (shadows `node`, `npm` and more)
+export PATH="$HOME/bin:$VOLTA_HOME/bin:$PATH"
+# append executables from python, cargo and ruby
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.5.0/bin"
 
 # make systemd aware of our "new" PATH
 systemctl --user import-environment PATH

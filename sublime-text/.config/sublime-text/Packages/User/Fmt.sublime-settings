@@ -9,6 +9,7 @@
         // { "selector": "source.python", "cmd": ["usort", "format", "-"] },
         // { "selector": "source.python", "cmd": ["black", "-q", "-"] },
         { "selector": "source.rust", "cmd": ["rustfmt"] },
+        { "selector": "source.yaml", "cmd": ["yamlfmt", "-"] },
     ],
     "timeout": 15,
     "merge_type": "replace",

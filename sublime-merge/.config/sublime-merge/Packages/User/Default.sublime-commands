@@ -34,4 +34,14 @@
         "command": "git",
         "args": {"argv": ["commit", "--fixup", "$select_commit", "-m", "$text"]},
     },
+    {
+        "caption": "Rebase onto… (branch)",
+        "command": "git",
+        // Using `$select_commit` does not allow filtering for branch ref names,
+        // only commit hashes and commit msgs.
+        // Tags are also only available in a special selector
+        // and since branches are what I need the most,
+        // I only have this variation.
+        "args": {"argv": ["rebase", "$select_branch", "--onto", "$select_branch"]},
+    },
 ]

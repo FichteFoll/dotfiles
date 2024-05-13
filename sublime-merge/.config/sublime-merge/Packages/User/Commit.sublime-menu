@@ -17,6 +17,14 @@
     },
     { "id": "rebase", "caption": "-" },
     {
+        "caption": "Rebase onto…",
+        "command": "show_command_palette",
+        "args": {
+            "command": "git",
+            "args": {"argv": ["rebase", "$commit~1", "--onto", "$select_branch"]},
+        },
+    },
+    {
         "caption": "Start interactive rebase… (terminal)",
         "command": "git",
         "args": {"argv": ["rebase-terminal", "$commit~1"]},

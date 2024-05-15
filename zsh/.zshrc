@@ -96,20 +96,6 @@ command -v jenv >/dev/null && eval "$(jenv init -)"
 # fzf key bindings
 [[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-# The Fuck smart corrections
-command -v thefuck >/dev/null && eval "$(thefuck --alias)" # --enable-experimental-instant-mode
-
-# And define a shortcut to auto-unfuck the last command on: [Esc] [Esc]
-fuck-command-line() {
-    local FUCK="$(THEFUCK_REQUIRE_CONFIRMATION=0 thefuck $(fc -ln -1 | tail -n 1) 2> /dev/null)"
-    [[ -z $FUCK ]] && echo -n -e "\a" && return
-    BUFFER=$FUCK
-    zle end-of-line
-}
-zle -N fuck-command-line
-bindkey "\e\e" fuck-command-line
-
-
 # Env settings for tools
 export AUR_PAGER="ranger --cmd aur"
 export AUR_REPO="aur"  # default for aur packages

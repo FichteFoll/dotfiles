@@ -30,13 +30,6 @@ done
 unset sources src
 
 
-# termite: Launch new terminal in current dir
-if [[ $TERM == xterm-termite && -e /etc/profile.d/vte.sh ]]; then
-  source /etc/profile.d/vte.sh
-  __vte_osc7
-fi
-
-
 # use zsh's run-help (<M-h> to invoke on current line)
 # (( ${+aliases[run-help]} )) && unalias run-help
 alias run-help >&/dev/null && unalias run-help

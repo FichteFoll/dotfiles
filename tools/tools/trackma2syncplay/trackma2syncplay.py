@@ -5,6 +5,7 @@ from collections import defaultdict
 from configparser import ConfigParser
 from dataclasses import dataclass
 from functools import partial
+import itertools
 import logging
 import json
 import os
@@ -67,7 +68,9 @@ def parse_args():
     parser.add_argument("-q", "--queue-next", action='store_true', default=False,
                         help="Insert the matched episodes directly before the divider.")
     parser.add_argument("-l", "--limit", type=int, default=None,
-                        help="Limit to n results.")
+                        help="Limit to n results per show.")
+    parser.add_argument("-L", "--global-limit", type=int, default=None,
+                        help="Limit to n results total.")
     parser.add_argument("--min-progress", type=int, default=None,
                         help="Only include shows with a progress of at least n.")
 
@@ -99,7 +102,19 @@ def main(params):
     for entry in sorted_entries:
         logger.info("collected: %s - %02d", entry.show['title'], entry.ep)
 
-    final_entries = randomize(sorted_entries, params.batch) if params.randomize else sorted_entries
+    entries_by_show = defaultdict(list)
+    for entry in sorted_entries:
+        entries_by_show[entry.show['id']].append(entry)
+
+    if params.limit:
+        for entries in entries_by_show.values():
+            entries[params.limit:] = []
+
+    if params.randomize:
+        final_entries = randomize(entries_by_show, params.batch)
+    else:
+        final_entries = list(itertools.chain(*entries_by_show.values()))
+
     filenames = [os.path.basename(entry.path) for entry in final_entries]
     if params.dry_run:
         for filename in filenames:
@@ -231,12 +246,8 @@ def filter_chain(filters, iterable):
     return iterable
 
 
-def randomize(entries: list[LibraryEntry], batch: int) -> list[LibraryEntry]:
-    entries_by_show = defaultdict(list)
-    for entry in entries:
-        entries_by_show[entry.show['id']].append(entry)
-
-    randomized_entries = []
+def randomize(entries_by_show: dict[int, list[LibraryEntry]], batch: int) -> list[LibraryEntry]:
+    randomized_entries: list[LibraryEntry] = []
     while entries_by_show:
         show_id = random.choice(list(entries_by_show.keys()))
         if not batch:
@@ -272,9 +283,9 @@ def to_syncplay(params, filenames):
         logger.error(f"Syncplay configuration incomplete; {server=}, {room=}, {name=}")
         return 1
 
-    if params.limit and len(filenames) > params.limit:
-        logger.info('Truncating %d filenames to %d', len(filenames), params.limit)
-        filenames = filenames[:params.limit]
+    if params.global_limit and len(filenames) > params.global_limit:
+        logger.info('Truncating %d filenames to %d', len(filenames), params.global_limit)
+        filenames = filenames[:params.global_limit]
 
     return put_syncplay(server, room, name, filenames, params)
 

@@ -31,6 +31,7 @@
 	"inhibit_snippet_completions": false,
 	"log_debug": true,
 	// "log_server": [""],
+	"refactoring_auto_save": "preserve",
 	"show_code_actions": "bulb",
 	"show_diagnostics_count_in_view_status": true,
 	"show_diagnostics_panel_on_save": 2,

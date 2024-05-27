@@ -1,0 +1,102 @@
+#!/usr/bin/env zsh
+
+# Create the initial subvolume and folder structure
+# for a BTRFS drive to be used as the root partition.
+#
+# Assumes the drive has been mounted at $1 and has an otherwise empty file system.
+# root folders (and subvolumes) will be created with `sudo`,
+# other folders (notably within /home/$USER) with the current user.
+#
+# Swap must be configured manually inside the `@swap` sub-volume,
+# e.g. via:
+# $ cd "$1"/@swap
+# $ sudo btrfs filesystem mkswapfile --size 17g --uuid clear swapfile
+# Acquire the offset for resuming:
+# $ btrfs inspect-internal map-swapfile swapfile
+#
+# See also:
+# - https://wiki.archlinux.org/title/Btrfs
+# - https://btrfs.readthedocs.io/en/latest/Swapfile.html
+
+cd "${1:?must provide mountpoint of filesystem root}"
+
+set -ex
+
+user=$(id -un)
+group=$(id -gn)
+if [[ $user == root ]]; then
+    echo "Must be called by a non-root user."
+    exit 1
+fi
+
+# create main subvolumes
+sudo btrfs subvolume create @root
+sudo btrfs subvolume create @home
+sudo btrfs subvolume create @swap
+sudo btrfs subvolume set-default @root
+# snapshotting will be configured later
+# sudo btrfs subvolume create @snapshots
+
+# create root filesystem structure & subvolumes
+# note that /swap -> @swap and /home -> @home
+# using separate mount entries in fstab
+prepare_root() {
+    pushd @root
+    sudo mkdir -p boot
+    sudo mkdir -p btrfs
+    sudo btrfs subvolume create var
+    sudo btrfs subvolume create var/cache
+    sudo mkdir -p var/lib
+    sudo btrfs subvolume create var/lib/aurbuild
+    sudo btrfs subvolume create var/lib/docker
+    sudo mkdir -p home
+    sudo mkdir -p swap
+    popd
+}
+prepare_root
+
+# Continue setting up home folder as "current user"
+prepare_user() {
+    # create user home folder
+    sudo btrfs subvolume create @home/$user
+    # Transfer ownership of home folder
+    sudo chown $user:$group @home/$user
+
+    pushd @home/$user
+    btrfs subvolume create .cache
+    btrfs subvolume create .cargo
+
+    prepare_local_share() {
+        mkdir -p .local/share
+        pushd .local/share
+        btrfs subvolume create Zeal
+        btrfs subvolume create docker
+        btrfs subvolume create jvm
+        btrfs subvolume create pipx
+        btrfs subvolume create Steam
+        mkdir -p Steam/steamapps
+        btrfs subvolume create Steam/steamapps/common
+        btrfs subvolume create Steam/steamapps/compatdata
+        btrfs subvolume create honkers-railway-launcher
+        mkdir -p lutris
+        btrfs subvolume create lutris/runtime
+        mkdir -p mcomix
+        btrfs subvolume create mcomix/library_covers
+        popd
+    }
+    prepare_local_share
+
+    btrfs subvolume create .m2
+    btrfs subvolume create .npm
+    btrfs subvolume create .nvm
+    btrfs subvolume create .rustup
+    btrfs subvolume create .wine32_games
+    btrfs subvolume create games
+    btrfs subvolume create tmp
+    popd
+}
+prepare_user
+
+sudo btrfs subv set-default @root
+
+sudo btrfs subv list --sort=path .

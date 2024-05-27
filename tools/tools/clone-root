@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# This is a quick script to clone/copy my root filesystem using rsync.
+# Both source (the fs root) and destination need to be supplied via $@.
+
+rsync \
+    --archive \
+    --progress \
+    --human-readable \
+    `#--one-file-system` \
+    `#--crtimes` \
+    `# specific excludes (that don't already have their own subvolume` \
+    --filter '- /home/*/.cache/' \
+    --filter '- /home/*/.cargo/' \
+    --filter '- /home/*/.config/Cypress/' \
+    --filter '- /home/*/.config/Slack/' \
+    --filter '- /home/*/.local/share/docker/' \
+    --filter '- /home/*/.local/share/jvm/' \
+    --filter '- /home/*/.local/share/pnpm/' \
+    --filter '- /home/*/.local/share/Zeal/' \
+    --filter '- /home/*/.m2/' \
+    --filter '- /home/*/.node-gyp/' \
+    --filter '- /home/*/.npm/' \
+    --filter '- /home/*/.rustup/toolchains/' \
+    --filter '- /var/cache/pacman/pkg' \
+    --filter '- /var/lib/aurbuild/' \
+    --filter '- /var/lib/docker/' \
+    --filter '- /swapfile' \
+    --filter '- /swap/' \
+    `# general excludes for /home folders` \
+    --filter '- /home/**/.venv/' \
+    --filter '- /home/**/Ferdium/Partitions/*/*Cache*' \
+    --filter '- /home/**/Service Worker/*Cache*/' \
+    --filter '- /home/**/chromium/*Cache*/' \
+    --filter '- /home/**/discord/*Cache*/' \
+    --filter '- /home/**/vesktop/*Cache*/' \
+    --filter '- /home/**/__pycache__/' \
+    --filter '- /home/**/node_modules/' \
+    --filter '- /home/**/target/' \
+    $@
+
+# Note that `--one-file-system` obviously does not cross fily-system boundaries,
+# which will matter for btrfs sub-volume mounts,
+# as well as the boot partition.
+
+# Some file attributes (e.g. setsuid) will not be synchronized by rsync,
+# so the `shadow` package needs to be re-installed afterwards,
+# as well as anything using fs capabilities (via `setcap`).

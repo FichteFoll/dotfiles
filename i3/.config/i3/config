@@ -267,25 +267,24 @@ bindsym $mod+$alt+n exec --no-startup-id dunstctl context
 
 # window-specific settings #
 
-# for_window [class="Doublecmd" title="Copying|Moving|Deleting|File operations|Options"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Sxiv"] floating enable
-for_window [class="Firefox" window_role="page-info"] floating enable
+for_window [class="firefox" window_role="page-info"] floating enable
 for_window [class="Thunderbird" window_role="EventDialog"] floating enable
 for_window [class="Thunderbird" instance="Calendar"] floating enable
 for_window [class="Deluge"] floating enable
 for_window [class="Pinentry"] floating enable
-for_window [class="Pavucontrol"] floating enable
+for_window [class="pavucontrol"] floating enable
 for_window [class="cool-retro-term"] fullscreen enable
 for_window [class="key-mon"] floating enable
 for_window [class="Steam" title="Steam - News"] floating enable
 for_window [class="lxqt-openssh-askpass"] floating enable
 for_window [class="Yad"] floating enable
-# for_window [class="Steam" title="Friends List"] resize set 400 px
 for_window [window_type="notification" tiling_from="auto"] floating enable
 for_window [class="jetbrains-" title="win0"] floating enable
 for_window [class="QjackCtl"] floating enable
+for_window [class="qpwgraph"] floating enable
 
 # add border for border-less gtk3 applications
 for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2

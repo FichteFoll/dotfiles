@@ -365,7 +365,8 @@
             "enabled": true,
             "includeMutedChannels": false,
             "includeBlockedUsers": false,
-            "includeCurrentChannel": true
+            "includeCurrentChannel": true,
+            "indicatorMode": 3
         },
         "TypingTweaks": {
             "enabled": false
@@ -451,21 +452,22 @@
         "SecretRingToneEnabler": {
             "enabled": false
         },
-        "ServerProfile": {
-            "enabled": true
-        },
         "ThemeAttributes": {
             "enabled": false
         },
         "Dearrow": {
             "enabled": true,
-            "hideButton": false
+            "hideButton": false,
+            "replaceElements": 0
         },
         "PictureInPicture": {
             "enabled": false
         },
         "OnePingPerDM": {
-            "enabled": true
+            "enabled": true,
+            "channelToAffect": "both_dms",
+            "allowMentions": true,
+            "allowEveryone": true
         },
         "PermissionFreeWill": {
             "enabled": false
@@ -603,6 +605,33 @@
         },
         "WebScreenShareFixes": {
             "enabled": true
+        },
+        "ServerInfo": {
+            "enabled": true
+        },
+        "MessageUpdaterAPI": {
+            "enabled": true
+        },
+        "AppleMusicRichPresence": {
+            "enabled": false
+        },
+        "CopyEmojiMarkdown": {
+            "enabled": false
+        },
+        "DontRoundMyTimestamps": {
+            "enabled": true
+        },
+        "MaskedLinkPaste": {
+            "enabled": false
+        },
+        "NoOnboardingDelay": {
+            "enabled": true
+        },
+        "Summaries": {
+            "enabled": false
+        },
+        "WatchTogetherAdblock": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -615,7 +644,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1716661511354
+        "settingsSyncVersion": 1718143322543
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

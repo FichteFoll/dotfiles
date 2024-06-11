@@ -47,7 +47,6 @@ prepare_root() {
     sudo btrfs subvolume create var
     sudo btrfs subvolume create var/cache
     sudo mkdir -p var/lib
-    sudo btrfs subvolume create var/lib/aurbuild
     sudo btrfs subvolume create var/lib/docker
     sudo mkdir -p home
     sudo mkdir -p swap

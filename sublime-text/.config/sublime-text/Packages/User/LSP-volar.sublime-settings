@@ -24,7 +24,8 @@
         // https://github.com/sublimelsp/LSP-volar/issues/114
         "completionProvider": {
             "triggerCharacters": true
-        }
+        },
+        "colorProvider": true
     },
     "initializationOptions": {
         "preferences": {

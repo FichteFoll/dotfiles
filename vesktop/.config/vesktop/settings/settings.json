@@ -301,7 +301,8 @@
             "enabled": true,
             "chatMentions": true,
             "memberList": true,
-            "voiceUsers": true
+            "voiceUsers": true,
+            "reactorsList": true
         },
         "SearchReply": {
             "enabled": false
@@ -632,6 +633,12 @@
         },
         "WatchTogetherAdblock": {
             "enabled": false
+        },
+        "UserSettingsAPI": {
+            "enabled": true
+        },
+        "ShowAllRoles": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -644,7 +651,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1718143322543
+        "settingsSyncVersion": 1720035137516
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

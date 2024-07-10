@@ -1,15 +1,34 @@
 {
     "rules": [
+        // JSON: jq
         { "selector": "source.json", "cmd": ["jq"] },
+        // XML: xmlstarlet
         { "selector": "text.xml", "cmd": ["xmlstarlet", "format"] },
+        // HTML: tidy
         { "selector": "text.html.basic", "cmd": ["tidy"] },
-        // needs ufmt>=v2.0.0b1 for accepting stdin
-        { "selector": "source.python", "cmd": ["ufmt", "format", "-"] },
+        // Python: ufmt
+        // { "selector": "source.python", "cmd": ["ufmt", "format", "-"] },
         // the above in individual steps:
         // { "selector": "source.python", "cmd": ["usort", "format", "-"] },
         // { "selector": "source.python", "cmd": ["black", "-q", "-"] },
+        // Rust: rustfmt
         { "selector": "source.rust", "cmd": ["rustfmt"] },
+        // YAML: yamlfmt
         { "selector": "source.yaml", "cmd": ["yamlfmt", "-"] },
+        // Python: ruff
+        {
+            "selector": "source.python",
+            "cmd": [
+                "ruff",
+                "format",
+                "--isolated",
+                "--line-length=120",
+                "--preview",
+                "--stdin-filename=stdin.py",
+                "--target-version=py311",
+            ],
+            "format_on_save": false,
+        },
     ],
     "timeout": 15,
     "merge_type": "replace",

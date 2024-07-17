@@ -1,0 +1,20 @@
+# Maintainer: FichteFoll <fichtefoll2@googlemail.com>
+
+pkgname=reset-input-devices
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A script to reset usb input devices after sleep"
+arch=('x86_64')
+url=""
+license=('none')
+depends=('systemd')
+options=('!strip')
+source=("reset-input-devices"
+        "reset-input-devices-after-sleep.service")
+sha256sums=('SKIP'
+            'SKIP')
+
+package() {
+  install -Dm744 reset-input-devices "${pkgdir}/usr/local/bin/reset-input-devices"
+  install -Dm644 reset-input-devices-after-sleep.service "${pkgdir}/etc/systemd/system/reset-input-devices-after-sleep.service"
+}

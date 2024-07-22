@@ -286,9 +286,12 @@ for_window [class="jetbrains-" title="win0"] floating enable
 for_window [class="QjackCtl"] floating enable
 for_window [class="qpwgraph"] floating enable
 
+# remove border for some popups
+for_window [class="openshot" window_type="utility"] border pixel 0
+for_window [window_type="tooltip|popup_menu|notification|splash"] border pixel 0
+
 # add border for border-less gtk3 applications
 for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
-# for_window [class="mpv"] border pixel 2
 
 # focus specific windows
 set $mode_focus Focus: [c]antata [D]eluge [d]iscord [f]irefox [h]exchat s[m]erge [M]pv [T]elegram [t]hunderbird Spotif[y] [z]eal | ST: [n]otes [H]ome

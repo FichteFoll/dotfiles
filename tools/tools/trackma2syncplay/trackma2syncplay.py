@@ -19,7 +19,8 @@ from pathlib import Path
 
 SYNCPLAY_CONFIG_PATH = Path("~/.syncplay").expanduser()
 DEFAULT_SERVER = "syncplay.pl:8999"
-DIVIDER = "-" * 50
+DEFAULT_DIVIDER = "-" * 50
+DIVIDER_REGEX = re.compile(r"^-{10}.*$")
 
 logger = logging.getLogger(__name__)
 
@@ -344,18 +345,20 @@ def put_syncplay(server, room, name, filenames, params):
 
 def build_new_playlist(playlist: list[str], new_files: list[str], params) -> list[str]:
     new_playlist = [] if params.clear else playlist[:]
-    if params.queue_next:
-        index = len(playlist)
-        try:
-            index = playlist.index(DIVIDER)
-        except IndexError:
-            pass
-        logger.info("Inserting files at position %d of %d", index, len(playlist))
-        new_playlist[index:index] = new_files
-        new_playlist.append(DIVIDER)
+    div_index = 0
+    for div_index, item in enumerate(playlist):
+        if DIVIDER_REGEX.match(item):
+            break
     else:
-        new_playlist.append(DIVIDER)
+        new_playlist.append(DEFAULT_DIVIDER)
+        div_index += 1
+
+    if params.queue_next:
+        logger.info("Inserting files at position %d of %d", div_index, len(playlist))
+        new_playlist[div_index:div_index] = new_files
+    else:
         new_playlist.extend(new_files)
+
     return new_playlist
 
 

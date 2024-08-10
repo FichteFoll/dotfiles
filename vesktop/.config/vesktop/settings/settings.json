@@ -631,14 +631,14 @@
         "Summaries": {
             "enabled": false
         },
-        "WatchTogetherAdblock": {
-            "enabled": false
-        },
         "UserSettingsAPI": {
             "enabled": true
         },
         "ShowAllRoles": {
             "enabled": true
+        },
+        "YoutubeAdblock": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -651,7 +651,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1720035137516
+        "settingsSyncVersion": 1722715685739
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Turn an existing directory into a btrfs subvolume
+# by renaming it temporarily,
+# creating the subvolume
+# and moving files back over.
+
+path="$(realpath "${1?path missing}")"
+if [ ! -d "$path" ]; then
+    echo "$path is not a directory!"
+    exit 1
+fi
+
+echo "Checking if $path is already a btrfs subvolume …"
+if sudo btrfs subvolume show "$path" >/dev/null 2>/dev/null; then
+    echo "$path is already a btrfs subvolume! Nothing to do."
+    exit
+fi
+
+tmppath="${path}__"
+if [ -e "$tmppath" ]; then
+    echo "Temporary path $tmppath already exists! Aborting …"
+    exit 2
+fi
+
+mv -v "$path" "$tmppath"
+
+btrfs subvolume create "$path"
+
+echo "Moving files into subvolume …"
+mv "$tmppath"/* "$path"
+
+echo "Removing temporary folder recursively …"
+find "$tmppath" -type d -empty -print -delete
+
+echo "Done."

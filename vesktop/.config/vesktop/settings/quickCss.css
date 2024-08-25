@@ -5,8 +5,14 @@
     height: 36px;
 }
 
-/* hide stupid premium buttons */
+/* hide stupid buttons in text input */
 [class*="channelTextArea_"] [class*="buttons_"] button:not([aria-label="Select emoji"]),
+/* … and apps button */
+[class*=channelAppLauncher_] {
+    display: none;
+}
+
+/* hide premium emoji buttons */
 [class*="colorPremiumGradient_"],
 [aria-label="Add Super Reaction"] {
     display: none;

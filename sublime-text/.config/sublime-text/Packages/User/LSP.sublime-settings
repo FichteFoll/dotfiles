@@ -15,7 +15,8 @@
 			},
 		},
 		"LSP-pyright": {
-			"enabled": true,
+			// Enable on a per-project base
+			"enabled": false,
 		},
 		"LSP-json": {
 			"enabled": false,

@@ -55,9 +55,12 @@
             ]
         },
         {
-            "syntax": "YAML/YAML",
+            "syntax": "Go/YAML (Go)",
             "rules": [
-                {"file_path": ".*yml\\.tpl$"},
+                // Helm
+                {"file_path": ".*/templates/[^/]+\\.(ya?ml|tpl)$"},
+                // Rancher
+                {"file_path": ".*ya?ml\\.tpl$"},
             ]
         },
         {

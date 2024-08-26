@@ -108,6 +108,9 @@
         "lua": {
             "selector": "source.lua - source.lua.embedding punctuation.section.interpolation"
         },
+        "yamllint": {
+            "selector": "source.yaml - source.yaml.go"
+        },
         "mypy": {
             "args": ["--ignore-missing-imports"],
             "annotation": "{linter}:{code}",

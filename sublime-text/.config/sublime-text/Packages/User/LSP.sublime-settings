@@ -28,7 +28,6 @@
 		}
 	},
 	"diagnostics_highlight_style": "box",
-	"document_highlight_style": "box",
 	"inhibit_snippet_completions": false,
 	"log_debug": true,
 	// "log_server": [""],

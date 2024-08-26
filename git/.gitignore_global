@@ -56,3 +56,4 @@ venv/
 *.sublime-project
 *.sublime-workspace
 .java-version
+pyrightconfig.json

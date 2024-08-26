@@ -21,7 +21,7 @@
         "command": "show_command_palette",
         "args": {
             "command": "git",
-            "args": {"argv": ["rebase", "$commit~1", "--onto", "$select_branch"]},
+            "args": {"argv": ["rebase", "$commit~1", "--onto", "$select_ref"]},
         },
     },
     {

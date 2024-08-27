@@ -44,8 +44,8 @@
 	pr-clean = !git branch -D $(git for-each-ref --format='%(refname:strip=2)' refs/heads/pr)
 
 	; Sublime Merge integrations
-	terminal = !i3-msg exec \"alacritty --working-directory \\\"$(pwd)\\\"\"
-	rebase-terminal = "!f() { i3-msg exec \"alacritty --working-directory \\\"$(pwd)\\\" --hold -e $SHELL -c \\\"git rebase -i $1\\\"\"; }; f"
+	terminal = !systemd-run --user alacritty --working-directory "$(pwd)"
+	rebase-terminal = "!f() { systemd-run --user alacritty --working-directory "$(pwd)" --hold -e "$SHELL" -c "git rebase -i $1"; }; f"
 
 [branch]
 	autosetuprebase = always

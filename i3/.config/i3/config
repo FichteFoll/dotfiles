@@ -192,9 +192,6 @@ mode "$mode_monitor" {
 
 bindsym $mod+p mode "$mode_monitor"
 
-# daemon mode to reestablish single-monitor mode
-exec --no-startup-id mons -m &!
-
 mode "resize" {
     bindsym h resize shrink width  10 px or 10 ppt
     bindsym j resize grow   height 10 px or 10 ppt
@@ -233,10 +230,10 @@ bindsym --whole-window $mod+button2 floating toggle
 set $volume_step 5%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +$volume_step
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -$volume_step
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SOUCE@ toggle
-bindsym $mod+F8 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym $mod+$alt+m exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute     exec --no-startup-id pactl set-sink-mute @DEFAULT_SOUCE@ toggle
+bindsym $mod+F8              exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $mod+$alt+m          exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # smartly switch between sinks
 bindsym $mod+F1 exec --no-startup-id set-default-sink speakers
 bindsym $mod+F2 exec --no-startup-id set-default-sink headphones
@@ -248,9 +245,9 @@ bindsym XF86AudioPrev exec --no-startup-id mpris-rofi previous
 bindsym XF86AudioNext exec --no-startup-id mpris-rofi next
 bindsym XF86AudioStop exec --no-startup-id mpris-rofi restart
 # the same for keyboards without thes media keys
-bindsym $mod+$alt+p exec --no-startup-id mpris-rofi playpause
-bindsym $mod+$alt+comma exec --no-startup-id mpris-rofi previous
-bindsym $mod+$alt+period exec --no-startup-id mpris-rofi next
+bindsym $mod+$alt+p       exec --no-startup-id mpris-rofi playpause
+bindsym $mod+$alt+comma   exec --no-startup-id mpris-rofi previous
+bindsym $mod+$alt+period  exec --no-startup-id mpris-rofi next
 bindsym $mod+$alt+Shift+p exec --no-startup-id mpris-rofi restart
 
 # backlight control
@@ -310,8 +307,8 @@ mode "$mode_focus" {
     bindsym y       [class="Spotify"] focus, $to_default
     bindsym z       [class="Zeal"] focus, $to_default
 
-    bindsym n       [class="Subl" title="^notes — .* - Sublime Text$"] focus, $to_default
-    bindsym Shift+h [class="Subl" title="^home — .* - Sublime Text$"] focus, $to_default
+    bindsym n       [class="Sublime_text" title="^notes - .* - Sublime Text$"] focus, $to_default
+    bindsym Shift+h [class="Sublime_text" title="^home - .* - Sublime Text$"] focus, $to_default
 
     bindsym Escape $to_default
     bindsym Return $to_default
@@ -321,13 +318,13 @@ mode "$mode_focus" {
 ## launch stuff ##
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return       exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec cool-retro-term
 
 # rofi launcher
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d       exec rofi -show drun
 bindsym $mod+Shift+d exec rofi -show run
-bindsym $mod+s exec rofi -show window
+bindsym $mod+s       exec rofi -show window
 bindsym $mod+Shift+s exec rofi -show ssh
 #bindsym button2 nop
 
@@ -338,28 +335,28 @@ bindsym Ctrl+Shift+Print exec shot --delay 2
 bindsym Ctrl+$alt+Print  exec shot window
 
 # color picker
-bindsym $mod+$alt+c exec gcolor2
+bindsym $mod+$alt+c exec gcolor3
 
 # toggle system theme (light vs dark)
 bindsym $mod+Shift+t exec toggle-dark-mode
 
 # do stuff with the clipboard
 bindsym $mod+Shift+o exec "openurl \\"`xsel -ob`\\""
-bindsym $mod+m exec "mpv -- \\"`xsel -ob`\\""
+bindsym $mod+m       exec "mpv -- \\"`xsel -ob`\\""
 bindsym $mod+Shift+m exec "mpv --playlist=<(xsel -ob | extract_links)"
 # share files (or clipboard contents) by uploading them and replacing clipboard with the url
 # Prior = page up / Next = page down
 bindsym $mod+Next exec share_clip
 
 # picom (was "compton")
-bindsym $mod+Ctrl+c exec --no-startup-id picom
+bindsym $mod+Ctrl+c       exec --no-startup-id picom
 bindsym $mod+Ctrl+Shift+c exec --no-startup-id killall picom
 
 # polybar (kills automatically)
 bindsym $mod+Ctrl+p exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # screenkey
-bindsym $mod+Ctrl+s exec --no-startup-id screenkey
+bindsym $mod+Ctrl+s       exec --no-startup-id screenkey
 bindsym $mod+Ctrl+Shift+s exec --no-startup-id killall screenkey
 
 

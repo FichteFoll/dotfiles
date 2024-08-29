@@ -634,11 +634,11 @@
         "UserSettingsAPI": {
             "enabled": true
         },
-        "ShowAllRoles": {
-            "enabled": true
-        },
         "YoutubeAdblock": {
             "enabled": false
+        },
+        "AlwaysExpandRoles": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -651,7 +651,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1722715685739
+        "settingsSyncVersion": 1724955448954
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

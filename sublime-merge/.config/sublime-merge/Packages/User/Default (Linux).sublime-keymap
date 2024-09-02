@@ -33,6 +33,16 @@
     "context": [{ "key": "control", "operator": "equal", "operand": "text_control" }],
   },
 
+  // Copy commit hash to clipboard when history is focused
+  { "keys": ["ctrl+c"],
+    "command": "copy_to_clipboard",
+    "args": { "text": "$commit" },
+    "context": [
+        { "key": "control", "operand": "commit_table" },
+        { "key": "search_mode", "operator": "not_equal" }
+    ]
+  },
+
   // Git
   { "keys": ["ctrl+shift+g"],
     "command": "show_command_palette",

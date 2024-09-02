@@ -372,7 +372,7 @@ mode "$mode_launcher" {
     bindsym Shift+c exec chromium, $to_default
     bindsym d       exec command -v vesktop && exec vesktop || exec discord, $to_default
     bindsym f       exec firefox, $to_default
-    bindsym g       exec signal, $to_default
+    bindsym g       exec signal-desktop, $to_default
     bindsym h       exec hexchat, $to_default
     bindsym k       exec keepassxc, $to_default
     bindsym m       exec smerge, $to_default

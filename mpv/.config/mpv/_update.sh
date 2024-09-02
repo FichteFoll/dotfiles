@@ -27,7 +27,7 @@ cd sponsorblock_shared
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua
 wget -N https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py
 
-# will probably need to be updated once 0.5.0 is released
+# uosc
 cd "$DIR"
 rm -rf fonts/uosc_* scripts/uosc*
 wget -N https://github.com/tomasklaen/uosc/releases/latest/download/uosc.zip

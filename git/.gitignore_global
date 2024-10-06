@@ -43,6 +43,7 @@ Thumbs.db
 __pycache__/
 .mypy_cache/
 .cache/
+.ruff_cache/
 
 # Virtual Environments #
 ########################

@@ -22,7 +22,7 @@
                 "ruff",
                 "format",
                 "--isolated",
-                "--line-length=120",
+                "--line-length=100",
                 "--preview",
                 "--stdin-filename=stdin.py",
                 "--target-version=py312",

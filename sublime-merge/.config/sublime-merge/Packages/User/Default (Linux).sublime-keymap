@@ -1,5 +1,5 @@
 [
-  // Meta
+  // Meta & Navigation
   { "keys": ["f8"], "command": "toggle_console" },
 
   // Use ctrl+pageup/down for switch repo tabs
@@ -33,17 +33,9 @@
     "context": [{ "key": "control", "operator": "equal", "operand": "text_control" }],
   },
 
-  // Copy commit hash to clipboard when history is focused
-  { "keys": ["ctrl+c"],
-    "command": "copy_to_clipboard",
-    "args": { "text": "$commit" },
-    "context": [
-        { "key": "control", "operand": "commit_table" },
-        { "key": "search_mode", "operator": "not_equal" }
-    ]
-  },
+  /// Git ///
 
-  // Git
+  // Create and push tag (analogous to branch bindings)
   { "keys": ["ctrl+shift+g"],
     "command": "show_command_palette",
     "args": {
@@ -57,6 +49,8 @@
       "args": { "remote": "origin" },
     },
   },
+
+  // Push and pull
   { "keys": ["ctrl+down"],
     "command": "git",
     "args": { "argv": ["fetch", "--all", "--tags", "--prune"] }
@@ -75,6 +69,18 @@
     },
   },
 
-  // Special
+  /// Other ///
+
+  // Open terminal in git root
   { "keys": ["ctrl+k", "ctrl+t"], "command": "git", "args": { "argv": ["terminal"] } },
+
+  // Copy commit hash
+  { "keys": ["ctrl+c"],
+    "command": "copy_to_clipboard",
+    "args": { "text": "$commit" },
+    "context": [
+        { "key": "control", "operand": "commit_table" },
+        { "key": "search_mode", "operator": "not_equal" }
+    ],
+  },
 ]

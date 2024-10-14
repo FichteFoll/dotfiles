@@ -34,7 +34,7 @@
 
 	; Manage "gone" local branches (branches whose tracking branch doesn't exist anymore)
 	ls-gone = !git for-each-ref --format '%(refname:strip=2) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {print $1}'
-	rm-gone = !git branch -D $(git ls-gone)
+	rm-gone = !git ls-gone | xargs --no-run-if-empty git branch -D
 
 	; Pull request management
 	; https://gist.github.com/gnarf/5406589

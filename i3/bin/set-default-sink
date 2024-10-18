@@ -11,17 +11,23 @@ import sys
 import re
 from functools import partial
 from subprocess import check_call, check_output
-from typing import Any, Callable, TypeAlias
+from typing import Callable, NotRequired, TypedDict
 
-Sink: TypeAlias = dict[str, Any]
+
+class Port(TypedDict):
+    type: NotRequired[str]
+    availability: NotRequired[str]
+
+
+class Sink(TypedDict):
+    name: str
+    ports: NotRequired[list[Port]]
 
 
 def is_available_hdmi_sink(sink: Sink) -> bool:
-    if not sink.get('ports'):
-        return False
     return any(
         p.get('type') == 'HDMI' and p.get('availability') != 'not available'
-        for p in sink['ports']
+        for p in sink.get('ports', [])
     )
 
 
@@ -58,7 +64,7 @@ def main() -> int:
 
     if sink := next(filter(sink_filter, sinks), None):
         print(f"setting default sink to: {sink['name']}")
-        check_call(["pactl", "set-default-sink", sink['name']])
+        _ = check_call(["pactl", "set-default-sink", sink['name']])
         return 0
     else:
         print("no matching sink found")

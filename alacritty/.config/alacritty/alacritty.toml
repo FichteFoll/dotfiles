@@ -2,11 +2,6 @@
 # - alacritty(5)
 # - https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
 
-import = [
-    "~/.config/alacritty/colors.toml",
-    "~/.config/alacritty/keybindings.toml",
-]
-
 [font]
 # * https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
 # * file:///usr/share/doc/fontconfig/fontconfig-user.html
@@ -18,3 +13,9 @@ hide_when_typing = true
 
 [window]
 padding = { x = 2, y = 2 }
+
+[general]
+import = [
+    "~/.config/alacritty/colors.toml",
+    "~/.config/alacritty/keybindings.toml",
+]

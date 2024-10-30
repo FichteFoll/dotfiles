@@ -6,9 +6,10 @@
 }
 
 /* hide stupid buttons in text input */
-[class*="channelTextArea_"] [class*="buttons_"] button:not([aria-label="Select emoji"]),
-/* … and apps button */
-[class*=channelAppLauncher_] {
+[class*="channelTextArea_"] [class*="buttons_"] button:not([aria-label="Select emoji"])
+/* … and apps button (actually, apps button can be useful) */
+/*, [class*=channelAppLauncher_] */
+{
     display: none;
 }
 

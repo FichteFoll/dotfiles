@@ -1,6 +1,8 @@
 # random
 alias pls='sudo $(fc -ln -1)'
 alias ipy='ipython'
+alias ci='xsel -ib'
+alias co='xsel -ob'
 # alias sudo='killall screenkey 2>/dev/null; sudo'
 alias lrc='source ~/.zshrc'
 alias rm='rm -i'

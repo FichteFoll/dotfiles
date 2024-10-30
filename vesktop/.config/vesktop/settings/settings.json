@@ -265,9 +265,6 @@
         "PlatformIndicators": {
             "enabled": false
         },
-        "PronounDB": {
-            "enabled": false
-        },
         "QuickMention": {
             "enabled": false
         },
@@ -302,10 +299,8 @@
             "chatMentions": true,
             "memberList": true,
             "voiceUsers": true,
-            "reactorsList": true
-        },
-        "SearchReply": {
-            "enabled": false
+            "reactorsList": true,
+            "colorChatMessages": false
         },
         "SendTimestamps": {
             "enabled": true,
@@ -459,7 +454,8 @@
         "Dearrow": {
             "enabled": true,
             "hideButton": false,
-            "replaceElements": 0
+            "replaceElements": 0,
+            "dearrowByDefault": true
         },
         "PictureInPicture": {
             "enabled": false
@@ -639,6 +635,37 @@
         },
         "AlwaysExpandRoles": {
             "enabled": true
+        },
+        "ConsoleJanitor": {
+            "enabled": false
+        },
+        "CopyFileContents": {
+            "enabled": false
+        },
+        "MentionAvatars": {
+            "enabled": false
+        },
+        "NoMaskedUrlPaste": {
+            "enabled": true
+        },
+        "StickerPaste": {
+            "enabled": false
+        },
+        "VolumeBooster": {
+            "enabled": false
+        },
+        "FullSearchContext": {
+            "enabled": true
+        },
+        "AccountPanelServerProfile": {
+            "enabled": true,
+            "prioritizeServerProfile": true
+        },
+        "UserMessagesPronouns": {
+            "enabled": false
+        },
+        "DynamicImageModalAPI": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -651,7 +678,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1724955448954
+        "settingsSyncVersion": 1730313970985
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

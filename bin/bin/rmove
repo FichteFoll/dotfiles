@@ -15,6 +15,6 @@ rsync \
     --verbose \
     --progress \
     --remove-source-files \
-    $@
+    "$@"
 
 # find "$1" -type d -empty -print -delete

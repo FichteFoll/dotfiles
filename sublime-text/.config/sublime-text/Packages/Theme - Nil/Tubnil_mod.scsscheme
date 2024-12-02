@@ -102,14 +102,9 @@ variable
     \- variable.function
     \- variable.annotation
     \- variable.namespace
-    \- variable.parameter.option.shell,
-string variable,
-variable.other.readwrite.shell {
+string variable {
     @name "Variable";
     foreground: #3399CC;
-}
-variable.parameter.option.shell {
-    foreground: #7f8ee5;
 }
 
 support.variable {

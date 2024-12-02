@@ -1,0 +1,11 @@
+[[language]]
+name = "rust"
+
+[language.auto-pairs]
+# add <> and remove ''
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'

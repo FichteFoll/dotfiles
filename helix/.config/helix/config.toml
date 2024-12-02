@@ -1,0 +1,36 @@
+# https://docs.helix-editor.com/editor.html
+[editor]
+line-number = "relative"
+cursorline = true
+bufferline = "multiple"
+color-modes = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.whitespace.render]
+# space = "all"
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+
+[editor.indent-guides]
+render = true
+# character = "│" # Examples: "│" "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+# alacritty supports the Enhanced Keyboard protocol
+[keys.normal]
+tab = "move_parent_node_end"
+S-tab = "move_parent_node_start"
+A-minus = "flip_selections"
+
+[keys.insert]
+S-tab = "move_parent_node_start"
+
+[keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"

@@ -236,18 +236,23 @@
   // Package Control
   { "keys": ["ctrl+alt+i"], "command": "install_package" },
 
+  // switch to file
+  { "keys": ["alt+e"], "command": "switch_to_file" },
+
+  // open url
+  { "keys": ["alt+o"], "command": "open_url" },
+
+
   // PlainTasks
   { "keys": ["alt+x"], "command": "plain_tasks_complete",
     "context": [
       { "key": "selector", "operand": "text.todo" },
     ],
   },
-
-  // switch to file
-  { "keys": ["alt+e"], "command": "switch_to_file" },
-
-  // open url
-  { "keys": ["alt+o"], "command": "open_url" },
+  // re-override open url binding
+  { "keys": ["alt+o"], "command": "plain_tasks_open_link","context": [{ "key": "selector", "operator": "equal", "operand": "text.todo" }] },
+  // re-override with default
+  { "keys": ["ctrl+shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} },
 
   // diff
   { "keys": ["ctrl+alt+d"], "command": "diff_changes" },

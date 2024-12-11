@@ -11,6 +11,7 @@
  * Based grid.
  *
  * Requires compact mode for obvious reasons.
+ * "Show avatars in Compact mode" is not supported.
  *
  * Nicknames that are too long for the associated space
  * are collapsed with an ellipse.

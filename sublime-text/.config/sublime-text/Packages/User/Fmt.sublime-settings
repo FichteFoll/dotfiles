@@ -5,7 +5,7 @@
         // XML: xmlstarlet
         { "selector": "text.xml", "cmd": ["xmlstarlet", "format"] },
         // HTML: tidy
-        { "selector": "text.html.basic", "cmd": ["tidy"] },
+        { "selector": "text.html.basic", "cmd": ["tidy", "--drop-empty-elements", "no"] },
         // Python: ufmt
         // { "selector": "source.python", "cmd": ["ufmt", "format", "-"] },
         // the above in individual steps:

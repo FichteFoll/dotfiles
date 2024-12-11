@@ -39,14 +39,25 @@
     height: 32px;
 }
 
-/* decrease reaction padding & border radius */
-[class*="reaction_"] {
-    margin: 0 2px 0 0;
+/* Decrease reaction padding & border radius */
+/* Also something about large reactions */
+[class*="reaction_"], [class*=largeReactionBtn_][class*=forceShowLook_] {
+/*    margin: 0 2px 0 0;*/
     border-radius: 4px;
 }
-
+[class*=largeReactionBtn_][class*=forceShowLook_] {
+    /* Aligning this properly is stupid, but here we go */
+    padding: 4px 6px 6px 5px;
+}
 [class*="reactionInner_"] {
-    padding: 2px 4px;
+    padding: 3px 5px;
+}
+[class*=reaction_] .emoji[class*=reactionLarge], [class*=largeReactionBtn_] {
+    width: 1rem;
+    height: 1rem;
+}
+[class*=largeReactions_] {
+    padding: 0;
 }
 
 /* adjust avatar size for who-reacted */

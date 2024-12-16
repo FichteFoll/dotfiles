@@ -350,7 +350,7 @@
 			<key>name</key>
 			<string>Embedded Source</string>
 			<key>scope</key>
-			<string>(source source, text source) - (source.js.embedded.html, source.ts.embedded.html, source.css.embedded.html, source.sass.embedded.html, text.html.php), markup.raw - punctuation.definition.raw</string>
+			<string>(source source, text source) - (source.js.embedded.html, source.ts.embedded.html, source.jsx.embedded.html, source.tsx.embedded.html, source.css.embedded.html, source.sass.embedded.html, text.html.php), markup.raw - punctuation.definition.raw</string>
 			<key>settings</key>
 			<dict>
 				<key>background</key>

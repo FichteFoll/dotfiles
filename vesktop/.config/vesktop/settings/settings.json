@@ -133,7 +133,7 @@
             "enabled": false
         },
         "FavoriteEmojiFirst": {
-            "enabled": false
+            "enabled": true
         },
         "FixInbox": {
             "enabled": false
@@ -283,7 +283,8 @@
             "groups": true,
             "servers": true,
             "friends": true,
-            "friendRequestCancels": true
+            "friendRequestCancels": true,
+            "notices": false
         },
         "RevealAllSpoilers": {
             "enabled": false
@@ -300,7 +301,8 @@
             "memberList": true,
             "voiceUsers": true,
             "reactorsList": true,
-            "colorChatMessages": false
+            "colorChatMessages": false,
+            "pollResults": true
         },
         "SendTimestamps": {
             "enabled": true,
@@ -666,6 +668,9 @@
         },
         "DynamicImageModalAPI": {
             "enabled": true
+        },
+        "FullUserInChatbox": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -678,7 +683,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1730313970985
+        "settingsSyncVersion": 1736880944351
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

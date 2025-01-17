@@ -66,8 +66,12 @@ export WORKON_HOME=${HOME}/.virtualenvs
 # source /usr/bin/virtualenvwrapper.sh
 [[ -e /usr/bin/virtualenvwrapper_lazy.sh ]] && source /usr/bin/virtualenvwrapper_lazy.sh
 
-# nvm
-[[ -e /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+# fnm/nvm
+if command -v fnm >/dev/null; then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+elif [[ -e /usr/share/nvm/init-nvm.sh ]]; then
+    source /usr/share/nvm/init-nvm.sh
+fi
 
 # quick directory jumping and file access (completions) through fasd(1)
 # provides default aliases:

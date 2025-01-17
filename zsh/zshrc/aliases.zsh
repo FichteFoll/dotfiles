@@ -322,7 +322,10 @@ alias venv="source .venv/bin/activate"
 
 # aurutils
 alias aurb="aur build -d custom -c"
-alias aurs="sudo aur sync-asroot -d aur"
+alias aurr="python /usr/share/doc/aurutils/examples/sync-rebuild"
+alias aurvcd="bash /usr/share/doc/aurutils/examples/vercmp-devel"
+alias aursd="bash /usr/share/doc/aurutils/examples/sync-devel"
+alias aurs="sudo bash /usr/share/doc/aurutils/examples/sync-asroot -d aur"
 alias aurs_="aur sync -d aur -c"
 
 # utilities

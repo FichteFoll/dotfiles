@@ -381,7 +381,7 @@ mode "$mode_launcher" {
     bindsym s       exec subl, $to_default
     bindsym Shift+s exec syncplay, $to_default
     bindsym Shift+t exec env LC_TIME=lt_LT.UTF-8 telegram-desktop, $to_default
-    bindsym t       exec env LC_TIME=lt_LT.UTF-8 thunderbird, $to_default
+    bindsym t       exec env LC_TIME=en_DK.UTF-8 thunderbird, $to_default
     bindsym y       exec spotify, $to_default
     bindsym z       exec zeal, [class="Zeal"] focus, $to_default
 

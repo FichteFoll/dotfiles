@@ -62,6 +62,7 @@
 		"SublimeLinter-addon-filter",
 		"SublimeLinter-addon-toggler",
 		"SublimeLinter-annotations",
+		"SublimeLinter-contrib-codespell",
 		"SublimeLinter-contrib-sublime-syntax",
 		"SublimeLinter-contrib-yamllint",
 		"SublimeLinter-eslint",

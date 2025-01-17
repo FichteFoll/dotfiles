@@ -61,6 +61,24 @@
                 },
             ],
         },
+        "codespell": {
+            // Cannot use codespell on all text
+            // because it only knows English.
+            "selector": "source - text",
+            "styles": [
+                // Show full message (suggestion) in annotation.
+                {
+                    "scope": "region.yellowish",
+                    "annotation": "{msg}",
+                    "phantom": ""
+                }
+            ],
+            // Ignore some valid code words
+            "args": [
+                "-L",
+                "crate", // Keyword in Rust
+            ],
+        },
         "eslint": {
             // Use `vue-eslint-parser` in .eslintrc's parser setting
             "selector": "source.js, source.ts, text.html.vue",

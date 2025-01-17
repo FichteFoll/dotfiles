@@ -391,15 +391,21 @@ mode "$mode_launcher" {
 
 
 # Initial startup #
-exec --no-startup-id fcitx
 
 # desktop
 #exec --no-startup-id ~/.fehbg
 exec --no-startup-id sleep 5; ~/.screenlayout/"$(cat /etc/hostname)".sh; sleep 2; ~/.fehbg; ~/.config/polybar/launch.sh
 
-# applications
-exec --no-startup-id parcellite
-exec --no-startup-id keepassxc
-exec --no-startup-id xbindkeys
+# application daemons (in the tray)
+exec --no-startup-id blueman-applet
+exec --no-startup-id dropbox
+exec --no-startup-id fcitx
 exec --no-startup-id nm-applet
+exec --no-startup-id parcellite
+exec --no-startup-id redshift-gtk
 exec --no-startup-id syncthingtray --wait
+exec --no-startup-id udiskie --automount --tray
+exec --no-startup-id xbindkeys
+
+# applications
+exec --no-startup-id keepassxc

@@ -76,7 +76,6 @@ item_fields:
 plugins: >-
   convert
   duplicates
-  extrafiles
   fetchart
   info
   inline
@@ -86,6 +85,7 @@ plugins: >-
   playlist
   replaygain
   smartplaylist
+# extrafiles # is broken
 # embedart
 # plugins: inline  # for testing album fallback
 

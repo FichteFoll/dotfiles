@@ -1,0 +1,8 @@
+{
+  "settings": {
+    "yaml.customTags": ["!reference sequence"],
+    // "yaml.schemas": {
+    //   "kubernetes": ["chart/*.yaml"]
+    // },
+  }
+}

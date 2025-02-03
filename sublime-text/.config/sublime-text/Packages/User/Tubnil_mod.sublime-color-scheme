@@ -10,6 +10,11 @@
         {
             "scope": "markup.underline",
             "font_style": "underline",
+        },
+        {
+            // override color for some syntaxes using this non-standard scope
+            "scope": "keyword.operator.accessor",
+            "foreground": "#DAD6CD",
         }
     ],
 }

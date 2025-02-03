@@ -1,0 +1,13 @@
+{
+    "initializationOptions": {
+        "preferences": {
+            // Addresses slowness in ST due to many, many completions.
+            // https://github.com/sublimelsp/LSP-typescript/issues/129
+            "includeCompletionsForModuleExports": false,
+
+            // Ignore certain modules for auto-importable completions
+            // because of their sheer amount causing delays in ST.
+            "autoImportFileExcludePatterns": ["core-js"]
+        }
+    }
+}

@@ -1,26 +1,5 @@
 {
 	"clients": {
-		"pyls": {
-			"enabled": false,
-			"settings": {
-				"pyls": {
-					"plugins": {
-						"flake8.enabled": false,
-						"mccabe.enabled": false,
-						"pycodestyle.enabled": false,
-						"pydocstyle.enabled": false,
-						"pyflakes.enabled": false,
-					},
-				},
-			},
-		},
-		"LSP-pyright": {
-			// Enable on a per-project base
-			"enabled": false,
-		},
-		"LSP-json": {
-			"enabled": false,
-		},
 		"haskell-language-server": {
 			"enabled": true,
 			"command": ["haskell-language-server-wrapper", "--lsp"],

@@ -25,7 +25,16 @@
 			"enabled": true,
 			"command": ["haskell-language-server-wrapper", "--lsp"],
 			"selector": "source.haskell"
-		}
+		},
+		"helm-ls": {
+			// Requires https://github.com/mrjosh/helm-ls
+			// and https://github.com/redhat-developer/yaml-language-server.
+			// Disabled by default
+			// to prevent conflicts with LSP-yaml
+			"enabled": false,
+			"command": ["helm_ls", "serve"],
+			"selector": "source.yaml",
+		},
 	},
 	"diagnostics_highlight_style": "box",
 	"inhibit_snippet_completions": false,

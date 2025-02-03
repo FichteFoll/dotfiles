@@ -1,0 +1,16 @@
+{
+    "initializationOptions":
+    {
+        "settings": {
+            "lint.preview": true,
+            "lint.ignore": [
+                // ST cleans this automatically on save
+                "W291", // Trailing whitespace
+                "W292", // No newline at end of file
+                "W293", // Blank line contains whitespace
+            ],
+            "format.preview": true,
+            "lineLength": 120
+        }
+    },
+}

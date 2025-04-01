@@ -13,7 +13,7 @@ import random
 import re
 import sys
 import socket
-from typing import Any, NamedTuple, Optional
+from typing import Any, NamedTuple
 from pathlib import Path
 
 
@@ -124,7 +124,7 @@ def main(params):
         return to_syncplay(params, filenames)
 
 
-def _int_or_none(s: str) -> Optional[int]:
+def _int_or_none(s: str) -> int | None:
     return int(s) if s else None
 
 

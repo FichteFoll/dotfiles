@@ -46,6 +46,7 @@
 	; Sublime Merge integrations
 	terminal = !systemd-run --user alacritty --working-directory "$(pwd)"
 	rebase-terminal = "!f() { systemd-run --user alacritty --working-directory "$(pwd)" --hold -e "$SHELL" -c "git rebase -i $1"; }; f"
+	gh = !gh
 
 [branch]
 	autosetuprebase = always

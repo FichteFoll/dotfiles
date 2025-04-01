@@ -193,7 +193,7 @@ twitch() {
     mpv $@ -- "https://twitch.tv/$channel"
 }
 
-alias nanaone="mpv rtmp://nolive.brb.re/live/nanaone_720p"
+alias nanaone=nanaone1080
 alias nanaone720="mpv rtmp://nolive.brb.re/live/nanaone_720p"
 alias nanaone1080="mpv rtmp://nolive.brb.re/live/nanaone_1080p"
 alias yt_favs="mpa 'https://www.youtube.com/playlist?list=PLbVK3lh2yB7RznbL1IUeA7PYXE9YL11oR'"

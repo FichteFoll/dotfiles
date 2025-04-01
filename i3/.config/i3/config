@@ -8,7 +8,7 @@ set $alt Mod1
 # Font for window titles (and the default bar).
 # font -xow4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1, -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font pango:xos4 Terminus 10
-font pango:Operator Mono Book 10
+font pango:Atkinson Hyperlegible Mono SemiBold 10
 
 # Gaps for i3-gaps
 #gaps inner 16

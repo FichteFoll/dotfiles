@@ -44,4 +44,9 @@
         "command": "git",
         "args": {"argv": ["rebase", "$select_branch", "--onto", "$select_commit"]},
     },
+    {
+        "caption": "Checkout Pull Request",
+        "command": "git",
+        "args": {"argv": ["gh", "pr", "checkout", "$text"]},
+    },
 ]

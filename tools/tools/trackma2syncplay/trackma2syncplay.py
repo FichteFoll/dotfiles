@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Find unwatched episodes trough trackma and add them to a syncplay playlist. "
+        description="Find unwatched episodes through trackma and add them to a syncplay playlist. "
     )
     parser.add_argument("-v", "--verbose", action='store_true', default=False,
                         help="Increase verbosity.")

@@ -25,12 +25,12 @@
 
 	lg = log --graph --oneline --decorate
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-	ld  = !f() { git show "$1"; git diff "$1"^.."$1";  }; f
+	ld  = !f() { git show "$1"; git diff "$1^..$1";  }; f
+	lnew = "!f() { git log "$1@{1}..$1@{0}"; }; f"
 	can = commit --amend --no-edit
 	cAm = commit --all --message
 	cAa = commit --all --amend -C HEAD
 	cAan = commit --all --amend --no-edit
-	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
 	; Manage "gone" local branches (branches whose tracking branch doesn't exist anymore)
 	ls-gone = !git for-each-ref --format '%(refname:strip=2) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {print $1}'
@@ -38,7 +38,7 @@
 
 	; Pull request management
 	; https://gist.github.com/gnarf/5406589
-	prr = "!f() { git fetch -fu $1 refs/pull/$2/head:pr/$2; }; f"
+	prr = !f() { git fetch -fu $1 "refs/pull/$2/head:pr/$2"; }; f
 	pr = prr origin
 	pru = prr upstream
 	pr-clean = !git branch -D $(git for-each-ref --format='%(refname:strip=2)' refs/heads/pr)

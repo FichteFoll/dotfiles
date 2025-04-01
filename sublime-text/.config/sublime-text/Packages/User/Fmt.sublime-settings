@@ -25,7 +25,7 @@
                 "--line-length=100",
                 "--preview",
                 "--stdin-filename=stdin.py",
-                "--target-version=py312",
+                "--target-version=py313",
             ],
             "format_on_save": false,
         },

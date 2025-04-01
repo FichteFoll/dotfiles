@@ -150,9 +150,6 @@
         "GifPaste": {
             "enabled": false
         },
-        "HideAttachments": {
-            "enabled": false
-        },
         "iLoveSpam": {
             "enabled": false
         },
@@ -671,6 +668,16 @@
         },
         "FullUserInChatbox": {
             "enabled": false
+        },
+        "IrcColors": {
+            "enabled": false,
+            "lightness": 70,
+            "memberListColors": true,
+            "applyColorOnlyToUsersWithoutColor": true,
+            "applyColorOnlyInDms": false
+        },
+        "HideMedia": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -683,9 +690,10 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1736880944351
+        "settingsSyncVersion": 1743361491305
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"
-    ]
+    ],
+    "eagerPatches": false
 }

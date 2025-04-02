@@ -190,7 +190,8 @@ invalid.deprecated {
 \(source source,
 text source \- text.html\)
 \- \(source.js.embedded.html, source.jsx.embedded.html, source.ts.embedded.html, source.tsx.embedded.html, source.css.embedded.html, source.sass.embedded.html, text.html.php\),
-markup.raw \- punctuation.definition.raw {
+markup.raw \- punctuation.definition.raw,
+meta.interpolation \- punctuation.section.interpolation {
     @name "Embedded Source";
     background: #ffffff10;
 }

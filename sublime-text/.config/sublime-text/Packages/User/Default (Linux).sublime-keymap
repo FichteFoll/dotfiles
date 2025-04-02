@@ -258,8 +258,13 @@
       { "key": "selector", "operand": "text.todo" },
     ],
   },
-  // re-override open url binding
-  { "keys": ["alt+o"], "command": "plain_tasks_open_link","context": [{ "key": "selector", "operator": "equal", "operand": "text.todo" }] },
+  // re-override open url binding (if not an URL)
+  { "keys": ["alt+o"], "command": "plain_tasks_open_link",
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "text.todo" },
+      { "key": "preceding_text", "operator": "not_regex_contains", "operand": "https?://[\\S]+$" },
+    ],
+  },
   // re-override with default
   { "keys": ["ctrl+shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} },
 

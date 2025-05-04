@@ -15,7 +15,7 @@
 	"draw_white_space": "all",
 	"editor_wait_args": "--wait --new-window",
 	"font_face": "Atkinson Hyperlegible Mono Regular",
-	"font_size": 11,
+	"font_size": 10,
 	"log_commands": true,
 	"log_control_tree": false,
 	"log_input": false,

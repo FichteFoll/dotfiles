@@ -37,14 +37,23 @@
   { "keys": ["ctrl+keypad_plus"],  "command": "increase_font_size" },
   { "keys": ["ctrl+keypad_minus"], "command": "decrease_font_size" },
 
-  // allow [] to trigger "Add Line in Braces.sublime-macro" (mainly for json)
+  // Add line between {}, [], ()
   { "keys": ["enter"], "command": "run_macro_file",
     "args": { "file": "Packages/Default/Add Line in Braces.sublime-macro" },
     "context": [
       { "key": "setting.auto_indent", "operand": true },
       { "key": "selection_empty", "operand": true, "match_all": true },
-      { "key": "preceding_text", "operator": "regex_contains", "operand": "[\\{\\[]$", "match_all": true },
-      { "key": "following_text", "operator": "regex_contains", "operand": "^[\\}\\]]", "match_all": true },
+      { "key": "preceding_text", "operator": "regex_contains", "operand": "[{\\[(]$", "match_all": true },
+      { "key": "following_text", "operator": "regex_contains", "operand": "^[}\\])]", "match_all": true },
+    ],
+  },
+  { "keys": ["keypad_enter"], "command": "run_macro_file",
+    "args": { "file": "Packages/Default/Add Line in Braces.sublime-macro" },
+    "context": [
+      { "key": "setting.auto_indent", "operand": true },
+      { "key": "selection_empty", "operand": true, "match_all": true },
+      { "key": "preceding_text", "operator": "regex_contains", "operand": "[{\\[(]$", "match_all": true },
+      { "key": "following_text", "operator": "regex_contains", "operand": "^[}\\])]", "match_all": true },
     ],
   },
 

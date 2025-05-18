@@ -678,6 +678,9 @@
         },
         "HideMedia": {
             "enabled": false
+        },
+        "DisableDeepLinks": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -690,7 +693,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1743361491305
+        "settingsSyncVersion": 1747610955849
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

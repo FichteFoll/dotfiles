@@ -1,0 +1,6 @@
+{
+	"enabled": false,
+	"settings": {
+		"basedpyright.dev_environment": "sublime_text_38",
+	},
+}

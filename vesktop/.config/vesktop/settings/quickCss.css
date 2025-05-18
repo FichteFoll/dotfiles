@@ -33,8 +33,13 @@
     display: none;
 }
 
+/* hide global server tags */
+[class*=compact_] [class*=clanTagChiplet_] {
+    display: none;
+}
+
 /* bigger jumboable emoji in compact */
-[class*="compact_"] [class*=messageContent] img.emoji.jumboable {
+[class*="compact_"] [class*=messageContent_] img.emoji.jumboable {
     width: 32px;
     height: 32px;
 }

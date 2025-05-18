@@ -6,6 +6,11 @@
         "args": {"argv": ["commit", "--fixup", "$commit"]},
     },
     {
+        "caption": "Reset --keep",
+        "command": "git",
+        "args": {"argv": ["reset", "--keep", "$commit"]},
+    },
+    {
         "caption": "Copy commit URL",
         "command": "git",
         "args": {"argv": ["copy-commit-url", "$commit"]},

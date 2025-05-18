@@ -202,9 +202,9 @@ alias doujinstyle="mpa https://doujinstyle.com/listen.m3u"
 # German TV
 alias 3sat="mpv https://www.3sat.de/programm/3sat-livestream-100.html"
 alias zdf="mpv https://www.zdf.de/sender/zdf/zdf-live-beitrag-100.html"
-alias ard="mpv https://www.ardmediathek.de/live/das-erste/Y3JpZDovL2Rhc2Vyc3RlLmRlL0xpdmVzdHJlYW0tRGFzRXJzdGU"
-alias t24="mpv https://www.ardmediathek.de/live/Y3JpZDovL2Rhc2Vyc3RlLmRlL3RhZ2Vzc2NoYXUvbGl2ZXN0cmVhbQ"
-alias phoenix="mpv https://www.ardmediathek.de/live/Y3JpZDovL3dkci5kZS9CZWl0cmFnLTE3YTg4ZDdmLWI5NTAtNDcyNy05M2E0LWE3NzI3YjkxNjVkZQ"
+alias ard="mpv https://daserste-live.ard-mcdn.de/daserste/live/hls/de/master.m3u8"
+alias t24="mpv https://tagesschau.akamaized.net/hls/live/2020115/tagesschau/tagesschau_1/master.m3u8"
+alias phoenix="mpv https://zdf-hls-19.akamaized.net/hls/live/2016502/de/high/master.m3u8"
 
 ffmpeg_grab() {
     local size_params

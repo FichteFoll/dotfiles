@@ -101,6 +101,10 @@ export AUR_SYNC_USE_NINJA="1"
 export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
 
+# Allow Gcloud to use numpy of site-packages
+# https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
 
 # Load file with confidential information
 [[ -e $HOME/.zshrc-private ]] && source ~/.zshrc-private

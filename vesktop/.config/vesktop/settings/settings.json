@@ -109,9 +109,6 @@
         "CustomRPC": {
             "enabled": false
         },
-        "EmoteCloner": {
-            "enabled": true
-        },
         "Experiments": {
             "enabled": false
         },
@@ -681,6 +678,9 @@
         },
         "DisableDeepLinks": {
             "enabled": true
+        },
+        "ExpressionCloner": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -693,7 +693,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1747610955849
+        "settingsSyncVersion": 1748822052984
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

@@ -5,39 +5,6 @@
     height: 36px;
 }
 
-/* hide stupid buttons in text input */
-[class*="channelTextArea_"] [class*="buttons_"] button:not([aria-label="Select emoji"])
-/* … and apps button (actually, apps button can be useful) */
-/*, [class*=channelAppLauncher_] */
-{
-    display: none;
-}
-
-/* hide premium emoji buttons */
-[class*="colorPremiumGradient_"],
-[aria-label="Add Super Reaction"] {
-    display: none;
-}
-
-/* hide premium emoji completions */
-[class*=premiumSectionDivider_],
-[class*=premiumHeader_],
-[class*=premiumEmoji_] {
-    display: none;
-}
-
-/* hide Nitro & Shop & Birthday Buttons on DM */
-[class*="privateChannels_"] [href="/store"],
-[class*="privateChannels_"] [href="/shop"],
-[class*="privateChannels_"] [href="/activities"] {
-    display: none;
-}
-
-/* hide global server tags */
-[class*=compact_] [class*=clanTagChiplet_] {
-    display: none;
-}
-
 /* bigger jumboable emoji in compact */
 [class*="compact_"] [class*=messageContent_] img.emoji.jumboable {
     width: 32px;
@@ -84,24 +51,48 @@
     }
 }
 
-/* add `@` to new usernames */
+/* add `@` to "new" usernames */
 :is([class*=userTagWithNickname], [class*=nameTagSmall]) span:only-child:before {
     content: '@';
 }
 
-/* hide avatar decorations */
-[class^=avatarDecoration_] {
-  display: none;
-}
-svg[class^=bannerSVGWrapper_] > mask > image {
-  display: none;
-}
-svg[class*=avatarDecorationHint_] {
-  top: 0;
-  left: 0;
-}
-svg[class*=avatarDecorationHint_] > foreignObject {
-  width: 80px;
-  height: 80px;
-  mask: url(#svg-mask-avatar-status-round-80);
+/* --------------------------------------- */
+
+@import url('https://abbie.github.io/discord-css/import.css');
+:root {
+    --\\--compact-title-bar: true;
+    --\\--compact-input-box: true;
+    --\\--compact-context-menu: true;
+    --\\--compact-user-area: true;
+    --\\--compact-channel-categories: true;
+    --\\--compact-server-list: true;
+
+    --\\--hide-nameplates: true;
+    --\\--hide-guild-tags: true;
+    --\\--hide-profile-effects: true;
+    --\\--hide-avatar-decorations: true;
+    --\\--hide-gradient-glow-usernames: false;
+    --\\--hide-server-boost-goal: true;
+    --\\--hide-server-activity: true;
+    --\\--hide-user-activity: true;
+    --\\--hide-context-menu-quick-reactions: true;
+    --\\--hide-hover-quick-reactions: false;
+    --\\--hide-image-edit-button: true;
+    --\\--hide-gif-button: true;
+    --\\--hide-sticker-button: true;
+    --\\--hide-emoji-button: false;
+    --\\--hide-apps-button: true;
+    --\\--hide-gift-button: true;
+    --\\--hide-help-button: false;
+    --\\--hide-shop-button: false;
+    --\\--hide-nitro-button: true;
+    --\\--hide-nitro-upsells: true;
+    --\\--hide-vencord-desktop-platform-indicator: true;
+    --\\--hide-cluttery-badges: false;
+    /* ^ hides quest, hypesquad, active dev, and discriminator badges */
+
+    --\\--darker-scrollbar: true;
+    --\\--darker-hovered-message: true;
+    --\\--prevent-sidebar-resizing: false;
+    --\\--fix-minor-icon-misalignments: true;
 }

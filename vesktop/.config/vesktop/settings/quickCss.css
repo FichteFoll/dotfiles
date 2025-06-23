@@ -58,7 +58,9 @@
 
 /* --------------------------------------- */
 
+/* https://github.com/abbie/discord-css/ */
 @import url('https://abbie.github.io/discord-css/import.css');
+
 :root {
     --\\--compact-title-bar: true;
     --\\--compact-input-box: true;
@@ -71,11 +73,11 @@
     --\\--hide-guild-tags: true;
     --\\--hide-profile-effects: true;
     --\\--hide-avatar-decorations: true;
-    --\\--hide-gradient-glow-usernames: false;
+    --\\--hide-gradient-glow-usernames: true;
     --\\--hide-server-boost-goal: true;
     --\\--hide-server-activity: true;
     --\\--hide-user-activity: true;
-    --\\--hide-context-menu-quick-reactions: true;
+    --\\--hide-context-menu-quick-reactions: false;
     --\\--hide-hover-quick-reactions: false;
     --\\--hide-image-edit-button: true;
     --\\--hide-gif-button: true;
@@ -83,8 +85,8 @@
     --\\--hide-emoji-button: false;
     --\\--hide-apps-button: true;
     --\\--hide-gift-button: true;
-    --\\--hide-help-button: false;
-    --\\--hide-shop-button: false;
+    --\\--hide-help-button: true;
+    --\\--hide-shop-button: true;
     --\\--hide-nitro-button: true;
     --\\--hide-nitro-upsells: true;
     --\\--hide-vencord-desktop-platform-indicator: true;

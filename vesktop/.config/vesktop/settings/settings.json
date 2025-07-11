@@ -3,7 +3,9 @@
     "autoUpdate": false,
     "autoUpdateNotification": true,
     "useQuickCss": true,
-    "themeLinks": [],
+    "themeLinks": [
+        "https://abbie.github.io/discord-css/import.css"
+    ],
     "enableReactDevtools": false,
     "frameless": false,
     "transparent": false,

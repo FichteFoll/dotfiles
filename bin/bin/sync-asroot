@@ -228,10 +228,9 @@ def runuser_cmd(user: str) -> list[str]:
 def temp_dir_for_user(user: str) -> Generator[Path]:
     proc = subprocess.run([*runuser_cmd(user), "mktemp", "-d"], text=True, capture_output=True)
     path = Path(proc.stdout.strip())
-    try:
-        yield path
-    finally:
-        shutil.rmtree(path)
+    yield path
+    # Leave the temporary folder intact in the event of an error
+    shutil.rmtree(path)
 
 
 if __name__ == "__main__":

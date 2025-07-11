@@ -73,19 +73,10 @@ elif [[ -e /usr/share/nvm/init-nvm.sh ]]; then
     source /usr/share/nvm/init-nvm.sh
 fi
 
-# quick directory jumping and file access (completions) through fasd(1)
-# provides default aliases:
-#   a='fasd -a'        # any
-#   s='fasd -si'       # show / search / select
-#   d='fasd -d'        # directory
-#   f='fasd -f'        # file
-#   sd='fasd -sid'     # interactive directory selection
-#   sf='fasd -sif'     # interactive file selection
-#   z='fasd_cd -d'     # cd, same functionality as j in autojump
-#   zz='fasd_cd -d -i' # cd with interactive selection
-# and completions on `,`
-command -v fasd >/dev/null && eval "$(fasd --init auto)"
-# source /usr/lib/z.sh
+# quick directory jumping and file access (completions) through zoxide(1)
+# z: jump to directory
+# zi: open interactive move (via fzf)
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Java environment management
 command -v jenv >/dev/null && eval "$(jenv init -)"

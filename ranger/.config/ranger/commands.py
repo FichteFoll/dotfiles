@@ -2,38 +2,9 @@ from functools import partial
 import os
 import os.path
 from pathlib import Path
-from typing import Generator, Iterable, Set, List
+from typing import Generator, Iterable, Set
 
 from ranger.api.commands import Command
-
-
-class z(Command):
-    """
-    :z <patterns>
-
-    Jump to a directory using fasd. Supports tab completion.
-    """
-    def execute(self) -> None:
-        args = self.rest(1).split()
-        if args:
-            directories = self._get_directories(*args)
-            if directories:
-                self.fm.cd(directories[0])
-            else:
-                self.fm.notify("No results from fasd", bad=True)
-
-    def tab(self, tabnum: int) -> Generator[str, None, None]:
-        start, current = self.start(1), self.rest(1)
-        for path in self._get_directories(*current.split()):
-            yield start + path
-
-    @staticmethod
-    def _get_directories(*args) -> List[str]:
-        import subprocess
-        output = subprocess.check_output(["fasd", "-dl", *args], universal_newlines=True)
-        dirs = output.strip().split("\n")
-        dirs.sort(reverse=True)  # Listed in ascending frecency
-        return dirs
 
 
 # TODO make standalone script

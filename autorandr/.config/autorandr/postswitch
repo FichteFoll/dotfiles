@@ -5,6 +5,6 @@ Profile: $AUTORANDR_CURRENT_PROFILE
 Monitors: $AUTORANDR_MONITORS
 "
 
-~/.fehbg
+[ -x ~/.fehbg ] && ~/.fehbg
 
 ~/.config/polybar/launch.sh

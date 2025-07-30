@@ -97,14 +97,14 @@ rmcdir () {
 ssl_hashes=( sha512 sha256 sha1 md5 )
 
 for sh in ${ssl_hashes}; do
-    eval 'ssl-cert-'${sh}'() {
+    eval "ssl-cert-${sh}() {
         emulate -L zsh
-        if [[ -z $1 ]] ; then
-            printf '\''usage: %s <file>\n'\'' "ssh-cert-'${sh}'"
+        if [[ -z \$1 ]] ; then
+            printf 'usage: %s <file>\n' ssh-cert-${sh}
             return 1
         fi
-        openssl x509 -noout -fingerprint -'${sh}' -in $1
-    }'
+        openssl x509 -noout -fingerprint -${sh} -in \$1
+    }"
 done; unset sh
 
 ssl-cert-fingerprints() {

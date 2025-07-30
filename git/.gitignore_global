@@ -57,3 +57,8 @@ venv/
 *.sublime-workspace
 .java-version
 pyrightconfig.json
+
+# Environment/Secret files #
+############################
+/.env
+secrets/

@@ -45,13 +45,13 @@ alias lsed='eza -d *(/^F)'
 # Only show dot-directories
 alias lsad='eza -d .*(/)'
 # Only show dot-files
-alias lsa='eza -a .*(.)'
+alias lsaf='eza -a .*(.)'
 # Only files with setgid/setuid/sticky flag
 alias lss='eza -l *(s,S,t)'
 # Only show symlinks
 alias lsl='eza -l *(@)'
 # Display only executables
-alias lsx='eza -l *(*)'
+alias lsx='eza -l *(.x)'
 # Display world-{readable,writable,executable} files
 alias lsw='eza -ld *(R,W,X.^ND/)'
 # Display the ten biggest files

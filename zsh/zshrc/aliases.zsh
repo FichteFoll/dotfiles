@@ -62,12 +62,12 @@ alias ..='cd ../'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# cd to directoy and list files
+# cd to directory and list files
 cl() {
     cd $1 && ls -a
 }
 
-# Create Directoy and cd to it
+# Create Directory and cd to it
 mkcd() {
     if (( ARGC != 1 )); then
         printf 'usage: mkcd <new-directory>\n'

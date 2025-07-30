@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 
-# Terminate already running bar instances
-killall -q polybar
-
-# Wait until the processes have been shut down
-while pgrep -u $UID -x polybar >/dev/null; do sleep 0.2; done
+echo "Stopping running units …"
+systemctl --user stop polybar-\*
 
 # Launch bars, based on xrandr output
+i=0
 inputs=$(xrandr | grep '\bconnected\b')
+printf "Starting %d polybar units …\n" $(wc -l <<< $inputs)
 while read -r output state rest; do
+    ((i = i+1))
     if [[ $rest == *primary* ]]; then
         bar=primary
     else
         bar=secondary
     fi
-    POLY_MONITOR=$output polybar $bar &
+    systemd-run --user \
+         -u "polybar-$bar-$output" \
+         -E POLY_MONITOR="$output" \
+         polybar $bar
 done <<< $inputs
 
-echo "Bars launched..."
+echo "Bars launched"

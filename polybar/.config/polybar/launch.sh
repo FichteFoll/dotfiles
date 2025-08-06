@@ -5,11 +5,11 @@ systemctl --user stop polybar-\*
 
 # Launch bars, based on xrandr output
 i=0
-inputs=$(xrandr | grep '\bconnected\b')
+inputs=$(polybar --list-all-monitors)
 printf "Starting %d polybar units …\n" $(wc -l <<< $inputs)
-while read -r output state rest; do
+while IFS=: read -r output rest; do
     ((i = i+1))
-    if [[ $rest == *primary* ]]; then
+    if [[ "$rest" == *primary* ]]; then
         bar=primary
     else
         bar=secondary

@@ -683,6 +683,9 @@
         },
         "ExpressionCloner": {
             "enabled": true
+        },
+        "CopyStickerLinks": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -695,7 +698,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1748822052984
+        "settingsSyncVersion": 1755356054992
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

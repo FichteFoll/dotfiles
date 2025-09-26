@@ -403,7 +403,7 @@ exec --no-startup-id sleep 5; ~/.screenlayout/"$(cat /etc/hostname)".sh; sleep 2
 
 # application daemons (in the tray)
 exec --no-startup-id blueman-applet
-exec --no-startup-id dropbox
+#exec --no-startup-id dropbox
 exec --no-startup-id fcitx
 exec --no-startup-id nm-applet
 exec --no-startup-id parcellite

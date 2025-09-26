@@ -399,7 +399,7 @@ exec --no-startup-id xset -dpms && xset s off
 
 # desktop
 #exec --no-startup-id ~/.fehbg
-exec --no-startup-id sleep 5; ~/.screenlayout/"$(cat /etc/hostname)".sh; sleep 2; ~/.fehbg; ~/.config/polybar/launch.sh
+exec --no-startup-id sleep 2; ~/.screenlayout/"$(cat /etc/hostname)".sh; sleep 2; ~/.fehbg; ~/.config/polybar/launch.sh
 
 # application daemons (in the tray)
 exec --no-startup-id blueman-applet

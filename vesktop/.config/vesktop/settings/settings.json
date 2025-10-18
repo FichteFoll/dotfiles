@@ -173,7 +173,8 @@
         "MemberCount": {
             "enabled": true,
             "memberList": true,
-            "toolTip": true
+            "toolTip": true,
+            "voiceActivity": true
         },
         "MessageClickActions": {
             "enabled": false,
@@ -232,7 +233,8 @@
             "enabled": true,
             "userList": "",
             "shouldPingListed": true,
-            "inverseShiftReply": false
+            "inverseShiftReply": false,
+            "roleList": "1234567890123445,1234567890123445"
         },
         "NoScreensharePreview": {
             "enabled": false
@@ -686,6 +688,10 @@
         },
         "CopyStickerLinks": {
             "enabled": false
+        },
+        "ImageFilename": {
+            "enabled": true,
+            "showFullUrl": false
         }
     },
     "notifications": {
@@ -698,7 +704,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1755356054992
+        "settingsSyncVersion": 1760198881394
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

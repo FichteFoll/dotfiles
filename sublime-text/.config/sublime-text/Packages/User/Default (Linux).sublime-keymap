@@ -112,7 +112,53 @@
   { "keys": ["ctrl+alt+g"], "command": "show_overlay",
     "args": { "overlay": "command_palette", "text": "git: " } },
 
-  // make the "Build: Cancel" binding accessable
+  // quick panel & command palette navigation
+  { "keys": ["pageup"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+        ["move", { "by": "lines", "forward": false }],
+      ]
+    },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true },
+      { "key": "setting.is_widget", "operator": "equal", "operand": true },
+      { "key": "panel_has_focus", "operator": "equal", "operand": false }
+    ]
+  },
+  { "keys": ["pagedown"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+        ["move", { "by": "lines", "forward": true }],
+      ]
+    },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true },
+      { "key": "setting.is_widget", "operator": "equal", "operand": true },
+      { "key": "panel_has_focus", "operator": "equal", "operand": false }
+    ]
+  },
+
+  // make the "Build: Cancel" binding accessible
   { "keys": ["pause"], "command": "cancel_build" },
 
   // re-add project switcher binding (removed in 3096)

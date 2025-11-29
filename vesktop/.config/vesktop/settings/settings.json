@@ -704,10 +704,14 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1760198881394
+        "settingsSyncVersion": 1764374481970
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"
     ],
-    "eagerPatches": false
+    "eagerPatches": false,
+    "uiElements": {
+        "chatBarButtons": {},
+        "messagePopoverButtons": {}
+    }
 }

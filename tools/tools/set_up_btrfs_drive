@@ -43,7 +43,6 @@ sudo btrfs subvolume set-default @root
 prepare_root() {
     pushd @root
     sudo mkdir -p boot
-    sudo mkdir -p btrfs
     sudo btrfs subvolume create var
     sudo btrfs subvolume create var/cache
     sudo mkdir -p var/lib
@@ -90,6 +89,7 @@ prepare_user() {
     btrfs subvolume create .nvm
     btrfs subvolume create .rustup
     btrfs subvolume create .wine32_games
+    btrfs subvolume create data
     btrfs subvolume create games
     btrfs subvolume create tmp
     popd

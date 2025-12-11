@@ -96,6 +96,8 @@ export FZF_DEFAULT_OPTS="--ansi"
 # https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
+# UV cannot hardlink because it crosses btrfs sub-volumes.
+export UV_LINK_MODE=copy
 
 # Load file with confidential information
 [[ -e $HOME/.zshrc-private ]] && source ~/.zshrc-private

@@ -1,7 +1,7 @@
 /**
  * @name Right-aligned Nicks
  * @description Nicknames are right-aligned in compact mode.
- * @version 1.4.1
+ * @version 1.4.2
  * @author FichteFoll
  * @authorLink https://github.com/FichteFoll
  * @website https://github.com/FichteFoll/dotfiles
@@ -30,13 +30,13 @@
     --message-padding: 1rem;
 }
 
-[class*=message_][class*=compact_] {
+[class*=message][class*=compact] {
     padding-left: var(--message-padding); /* reset negative padding */
     margin: 0; /* and margins */
 }
 
 /* base grid layout for the main message (first container) */
-[class*=message_][class*=compact_] > [class*=contents_] {
+[class*=message][class*=compact] > [class*=contents] {
     margin-left: 0; /* reset margin (same as padding above) */
     padding-left: 0;
     display: grid;
@@ -45,25 +45,25 @@
 }
 
 /* alignment for the rest of the message (embed, reactions) */
-[class*=message_][class*=compact_] > [class*=container_]:not(:empty) {
+[class*=message][class*=compact] > [class*=container]:not(:empty) {
     margin-left: calc(var(--timestamp-width) + var(--username-width)) !important;
 /*    display: inline-block;*/
 }
 
 /* the header (contains timestamp & username) */
-[class*=message_][class*=compact_] h3[class*=header_] {
+[class*=message][class*=compact] h3[class*=header] {
     display: inline-grid !important;
     grid-template-columns: var(--timestamp-width) var(--username-width);
     text-indent: 0; /* need to reset this */
 }
 
 /* timestamp */
-[class*=timestampBase_][class*=timestampCompact_] {
+[class*=timestampBase][class*=timestampCompact] {
     text-align: left;
 }
 
 /* bot marker */
-[class*=botTagCompact_] {
+[class*=botTagCompact] {
     /* I'm trying to show this *behind* the name
      * because I can't adjust the name's width */
     opacity: 0.7;
@@ -74,7 +74,7 @@
 }
 
 /* username */
-[class*=message_][class*=compact_] h3 span[class*=headerText_] {
+[class*=message][class*=compact] h3 span[class*=headerText] {
     display: inline-block;
     grid-row-start: 1;
     grid-column-start: 2;
@@ -88,30 +88,30 @@
 }
 
 /* reply guide */
-[class*=compact_][class*=hasThread_] [class*=contents_]:before {
+[class*=compact][class*=hasThread] [class*=contents]:before {
     left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 3.5rem);
 }
 
 /* add highlight marker to the right as well */
-[class*=message_][class*=compact_][class*=mentioned_] {
+[class*=message][class*=compact][class*=mentioned] {
     border-right: 2px solid #FAA61A;
 }
 
 /* show hidden timestamps */
-[class*=timestampVisibleOnHover_] {
+[class*=timestampVisibleOnHover] {
     opacity: 1;
 }
 
 /* Adjust pin and join messages to grid */
-[class*=systemMessage_][class*=compact_] > [class*=contents_] {
+[class*=systemMessage][class*=compact] > [class*=contents] {
     display: block;
 }
-[class*=systemMessage_][class*=compact_] [class*=container_] {
+[class*=systemMessage][class*=compact] [class*=container] {
     margin-left: 1rem; /* reset */
 }
 
 /* reply messages */
-[class*=compact] [class*=repliedMessage_] {
+[class*=compact] [class*=repliedMessage] {
     margin-left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 0.18rem);
     /*idk where the 0.18 comes from */
 }

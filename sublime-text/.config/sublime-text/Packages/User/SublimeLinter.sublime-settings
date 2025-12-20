@@ -77,6 +77,8 @@
             "args": [
                 "-L",
                 "crate", // Keyword in Rust
+                "-L",
+                "shouldBe", // infix function in Haskell
             ],
         },
         "eslint": {

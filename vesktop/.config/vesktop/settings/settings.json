@@ -483,7 +483,8 @@
             "enabled": false
         },
         "FixImagesQuality": {
-            "enabled": true
+            "enabled": false,
+            "originalImagesInChat": false
         },
         "NotificationVolume": {
             "enabled": false
@@ -704,7 +705,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1764374481970
+        "settingsSyncVersion": 1766270684568
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

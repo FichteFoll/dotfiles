@@ -1,7 +1,7 @@
 /**
  * @name Right-aligned Nicks
  * @description Nicknames are right-aligned in compact mode.
- * @version 1.4.2
+ * @version 1.4.3
  * @author FichteFoll
  * @authorLink https://github.com/FichteFoll
  * @website https://github.com/FichteFoll/dotfiles
@@ -61,6 +61,10 @@
 [class*=timestampBase][class*=timestampCompact] {
     text-align: left;
 }
+/* reply timestamp */
+[class*=timestamp][class*=latin12CompactTimeStamp] {
+    width: auto;
+}
 
 /* bot marker */
 [class*=botTagCompact] {
@@ -88,8 +92,8 @@
 }
 
 /* reply guide */
-[class*=compact][class*=hasThread] [class*=contents]:before {
-    left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 3.5rem);
+[class*=compact][class*=hasReply] [class*=repliedMessageClickableSpine] {
+    inset-inline-end: 100%;
 }
 
 /* add highlight marker to the right as well */
@@ -111,9 +115,10 @@
 }
 
 /* reply messages */
-[class*=compact] [class*=repliedMessage] {
-    margin-left: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 0.18rem);
-    /*idk where the 0.18 comes from */
+[class*=message][class*=compact] > [class*=repliedMessage] {
+    margin-inline-start: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 0.35rem);
+    padding-inline-start: 0;
+    /*idk where the 0.35 comes from */
 }
 
 [class*=replyBadge] {

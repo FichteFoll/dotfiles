@@ -71,6 +71,7 @@
 
     --\\--hide-nameplates: true;
     --\\--hide-guild-tags: true;
+    --\\--hide-display-name-styles: true; /* not yet merged */
     --\\--hide-profile-effects: true;
     --\\--hide-avatar-decorations: true;
     --\\--hide-gradient-glow-usernames: true;
@@ -88,10 +89,12 @@
     --\\--hide-help-button: true;
     --\\--hide-shop-button: true;
     --\\--hide-nitro-button: true;
+    --\\--hide-quest-button: true;
+    --\\--hide-active-now: true;
     --\\--hide-nitro-upsells: true;
     --\\--hide-vencord-desktop-platform-indicator: true;
-    --\\--hide-cluttery-badges: false;
-    /* ^ hides quest, hypesquad, active dev, and discriminator badges */
+    --\\--hide-cluttery-badges: true;
+    /* ^ hides quest, hypesquad, active dev, orb collector, and discriminator badges */
 
     --\\--darker-scrollbar: true;
     --\\--darker-hovered-message: true;

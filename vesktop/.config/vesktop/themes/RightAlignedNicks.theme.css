@@ -1,7 +1,7 @@
 /**
  * @name Right-aligned Nicks
  * @description Nicknames are right-aligned in compact mode.
- * @version 1.4.3
+ * @version 1.5.0
  * @author FichteFoll
  * @authorLink https://github.com/FichteFoll
  * @website https://github.com/FichteFoll/dotfiles
@@ -40,13 +40,13 @@
     margin-left: 0; /* reset margin (same as padding above) */
     padding-left: 0;
     display: grid;
-    grid-template-columns: [header] calc(var(--timestamp-width) + var(--username-width))
+    grid-template-columns: [header] calc(var(--timestamp-width) + var(--username-width) + var(--message-gap))
                            [content] auto;
 }
 
 /* alignment for the rest of the message (embed, reactions) */
 [class*=message][class*=compact] > [class*=container]:not(:empty) {
-    margin-left: calc(var(--timestamp-width) + var(--username-width)) !important;
+    margin-left: calc(var(--timestamp-width) + var(--username-width) + var(--message-gap)) !important;
 /*    display: inline-block;*/
 }
 
@@ -54,6 +54,7 @@
 [class*=message][class*=compact] h3[class*=header] {
     display: inline-grid !important;
     grid-template-columns: var(--timestamp-width) var(--username-width);
+    margin-right: var(--message-gap);
     text-indent: 0; /* need to reset this */
 }
 
@@ -66,29 +67,52 @@
     width: auto;
 }
 
-/* bot marker */
-[class*=botTagCompact] {
-    /* I'm trying to show this *behind* the name
-     * because I can't adjust the name's width */
-    opacity: 0.7;
-    grid-row-start: 1;
-    grid-column-start: 2;
-    width: 2em;
-    position: initial;
+/* add highlight marker to the right as well */
+[class*=message][class*=compact][class*=mentioned] {
+    border-right: 2px solid #FAA61A;
 }
 
-/* username */
+/* bot/OP marker */
+[class*=botTagCompact] {
+    /* I'm trying to show this *above* the name
+     * because I can't adjust the name's width.
+     * The positioning is kind of … arbitrary,
+     * but it works. */
+    opacity: 0.7;
+    transform: scale(0.8) translateX(-5px);
+    position: absolute;
+    top: -0.6rem;
+    /*left: -4em;*/
+}
+
+/* username "container" */
 [class*=message][class*=compact] h3 span[class*=headerText] {
-    display: inline-block;
+    display: block;
     grid-row-start: 1;
     grid-column-start: 2;
     z-index: 2; /* username popup uses 10; new messages overlay 3 */
     justify-self: end;
-    margin-right: var(--message-gap);
-    max-width: var(--username-width);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-inline-end: 0;
+
+    span[class*=username] {
+        display: inline-block;
+        max-width: var(--username-width);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        [class*=emoji] {
+            display: none;
+        }
+    }
+
+    span[role=button]:has(> [class*=newMemberBadge]) {
+        /* Same as for the prepended badges */
+        opacity: 0.7;
+        transform: scale(0.6) translateX(-1.8rem);
+        position: absolute;
+        top: -0.5rem;
+    }
 }
 
 /* reply guide */
@@ -96,10 +120,17 @@
     inset-inline-end: 100%;
 }
 
-/* add highlight marker to the right as well */
-[class*=message][class*=compact][class*=mentioned] {
-    border-right: 2px solid #FAA61A;
+/* reply messages */
+[class*=message][class*=compact] > [class*=repliedMessage] {
+    margin-inline-start: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) + var(--message-gap) - 0.35rem);
+    padding-inline-start: 0;
+    /*idk where the 0.35 comes from */
 }
+
+[class*=replyBadge] {
+    display: none;
+}
+
 
 /* show hidden timestamps */
 [class*=timestampVisibleOnHover] {
@@ -112,15 +143,4 @@
 }
 [class*=systemMessage][class*=compact] [class*=container] {
     margin-left: 1rem; /* reset */
-}
-
-/* reply messages */
-[class*=message][class*=compact] > [class*=repliedMessage] {
-    margin-inline-start: calc(var(--message-padding) + var(--timestamp-width) + var(--username-width) - 0.35rem);
-    padding-inline-start: 0;
-    /*idk where the 0.35 comes from */
-}
-
-[class*=replyBadge] {
-    display: none;
 }

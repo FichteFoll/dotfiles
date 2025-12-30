@@ -57,8 +57,11 @@
         {
             "syntax": "Go/YAML (Go)",
             "rules": [
-                // Helm
-                {"file_path": ".*/templates/[^/]+\\.(ya?ml|tpl)$"},
+                // YamlPipelines has a custom plugin for this
+                // and provides a custom syntax that can be used
+                // for triggering the helm-ls.
+                // // Helm
+                // {"file_path": ".*/templates/[^/]+\\.(ya?ml|tpl)$"},
                 // Rancher
                 {"file_path": ".*ya?ml\\.tpl$"},
             ]

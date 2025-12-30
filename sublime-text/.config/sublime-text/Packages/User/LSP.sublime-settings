@@ -6,11 +6,12 @@
 			"selector": "source.haskell"
 		},
 		"helm-ls": {
+			// Targets syntax from https://github.com/SublimeText/YamlPipelines/.
 			// Requires https://github.com/mrjosh/helm-ls
 			// and https://github.com/redhat-developer/yaml-language-server.
 			"enabled": true,
 			"command": ["helm_ls", "serve"],
-			"selector": "source.yaml.go",
+			"selector": "source.yaml.helm",
 		},
 		"pyproject": {
 			// Requires https://github.com/terror/pyproject

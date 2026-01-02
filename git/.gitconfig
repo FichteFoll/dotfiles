@@ -2,9 +2,9 @@
 	name = FichteFoll
 	email = fichtefoll2@googlemail.com
 	# sign-only sub-key
-	signingkey = 54FBDF4B50960FC9
+	#signingkey = 54FBDF4B50960FC9
 	# sign and certify sub-key (same as main key); used previously
-	# signingkey = 07CD83C5
+	signingkey = 07CD83C5
 
 [commit]
 	gpgSign = true

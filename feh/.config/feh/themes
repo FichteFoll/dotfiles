@@ -1,3 +1,4 @@
 # default theme
 feh --scale-down \
+    --auto-rotate \
     --action1 "[delete to trash] rofi-yesno 'delete %n?' && trash -- %F"

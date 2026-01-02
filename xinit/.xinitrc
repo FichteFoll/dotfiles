@@ -40,7 +40,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # finally, start WM
-i3
-
-# after WM, do optimus-manager
-[ -x /usr/bin/prime-switch ] && sudo /usr/bin/prime-switch
+exec i3

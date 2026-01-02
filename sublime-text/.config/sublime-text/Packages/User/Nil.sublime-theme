@@ -92,7 +92,7 @@
         // },
         {
             "class": "sheet_contents",
-            "settings": {"inactive_sheet_dimming": true},
+            "settings": ["inactive_sheet_dimming"],
             "attributes": ["file_dark", "!highlighted"],
             "background_modifier": "blend(white 98%)"
         },

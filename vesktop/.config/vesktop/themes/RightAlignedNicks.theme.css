@@ -1,7 +1,7 @@
 /**
  * @name Right-aligned Nicks
  * @description Nicknames are right-aligned in compact mode.
- * @version 1.5.0
+ * @version 1.5.1
  * @author FichteFoll
  * @authorLink https://github.com/FichteFoll
  * @website https://github.com/FichteFoll/dotfiles
@@ -100,10 +100,6 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
-        [class*=emoji] {
-            display: none;
-        }
     }
 
     span[role=button]:has(> [class*=newMemberBadge]) {

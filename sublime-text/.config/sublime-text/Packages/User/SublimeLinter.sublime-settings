@@ -64,7 +64,7 @@
         "codespell": {
             // Cannot use codespell on all text
             // because it only knows English.
-            "selector": "source - text",
+            "selector": "source - text - source.ledger",
             "styles": [
                 // Show full message (suggestion) in annotation.
                 {

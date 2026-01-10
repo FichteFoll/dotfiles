@@ -1,7 +1,4 @@
 #!/usr/bin/env sh
 
-usersite="$(python -c "import site; print(site.getusersitepackages())")"
-mkdir -p "$usersite"
-
 python -m build .
-python -m installer --destdir "$usersite" dist/*.whl
+python -m installer --prefix ~/.local dist/*.whl

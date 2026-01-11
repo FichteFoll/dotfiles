@@ -293,14 +293,13 @@ for_window [window_type="tooltip|popup_menu|notification|splash"] border pixel 0
 for_window [class="Evince|Nautilus|File-roller|Baobab"] border pixel 2
 
 # focus specific windows
-set $mode_focus Focus: [c]antata [d]iscord [f]irefox Si[g]nal [h]exchat s[m]erge [M]pv [T]elegram [t]hunderbird Spotif[y] [z]eal | ST: [n]otes [H]ome
+set $mode_focus Focus: [d]iscord [f]irefox Si[g]nal [h]exchat s[m]erge [M]pv [T]elegram [t]hunderbird Spotif[y] [z]eal | ST: [n]otes [H]ome
 bindsym $mod+g mode "$mode_focus"
 mode "$mode_focus" {
     set $to_default mode "default"
-    bindsym c       [class="cantata"] focus, $to_default
     bindsym d       [class="vesktop|discord"] focus, $to_default
-    bindsym f       [class="Firefox"] focus, $to_default
-    bindsym g       [class="signal"] focus, $to_default
+    bindsym f       [class="firefox"] focus, $to_default
+    bindsym g       [class="Signal"] focus, $to_default
     bindsym h       [class="hexchat"] focus, $to_default
     bindsym m       [class="Sublime_merge"] focus, $to_default
     bindsym Shift+m [class="mpv"] focus, $to_default

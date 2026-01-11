@@ -288,7 +288,7 @@
             "enabled": false
         },
         "ReverseImageSearch": {
-            "enabled": false
+            "enabled": true
         },
         "ReviewDB": {
             "enabled": false
@@ -470,7 +470,8 @@
             "enabled": false
         },
         "NoMosaic": {
-            "enabled": false
+            "enabled": false,
+            "inlineVideo": true
         },
         "NoTypingAnimation": {
             "enabled": true
@@ -483,7 +484,7 @@
             "enabled": false
         },
         "FixImagesQuality": {
-            "enabled": false,
+            "enabled": true,
             "originalImagesInChat": false
         },
         "NotificationVolume": {
@@ -693,6 +694,10 @@
         "ImageFilename": {
             "enabled": true,
             "showFullUrl": false
+        },
+        "MoreQuickReactions": {
+            "enabled": false,
+            "reactionCount": 5
         }
     },
     "notifications": {
@@ -705,7 +710,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1766270684568
+        "settingsSyncVersion": 1768084812851
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

@@ -12,6 +12,8 @@
   { "keys": ["alt+pageup"], "command": "prev_file_tab" },
   { "keys": ["alt+pagedown"], "command": "next_file_tab" },
 
+  { "keys": ["ctrl+h"], "command": "show_git_command_history" },
+
   // Editing
   { "keys": ["alt+q"], "command": "wrap_lines", },
   { "keys": ["alt+d"], "command": "run_macro_file", "args": { "file": "Packages/Default/Delete Line.sublime-macro" } },

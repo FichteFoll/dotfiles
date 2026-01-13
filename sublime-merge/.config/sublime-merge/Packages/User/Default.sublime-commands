@@ -1,8 +1,13 @@
 [
     {
         "caption": "List \"gone\" branches (tracked branch was deleted)",
-        "command": "git",
-        "args": { "argv": ["ls-gone"] }
+        "command": "chain",
+        "args": {
+            "commands": [
+                { "command": "git", "args": { "argv": ["ls-gone"] } },
+                { "command": "show_git_command_history" }
+            ],
+        },
     },
     {
         "caption": "Remove \"gone\" branches (tracked branch was deleted)",

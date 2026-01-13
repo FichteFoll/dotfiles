@@ -51,19 +51,36 @@
         "children": [
             {
                 "caption": "Ψ Print Branches Containing $short_commit",
-                "command": "git",
-                "args": {"argv": ["branch", "-a", "--contains", "$commit"]}
+                "command": "chain",
+                "args": {
+                    "commands": [
+                        {"command": "git", "args": {"argv": ["branch", "-a", "--contains", "$commit"]}},
+                        {"command": "show_git_command_history"}
+                    ],
+                },
             },
             {
-               "caption": "☑ Print Branches Merged in $short_commit",
-               "command": "git", "args": {
-                   "argv": ["branch", "--all", "--merged", "$commit"]
-               }
+                "caption": "☑ Print Branches Merged in $short_commit",
+                "command": "chain",
+                "args": {
+                    "commands": [
+                        {"command": "git", "args": {"argv": ["branch", "--all", "--merged", "$commit"]}},
+                        {"command": "show_git_command_history"}
+                    ],
+                },
             },
             {
                 "caption": "√ Print Common Base Commit HEAD<->$short_commit",
-                "command": "git",
-                "args": {"argv": ["merge-base", "HEAD", "$commit"]}
+                "command": "chain",
+                "args": {
+                    "commands": [
+                        {"command": "git", "args": {"argv": ["merge-base", "HEAD", "$commit"]}},
+                        {"command": "show_git_command_history"}
+                    ],
+                },
+            },
+            {
+                "caption": "√ Print Common Base Commit HEAD<->$short_commit test",
             },
         ],
     },

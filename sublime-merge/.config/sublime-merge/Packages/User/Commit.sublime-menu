@@ -1,42 +1,71 @@
 [
     { "id": "end" },
+    // The double-separator sets the user item visually apart.
+    { "id": "modify", "caption": "-" },
     {
-        "caption": "Create \"fixup!\" commit",
-        "command": "git",
-        "args": {"argv": ["commit", "--fixup", "$commit"]},
-    },
-    {
-        "caption": "Reset --keep",
+        "caption": "↶ Reset --keep",
         "command": "git",
         "args": {"argv": ["reset", "--keep", "$commit"]},
     },
     {
-        "caption": "Copy commit URL",
+        "caption": "Create \"fixup!\" Commit",
+        "command": "git",
+        "args": {"argv": ["commit", "--fixup", "$commit"]},
+    },
+    {
+        "caption": "Rebase",
+        "children": [
+            {
+                "caption": "Rebase --autosquash",
+                "command": "git",
+                "args": {"argv": ["rebase", "--autosquash", "$commit~1"]},
+            },
+            {
+                "caption": "Rebase Onto…",
+                "command": "show_command_palette",
+                "args": {
+                    "command": "git",
+                    "args": {"argv": ["rebase", "$commit~1", "--onto", "$select_ref"]},
+                },
+            },
+            {
+                "caption": "Start Interactive Rebase… (terminal)",
+                "command": "git",
+                "args": {"argv": ["rebase-terminal", "$commit~1"]},
+            },
+            {
+                "caption": "Start Interactive Rebase… (ST)",
+                "command": "git",
+                "args": {"argv": ["rebase", "-i", "$commit~1"]},
+            },
+        ],
+    },
+    { "id": "inspect", "caption": "-" },
+    {
+        "caption": "Copy Commit URL",
         "command": "git",
         "args": {"argv": ["copy-commit-url", "$commit"]},
     },
     {
-        "caption": "Show Branches containing this commit...",
-        "command": "git",
-        "args": {"argv": ["branch", "-a", "--contains", "$commit"]}
+        "caption": "🔍 Analyze",
+        "children": [
+            {
+                "caption": "Ψ Print Branches Containing $short_commit",
+                "command": "git",
+                "args": {"argv": ["branch", "-a", "--contains", "$commit"]}
+            },
+            {
+               "caption": "☑ Print Branches Merged in $short_commit",
+               "command": "git", "args": {
+                   "argv": ["branch", "--all", "--merged", "$commit"]
+               }
+            },
+            {
+                "caption": "√ Print Common Base Commit HEAD<->$short_commit",
+                "command": "git",
+                "args": {"argv": ["merge-base", "HEAD", "$commit"]}
+            },
+        ],
     },
-    { "id": "rebase", "caption": "-" },
-    {
-        "caption": "Rebase onto…",
-        "command": "show_command_palette",
-        "args": {
-            "command": "git",
-            "args": {"argv": ["rebase", "$commit~1", "--onto", "$select_ref"]},
-        },
-    },
-    {
-        "caption": "Start interactive rebase… (terminal)",
-        "command": "git",
-        "args": {"argv": ["rebase-terminal", "$commit~1"]},
-    },
-    {
-        "caption": "Start interactive rebase… (ST)",
-        "command": "git",
-        "args": {"argv": ["rebase", "-i", "$commit~1"]},
-    },
+    { "id": "user_end", "caption": "-", },
 ]

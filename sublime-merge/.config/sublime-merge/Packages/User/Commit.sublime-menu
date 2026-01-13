@@ -1,7 +1,7 @@
 [
-    { "id": "end" },
+    {"id": "end"},
     // The double-separator sets the user item visually apart.
-    { "id": "modify", "caption": "-" },
+    {"id": "modify", "caption": "-"},
     {
         "caption": "↶ Reset --keep",
         "command": "git",
@@ -40,7 +40,7 @@
             },
         ],
     },
-    { "id": "inspect", "caption": "-" },
+    {"id": "inspect", "caption": "-"},
     {
         "caption": "Copy Commit URL",
         "command": "git",
@@ -84,5 +84,5 @@
             },
         ],
     },
-    { "id": "user_end", "caption": "-", },
+    {"id": "user_end", "caption": "-", },
 ]

@@ -9,6 +9,9 @@ BindsTo=tcpdump-genshin.service
 PartOf=tcpdump-genshin.service
 After=tcpdump-genshin.service
 
+StartLimitIntervalSec=10min
+StartLimitBurst=10
+
 [Service]
 Type=simple
 User=%i
@@ -16,8 +19,6 @@ ExecStartPre=/usr/bin/sleep 2
 ExecStart=/usr/bin/bash -c 'out="${XDG_DATA_HOME:-$HOME/.local/share}/smgood"; mkdir -p -- "$out" && /usr/bin/local/smgood -export-dir "$out" < /run/tcpdump/genshin.fifo'
 Restart=on-failure
 RestartSec=10s
-StartLimitIntervalSec=10min
-StartLimitBurst=10
 
 # Trigger PAM to set up the user session environment (XDG_*)
 PAMName=login

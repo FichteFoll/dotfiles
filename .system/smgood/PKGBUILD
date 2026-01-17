@@ -1,0 +1,48 @@
+# Maintainer: FichteFoll <fichtefoll2@googlemail.com>
+pkgname=smgood
+pkgver=6.3
+pkgrel=1
+pkgdesc="Systemd tmpfiles configuration to create a FIFO at /run/tcpdump/genshin"
+arch=('any')
+license=('none')
+depends=('systemd')
+makedepends=('go')
+# Adjust path as needed.
+source=(
+  "${pkgname}"::git+file:///home/fichte/code/%23mirror/smgood#commit=86ed89be5b65b26ee01aed1b14da6fcf5433803e
+  50-tcpdump-genshin.conf
+  tcpdump-genshin
+  tcpdump-genshin.service
+  smgood@.service
+)
+sha512sums=(
+  SKIP
+  SKIP
+  SKIP
+  SKIP
+  SKIP
+)
+
+# https://wiki.archlinux.org/title/Go_package_guidelines
+prepare(){
+  cd "${pkgname}"
+  mkdir -p build/
+}
+
+build() {
+  cd "${pkgname}"
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export CGO_LDFLAGS="${LDFLAGS}"
+  export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+  go build -o build ./cmd/smgood
+}
+
+package() {
+  install -vDm644 -t "${pkgdir}/usr/lib/tmpfiles.d/" 50-tcpdump-genshin.conf
+  install -vDm755 -t "${pkgdir}/usr/bin/local/" tcpdump-genshin
+  install -vDm644 -t "${pkgdir}/etc/systemd/system/" tcpdump-genshin.service
+  install -vDm644 -t "${pkgdir}/etc/systemd/system/" smgood@.service
+  install -vDm755 -t "${pkgdir}/usr/bin/local/" "${pkgname}"/build/smgood
+}

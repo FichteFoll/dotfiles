@@ -1,0 +1,28 @@
+# Instance parameter: username
+#
+# We want to bind this service to the producer service and run with user permissions.
+# BindsTo and PartOf ensure that this unit is started and stopped together with the producer.
+# However, these two only work for the same systemd instance manager
+# and the user manager that runs user services is separate.
+[Unit]
+BindsTo=tcpdump-genshin.service
+PartOf=tcpdump-genshin.service
+After=tcpdump-genshin.service
+
+[Service]
+Type=simple
+User=%i
+ExecStartPre=/usr/bin/sleep 2
+ExecStart=/usr/bin/bash -c 'out="${XDG_DATA_HOME:-$HOME/.local/share}/smgood"; mkdir -p -- "$out" && /usr/bin/local/smgood -export-dir "$out" < /run/tcpdump/genshin.fifo'
+Restart=on-failure
+RestartSec=10s
+StartLimitIntervalSec=10min
+StartLimitBurst=10
+
+# Trigger PAM to set up the user session environment (XDG_*)
+PAMName=login
+# Ensure we start in user's HOME directory.
+WorkingDirectory=/home/%i
+
+[Install]
+WantedBy=default.target

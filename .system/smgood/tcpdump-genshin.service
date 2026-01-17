@@ -1,0 +1,15 @@
+[Unit]
+Description=Genshin Impact Traffic Capture Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/local/tcpdump-genshin hk4e
+Restart=on-failure
+RestartSec=5s
+
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN
+
+[Install]
+WantedBy=multi-user.target

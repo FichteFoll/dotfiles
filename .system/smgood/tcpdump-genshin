@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Usage: genshin-tcpdump {hk4e|hkrpg} [device]
+# Run as root or with elevated permissions (for tcpdump).
+
+set -eu
+
+case "${1-}" in
+	hk4e) PORTRANGE='22101-22102' ;;
+	hkrpg) PORTRANGE='23301-23302' ;;
+	*) exit 1 ;;
+esac
+shift
+
+dev="${1-}"
+if [ -z "${dev}" ]; then
+	dev="$(ip -4 --json route show | jq -r '.[]|select(.dst=="default").dev|select(.!=null)')"
+fi
+
+exec tcpdump -i "${dev}" "udp portrange ${PORTRANGE}" --nano -B 8192 -U --immediate-mode -w /run/tcpdump/genshin.fifo

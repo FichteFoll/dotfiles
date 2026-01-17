@@ -12,6 +12,14 @@
 			"command": ["helm_ls", "serve"],
 			"selector": "source.yaml.go",
 		},
+		"pyproject": {
+			// Requires https://github.com/terror/pyproject
+			// (`cargo install pyproject`).
+			"enabled": true,
+			"command": ["pyproject", "server"],
+			// Custom syntax to restrict the LSP to only `pyproject.toml` files.
+			"selector": "source.toml.pyproject",
+		},
 	},
 	"diagnostics_highlight_style": "box",
 	"inhibit_snippet_completions": false,

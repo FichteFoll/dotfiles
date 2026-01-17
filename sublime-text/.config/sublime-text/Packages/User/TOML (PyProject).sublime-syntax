@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+# Syntax file that matches pyproject files
+# for auto-selection of the appropriate language server.
+file_extensions:
+  - pyproject.toml
+scope: source.toml.pyproject
+version: 2
+
+extends: Packages/TOML/TOML.sublime-syntax

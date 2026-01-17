@@ -6,7 +6,7 @@ pkgdesc="Systemd tmpfiles configuration to create a FIFO at /run/tcpdump/genshin
 arch=('any')
 license=('none')
 depends=('systemd')
-makedepends=('go')
+makedepends=('git' 'go')
 # Adjust path as needed.
 source=(
   "${pkgname}"::git+file:///home/fichte/code/%23mirror/smgood#commit=86ed89be5b65b26ee01aed1b14da6fcf5433803e

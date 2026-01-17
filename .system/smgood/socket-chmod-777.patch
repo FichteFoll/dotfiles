@@ -1,0 +1,13 @@
+--- cmd/epochd/server.go	Fri Jan 16 20:33:57 2026
++++ cmd/epochd/server.go	Sat Jan 17 15:53:32 2026
+@@ -26,6 +26,10 @@
+ 	os.Remove(path)
+ 	l, err := net.Listen("unix", path)
+ 	if err != nil {
++		return nil, err
++	}
++	if err := os.Chmod(path, 0777); err != nil {
++		l.Close()
+ 		return nil, err
+ 	}
+ 

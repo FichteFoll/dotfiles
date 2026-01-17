@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/local/tcpdump-genshin /run/smgood/tcpdump.fifo hk4e
+ExecStart=/usr/bin/tcpdump-genshin /run/smgood/tcpdump.fifo hk4e
 Restart=on-failure
 RestartSec=5s
 

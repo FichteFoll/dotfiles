@@ -18,7 +18,7 @@ StartLimitBurst=10
 [Service]
 Type=simple
 WorkingDirectory=/run/tcpdump
-ExecStart=/usr/bin/local/epochd -in /run/smgood/tcpdump.fifo -S /run/smgood/socket
+ExecStart=/usr/bin/epochd -in /run/smgood/tcpdump.fifo -S /run/smgood/socket
 Restart=on-failure
 RestartSec=10s
 

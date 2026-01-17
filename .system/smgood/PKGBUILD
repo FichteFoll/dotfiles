@@ -1,7 +1,7 @@
 # Maintainer: FichteFoll <fichtefoll2@googlemail.com>
 pkgname=smgood
 pkgver=6.3
-pkgrel=4
+pkgrel=5
 pkgdesc="Systemd tmpfiles configuration to create a FIFO at /run/tcpdump/genshin"
 arch=('any')
 license=('none')
@@ -33,7 +33,7 @@ prepare(){
   cd "${pkgname}"
   mkdir -p build/
   # Make socket writable for all users
-  # since we run smgood.service for the current user.
+  # since we run smgood.service as a user service.
   patch -p0 < ../socket-chmod-777.patch
 }
 
@@ -55,7 +55,7 @@ package() {
   install -vDm644 -t "${pkgdir}/etc/systemd/user/"   smgood.service
 
   # Executables
-  install -vDm755 -t "${pkgdir}/usr/bin/local/" tcpdump-genshin
-  install -vDm755 -t "${pkgdir}/usr/bin/local/" "${pkgname}"/build/smgood
-  install -vDm755 -t "${pkgdir}/usr/bin/local/" "${pkgname}"/build/epochd
+  install -vDm755 -t "${pkgdir}/usr/bin/" tcpdump-genshin
+  install -vDm755 -t "${pkgdir}/usr/bin/" "${pkgname}"/build/smgood
+  install -vDm755 -t "${pkgdir}/usr/bin/" "${pkgname}"/build/epochd
 }

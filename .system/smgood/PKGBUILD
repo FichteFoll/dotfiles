@@ -1,7 +1,7 @@
 # Maintainer: FichteFoll <fichtefoll2@googlemail.com>
 pkgname=smgood
 pkgver=6.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Systemd tmpfiles configuration to create a FIFO at /run/tcpdump/genshin"
 arch=('any')
 license=('none')
@@ -22,6 +22,7 @@ sha512sums=(
   SKIP
   SKIP
 )
+install=smgood.install
 
 # https://wiki.archlinux.org/title/Go_package_guidelines
 prepare(){

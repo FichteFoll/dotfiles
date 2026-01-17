@@ -1,0 +1,14 @@
+post_install() {
+  echo ">>> Note: Data is captured to `/run/tcpdump/genshin.fifo`."
+  echo ">>> Enable systemd units via `systemctl enable --now tcpdump-genshin && systemctl enable --now smgood@<user>`."
+  echo ">>> Output is saved to `~/.local/share/smgood`."
+}
+
+post_upgrade() {
+  echo "------------------------------------------------------------"
+  echo "  UPDATE NOTICE: Please clear your local datamine cache to  "
+  echo "  ensure compatibility with the new capture format:         "
+  echo "                                                            "
+  echo "  rm -rf ~/.cache/smgood/datamine/* "
+  echo "------------------------------------------------------------"
+}

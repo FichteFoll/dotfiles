@@ -9,8 +9,8 @@ StartLimitBurst=10
 [Service]
 Type=simple
 ; ExecStartPre=/usr/bin/sleep 2
-ExecStartPre=/bin/sh -c 'until systemctl is-active smgood-epochd.service; do sleep 1; done'
-ExecStart=/usr/bin/bash -c 'out="${XDG_DATA_HOME:-$HOME/.local/share}/smgood"; mkdir -p -- "$out" && exec /usr/bin/smgood -S /run/smgood/socket -export-dir "$out"'
+ExecStartPre=/usr/bin/sh -c 'until systemctl is-active smgood-epochd.service; do sleep 1; done'
+ExecStart=/usr/bin/sh -c 'out="${XDG_DATA_HOME:-$HOME/.local/share}/smgood"; mkdir -p -- "$out" && exec /usr/bin/smgood -S /run/smgood/socket -export-dir "$out"'
 Restart=on-failure
 RestartSec=10s
 

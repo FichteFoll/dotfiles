@@ -7,20 +7,21 @@
 # However, these two only work for the same systemd instance manager
 # and the user manager that runs user services is separate.
 [Unit]
-Description=Smgood's Tcpdump Broker that provides a multi-user socket to connect to at any time.
-BindsTo=smgood-tcpdump.service
-PartOf=smgood-tcpdump.service
-After=smgood-tcpdump.service
+Description=Smgood's Tcpdump Broker
+After=network.target
 
 StartLimitIntervalSec=10min
 StartLimitBurst=10
 
 [Service]
 Type=simple
-WorkingDirectory=/run/tcpdump
-ExecStart=/usr/bin/epochd -in /run/smgood/tcpdump.fifo -S /run/smgood/socket
+WorkingDirectory=/run/smgood
+ExecStart=/usr/bin/sh -c '/usr/bin/tcpdump-genshin hk4e | exec /usr/bin/epochd -S /run/smgood/socket'
 Restart=on-failure
 RestartSec=10s
+
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN
 
 [Install]
 WantedBy=multi-user.target

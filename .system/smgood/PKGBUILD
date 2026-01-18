@@ -1,7 +1,7 @@
 # Maintainer: FichteFoll <fichtefoll2@googlemail.com>
 pkgname=smgood
 pkgver=6.3
-pkgrel=5
+pkgrel=6
 pkgdesc="Systemd tmpfiles configuration to create a FIFO at /run/tcpdump/genshin"
 arch=('any')
 license=('none')
@@ -12,13 +12,11 @@ source=(
   "${pkgname}"::git+file:///home/fichte/code/%23mirror/smgood#commit=aba10a62640e887e068e1f1729970feca3d6a461
   smgood.conf
   tcpdump-genshin
-  smgood-tcpdump.service
   smgood-epochd.service
   smgood.service
   socket-chmod-777.patch
 )
 sha512sums=(
-  SKIP
   SKIP
   SKIP
   SKIP
@@ -50,7 +48,6 @@ build() {
 package() {
   # Config/meta files
   install -vDm644 -t "${pkgdir}/usr/lib/tmpfiles.d/" smgood.conf
-  install -vDm644 -t "${pkgdir}/etc/systemd/system/" smgood-tcpdump.service
   install -vDm644 -t "${pkgdir}/etc/systemd/system/" smgood-epochd.service
   install -vDm644 -t "${pkgdir}/etc/systemd/user/"   smgood.service
 

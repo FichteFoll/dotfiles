@@ -37,6 +37,19 @@
 
   /// Git ///
 
+  // Overwrite binding to create a branch from selected commit.
+  // Note that this fails when no commit is selected.
+  { "keys": ["ctrl+shift+b"],
+    "command": "show_command_palette",
+    "args": {
+      "command": "create_branch",
+      "args": {"from": "$commit"},
+    },
+    // "context": [
+    //   { "key": "control", "operand": "commit_table" },
+    // ],
+  },
+
   // Create and push tag (analogous to branch bindings)
   { "keys": ["ctrl+shift+g"],
     "command": "show_command_palette",

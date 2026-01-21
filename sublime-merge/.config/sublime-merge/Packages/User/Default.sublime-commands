@@ -54,4 +54,9 @@
         "command": "git",
         "args": {"argv": ["gh", "pr", "checkout", "$text"]},
     },
+    {
+        "caption": "Create Branch at Selected Commit",
+        "command": "create_branch",
+        "args": {"from": "$commit"},
+    },
 ]

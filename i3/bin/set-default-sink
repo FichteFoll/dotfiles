@@ -46,8 +46,7 @@ FILTERS: dict[str, Callable[[Sink], bool]] = {
     'headphones': partial(
         is_sink_name_matching_regex,
         regex=(
-            r'alsa_output\.usb-Focusrite_Scarlett_Solo_USB_.*'
-            r'|alsa_output\.usb-Plantronics_Plantronics_Blackwire_5220_Series_.*\.analog-stereo'
+            r'alsa_output\.usb-(?!Lenovo_ThinkPad_USB-C_Dock_Audio_.*\.analog-stereo)'
         ),
     ),
     'hdmi': is_available_hdmi_sink,

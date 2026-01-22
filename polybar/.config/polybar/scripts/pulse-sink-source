@@ -2,7 +2,25 @@
 
 pactl subscribe \
     | while :; do
-        sinkicon=$(pactl info | rg -q --pcre2 'Default Sink:.*(alsa_output\.usb-(?!Lenovo_ThinkPad_USB-C_Dock_Audio).*\.analog-stereo)' && echo -n "")
+        default_sink=$(pactl info | rg -o --pcre2 'Default Sink: (.*)' -r '$1')
+        sinkicon=""
+        case "$default_sink" in
+            *Lenovo_ThinkPad_USB-C_Dock_Audio*|*Focusrite_Scarlett_Solo_USB_*)
+                # Unicode:
+                # sinkicon="🖥"
+                # Font Awesome:
+                sinkicon=""
+                ;;
+            alsa_output.usb-*)
+                sinkicon=""
+                ;;
+            *hdmi*|*HDMI*)
+                # Unicode:
+                # sinkicon="🖵"
+                # FontAwesome 7:
+                sinkicon=""
+                ;;
+        esac
         sourceicon=$([[ "$(pactl get-source-mute "$(pactl get-default-source)")" = "Mute: yes" ]] && echo -n "")
         [[ -z "$sinkicon$sourceicon" ]] && echo || echo "$sourceicon $sinkicon"
         while

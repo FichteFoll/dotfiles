@@ -7,11 +7,7 @@
         "command": "git",
         "args": {"argv": ["reset", "--keep", "$commit"]},
     },
-    {
-        "caption": "Create \"fixup!\" Commit",
-        "command": "git",
-        "args": {"argv": ["commit", "--fixup", "$commit"]},
-    },
+    {"id": "rebase", "caption": "-"},
     {
         "caption": "Rebase",
         "children": [
@@ -39,6 +35,11 @@
                 "args": {"argv": ["rebase", "-i", "$commit~1"]},
             },
         ],
+    },
+    {
+        "caption": "Create \"fixup!\" Commit",
+        "command": "git",
+        "args": {"argv": ["commit", "--fixup", "$commit"]},
     },
     {"id": "inspect", "caption": "-"},
     {

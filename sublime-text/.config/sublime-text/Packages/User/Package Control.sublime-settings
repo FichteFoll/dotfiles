@@ -81,6 +81,6 @@
 		"Zeal",
 	],
 	"channels": [
-		"https://packages.sublimetext.io/channel.json"
+		"https://packages.sublimetext.io/channel.json",
 	],
 }

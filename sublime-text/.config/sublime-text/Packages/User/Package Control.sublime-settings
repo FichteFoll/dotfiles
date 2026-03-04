@@ -81,4 +81,7 @@
 		"Wrap Plus",
 		"Zeal",
 	],
+	"channels": [
+		"https://packages.sublimetext.io/channel.json",
+	],
 }

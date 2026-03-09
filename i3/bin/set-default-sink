@@ -6,22 +6,34 @@
 # using a set of pre-defined conditions
 # that can be selected with the first argument.
 
+from __future__ import annotations
+
 import json
 import sys
 import re
 from functools import partial
 from subprocess import check_call, check_output
-from typing import Callable, NotRequired, TypedDict
+from typing import Callable, Required, TypedDict, cast
 
 
-class Port(TypedDict):
-    type: NotRequired[str]
-    availability: NotRequired[str]
+class Port(TypedDict, total=False):
+    type: str
+    availability: str
 
 
-class Sink(TypedDict):
-    name: str
-    ports: NotRequired[list[Port]]
+class Sink(TypedDict, total=False):
+    name: Required[str]
+    ports: list[Port]
+    properties: Properties
+
+
+Properties = TypedDict(
+    'Properties',
+    {
+        'device.bus': str
+    },
+    total=False,
+)
 
 
 def is_available_hdmi_sink(sink: Sink) -> bool:
@@ -29,6 +41,12 @@ def is_available_hdmi_sink(sink: Sink) -> bool:
         p.get('type') == 'HDMI' and p.get('availability') != 'not available'
         for p in sink.get('ports', [])
     )
+
+
+def is_bt_sink(sink: Sink) -> bool:
+    if props := sink.get('properties'):
+        return props.get('device.bus') == 'bluetooth'
+    return False
 
 
 def is_sink_name_matching_regex(sink: Sink, regex: str) -> bool:
@@ -50,6 +68,7 @@ FILTERS: dict[str, Callable[[Sink], bool]] = {
         ),
     ),
     'hdmi': is_available_hdmi_sink,
+    'bt': is_bt_sink,
 }
 
 
@@ -59,7 +78,7 @@ def main() -> int:
         return 1
 
     output = check_output(["pactl", "--format", "json", "list", "sinks"])
-    sinks: list[Sink] = json.loads(output)
+    sinks = cast(list[Sink], json.loads(output))
 
     if sink := next(filter(sink_filter, sinks), None):
         print(f"setting default sink to: {sink['name']}")

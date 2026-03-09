@@ -12,6 +12,7 @@ pactl subscribe \
                 sinkicon=""
                 ;;
             alsa_output.usb-*)
+                # FontAwesome 7:
                 sinkicon=""
                 ;;
             *hdmi*|*HDMI*)
@@ -20,9 +21,13 @@ pactl subscribe \
                 # FontAwesome 7:
                 sinkicon=""
                 ;;
+            *blue*)
+                # FontAwesome 7:
+                sinkicon=""
+                ;;
         esac
         sourceicon=$([[ "$(pactl get-source-mute "$(pactl get-default-source)")" = "Mute: yes" ]] && echo -n "")
-        [[ -z "$sinkicon$sourceicon" ]] && echo || echo "$sourceicon $sinkicon"
+        [[ -n "$sourceicon" ]] && echo "$sourceicon $sinkicon" || echo "$sinkicon"
         while
             # wait until something relevant changed
             read -r line && [[ ! "$line" =~ "on sink" ]] && [[ ! "$line" =~ "on source" ]] && [[ ! "$line" =~ "on server" ]]

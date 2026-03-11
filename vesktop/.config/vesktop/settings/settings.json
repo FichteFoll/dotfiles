@@ -603,7 +603,8 @@
             "enabled": false
         },
         "WebScreenShareFixes": {
-            "enabled": true
+            "enabled": true,
+            "experimentalAV1Support": false
         },
         "ServerInfo": {
             "enabled": true
@@ -710,7 +711,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1768084812851
+        "settingsSyncVersion": 1772568760835
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

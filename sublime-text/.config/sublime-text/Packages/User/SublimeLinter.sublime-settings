@@ -79,6 +79,12 @@
                 "crate", // Keyword in Rust
                 "-L",
                 "shouldBe", // infix function in Haskell
+                "-L",
+                "afterAll", // jest function
+                "-L",
+                "statics", // special field in mongoose objects (JS)
+                "-L",
+                "ratatui", // rust crate
             ],
         },
         "eslint": {

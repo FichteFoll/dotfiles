@@ -38,17 +38,19 @@ alias ols='command ls --color=auto'
 alias ll="eza -la"
 # All entries
 alias lsa='eza -a'
-# Only show directories
+# Only directories
 alias lsd='eza -d *(/)'
-# Only show empty directories
+# All directories
+alias lsad='eza -ad *(/)'
+# Only dot-directories
+alias lsdd='eza -d .*(/)'
+# Only empty directories
 alias lsed='eza -d *(/^F)'
-# Only show dot-directories
-alias lsad='eza -d .*(/)'
-# Only show dot-files
+# Only dot-files
 alias lsaf='eza -a .*(.)'
 # Only files with setgid/setuid/sticky flag
 alias lss='eza -l *(s,S,t)'
-# Only show symlinks
+# Only symlinks
 alias lsl='eza -l *(@)'
 # Display only executables
 alias lsx='eza -l *(.x)'
@@ -64,7 +66,7 @@ alias ....='cd ../../..'
 
 # cd to directory and list files
 cl() {
-    cd $1 && ls -a
+    cd "$@" && ls -a
 }
 
 # Create Directory and cd to it

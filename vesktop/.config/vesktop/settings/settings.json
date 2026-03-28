@@ -196,9 +196,6 @@
             "ignoreSelf": false,
             "ignoreUsers": ""
         },
-        "MessageTags": {
-            "enabled": false
-        },
         "MoreCommands": {
             "enabled": false
         },
@@ -577,7 +574,7 @@
             "enabled": false
         },
         "NoDefaultHangStatus": {
-            "enabled": false
+            "enabled": true
         },
         "NoServerEmojis": {
             "enabled": false,
@@ -699,6 +696,10 @@
         "MoreQuickReactions": {
             "enabled": false,
             "reactionCount": 5
+        },
+        "CustomCommands": {
+            "enabled": false,
+            "tagsList": {}
         }
     },
     "notifications": {
@@ -711,7 +712,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1772568760835
+        "settingsSyncVersion": 1774697850867
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

@@ -1,6 +1,7 @@
 # Documentation:
 # - alacritty(5)
 # - https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
+#:schema https://github.com/distinction-dev/alacritty-schema/raw/refs/heads/main/alacritty/reference.json
 
 # Colors (Tomorrow Night Bright, modified)
 [colors.primary]

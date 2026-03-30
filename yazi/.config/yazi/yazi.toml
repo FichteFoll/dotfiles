@@ -1,0 +1,91 @@
+# Default: https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi-default.toml
+#:schema https://yazi-rs.github.io/schemas/yazi.json
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[mgr]
+linemode    = "size"
+ratio       = [ 1, 4, 4 ]
+show_hidden = true
+sort_by     = "natural"
+mouse_events = ["click", "scroll", "drag"]
+
+
+[preview]
+wrap            = "yes"
+tab_size        = 4
+# max_width       = 600
+# max_height      = 900
+
+# OPENERS #
+
+[[opener.edit]]
+run = "${EDITOR:-vim} %s"
+desc = "$EDITOR"
+for = "unix"
+block = true
+
+[[opener.edit]]
+run = "subl %s"
+desc = "subl"
+for = "unix"
+orphan = true
+
+[[opener.edit]]
+run = "subl -w %s"
+desc = "subl (block)"
+for = "unix"
+block = true
+
+[[opener.mpv]]
+block = true
+desc = "Play with mpv"
+run = "mpv %s"
+
+[[open.prepend_rules]]
+mime = "{audio,video}/*"
+use = ["mpv", "play", "reveal"]
+
+# FETCHERS #
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*/"
+run = "git"
+
+# PRELOADERS #
+
+[[plugin.prepend_preloaders]]
+mime = "{audio,video}/*"
+run = "mediainfo"
+
+# PREVIEWERS #
+
+[[plugin.prepend_previewers]]
+mime = "{audio,video}/*"
+run = "mediainfo"
+
+[[plugin.prepend_previewers]]
+# silence warning https://github.com/ouch-org/ouch/issues/945
+url = "*.sublime-package"
+run = "ouch --show-file-icons --format=zip"
+
+[[plugin.prepend_previewers]]
+mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+run = "ouch --show-file-icons"
+
+[[plugin.prepend_previewers]]
+url = "*.{pkl,pickle}"
+run = "pickle"
+
+[[plugin.prepend_previewers]]
+url = "**/trackma/*/anime.{info,list,meta,queue}"
+run = "pickle"
+
+[[plugin.prepend_previewers]]
+mime = "application/bittorrent"
+run = "torrent-preview"

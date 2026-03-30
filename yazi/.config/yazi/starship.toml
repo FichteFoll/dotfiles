@@ -1,0 +1,8 @@
+# https://starship.rs/config/#directory
+#:schema https://starship.rs/config-schema.json
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[git_status]
+style = "red" # no bold
+ahead = '↑'
+behind = '↓'

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# ya pkg add yazi-rs/plugins:vcs-files
+ya pkg add alberti42/faster-piper
+ya pkg add boydaihungst/mediainfo # needs `mediainfo` package
+ya pkg add boydaihungst/pref-by-location
+ya pkg add dedukun/relative-motions
+ya pkg add dimi1357/pickle
+ya pkg add imsi32/yatline
+ya pkg add imsi32/yatline-githead
+ya pkg add kirasok/torrent-preview # needs `transmission-cli` package
+ya pkg add KKV9/command
+ya pkg add ktunprasert/git-files
+ya pkg add MasouShizuka/close-and-restore-tab
+ya pkg add ndtoan96/ouch # needs `ouch` package
+ya pkg add orhnk/system-clipboard # needs `clipboard` package (AUR)
+ya pkg add Rolv-Apneseth/starship # needs `starship` package
+ya pkg add yazi-rs/plugins:chmod
+ya pkg add yazi-rs/plugins:full-border
+ya pkg add yazi-rs/plugins:types

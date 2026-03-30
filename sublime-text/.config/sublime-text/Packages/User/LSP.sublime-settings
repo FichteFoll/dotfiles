@@ -21,6 +21,14 @@
 			// Custom syntax to restrict the LSP to only `pyproject.toml` files.
 			"selector": "source.toml.pyproject",
 		},
+		"tombi": {
+			// Requires https://github.com/tombi-toml/tombi
+			// (`pacman -S tombi`).
+			"enabled": true,
+			"command": ["tombi", "lsp"],
+			// We have a separate LS for pyproject files.
+			"selector": "source.toml - source.toml.pyproject",
+		},
 	},
 	"diagnostics_highlight_style": "box",
 	"inhibit_snippet_completions": false,

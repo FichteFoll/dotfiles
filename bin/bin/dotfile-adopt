@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+
+from __future__ import annotations
+
+import argparse
+import os
+import shutil
+import sys
+from pathlib import Path
+
+
+BASE_DIR = Path(os.environ.get("BASE_DIR", "~")).expanduser()
+DOTFILES_DIR = Path(os.environ.get("DOTFILES_DIR", "~/dotfiles")).expanduser()
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        prog="dotfile-adopt",
+        description="Move files into a stow package and replace them with symlinks.",
+    )
+    parser.add_argument("package_name", help="Target package inside ~/dotfiles")
+    parser.add_argument("files", nargs="*", help="Files or directories to adopt")
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    if not args.files:
+        print("No files provided.", file=sys.stderr)
+        return 2
+
+    paths = collect_paths(args.files)
+    if not paths:
+        print("No files to adopt.", file=sys.stderr)
+        return 1
+
+    rel_paths = [path.relative_to(BASE_DIR) for path in paths]
+    rel_display = ", ".join(str(path) for path in rel_paths)
+    if not confirm(f"Add files to package {args.package_name!r}? | {rel_display}"):
+        return 0
+
+    pkg_dir = DOTFILES_DIR / args.package_name
+    if args.package_name not in package_names():
+        if not confirm(f"Dotfile package {args.package_name!r} does not exist. Create?"):
+            return 0
+        pkg_dir.mkdir(parents=True, exist_ok=True)
+
+    return import_dotfiles(args.package_name, paths)
+
+
+def collect_paths(items: list[str]) -> list[Path]:
+    expanded: set[Path] = set()
+
+    for item in items:
+        path = Path(item).absolute()
+        if not path.exists() and not path.is_symlink():
+            raise SystemExit(f"Path does not exist: {item}")
+        if not is_relative_to(path, BASE_DIR):
+            raise SystemExit(f"Path is outside {BASE_DIR}: {path}")
+
+        if path.is_dir() and not path.is_symlink():
+            for child in path.rglob("*"):
+                if child.is_file() and not child.is_symlink():
+                    expanded.add(child.resolve())
+        elif path.is_symlink():
+            print(f"Skipping symlink: {path}", file=sys.stderr)
+        else:
+            expanded.add(path)
+
+    return sorted(expanded)
+
+
+def package_names() -> set[str]:
+    if not DOTFILES_DIR.is_dir():
+        raise SystemExit(f"Dotfiles directory not found: {DOTFILES_DIR}")
+    return {entry.name for entry in DOTFILES_DIR.iterdir() if entry.is_dir()}
+
+
+def import_dotfiles(package_name: str, paths: list[Path]) -> int:
+    rel_paths = [path.relative_to(BASE_DIR) for path in paths]
+    pkg_dir = DOTFILES_DIR / package_name
+    dst_paths = [pkg_dir / rel_path for rel_path in rel_paths]
+    existing_paths = [path for path in dst_paths if path.exists() or path.is_symlink()]
+    if existing_paths:
+        print(
+            "Destination files already exist: " + ", ".join(str(path) for path in existing_paths),
+            file=sys.stderr,
+        )
+        return 1
+
+    failures = 0
+    for src, dst in zip(paths, dst_paths):
+        rel_dst = os.path.relpath(dst, start=src.parent)
+        try:
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(src), str(dst))
+            src.symlink_to(rel_dst)
+        except Exception as exc:
+            failures += 1
+            print(f"Failed to adopt {src} -> {dst}: {exc}", file=sys.stderr)
+
+    return 1 if failures else 0
+
+
+def confirm(prompt: str) -> bool:
+    try:
+        answer = input(f"{prompt} [y/N] ").strip().lower()
+    except EOFError:
+        return False
+    return answer in {"y", "yes"}
+
+
+def is_relative_to(path: Path, base: Path) -> bool:
+    try:
+        path.relative_to(base)
+        return True
+    except ValueError:
+        return False
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

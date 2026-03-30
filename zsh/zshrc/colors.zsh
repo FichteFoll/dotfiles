@@ -18,3 +18,6 @@ export COLORTERM="yes" # ???
 
 # color setup for ls:
 eval $(dircolors -b)
+
+# clipboard CLI (cb)
+export CLIPBOARD_THEME=ansi

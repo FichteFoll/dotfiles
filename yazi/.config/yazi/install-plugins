@@ -17,4 +17,5 @@ ya pkg add orhnk/system-clipboard # needs `clipboard` package (AUR)
 ya pkg add Rolv-Apneseth/starship # needs `starship` package
 ya pkg add yazi-rs/plugins:chmod
 ya pkg add yazi-rs/plugins:full-border
+ya pkg add yazi-rs/plugins:smart-enter
 ya pkg add yazi-rs/plugins:types

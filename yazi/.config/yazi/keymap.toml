@@ -91,6 +91,12 @@ run  = "plugin chmod"
 desc = "Chmod on selected files"
 
 [[mgr.prepend_keymap]]
+on = "T"
+run = 'shell --orphan -- alacritty --working-directory "$PWD"'
+desc = "Open Alacritty here"
+
+###[ relative motions ]###
+[[mgr.prepend_keymap]]
 on = [ "1" ]
 run = "plugin relative-motions 1"
 desc = "Move in relative steps"
@@ -134,3 +140,58 @@ desc = "Move in relative steps"
 on = [ "9" ]
 run = "plugin relative-motions 9"
 desc = "Move in relative steps"
+
+[[mgr.prepend_keymap]]
+on = "<A-1>"
+run = "tab_switch 0"
+desc = "Switch to first tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-2>"
+run = "tab_switch 1"
+desc = "Switch to second tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-3>"
+run = "tab_switch 2"
+desc = "Switch to third tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-4>"
+run = "tab_switch 3"
+desc = "Switch to fourth tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-5>"
+run = "tab_switch 4"
+desc = "Switch to fifth tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-6>"
+run = "tab_switch 5"
+desc = "Switch to sixth tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-7>"
+run = "tab_switch 6"
+desc = "Switch to seventh tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-8>"
+run = "tab_switch 7"
+desc = "Switch to eighth tab"
+
+[[mgr.prepend_keymap]]
+on = "<A-9>"
+run = "tab_switch 8"
+desc = "Switch to ninth tab"
+###[ /relative motions ]###
+
+[help]
+prepend_keymap = [
+    { on = "q",          run = "escape", desc = "Clear the filter, or hide the help" },
+    { on = "u",          run = "arrow -50%",  desc = "Move cursor up half page" },
+    { on = "d",          run = "arrow 50%",   desc = "Move cursor down half page" },
+    { on = "<PageUp>",   run = "arrow -100%", desc = "Move cursor up one page" },
+    { on = "<PageDown>", run = "arrow 100%",  desc = "Move cursor down one page" },
+]

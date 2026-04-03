@@ -60,14 +60,22 @@ run = "git"
 # PRELOADERS #
 
 [[plugin.prepend_preloaders]]
-mime = "{audio,video}/*"
+mime = "audio/*"
 run = "mediainfo"
+
+[[plugin.prepend_preloaders]]
+mime = "video/*"
+run = "mediainfo --no-preview"
 
 # PREVIEWERS #
 
 [[plugin.prepend_previewers]]
-mime = "{audio,video}/*"
+mime = "audio/*"
 run = "mediainfo"
+
+[[plugin.prepend_previewers]]
+mime = "video/*"
+run = "mediainfo --no-preview"
 
 [[plugin.prepend_previewers]]
 # silence warning https://github.com/ouch-org/ouch/issues/945

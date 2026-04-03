@@ -70,8 +70,8 @@ hash = "fac71f8ce9447ad509b5aad9e0d8c694"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "a7febc0"
-hash = "5093ac06d5a80b5fe4f1d5f6db86fd30"
+rev = "75f93be"
+hash = "defd59f9ca77ad958e7d86ae56a2736f"
 
 [[plugin.deps]]
 use = "MasouShizuka/close-and-restore-tab"

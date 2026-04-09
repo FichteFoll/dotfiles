@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "keybinds": {
+    "messages_first": "ctrl+g",
+    "messages_last": "ctrl+alt+g",
+    "input_line_home": "ctrl+a,home",
+    "input_line_end": "ctrl+e,end",
+    "input_select_line_home": "ctrl+shift+a,shift+home",
+    "input_select_line_end": "ctrl+shift+e,shift+end",
+    "input_buffer_home": "ctrl+home",
+    "input_buffer_end": "ctrl+end",
+    "input_select_buffer_home": "ctrl+shift+home",
+    "input_select_buffer_end": "ctrl+shift+end",
+    "input_submit": "ctrl+return",
+    "input_paste": "ctrl+v,ctrl+shift+v",
+    "input_newline": "return,shift+return,alt+return"
+  }
+}

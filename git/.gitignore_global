@@ -62,3 +62,8 @@ pyrightconfig.json
 ############################
 /.env
 secrets/
+
+
+# Project-agnostic private files #
+##################################
+.*.todo.md

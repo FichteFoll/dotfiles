@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-req_url='https://0x0.st/'
+#req_url='https://0x0.st/'
+req_url='https://x0.at/'
 
 echo "arg: $1"
 if [ -z "$1" ]; then

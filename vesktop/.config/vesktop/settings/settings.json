@@ -700,6 +700,13 @@
         "CustomCommands": {
             "enabled": false,
             "tagsList": {}
+        },
+        "CharacterCounter": {
+            "enabled": false,
+            "colorEffects": true
+        },
+        "ConcatenatedComponentExtractor": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -712,7 +719,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1774697850867
+        "settingsSyncVersion": 1777062963712
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

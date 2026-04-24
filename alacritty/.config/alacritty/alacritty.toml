@@ -13,6 +13,7 @@ size = 9
 # Italics looks terrible with the Terminess font
 # and original Terminus didn't have it either.
 italic = { style = "" }
+bold_italic  = { style = "bold" }
 
 [mouse]
 hide_when_typing = true

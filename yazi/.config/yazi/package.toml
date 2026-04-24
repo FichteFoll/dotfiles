@@ -10,17 +10,17 @@ hash = "2eca70f99d25c661e0a92000843d001e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "1962818"
-hash = "6fa6a05a81c98dd000fbca3cca6e9682"
+rev = "ac82af3"
+hash = "eff8ff12fa4e5f035a10d8aeeb4c258d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "1962818"
-hash = "26db011a778f261d730d4f5f8bf24b3f"
+rev = "ac82af3"
+hash = "6849444b7c2df08eace83f3f86fb55a3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:types"
-rev = "1962818"
+rev = "ac82af3"
 hash = "4161cfa043b5ba3341d82c6869007b41"
 
 [[plugin.deps]]
@@ -55,7 +55,7 @@ hash = "a7e5577f7bae80fa064e416c09ac62a4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "1962818"
+rev = "ac82af3"
 hash = "f0c8c378184d5f8abd1b095a443d336d"
 
 [[plugin.deps]]
@@ -70,8 +70,8 @@ hash = "fac71f8ce9447ad509b5aad9e0d8c694"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "75f93be"
-hash = "defd59f9ca77ad958e7d86ae56a2736f"
+rev = "49f5ab7"
+hash = "3b9ca58d8963d7213532d155340e0244"
 
 [[plugin.deps]]
 use = "MasouShizuka/close-and-restore-tab"

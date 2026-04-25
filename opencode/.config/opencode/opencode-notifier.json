@@ -1,0 +1,9 @@
+{
+  "events": {
+    "permission": { "sound": true, "notification": true, "command": true, "bell": true },
+    "complete": { "sound": true, "notification": true, "command": true, "bell": true },
+    "error": { "sound": true, "notification": true, "command": true, "bell": true },
+    "question": { "sound": true, "notification": true, "command": true, "bell": true },
+    "plan_exit": { "sound": true, "notification": true, "command": true, "bell": true }
+  }
+}

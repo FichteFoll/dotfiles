@@ -3,5 +3,6 @@
   "plugin": [
     "@mohak34/opencode-notifier@0.2.2"
   ],
-  "instructions": ["~/.agents/rules/*.md"]
+  "instructions": ["~/.agents/rules/*.md"],
+  "lsp": true
 }

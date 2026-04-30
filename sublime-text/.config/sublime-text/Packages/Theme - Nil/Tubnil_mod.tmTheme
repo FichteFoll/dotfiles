@@ -313,7 +313,7 @@
 			<key>name</key>
 			<string>Mapping key (string)</string>
 			<key>scope</key>
-			<string>meta.mapping.key string</string>
+			<string>meta.mapping.key &gt; string, meta.mapping.key &gt; meta.string string</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>

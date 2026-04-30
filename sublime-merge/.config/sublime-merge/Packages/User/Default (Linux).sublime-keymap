@@ -1,6 +1,6 @@
 [
-  // Meta & Navigation
-  { "keys": ["f8"], "command": "toggle_console" },
+  // Meta & Navigation //
+  { "keys": ["ctrl+k", "ctrl+c"], "command": "toggle_console" },
 
   // Use ctrl+pageup/down for switch repo tabs
   // and alt+… for file tabs.

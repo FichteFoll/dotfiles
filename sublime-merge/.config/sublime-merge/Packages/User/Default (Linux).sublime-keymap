@@ -3,18 +3,18 @@
   { "keys": ["ctrl+k", "ctrl+c"], "command": "toggle_console" },
 
   // Use ctrl+pageup/down for switch repo tabs
-  // and alt+… for file tabs.
-  // Unbind ctrl+(shift+)tab because it doesn't support recency.
-  { "keys": ["ctrl+shift+tab"], "command": "noop" },
-  { "keys": ["ctrl+tab"], "command": "noop" },
+  // and alt+pageup/down for file tabs.
   { "keys": ["ctrl+pageup"], "command": "prev_tab" },
   { "keys": ["ctrl+pagedown"], "command": "next_tab" },
   { "keys": ["alt+pageup"], "command": "prev_file_tab" },
   { "keys": ["alt+pagedown"], "command": "next_file_tab" },
+  // Unbind ctrl+(shift+)tab because it doesn't support recency and confuses me.
+  { "keys": ["ctrl+shift+tab"], "command": "noop" },
+  { "keys": ["ctrl+tab"], "command": "noop" },
 
   { "keys": ["ctrl+h"], "command": "show_git_command_history" },
 
-  // Editing
+  // Editing //
   { "keys": ["alt+q"], "command": "wrap_lines", },
   { "keys": ["alt+d"], "command": "run_macro_file", "args": { "file": "Packages/Default/Delete Line.sublime-macro" } },
 
@@ -37,64 +37,117 @@
 
   /// Git ///
 
-  // Overwrite binding to create a branch from selected commit.
-  // Note that this fails when no commit is selected.
-  { "keys": ["ctrl+shift+b"],
-    "command": "show_command_palette",
-    "args": {
-      "command": "create_branch",
-      "args": {"from": "$commit"},
-    },
-    // "context": [
-    //   { "key": "control", "operand": "commit_table" },
-    // ],
-  },
-  // Restore the old binding under an alias
-  { "keys": ["ctrl+shift+alt+b"],
-    "command": "show_command_palette",
-    "args": {
-      "command": "create_branch",
-    },
-  },
-
-  // Create and push tag (analogous to branch bindings)
-  { "keys": ["ctrl+shift+g"],
-    "command": "show_command_palette",
-    "args": {
-      "command": "create_tag",
-    },
-  },
-  { "keys": ["ctrl+g"],
-    "command": "show_command_palette",
-    "args": {
-      "command": "push_tag",
-      "args": { "remote": "origin" },
-    },
-  },
-
-  // Push and pull
-  { "keys": ["ctrl+down"],
-    "command": "git",
-    "args": { "argv": ["fetch", "--all", "--tags", "--prune"] }
-  },
-  { "keys": ["ctrl+alt+shift+up"],
-    "command": "show_command_palette",
-    "args": {
-      "command": "push",
-      "args": { "mode": "push --force-with-lease", "prompt": true }
-    },
-  },
+  // Branch Management //
   { "keys": ["ctrl+p"],
     "command": "show_command_palette",
     "args": {
       "command": "checkout_branch",
     },
   },
+  { "keys": ["f2"],
+    "command": "show_command_palette",
+    "args": {"command": "rename_branch"}
+  },
+  // Overwrite binding to create a branch from selected commit.
+  // This fails when no commit is selected!
+  { "keys": ["ctrl+shift+b"],
+    "command": "show_command_palette",
+    "args": {
+      "command": "create_branch",
+      "args": {"from": "$commit"},
+    },
+  },
+  // Restore the old binding under an alias
+  { "keys": ["ctrl+shift+alt+b"],
+    "command": "show_command_palette",
+    "args": { "command": "create_branch" },
+  },
+
+  // Tag Management //
+  // create and push (analogous to branch bindings)
+  { "keys": ["ctrl+shift+g"],
+    "command": "show_command_palette",
+    "args": {
+      "command": "create_tag",
+      "args": { "commit": "$commit" },
+    },
+  },
+  { "keys": ["ctrl+g"],
+    "command": "show_command_palette",
+    "args": {
+      "command": "push_tag",
+      "args": { "ref": "$ref" },
+      "description": "Push Tag $tag_name",
+    },
+  },
+
+  // Commits & Commit Editing //
+  { "keys": ["ctrl+k", "ctrl+m"], "command": "edit_commit" },
+  { "keys": ["ctrl+k", "ctrl+e"],
+    "command": "edit_commit_contents",
+    "args": { "commit": "$commit" },
+  },
+  { "keys": ["ctrl+k", "ctrl+m"],
+    "command": "show_command_palette",
+    "args": {"command": "merge_branch"}
+  },
+  { "keys": ["ctrl+k", "ctrl+r"],
+    "command": "show_command_palette",
+    "args": {"command": "rebase_branch"}
+  },
+  { "keys": ["ctrl+k", "ctrl+shift+r"],
+    "command": "show_command_palette",
+    "args": {"command": "rebase_branch"}
+  },
+  { "keys": ["ctrl+k", "ctrl+c"],
+    "command": "show_command_palette",
+    "args": { "command": "cherry_pick" },
+  },
+  { "keys": ["ctrl+k", "ctrl+s"], "command": "squash_commits" },
+  { "keys": ["ctrl+k", "ctrl+f"], "command": "fixup_commits" },
+  { "keys": ["ctrl+k", "ctrl+d"], "command": "drop_commits" },
+  { "keys": ["ctrl+shift+up"],
+    "command": "move_commit",
+    "args": { "commit": "$commit", "down": false },
+    "context": [{ "key": "control", "operand": "commit_table" }],
+  },
+  { "keys": ["ctrl+shift+down"],
+    "command": "move_commit",
+    "args": { "commit": "$commit", "down": true },
+    "context": [{ "key": "control", "operand": "commit_table" }],
+  },
+  { "keys": ["ctrl+r", "ctrl+s"],
+    "command": "reset",
+    "args": {"commit": "$commit", "mode": "soft"}
+  },
+  { "keys": ["ctrl+r", "ctrl+m"],
+    "command": "reset",
+    "args": {"commit": "$commit", "mode": "mixed"}
+  },
+  { "keys": ["ctrl+r", "ctrl+h"],
+    "command": "reset",
+    "args": {"commit": "$commit", "mode": "hard"}
+  },
+  { "keys": ["ctrl+r", "ctrl+k"],
+    "command": "git",
+    "args": {"argv": ["reset", "--keep", "$commit"]},
+  },
+
+  // Push and Pull //
+  { "keys": ["ctrl+alt+pagedown"],
+    "command": "git",
+    "args": { "argv": ["fetch", "--all", "--tags", "--prune"] }
+  },
+  { "keys": ["ctrl+shift+f8"],
+    "command": "git",
+    "args": { "argv": "push --force-with-lease" },
+  },
+
+  // Undo & Redo //
+  { "keys": ["ctrl+shift+alt+z"], "command": "git_undo" },
+  { "keys": ["ctrl+shift+alt+y"], "command": "git_redo" },
 
   /// Other ///
-
-  // Open terminal in git root
-  { "keys": ["ctrl+k", "ctrl+t"], "command": "git", "args": { "argv": ["terminal"] } },
 
   // Copy commit hash
   { "keys": ["ctrl+c"],
@@ -105,4 +158,10 @@
         { "key": "search_mode", "operator": "not_equal" }
     ],
   },
+  // Open terminal in git root folder
+  { "keys": ["ctrl+k", "ctrl+t"],
+    "command": "git",
+    "args": { "argv": ["terminal"] }
+  },
+
 ]

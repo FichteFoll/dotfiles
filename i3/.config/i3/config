@@ -285,6 +285,7 @@ for_window [class="QjackCtl"] floating enable
 for_window [class="qpwgraph"] floating enable
 for_window [class="NoiseTorch-ng"] floating enable
 for_window [class="teams-for-linux" title="Teams for Linux - Screen is being shared"] floating enable
+for_window [class="Gcolor3"] floating enable
 
 # remove border for some popups
 for_window [class="openshot" window_type="utility"] border pixel 0

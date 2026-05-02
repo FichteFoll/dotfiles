@@ -245,7 +245,7 @@ bindsym XF86AudioPlay exec --no-startup-id mpris-rofi playpause
 bindsym XF86AudioPrev exec --no-startup-id mpris-rofi previous
 bindsym XF86AudioNext exec --no-startup-id mpris-rofi next
 bindsym XF86AudioStop exec --no-startup-id mpris-rofi restart
-# the same for keyboards without thes media keys
+# the same for keyboards without media keys
 bindsym $mod+$alt+p       exec --no-startup-id mpris-rofi playpause
 bindsym $mod+$alt+comma   exec --no-startup-id mpris-rofi previous
 bindsym $mod+$alt+period  exec --no-startup-id mpris-rofi next

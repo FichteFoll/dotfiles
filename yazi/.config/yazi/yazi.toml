@@ -18,6 +18,10 @@ tab_size        = 4
 
 # OPENERS #
 
+[[opener.bulk-rename]]
+run   = "subl -w %s"
+block = true
+
 [[opener.edit]]
 run = "${EDITOR:-vim} %s"
 desc = "$EDITOR"
@@ -37,10 +41,32 @@ for = "unix"
 block = true
 
 [[opener.mpv]]
-block = true
 desc = "Play with mpv"
 run = "mpv %s"
+orphan = true
 
+[[opener.bash]]
+desc = "Run with bash"
+run = "bash %s1"
+block = true
+
+# OPEN #
+
+[[open.prepend_rules]]
+url = "bulk-rename.txt"
+use = "bulk-rename"
+
+[[open.prepend_rules]]
+url = "*.{sh|zsh}"
+use = "bash"
+
+[[open.prepend_rules]]
+mime = "{application,text}/x-shellscript"
+# For security reasons, do not use bash by default
+use = ["edit", "reveal", "bash"]
+
+# Easier to open all audio and video files in mpv
+# than to adjust mime default applications for xdg-open.
 [[open.prepend_rules]]
 mime = "{audio,video}/*"
 use = ["mpv", "play", "reveal"]

@@ -182,6 +182,14 @@
   { "keys": ["ctrl+alt+f"], "command": "slurp_find_string" },
   { "keys": ["ctrl+alt+shift+f"], "command": "slurp_replace_string" },
 
+  // Open terminal
+  { "keys": ["ctrl+k", "ctrl+t"], "command": "open_terminal",
+    "args": {"dir": "$file_path" },
+  },
+  { "keys": ["ctrl+k", "ctrl+shift+t"], "command": "open_terminal",
+    "args": {"dir": "$folder" },
+  },
+
   // Improved auto-pairing in general
   // TODO ( [ { < " '
   // https://github.com/sublimehq/Packages/pull/2889
@@ -271,10 +279,6 @@
   },
 
 // OTHER PLUGINS
-
-  // Terminal
-  { "keys": ["ctrl+k", "ctrl+t"], "command": "open_terminal" },
-  { "keys": ["ctrl+k", "ctrl+shift+t"], "command": "open_terminal_project_folder" },
 
   // Restore File History binding (overridden by Terminal)
   { "keys": ["ctrl+shift+t"], "command": "open_recently_closed_file", "args": { "action": "open_latest_closed" } },

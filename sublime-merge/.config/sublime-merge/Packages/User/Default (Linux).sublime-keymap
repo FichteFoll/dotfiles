@@ -99,7 +99,7 @@
     "command": "show_command_palette",
     "args": {"command": "rebase_branch"}
   },
-  { "keys": ["ctrl+k", "ctrl+c"],
+  { "keys": ["ctrl+k", "ctrl+p"],
     "command": "show_command_palette",
     "args": { "command": "cherry_pick" },
   },

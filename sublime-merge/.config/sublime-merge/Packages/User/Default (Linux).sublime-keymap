@@ -140,7 +140,7 @@
   },
   { "keys": ["ctrl+shift+f8"],
     "command": "git",
-    "args": { "argv": "push --force-with-lease" },
+    "args": { "argv": ["push", "--force-with-lease"] },
   },
 
   // Undo & Redo //

@@ -1,5 +1,5 @@
 {
-    "initializationOptions": {
+    "initialization_options": {
         "preferences": {
             // Addresses slowness in ST due to many, many completions.
             // https://github.com/sublimelsp/LSP-typescript/issues/129

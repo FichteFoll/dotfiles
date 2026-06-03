@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/inject-agents-md.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send 'Claude Code' 'Task complete' && paplay ~/.claude/sounds/notify.flac"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r .message | xargs -I{} sh -c \"notify-send --urgency=critical 'Claude Code' '{}' && paplay ~/.claude/sounds/notify.flac\""
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat >> /tmp/claude-hooks.log"
+          }
+        ]
+      }
+    ]
+  },
+  "worktree": {
+    "baseRef": "head"
+  },
+  "enabledPlugins": {
+    "jdtls-lsp@claude-plugins-official": true,
+    "sonarqube@claude-plugins-official": true
+  },
+  "effortLevel": "medium",
+  "awaySummaryEnabled": false,
+  "prefersReducedMotion": false,
+  "theme": "auto",
+  "editorMode": "normal",
+  "preferredNotifChannel": "terminal_bell",
+  "autoCompactEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/scripts/statusline.sh",
+    "refreshInterval": 5
+  }
+}

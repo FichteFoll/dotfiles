@@ -16,6 +16,17 @@ key = "Down"
 mods = "Control|Shift"
 action = "ScrollLineDown"
 
+# editing
+[[keyboard.bindings]]
+key = "Back"
+mods = "Control"
+chars = "\x17"
+
+[[keyboard.bindings]]
+key = "Delete"
+mods = "Control"
+chars = "\x1bd"
+
 # external tools
 [[keyboard.bindings]]
 key = "T"

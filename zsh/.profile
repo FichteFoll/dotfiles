@@ -40,8 +40,8 @@ fi
 
 # start Xorg if there is no session and we're on tty1
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-    echo "Starting X server"
-    exec startx
+    #echo "Starting X server"
+    #exec startx
 fi
 # if [ "$(tty)" = "/dev/tty1" ]; then
     # echo "Starting Sway"

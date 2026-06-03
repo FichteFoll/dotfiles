@@ -57,6 +57,7 @@ venv/
 *.sublime-workspace
 .java-version
 pyrightconfig.json
+**/.claude/settings.local.json
 
 # Environment/Secret files #
 ############################

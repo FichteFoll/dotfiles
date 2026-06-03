@@ -1,6 +1,11 @@
 [
     { "caption": "-" },
     {
+        "caption": "Open in IntelliJ…",
+        "command": "git",
+        "args": { "argv": ["spawn", "idea", "--line", "$line", "--column", "$col", "$working_dir/$path"] }
+    },
+    {
         "caption": "File History",
         "command": "search", "args": { "query": "file:\"$path\"" }
     },

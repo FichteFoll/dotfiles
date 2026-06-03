@@ -39,6 +39,7 @@
 		"LSP-basedpyright",
 		"LSP-eslint",
 		"LSP-file-watcher-rust",
+		"LSP-json",
 		"LSP-ruff",
 		"LSP-rust-analyzer",
 		"LSP-vue",

@@ -3,17 +3,9 @@
 # - alacritty-bindings(5)
 # - https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
 #:schema https://github.com/distinction-dev/alacritty-schema/raw/refs/heads/main/alacritty/reference.json
+#:tombi toml-version = "v1.1.0"
 
-[[keyboard.bindings]]
-key = "Home"
-mods = "Control"
-action = "ScrollToTop"
-
-[[keyboard.bindings]]
-key = "End"
-mods = "Control"
-action = "ScrollToBottom"
-
+# navigation
 [[keyboard.bindings]]
 key = "Up"
 mods = "Control|Shift"
@@ -24,12 +16,14 @@ key = "Down"
 mods = "Control|Shift"
 action = "ScrollLineDown"
 
+# external tools
 [[keyboard.bindings]]
 key = "T"
 mods = "Control|Shift"
 action = "SpawnNewInstance"
 
+# For Claude Code
 [[keyboard.bindings]]
-key = "Delete"
-mods = "Control"
-chars = "\u001B[3;5~"
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

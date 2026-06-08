@@ -207,6 +207,7 @@ bind2maps emacs viins       -- -s "\e[[C"   emacs-forward-word
 
 # $TERM == xterm-termite, $TERM == alacritty
 bind2maps emacs viins       -- -s "\C-H"    slash-backward-kill-word # backward-delete-word
+bind2maps emacs viins       -- -s "\CW"     slash-backward-kill-word # backward-delete-word
 bind2maps emacs viins       -- -s "\e[3;5~" delete-word # <C-Delete>
 bind2maps emacs viins       -- -s "\eOM"    accept-line # <Enter>
 

@@ -1,15 +1,10 @@
 // Settings in here override those in "LSP-vue/LSP-vue.sublime-settings"
-
 {
-    // TODO remove selector once hybrid mode is supported
-    // https://github.com/sublimelsp/LSP-vue/issues/130
-    "selector": "text.html.vue | source.ts | source.tsx | source.js | source.jsx",
     "settings": {
         "vue.inlayHints.missingProps": true,
         "vue.inlayHints.inlineHandlerLeading": true,
         "vue.inlayHints.vBindShorthand": true,
 
-        // > NOTE: Inlay hints require TypeScript 4.4+.
         // javascript inlay hints options.
         "javascript.inlayHints.enumMemberValues.enabled": true,
         "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -18,6 +13,7 @@
         "javascript.inlayHints.parameterTypes.enabled": true,
         "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
         "javascript.inlayHints.variableTypes.enabled": true,
+
         // typescript inlay hints options.
         "typescript.inlayHints.enumMemberValues.enabled": true,
         "typescript.inlayHints.functionLikeReturnTypes.enabled": true,

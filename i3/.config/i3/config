@@ -285,6 +285,7 @@ for_window [class="teams-for-linux" title="Teams for Linux - Screen is being sha
 for_window [class="Thunderbird" instance="Calendar"] floating enable
 for_window [class="Thunderbird" window_role="EventDialog"] floating enable
 for_window [class="Yad"] floating enable
+for_window [class="flameshot" title="flameshot"] floating enable
 for_window [window_type="notification" tiling_from="auto"] floating enable
 
 # fullscreen

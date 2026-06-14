@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+
+"""Colorize pacman/aurutils version comparisons from stdin.
+
+Reads lines like `pkg old -> new`,
+detects the first differing version segment,
+and highlights that segment red in the old version
+and green in the new version,
+splitting it over two lines to make it more obvious.
+
+Example:
+
+    updated-package 0.3.6-1
+                    0.5.0-1
+
+with `3` in red and `5` in green.
+"""
+
+import re
+import sys
+
+RESET = "\033[0m"
+RED = "\033[31m"
+GREEN = "\033[32m"
+
+TOKEN_RE = re.compile(r"(\d+|[A-Za-z]+|[^A-Za-z\d]+)")
+
+
+def tokenize(version: str) -> list[str]:
+    return TOKEN_RE.findall(version)
+
+
+def colorize_versions(old: str, new: str) -> tuple[str, str]:
+    old_tokens = tokenize(old)
+    new_tokens = tokenize(new)
+
+    first_diff = None
+    for idx, (old_tok, new_tok) in enumerate(zip(old_tokens, new_tokens)):
+        if old_tok != new_tok:
+            first_diff = idx
+            break
+    if first_diff is None:
+        if len(old_tokens) != len(new_tokens):
+            first_diff = min(len(old_tokens), len(new_tokens))
+        else:
+            return old, new
+
+    old_out: list[str] = []
+    new_out: list[str] = []
+
+    for idx, tok in enumerate(old_tokens):
+        if idx < first_diff:
+            old_out.append(tok)
+        elif idx == first_diff:
+            old_out.append(f"{RED}{tok}{RESET}")
+        else:
+            old_out.append(tok)
+
+    for idx, tok in enumerate(new_tokens):
+        if idx < first_diff:
+            new_out.append(tok)
+        elif idx == first_diff:
+            new_out.append(f"{GREEN}{tok}{RESET}")
+        else:
+            new_out.append(tok)
+
+    return "".join(old_out), "".join(new_out)
+
+
+LINE_RE = re.compile(r"^(?P<pkg>.+?)\s+(?P<old>.+?)\s+->\s+(?P<new>.+?)\s*$")
+
+
+def format_entry(pkg: str, old: str, new: str, width: int) -> str:
+    old_colored, new_colored = colorize_versions(old, new)
+    return f"{pkg} {old_colored}\n{' ' * max(width + 1, 0)}{new_colored}"
+
+
+def main() -> int:
+    lines = [line.rstrip("\n") for line in sys.stdin]
+    matches = []
+
+    for line in lines:
+        match = LINE_RE.match(line)
+        if not match:
+            matches.append((None, line))
+            continue
+
+        pkg = match.group("pkg")
+        old = match.group("old")
+        new = match.group("new")
+        matches.append(((pkg, old, new), line))
+
+    for parsed, original in matches:
+        if parsed is None:
+            sys.stdout.write(original + "\n")
+            continue
+
+        pkg, old, new = parsed
+        sys.stdout.write(format_entry(pkg, old, new, len(pkg)) + "\n")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

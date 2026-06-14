@@ -257,9 +257,9 @@ staco() {
 
 # check for and perform system updates
 cu () {
-    checkupdates
+    checkupdates --nocolor | colorize-pkgver
     echo ''
-    aur repo -ld aur | aur vercmp
+    aur repo -ld aur | aur vercmp | colorize-pkgver
 }
 
 cu2 () {

@@ -48,6 +48,11 @@
   "worktree": {
     "baseRef": "head"
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/scripts/statusline.sh",
+    "refreshInterval": 5
+  },
   "enabledPlugins": {
     "jdtls-lsp@claude-plugins-official": true,
     "sonarqube@claude-plugins-official": true,
@@ -57,14 +62,10 @@
   "effortLevel": "medium",
   "awaySummaryEnabled": false,
   "prefersReducedMotion": false,
+  "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "editorMode": "normal",
   "preferredNotifChannel": "terminal_bell",
   "autoCompactEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/scripts/statusline.sh",
-    "refreshInterval": 5
-  }
+  "skipAutoPermissionPrompt": true
 }

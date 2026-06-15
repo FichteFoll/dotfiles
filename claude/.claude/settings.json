@@ -50,7 +50,9 @@
   },
   "enabledPlugins": {
     "jdtls-lsp@claude-plugins-official": true,
-    "sonarqube@claude-plugins-official": true
+    "sonarqube@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "effortLevel": "medium",
   "awaySummaryEnabled": false,

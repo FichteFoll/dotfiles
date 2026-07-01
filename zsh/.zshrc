@@ -39,13 +39,15 @@ done; unset rh
 alias help=run-help
 
 
+# mise-en-place (toolchain manager)
+if command -v mise >/dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
 # quick directory jumping and file access (completions) through zoxide(1)
 # z: jump to directory
 # zi: open interactive move (via fzf)
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
-
-# Java environment management
-command -v jenv >/dev/null && eval "$(jenv init -)"
 
 # Env settings for tools
 export AUR_PAGER="ranger --cmd aur"

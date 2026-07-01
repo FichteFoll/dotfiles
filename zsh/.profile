@@ -4,11 +4,8 @@ export TERM=alacritty
 export EDITOR=helix  # "subl -nw" # kak
 export PAGER=less
 
-# volta
-export VOLTA_HOME="$HOME/.volta"
-
-# prepend user scripts (for overrides) and volta dir (shadows `node`, `npm` and more)
-export PATH="$HOME/bin:$VOLTA_HOME/bin:$PATH"
+# prepend user scripts (for overrides)
+export PATH="$HOME/bin:$PATH"
 # append executables from python, cargo and ruby
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin"
 

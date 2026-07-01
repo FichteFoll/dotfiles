@@ -39,33 +39,6 @@ done; unset rh
 alias help=run-help
 
 
-# Set up virtualenvwrapper
-# https://virtualenvwrapper.readthedocs.io/en/latest/index.html
-#
-# Provides:
-#   mkvirtualenv [-a project_path] [-i package] [-r requirements_file] [virtualenv options] ENVNAME
-#   mktmpenv [(-c|--cd)|(-n|--no-cd)] [VIRTUALENV_OPTIONS]
-#   lsvirtualenv [-b] [-l] [-h]
-#   showvirtualenv [env]
-#   rmvirtualenv ENVNAME
-#   cpvirtualenv ENVNAME [TARGETENVNAME]
-#   allvirtualenv command with arguments
-#   workon [(-c|--cd)|(-n|--no-cd)] [environment_name|"."]
-#   deactivate
-#   cdvirtualenv [subdir]
-#   cdsitepackages [subdir]
-#   lssitepackages
-#   add2virtualenv directory1 directory2 ...
-#   toggleglobalsitepackages [-q]
-#   mkproject
-#   setvirtualenvproject
-#   cdproject
-#   wipeenv
-#   virtualenvwrapper
-export WORKON_HOME=${HOME}/.virtualenvs
-# source /usr/bin/virtualenvwrapper.sh
-[[ -e /usr/bin/virtualenvwrapper_lazy.sh ]] && source /usr/bin/virtualenvwrapper_lazy.sh
-
 # fnm/nvm
 if command -v fnm >/dev/null; then
     eval "$(fnm env --use-on-cd --shell zsh)"

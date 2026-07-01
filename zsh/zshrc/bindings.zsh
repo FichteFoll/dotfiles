@@ -245,3 +245,6 @@ bind2maps emacs viins       -- -s "\e[15~" insert-datestamp
 
 
 unfunction bind2maps
+
+# fzf key bindings
+[[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh

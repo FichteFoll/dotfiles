@@ -47,9 +47,6 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 # Java environment management
 command -v jenv >/dev/null && eval "$(jenv init -)"
 
-# fzf key bindings
-[[ -e /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-
 # Env settings for tools
 export AUR_PAGER="ranger --cmd aur"
 export AUR_REPO="aur"  # default for aur packages

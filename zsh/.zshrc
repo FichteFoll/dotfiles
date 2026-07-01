@@ -39,13 +39,6 @@ done; unset rh
 alias help=run-help
 
 
-# fnm/nvm
-if command -v fnm >/dev/null; then
-    eval "$(fnm env --use-on-cd --shell zsh)"
-elif [[ -e /usr/share/nvm/init-nvm.sh ]]; then
-    source /usr/share/nvm/init-nvm.sh
-fi
-
 # quick directory jumping and file access (completions) through zoxide(1)
 # z: jump to directory
 # zi: open interactive move (via fzf)

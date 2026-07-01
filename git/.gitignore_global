@@ -58,6 +58,7 @@ venv/
 .java-version
 pyrightconfig.json
 **/.claude/settings.local.json
+**/.claude/worktrees/
 
 # Environment/Secret files #
 ############################

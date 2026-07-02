@@ -1,6 +1,6 @@
 # Maintainer: FichteFoll <fichtefoll2@googlemail.com>
 pkgname=smgood
-pkgver=6.6
+pkgver=6.7
 pkgrel=1
 pkgdesc="Systemd tmpfiles configuration to create a FIFO at /run/tcpdump/genshin"
 arch=('any')
@@ -9,7 +9,7 @@ depends=('systemd' 'tcpdump')
 makedepends=('git' 'go')
 # Adjust path as needed.
 source=(
-  "${pkgname}"::git+file:///home/fichte/code/%23mirror/smgood#commit=2c40547b483f9b43cd259128f452cf2861bb38cb
+  "${pkgname}"::git+file:///home/fichte/code/%23mirror/smgood#commit=afb3251b9f81bd1a428455cb24f37fc34fd189a2
   smgood.conf
   tcpdump-genshin
   smgood-epochd.service
@@ -30,8 +30,8 @@ install=smgood.install
 prepare(){
   cd "${pkgname}"
   mkdir -p build/
-  # Make socket writable for all users
-  # since we run smgood.service as a user service.
+  # Make epochd socket writable for all users
+  # since we run spochd as a system and smgood as a user service.
   patch -p0 < ../socket-chmod-777.patch
 }
 

@@ -59,6 +59,7 @@ venv/
 pyrightconfig.json
 **/.claude/settings.local.json
 **/.claude/worktrees/
+mise.local.toml
 
 # Environment/Secret files #
 ############################

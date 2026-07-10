@@ -47,6 +47,10 @@
   "worktree": {
     "baseRef": "head"
   },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": ["Working"]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/statusline.sh",

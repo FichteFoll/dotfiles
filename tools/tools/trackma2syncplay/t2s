@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
 import argparse
-from functools import reduce
+import itertools
+import operator
 import subprocess
 import sys
-import operator
-import itertools
+from collections.abc import Iterator
+from functools import reduce
 from pathlib import Path
-from typing import Iterator
+from typing import cast
 
 from ruamel.yaml import YAML
 
@@ -51,8 +52,7 @@ def main() -> int:
 
         if not_names:
             print("Shows additionally with…")
-            extra_names: Iterator[list[str]]
-            for extra_names in filter(None, powerset(not_names)):
+            for extra_names in cast(Iterator[list[str]], filter(None, powerset(not_names))):
                 alt_names = names | set(extra_names)
                 alt_shows = shows_for_names(config, alt_names)
                 extra_shows = alt_shows - includes

@@ -723,7 +723,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1780871470530
+        "settingsSyncVersion": 1783800673595
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

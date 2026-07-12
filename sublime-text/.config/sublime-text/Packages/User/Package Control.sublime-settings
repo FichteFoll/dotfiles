@@ -37,6 +37,7 @@
 		"LaTeXTools",
 		"LSP",
 		"LSP-basedpyright",
+		"LSP-file-watcher-rust",
 		"LSP-ruff",
 		"LSP-rust-analyzer",
 		"MarkdownPreview",

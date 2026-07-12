@@ -45,8 +45,8 @@
 
 	; Sublime Merge integrations
 	spawn = !systemd-run --user --
-	terminal = !systemd-run --user alacritty --working-directory "$(pwd)"
-	rebase-terminal = "!f() { systemd-run --user alacritty --working-directory "$(pwd)" --hold -e "$SHELL" -c "git rebase -i $1"; }; f"
+	terminal = !git spawn alacritty --working-directory "$(pwd)"
+	rebase-terminal = "!f() { git terminal --hold -e "$SHELL" -c "git rebase -i $1"; }; f"
 	gh = !gh
 
 [branch]

@@ -100,6 +100,7 @@ def shows_for_names(config: Config, names: set[str]) -> set[str]:
 
 def trackma2syncplay(includes, excludes, syncplay_args):
     cmd = [
+        "uv", "run",
         "python",
         str(t2s_path),
         *(["--exclude", "|".join(excludes)] if excludes else []),
@@ -107,7 +108,7 @@ def trackma2syncplay(includes, excludes, syncplay_args):
         *syncplay_args,
     ]
     print("Launching trackma2syncplay…\n")
-    subprocess.run(cmd)
+    subprocess.run(cmd, cwd="/home/fichte/code/trackma", check=True)
     return 0
 
 

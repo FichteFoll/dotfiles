@@ -15,7 +15,12 @@ alias hx='helix'
 alias jest='npx jest -w 50%' # don't use 100% of cores
 
 alias t2s='python ~/tools/trackma2syncplay/t2s'
-alias t2si="python ~/tools/trackma2syncplay/trackma2syncplay.py --include"
+function t2si() {
+    (
+        cd ~/code/trackma
+        uv run python ~/tools/trackma2syncplay/trackma2syncplay.py --include "$@"
+    )
+}
 
 # atop with a focus on memory usage analysis
 # -l: reduzed header size

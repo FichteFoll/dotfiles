@@ -53,7 +53,7 @@ fi
 STATUS1="$DIR"
 [ -n "$BRANCH" ] && STATUS1="$STATUS1:${CYAN}${BRANCH}${RESET}"
 STATUS2="$(color_model "$MODEL")"
-[ -n "$EFFORT" ] && STATUS2="$STATUS2 | effort: $EFFORT"
+[ -n "$EFFORT" ] && [ "$EFFORT" != "medium" ] && STATUS2="$STATUS2 | effort: $EFFORT"
 STATUS2="$STATUS2 | ctx: ${CTX_TOTAL:-ERR} (${CTX_PCT:-0%})"
 STATUS2="$STATUS2 | 5h:$(color_pct "$SESSION_PCT") 7d:$(color_pct "$WEEK_PCT")"
 if [ -n "${SANDBOX_HOME_CTX:-}" ]; then

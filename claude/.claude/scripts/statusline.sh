@@ -50,7 +50,13 @@ if git -C "$DIR" rev-parse --git-dir > /dev/null 2>&1; then
     BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
 fi
 
-STATUS1="$DIR"
+DIR_FMT="$DIR"
+if [[ "$DIR" == *"/.claude/worktrees/"* ]]; then
+    prefix="${DIR%/.claude/worktrees/*}"
+    worktree="${DIR#*/.claude/worktrees/}"
+    DIR_FMT="${prefix}/${YELLOW}.claude/worktrees/${worktree}${RESET}"
+fi
+STATUS1="$DIR_FMT"
 [ -n "$BRANCH" ] && STATUS1="$STATUS1:${CYAN}${BRANCH}${RESET}"
 STATUS2="$(color_model "$MODEL")"
 [ -n "$EFFORT" ] && [ "$EFFORT" != "medium" ] && STATUS2="$STATUS2 | effort: $EFFORT"

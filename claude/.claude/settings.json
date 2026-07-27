@@ -3,6 +3,7 @@
   "permissions": {
     "defaultMode": "default"
   },
+  "model": "opus[1m]",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -47,10 +48,6 @@
   "worktree": {
     "baseRef": "head"
   },
-  "spinnerVerbs": {
-    "mode": "replace",
-    "verbs": ["Working"]
-  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/statusline.sh",
@@ -62,6 +59,12 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true
   },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Working"
+    ]
+  },
   "effortLevel": "medium",
   "awaySummaryEnabled": false,
   "prefersReducedMotion": false,
@@ -70,6 +73,5 @@
   "editorMode": "normal",
   "preferredNotifChannel": "terminal_bell",
   "autoCompactEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "model": "sonnet"
+  "skipAutoPermissionPrompt": true
 }

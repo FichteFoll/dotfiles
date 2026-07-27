@@ -1,8 +1,11 @@
 #!/bin/bash
 
-CYAN='\033[36m'
-YELLOW='\033[33m'
 RED='\033[31m'
+GREEN='\033[32m'
+YELLOW='\033[33m'
+BLUE='\033[34m'
+MAGENTA='\033[35m'
+CYAN='\033[36m'
 RESET='\033[0m'
 
 # Formats a usage percentage, colored yellow above 50% and red above 75%.
@@ -16,6 +19,20 @@ color_pct() {
         color="$YELLOW"
     fi
     [ -n "$color" ] && printf '%b%s%%%b' "$color" "$pct" "$RESET" || printf '%s%%' "$pct"
+}
+
+# Colors the model name by family: Opus=magenta (top tier),
+# Sonnet=blue (mid), Haiku=green (fast/cheap), Fable=red, else uncolored.
+color_model() {
+    local model="$1"
+    local color=""
+    case "$model" in
+        *Opus*)   color="$MAGENTA" ;;
+        *Sonnet*) color="$BLUE" ;;
+        *Haiku*)  color="$GREEN" ;;
+        *Fable*)  color="$RED" ;;
+    esac
+    [ -n "$color" ] && printf '%b%s%b' "$color" "$model" "$RESET" || printf '%s' "$model"
 }
 
 read -r input
@@ -35,7 +52,7 @@ fi
 
 STATUS1="$DIR"
 [ -n "$BRANCH" ] && STATUS1="$STATUS1:${CYAN}${BRANCH}${RESET}"
-STATUS2="$MODEL"
+STATUS2="$(color_model "$MODEL")"
 [ -n "$EFFORT" ] && STATUS2="$STATUS2 | effort: $EFFORT"
 STATUS2="$STATUS2 | ctx: ${CTX_TOTAL:-ERR} (${CTX_PCT:-0%})"
 STATUS2="$STATUS2 | 5h:$(color_pct "$SESSION_PCT") 7d:$(color_pct "$WEEK_PCT")"

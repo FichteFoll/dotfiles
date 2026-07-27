@@ -8,15 +8,19 @@ MAGENTA='\033[35m'
 CYAN='\033[36m'
 RESET='\033[0m'
 
+# Semantic aliases
+WARNING="$YELLOW"
+DANGER="$RED"
+
 # Formats a usage percentage, colored yellow above 50% and red above 75%.
 color_pct() {
     local pct="$1"
     [ -z "$pct" ] && { printf '?'; return; }
     local color=""
     if [ "$pct" -gt 75 ]; then
-        color="$RED"
+        color="$DANGER"
     elif [ "$pct" -gt 50 ]; then
-        color="$YELLOW"
+        color="$WARNING"
     fi
     [ -n "$color" ] && printf '%b%s%%%b' "$color" "$pct" "$RESET" || printf '%s%%' "$pct"
 }
@@ -54,7 +58,7 @@ DIR_FMT="$DIR"
 if [[ "$DIR" == *"/.claude/worktrees/"* ]]; then
     prefix="${DIR%/.claude/worktrees/*}"
     worktree="${DIR#*/.claude/worktrees/}"
-    DIR_FMT="${prefix}/${YELLOW}.claude/worktrees/${worktree}${RESET}"
+    DIR_FMT="${prefix}/${WARNING}.claude/worktrees/${worktree}${RESET}"
 fi
 STATUS1="$DIR_FMT"
 [ -n "$BRANCH" ] && STATUS1="$STATUS1:${CYAN}${BRANCH}${RESET}"
@@ -65,7 +69,7 @@ STATUS2="$STATUS2 | 5h:$(color_pct "$SESSION_PCT") 7d:$(color_pct "$WEEK_PCT")"
 if [ -n "${SANDBOX_HOME_CTX:-}" ]; then
     STATUS2="$STATUS2 | sandbox: $SANDBOX_HOME_CTX"
 else
-    STATUS2="$STATUS2 | ${RED}host${RESET}"
+    STATUS2="$STATUS2 | ${DANGER}host${RESET}"
 fi
 STATUS2="[ $STATUS2 ]"
 

@@ -2,6 +2,7 @@
 # - alacritty(5)
 # - https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
 #:schema https://github.com/distinction-dev/alacritty-schema/raw/refs/heads/main/alacritty/reference.json
+#:tombi toml-version = "v1.1.0"
 
 [font]
 # * https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration

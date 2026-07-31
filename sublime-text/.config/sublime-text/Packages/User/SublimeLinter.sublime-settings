@@ -92,6 +92,7 @@
             ],
         },
         "flake8": {
+            "enabled": false,
             "args": [
                 "--max-line-length=119",
                 // E201     whitespace after ‘(‘
@@ -132,6 +133,7 @@
             "selector": "source.yaml - source.yaml.go"
         },
         "mypy": {
+            "enabled": false,
             "args": ["--ignore-missing-imports"],
             "annotation": "{linter}:{code}",
         },

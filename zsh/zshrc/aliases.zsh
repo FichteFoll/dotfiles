@@ -269,15 +269,18 @@ cu () {
 
 cu2 () {
     # like cu but include updates for VCS packages
-    checkupdates
-    echo ''
+    checkupdates --nocolor | colorize-pkgver
+    printf '\n---------------------------\n\n'
 
     # https://github.com/AladW/aurutils/issues/299#issuecomment-366807331
     # until a "native" flag is added: https://github.com/AladW/aurutils/pull/283
+    echo "checking for updates of '-devel' packages currently does not work"
+    return
+    # TODO make it work
     local vcs_info
     mktemp | read -r vcs_info
     aur srcver ~/.cache/aurutils/sync/*-git > "$vcs_info"
-    aur vercmp -d aur -p "$vcs_info"
+    aur vercmp -d aur -p "$vcs_info" | colorize-pkgver
     rm "$vcs_info"
 }
 

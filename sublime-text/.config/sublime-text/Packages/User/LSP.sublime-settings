@@ -16,7 +16,8 @@
 		"pyproject": {
 			// Requires https://github.com/terror/pyproject
 			// (`cargo install pyproject`).
-			"enabled": true,
+			// tombi seems to provide a better experience nowadays.
+			"enabled": false,
 			"command": ["pyproject", "server"],
 			// Custom syntax to restrict the LSP to only `pyproject.toml` files.
 			"selector": "source.toml.pyproject",
@@ -27,7 +28,8 @@
 			"enabled": true,
 			"command": ["tombi", "lsp"],
 			// We have a separate LS for pyproject files.
-			"selector": "source.toml - source.toml.pyproject",
+			// "selector": "source.toml - source.toml.pyproject",
+			"selector": "source.toml",
 		},
 	},
 	"diagnostics_highlight_style": "box",

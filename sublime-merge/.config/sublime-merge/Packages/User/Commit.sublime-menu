@@ -37,7 +37,7 @@
             {
                 "caption": "Sign Unsigned Commits from $short_commit…",
                 "command": "git",
-                "args": {"argv": ["rebase", "-i", "--exec", "git commit --amend --no-edit -S", "$commit~1"]},
+                "args": {"argv": ["-c", "sequence.editor=:", "rebase", "--exec", "git commit --amend --no-edit -S", "$commit~1"]},
             },
         ],
     },

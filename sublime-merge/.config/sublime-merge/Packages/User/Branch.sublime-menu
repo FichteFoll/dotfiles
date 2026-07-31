@@ -1,0 +1,27 @@
+[
+    {
+        "caption": "Sync branch with upstream (fast-forward only)",
+        "command": "git",
+        "args": {"argv": ["ff-branch", "$branch"]}
+    },
+    {
+        "caption": "Push branch to origin",
+        "children": [
+            {
+                "caption": "Push",
+                "command": "git",
+                "args": {"argv": ["push", "origin", "$branch"]}
+            },
+            {
+                "caption": "Push --no-verify",
+                "command": "git",
+                "args": {"argv": ["push", "--no-verify", "origin", "$branch"]}
+            },
+            {
+                "caption": "Push --no-verify --force-with-lease",
+                "command": "git",
+                "args": {"argv": ["push", "--no-verify", "--force-with-lease", "origin", "$branch"]}
+            }
+        ]
+    }
+]

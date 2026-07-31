@@ -48,6 +48,8 @@
 	terminal = !git spawn alacritty --working-directory "$(pwd)"
 	rebase-terminal = "!f() { git terminal --hold -e "$SHELL" -c "git rebase -i $1"; }; f"
 	gh = !gh
+	; Fast-forward a not-checked-out branch to its configured upstream
+	ff-branch = "!f() { u=$(git rev-parse --abbrev-ref --symbolic-full-name \"$1@{upstream}\") || exit 1; git fetch \"${u%%/*}\" \"${u#*/}:$1\"; }; f"
 
 [branch]
 	autosetuprebase = always

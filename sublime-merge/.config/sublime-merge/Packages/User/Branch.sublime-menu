@@ -1,11 +1,11 @@
 [
     {
-        "caption": "Sync branch with upstream (fast-forward only)",
+        "caption": "Sync '$branch' with upstream (ff only)",
         "command": "git",
         "args": {"argv": ["ff-branch", "$branch"]}
     },
     {
-        "caption": "Push branch to origin",
+        "caption": "Push '$branch' to origin",
         "children": [
             {
                 "caption": "Push",

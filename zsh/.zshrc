@@ -64,5 +64,9 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 # UV cannot hardlink because it crosses btrfs sub-volumes.
 export UV_LINK_MODE=copy
 
+# .claude.json moved into ~/.claude so the podman sandbox can ro-bind
+# the whole config dir in one piece (see safe_claude.py NAMED_DIRS).
+export CLAUDE_CONFIG_DIR="$HOME/.claude"
+
 # Load file with confidential information
 [[ -e $HOME/.zshrc-private ]] && source ~/.zshrc-private

@@ -101,7 +101,7 @@ variable
     \- variable.other
     \- variable.function
     \- variable.annotation
-    \- variable.namespace
+    \- variable.namespace,
 string variable {
     @name "Variable";
     foreground: #3399CC;

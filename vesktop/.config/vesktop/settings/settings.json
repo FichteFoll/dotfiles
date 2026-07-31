@@ -165,9 +165,6 @@
         "KeepCurrentChannel": {
             "enabled": false
         },
-        "LastFMRichPresence": {
-            "enabled": false
-        },
         "LoadingQuotes": {
             "enabled": false
         },
@@ -711,6 +708,25 @@
         },
         "NoMiddleClickPaste": {
             "enabled": false
+        },
+        "MusicRichPresence": {
+            "enabled": false,
+            "scrobblerBackend": "listenbrainz",
+            "shareUsername": true,
+            "clickableLinks": true,
+            "hideWithSpotify": true,
+            "hideWithActivity": true,
+            "statusName": "{title} by {artist}",
+            "statusDisplayType": "artist",
+            "nameFormat": "status-name",
+            "useListeningStatus": true,
+            "missingArt": "logo",
+            "showLogo": false,
+            "showAlbumCover": true,
+            "username": "FichteFoll"
+        },
+        "TenorGifSearch": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -723,7 +739,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1783800673595
+        "settingsSyncVersion": 1785174876538
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

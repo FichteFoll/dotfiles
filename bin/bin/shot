@@ -10,16 +10,17 @@ or copying the path.
 """
 
 import argparse
-from functools import reduce
-from pathlib import Path
-from subprocess import CalledProcessError, Popen, check_output, run
 import sys
 import tempfile
 import time
+from functools import reduce
+from pathlib import Path
+from subprocess import CalledProcessError, Popen, check_output, run
 
 TOOL_NAME = "shot"
 TEMPLATE = "/data/Images/Screenshots/%Y-%m-%d_%H-%M-%S.png"
-UPLOAD_URL = "https://0x0.st/"
+# UPLOAD_URL = "https://0x0.st/"
+UPLOAD_URL = "https://x0.at/"
 
 # TODO convert to jpeg/webp
 MESG = """\

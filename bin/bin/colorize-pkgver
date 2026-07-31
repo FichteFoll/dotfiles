@@ -24,13 +24,40 @@ RED = "\033[31m"
 GREEN = "\033[32m"
 
 TOKEN_RE = re.compile(r"(\d+|[A-Za-z]+|[^A-Za-z\d]+)")
+EPOCH_RE = re.compile(r"^(\d+:)")
 
 
 def tokenize(version: str) -> list[str]:
     return TOKEN_RE.findall(version)
 
 
+def split_epoch(version: str) -> tuple[str, str]:
+    match = EPOCH_RE.match(version)
+    if not match:
+        return "", version
+    epoch_str = match.group(1)
+    return epoch_str, version[len(epoch_str):]
+
+
+def epoch_value(epoch_str: str) -> int:
+    return int(epoch_str[:-1]) if epoch_str else 0
+
+
 def colorize_versions(old: str, new: str) -> tuple[str, str]:
+    old_epoch, old_rest = split_epoch(old)
+    new_epoch, new_rest = split_epoch(new)
+
+    if epoch_value(old_epoch) != epoch_value(new_epoch):
+        return (
+            f"{RED}{old_epoch}{RESET}{old_rest}",
+            f"{GREEN}{new_epoch}{RESET}{new_rest}",
+        )
+
+    old_out, new_out = colorize_version_tokens(old_rest, new_rest)
+    return old_epoch + old_out, new_epoch + new_out
+
+
+def colorize_version_tokens(old: str, new: str) -> tuple[str, str]:
     old_tokens = tokenize(old)
     new_tokens = tokenize(new)
 

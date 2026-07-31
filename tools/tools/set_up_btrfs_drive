@@ -68,6 +68,7 @@ prepare_user() {
         mkdir -p .local/share
         pushd .local/share
         btrfs subvolume create Zeal
+        btrfs subvolume create containers
         btrfs subvolume create docker
         btrfs subvolume create jvm
         btrfs subvolume create pipx

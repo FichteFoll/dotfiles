@@ -125,11 +125,11 @@ def main() -> int:
 
     for parsed, original in matches:
         if parsed is None:
-            sys.stdout.write(original + "\n")
+            print(original)
             continue
 
         pkg, old, new = parsed
-        sys.stdout.write(format_entry(pkg, old, new, pkg_width, old_width) + "\n")
+        print(format_entry(pkg, old, new, pkg_width, old_width))
     return 0
 
 

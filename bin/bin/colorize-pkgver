@@ -6,14 +6,14 @@ Reads lines like `pkg old -> new`,
 detects the first differing version segment,
 and highlights that segment red in the old version
 and green in the new version,
-splitting it over two lines to make it more obvious.
+printing all entries as an aligned single-line table.
 
 Example:
 
-    updated-package 0.3.6-1
-                    0.5.0-1
+    updated-package     0.3.6-1 -> 0.5.0-1
+    foo                 1.2-1   -> 1.3-1
 
-with `3` in red and `5` in green.
+with `3`/`2` in red and `5`/`3` in green.
 """
 
 import re
@@ -97,9 +97,11 @@ def colorize_version_tokens(old: str, new: str) -> tuple[str, str]:
 LINE_RE = re.compile(r"^(?P<pkg>.+?)\s+(?P<old>.+?)\s+->\s+(?P<new>.+?)\s*$")
 
 
-def format_entry(pkg: str, old: str, new: str, width: int) -> str:
+def format_entry(pkg: str, old: str, new: str, pkg_width: int, old_width: int) -> str:
     old_colored, new_colored = colorize_versions(old, new)
-    return f"{pkg} {old_colored}\n{' ' * max(width + 1, 0)}{new_colored}"
+    pkg_padding = " " * (pkg_width - len(pkg))
+    old_padding = " " * (old_width - len(old))
+    return f"{pkg}{pkg_padding} {old_colored}{old_padding} -> {new_colored}"
 
 
 def main() -> int:
@@ -117,13 +119,17 @@ def main() -> int:
         new = match.group("new")
         matches.append(((pkg, old, new), line))
 
+    parsed_entries = [parsed for parsed, _ in matches if parsed is not None]
+    pkg_width = max((len(pkg) for pkg, _, _ in parsed_entries), default=0)
+    old_width = max((len(old) for _, old, _ in parsed_entries), default=0)
+
     for parsed, original in matches:
         if parsed is None:
             sys.stdout.write(original + "\n")
             continue
 
         pkg, old, new = parsed
-        sys.stdout.write(format_entry(pkg, old, new, len(pkg)) + "\n")
+        sys.stdout.write(format_entry(pkg, old, new, pkg_width, old_width) + "\n")
     return 0
 
 

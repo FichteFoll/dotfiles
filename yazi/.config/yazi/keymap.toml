@@ -17,17 +17,13 @@ on = [ "u", "q" ]
 run = "plugin close-and-restore-tab restore"
 desc = "Restore the closed tab"
 
+[[mgr.prepend_keymap]]
+# Bound to c, d by default, which we override
+on = [ "c", "D" ]
+run = "copy dirname"
+desc = "Copy directory URL"
+
 # Movement
-[[mgr.prepend_keymap]]
-on = [ "[" ]
-run = "plugin goto-sibling -- prev"
-desc = "Go to the previous sibling folder"
-
-[[mgr.prepend_keymap]]
-on = [ "]" ]
-run = "plugin goto-sibling -- next"
-desc = "Go to the next sibling folder"
-
 [[mgr.prepend_keymap]]
 on = "<Home>"
 run = "arrow top"
@@ -53,6 +49,22 @@ on   = "<Right>"
 run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
+## Navigation
+[[mgr.prepend_keymap]]
+on = [ "[" ]
+run = "plugin goto-sibling -- prev"
+desc = "Go to the previous sibling folder"
+
+[[mgr.prepend_keymap]]
+on = [ "]" ]
+run = "plugin goto-sibling -- next"
+desc = "Go to the next sibling folder"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "d" ]
+run = "cd --interactive"
+desc = "Jump interactively"
+
 # Shell
 [[mgr.prepend_keymap]]
 on = "$"
@@ -60,9 +72,10 @@ run = "shell '; read' --interactive --block --cursor=0"
 desc = "Run a shell command (block)"
 
 [[mgr.prepend_keymap]]
-on = "!"
-run = "shell --interactive"
-desc = "Run a shell command"
+on   = "!"
+for  = "unix"
+run  = 'shell "$SHELL" --block'
+desc = "Open $SHELL here"
 
 # New functionality (usually plugins)
 [[mgr.prepend_keymap]]

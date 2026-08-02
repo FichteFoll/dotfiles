@@ -106,7 +106,7 @@ def format_entry(pkg: str, old: str, new: str, pkg_width: int, old_width: int) -
 
 def main() -> int:
     lines = [line.rstrip("\n") for line in sys.stdin]
-    matches = []
+    matches: list[tuple[tuple[str, str, str] | None, str]] = []
 
     for line in lines:
         match = LINE_RE.match(line)

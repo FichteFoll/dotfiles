@@ -4,4 +4,10 @@
 		80
 	],
     "draw_white_space": "all",
+    // Open the filename completions from markdown_path_completions.py
+    // right after typing `@` or a path separator.
+    "auto_complete_triggers":
+    [
+        {"selector": "text.html.markdown", "characters": "@/"},
+    ],
 }

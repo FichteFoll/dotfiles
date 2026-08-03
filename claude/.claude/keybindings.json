@@ -43,6 +43,8 @@
       "context": "Autocomplete",
       "bindings": {
         "tab": "autocomplete:accept",
+        "enter": "autocomplete:accept",
+        "ctrl+enter": "autocomplete:accept",
         "escape": "autocomplete:dismiss",
         "up": "autocomplete:previous",
         "down": "autocomplete:next"

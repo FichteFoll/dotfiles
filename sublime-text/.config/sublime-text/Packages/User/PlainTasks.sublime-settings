@@ -8,6 +8,8 @@
     "color_scheme": "Packages/Theme - Nil/Tubnil_mod.tmTheme",
     // "color_scheme": "Packages/PlainTasks/tasks-monokai.hidden-tmTheme",
     "line_numbers": true,
-    "line_numbers": true,
     "draw_indent_guides": true,
+    "done_tasks_bullet": "✔",
+    "cancelled_tasks_bullet": "✘",
+    "stats_format": "$n/$a done ($percent%), last: @done$last",
 }

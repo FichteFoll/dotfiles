@@ -209,7 +209,13 @@ bind2maps emacs viins       -- -s "\e[[C"   emacs-forward-word
 bind2maps emacs viins       -- -s "\C-H"    slash-backward-kill-word # backward-delete-word
 bind2maps emacs viins       -- -s "\CW"     slash-backward-kill-word # backward-delete-word
 bind2maps emacs viins       -- -s "\e[3;5~" delete-word # <C-Delete>
-bind2maps emacs viins       -- -s "\eOM"    accept-line # <Enter>
+bind2maps emacs viins       -- -s "\eOM"    accept-line # <KP_Enter>
+# <C-Enter> and <S-Enter> as configured for Claude Code
+# (see alacritty/keybindings.toml)
+bind2maps emacs viins vicmd -- -s "\e[13;5u" accept-line
+# Redundant with the emacs defaults, which already bind ^[^M to
+# self-insert-unmeta, but explicit and keymap-independent.
+bind2maps emacs viins       -- -s "\e\r"    self-insert-unmeta
 
 # <A-v> insert ???
 # bind2maps emacs viins       -- -s "\ev"     quoted-insert

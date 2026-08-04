@@ -55,11 +55,14 @@ if git -C "$DIR" rev-parse --git-dir > /dev/null 2>&1; then
 fi
 
 DIR_FMT="$DIR"
-if [[ "$DIR" == *"/.claude/worktrees/"* ]]; then
-    prefix="${DIR%/.claude/worktrees/*}"
-    worktree="${DIR#*/.claude/worktrees/}"
-    DIR_FMT="${prefix}/${WARNING}.claude/worktrees/${worktree}${RESET}"
-fi
+for marker in ".claude/worktrees" ".worktrees"; do
+    if [[ "$DIR" == *"/$marker/"* ]]; then
+        prefix="${DIR%/$marker/*}"
+        worktree="${DIR#*/$marker/}"
+        DIR_FMT="${prefix}/${WARNING}${marker}/${worktree}${RESET}"
+        break
+    fi
+done
 STATUS1="$DIR_FMT"
 [ -n "$BRANCH" ] && STATUS1="$STATUS1:${CYAN}${BRANCH}${RESET}"
 STATUS2="$(color_model "$MODEL")"

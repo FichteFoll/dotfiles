@@ -39,7 +39,10 @@ color_model() {
     [ -n "$color" ] && printf '%b%s%b' "$color" "$model" "$RESET" || printf '%s' "$model"
 }
 
-read -r input
+# A hung invocation is not killed by Claude Code for 10 minutes (the default
+# hook timeout) while a new one is spawned on every refresh, so never block
+# indefinitely on stdin or on git.
+read -r -t 5 input
 
 DIR=$(jq -r '.workspace.current_dir' <<< "$input")
 MODEL=$(jq -r '.model.display_name' <<< "$input")
@@ -50,8 +53,8 @@ SESSION_PCT=$(jq -r '.rate_limits.five_hour.used_percentage | round | tostring' 
 WEEK_PCT=$(jq -r '.rate_limits.seven_day.used_percentage | round | tostring' <<< "$input" 2>/dev/null)
 
 BRANCH=""
-if git -C "$DIR" rev-parse --git-dir > /dev/null 2>&1; then
-    BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
+if timeout 2 git -C "$DIR" rev-parse --git-dir > /dev/null 2>&1; then
+    BRANCH=$(timeout 2 git -C "$DIR" branch --show-current 2>/dev/null)
 fi
 
 DIR_FMT="$DIR"

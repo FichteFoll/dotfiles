@@ -17,20 +17,11 @@
     ],
     "Notification": [
       {
-        "matcher": "permission_prompt",
+        "matcher": "permission_prompt|idle_prompt",
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r .message | xargs -I{} sh -c \"notify-send --urgency=critical 'Claude Code' '{}' && paplay ~/.claude/sounds/notify.flac\""
-          }
-        ]
-      },
-      {
-        "matcher": "idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "notify-send 'Claude Code' 'Session finished' && paplay ~/.claude/sounds/notify.flac"
+            "command": "~/.claude/scripts/notify.sh"
           }
         ]
       },
@@ -71,7 +62,7 @@
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "editorMode": "normal",
-  "preferredNotifChannel": "terminal_bell",
+  "preferredNotifChannel": "notifications_disabled",
   "autoCompactEnabled": true,
   "skipAutoPermissionPrompt": true
 }

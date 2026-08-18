@@ -8,6 +8,6 @@
     // right after typing `@` or a path separator.
     "auto_complete_triggers":
     [
-        {"selector": "text.html.markdown", "characters": "@/"},
+        {"selector": "text.html.markdown - markup.raw - markup.heading", "characters": "@"},
     ],
 }

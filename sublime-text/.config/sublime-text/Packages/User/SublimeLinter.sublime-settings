@@ -130,7 +130,7 @@
             "selector": "source.lua - source.lua.embedding punctuation.section.interpolation"
         },
         "yamllint": {
-            "selector": "source.yaml - source.yaml.go"
+            "selector": "source.yaml - source.yaml.go - source.yaml.helm"
         },
         "mypy": {
             "enabled": false,

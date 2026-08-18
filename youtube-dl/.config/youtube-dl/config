@@ -4,3 +4,4 @@
 --no-mtime
 --netrc
 --embed-chapters
+--cookies-from-browser=firefox

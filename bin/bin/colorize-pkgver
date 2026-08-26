@@ -14,21 +14,97 @@ Example:
     foo                 1.2-1   -> 1.3-1
 
 with `3`/`2` in red and `5`/`3` in green.
+
+Date-based versions (datever/calver) are highlighted yellow on both sides instead,
+because which date component moved carries no information.
 """
 
+import fnmatch
 import re
 import sys
+from datetime import date
 
 RESET = "\033[0m"
 RED = "\033[31m"
 GREEN = "\033[32m"
+YELLOW = "\033[33m"
 
 TOKEN_RE = re.compile(r"(\d+|[A-Za-z]+|[^A-Za-z\d]+)")
 EPOCH_RE = re.compile(r"^(\d+:)")
 
+# Packages whose versions are dates in a shape that cannot be told apart
+# from an ordinary version number, such as yazi's `YY.M.D`.
+# `fnmatch` patterns are allowed.
+DATEVER_PACKAGE_PATTERNS = (
+    "yazi*",
+)
+
+# A trailing time or daily counter, e.g. `20260826.113000` or `2026.08.26.3`.
+DATEVER_SUFFIX = r"(?:[.\-_+].*)?"
+# Unambiguous shapes: a four digit year followed by two digit month and day.
+COMPACT_DATEVER_RE = re.compile(rf"^(\d{{4}})(\d{{2}})(\d{{2}}){DATEVER_SUFFIX}$")
+SEPARATED_DATEVER_RE = re.compile(
+    rf"^(\d{{4}})([.\-_])(\d{{2}})\2(\d{{2}}){DATEVER_SUFFIX}$"
+)
+# Ambiguous shape, only trusted for curated packages:
+# a two or four digit year with unpadded month and day.
+LOOSE_DATEVER_RE = re.compile(
+    rf"^(\d{{2,4}})([.\-_])(\d{{1,2}})\2(\d{{1,2}}){DATEVER_SUFFIX}$"
+)
+EARLIEST_DATEVER_YEAR = 1990
+
 
 def tokenize(version: str) -> list[str]:
     return TOKEN_RE.findall(version)
+
+
+def is_datever_package(pkg: str) -> bool:
+    # Some frontends prefix the repository, as in `aur/yazi`.
+    name = pkg.rpartition("/")[2]
+    return any(
+        fnmatch.fnmatchcase(name, pattern) for pattern in DATEVER_PACKAGE_PATTERNS
+    )
+
+
+def is_datever(pkgver: str, allow_ambiguous: bool) -> bool:
+    match = COMPACT_DATEVER_RE.match(pkgver)
+    if match:
+        year, month, day = match.group(1, 2, 3)
+        return is_plausible_date(year, month, day)
+
+    match = SEPARATED_DATEVER_RE.match(pkgver)
+    if match:
+        year, month, day = match.group(1, 3, 4)
+        return is_plausible_date(year, month, day)
+
+    if not allow_ambiguous:
+        return False
+
+    match = LOOSE_DATEVER_RE.match(pkgver)
+    if match:
+        year, month, day = match.group(1, 3, 4)
+        return is_plausible_date(year, month, day, allow_two_digit_year=True)
+
+    return False
+
+
+def is_plausible_date(
+    year: str, month: str, day: str, allow_two_digit_year: bool = False
+) -> bool:
+    if not 1 <= int(month) <= 12:
+        return False
+    if not 1 <= int(day) <= 31:
+        return False
+    if len(year) == 4:
+        return EARLIEST_DATEVER_YEAR <= int(year) <= date.today().year + 1
+    return allow_two_digit_year
+
+
+def is_datever_bump(pkg: str, old_pkgver: str, new_pkgver: str) -> bool:
+    allow_ambiguous = is_datever_package(pkg)
+    return is_datever(old_pkgver, allow_ambiguous) and is_datever(
+        new_pkgver, allow_ambiguous
+    )
 
 
 def split_epoch(version: str) -> tuple[str, str]:
@@ -43,7 +119,15 @@ def epoch_value(epoch_str: str) -> int:
     return int(epoch_str[:-1]) if epoch_str else 0
 
 
-def colorize_versions(old: str, new: str) -> tuple[str, str]:
+def split_pkgrel(version: str) -> tuple[str, str]:
+    """Split `pkgver-pkgrel` into its parts; a pkgver never contains a hyphen."""
+    pkgver, _, pkgrel = version.rpartition("-")
+    if not pkgver:
+        return version, ""
+    return pkgver, f"-{pkgrel}"
+
+
+def colorize_versions(pkg: str, old: str, new: str) -> tuple[str, str]:
     old_epoch, old_rest = split_epoch(old)
     new_epoch, new_rest = split_epoch(new)
 
@@ -51,6 +135,17 @@ def colorize_versions(old: str, new: str) -> tuple[str, str]:
         return (
             f"{RED}{old_epoch}{RESET}{old_rest}",
             f"{GREEN}{new_epoch}{RESET}{new_rest}",
+        )
+
+    old_pkgver, old_pkgrel = split_pkgrel(old_rest)
+    new_pkgver, new_pkgrel = split_pkgrel(new_rest)
+
+    # A pkgrel moving along with the date carries no information either,
+    # so it stays uncolored; a pkgrel-only bump falls through to the token diff.
+    if old_pkgver != new_pkgver and is_datever_bump(pkg, old_pkgver, new_pkgver):
+        return (
+            f"{old_epoch}{YELLOW}{old_pkgver}{RESET}{old_pkgrel}",
+            f"{new_epoch}{YELLOW}{new_pkgver}{RESET}{new_pkgrel}",
         )
 
     old_out, new_out = colorize_version_tokens(old_rest, new_rest)
@@ -98,7 +193,7 @@ LINE_RE = re.compile(r"^(?P<pkg>.+?)\s+(?P<old>.+?)\s+->\s+(?P<new>.+?)\s*$")
 
 
 def format_entry(pkg: str, old: str, new: str, pkg_width: int, old_width: int) -> str:
-    old_colored, new_colored = colorize_versions(old, new)
+    old_colored, new_colored = colorize_versions(pkg, old, new)
     pkg_padding = " " * (pkg_width - len(pkg))
     old_padding = " " * (old_width - len(old))
     return f"{pkg}{pkg_padding} {old_colored}{old_padding} -> {new_colored}"

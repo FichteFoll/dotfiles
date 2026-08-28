@@ -16,7 +16,7 @@
       "context": "Chat",
       "bindings": {
         "escape": "chat:cancel",
-        "ctrl+d": "chat:clearInput",
+        "ctrl+d": "command:clear",
         "ctrl+x n": "chat:clearScreen",
         "ctrl+x ctrl+k": "chat:killAgents",
         "shift+tab": "chat:cycleMode",

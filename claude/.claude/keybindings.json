@@ -8,7 +8,6 @@
         "ctrl+t": "app:toggleTodos",
         "ctrl+o": "app:toggleTranscript",
         "ctrl+shift+b": "app:toggleBrief",
-        "ctrl+shift+o": "app:toggleTeammatePreview",
         "ctrl+r": "history:search"
       }
     },
@@ -61,19 +60,13 @@
         "ctrl+p": "select:previous",
         "ctrl+n": "select:next",
         "space": "select:accept",
-        "enter": "settings:close",
+        "enter": "select:accept",
         "/": "settings:search",
         "r": "settings:retry",
         "d": "settings:periodDay",
         "w": "settings:periodWeek",
         "t": "settings:sortByTokens",
         "ctrl+u": "scroll:halfPageUp"
-      }
-    },
-    {
-      "context": "Doctor",
-      "bindings": {
-        "f": "doctor:fix"
       }
     },
     {

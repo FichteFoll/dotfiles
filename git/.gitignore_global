@@ -19,7 +19,9 @@
 *.jar
 *.rar
 *.tar
+*.xz
 *.zip
+*.zstd
 *.sublime-package
 
 # Logs and databases #
@@ -37,17 +39,18 @@
 ehthumbs.db
 Thumbs.db
 
-# Cache directories #
+# Cache directories # (should probably be ignored per-project)
 #####################
 __pycache__/
 .mypy_cache/
 .cache/
 .ruff_cache/
 
-# Virtual Environments #
+# Virtual Environments # (should probably be ignored per-project)
 ########################
 .venv/
 venv/
+.pnpm-store/
 
 # Tool-specific files #
 #######################
@@ -55,8 +58,6 @@ venv/
 *.iml
 *.sublime-project
 *.sublime-workspace
-.java-version
-pyrightconfig.json
 **/.claude/settings.local.json
 **/.claude/worktrees/
 .worktrees/

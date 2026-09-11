@@ -239,6 +239,7 @@ bindsym $mod+F1 exec --no-startup-id set-default-sink speakers
 bindsym $mod+F2 exec --no-startup-id set-default-sink headphones
 bindsym $mod+F3 exec --no-startup-id set-default-sink hdmi
 bindsym $mod+F4 exec --no-startup-id set-default-sink bt
+bindsym $mod+F5 exec --no-startup-id set-default-sink airplay
 
 # media keys for mpris-aware media players
 bindsym XF86AudioPlay exec --no-startup-id mpris-rofi playpause

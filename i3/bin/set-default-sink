@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# usage: set-default-sink [{speakers,headphones,hdmi}]
+# usage: set-default-sink [{speakers,headphones,hdmi,bt,airplay}]
 #
 # Set the default sink (for PipeWire) using `pactl`,
 # using a set of pre-defined conditions
@@ -69,6 +69,8 @@ FILTERS: dict[str, Callable[[Sink], bool]] = {
     ),
     'hdmi': is_available_hdmi_sink,
     'bt': is_bt_sink,
+    # RAOP sinks are created by PipeWire's module-raop-discover per AirPlay device.
+    'airplay': partial(is_sink_name_matching_regex, regex=r'raop_sink\.'),
 }
 
 

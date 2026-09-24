@@ -422,7 +422,9 @@
             "enabled": false
         },
         "WebKeybinds": {
-            "enabled": true
+            "enabled": true,
+            "showNavigationButtons": true,
+            "overrideCommonKeybinds": true
         },
         "CopyUserURLs": {
             "enabled": false
@@ -727,6 +729,9 @@
         },
         "TenorGifSearch": {
             "enabled": false
+        },
+        "AddAttachments": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -739,7 +744,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1785174876538
+        "settingsSyncVersion": 1790192363207
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"

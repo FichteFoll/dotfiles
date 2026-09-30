@@ -1,0 +1,15 @@
+[Unit]
+Description=bgutil yt-dlp PO token provider
+Requires=docker.service
+After=docker.service
+
+[Service]
+Environment=DOCKER_HOST=unix://%t/docker.sock
+ExecStartPre=-/usr/bin/docker rm -f bgutil-provider
+ExecStart=/usr/bin/docker run --rm --name bgutil-provider --init \
+    -p 127.0.0.1:4416:4416 brainicism/bgutil-ytdlp-pot-provider
+ExecStop=/usr/bin/docker stop bgutil-provider
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

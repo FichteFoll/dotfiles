@@ -1,0 +1,560 @@
+#!/usr/bin/env python3
+"""Run clamscan with a progress display and separate log files.
+
+Usage: clamscan-progress.py [OPTIONS] [PATH ...] [-- CLAMSCAN_ARGS ...]
+
+Scans / by default, excluding /proc, /sys, /dev and /run.
+Log files in the log directory:
+  scanned.log  one status line per file (OK, Empty file, Symbolic link, ...)
+  results.log  findings, per-file errors, clamscan warnings, suspend events
+               and the summaries of clamscan and of this wrapper
+  slow.log     files that took longer than --slow-threshold, slowest first
+The total for the progress bar comes from a find run in parallel to the scan.
+Rate, ETA and active time exclude periods in which the system was suspended.
+
+Do not pass -i, --quiet or --infected through to clamscan:
+the progress display relies on the per-file output of --verbose.
+
+Non-standard external executables:
+  clamscan     (package clamav)      required
+  find         (package findutils)   optional: counts the files to scan, GNU options required
+  notify-send  (package libnotify)   optional: desktop notifications
+  runuser      (package util-linux)  optional: desktop notifications when run via sudo
+"""
+
+import argparse
+import collections
+import os
+import re
+import shutil
+import signal
+import subprocess
+import sys
+import threading
+import time
+from datetime import datetime
+from pathlib import Path
+
+ROOT_EXCLUDED_DIRS = ("/proc", "/sys", "/dev", "/run")
+ROOT_EXCLUDE = "^(" + "|".join(map(re.escape, ROOT_EXCLUDED_DIRS)) + ")(/|$)"
+REFRESH_SECONDS = 0.5
+NON_TTY_INTERVAL_SECONDS = 60
+RATE_WINDOW_SECONDS = 300
+SUSPEND_THRESHOLD_SECONDS = 2
+SUMMARY_HEADER = "----------- SCAN SUMMARY -----------"
+# surrogateescape keeps non-UTF-8 file names byte-exact between clamscan and the logs.
+ENCODING = "utf-8"
+ENCODING_ERRORS = "surrogateescape"
+
+
+def fmt_duration(seconds):
+    seconds = int(seconds)
+    return f"{seconds // 3600}:{seconds % 3600 // 60:02}:{seconds % 60:02}"
+
+
+def printable(text):
+    return text.encode("utf-8", "surrogateescape").decode("utf-8", "replace")
+
+
+def truncate_left(text, width):
+    if len(text) <= width:
+        return text
+    return "..." + text[-max(width - 3, 0):]
+
+
+class ActiveClock:
+    """Seconds the system was awake since creation.
+
+    CLOCK_MONOTONIC stops during suspend, CLOCK_BOOTTIME keeps running,
+    so the growth of their difference is the time spent suspended.
+    """
+
+    def __init__(self):
+        self._start = time.monotonic()
+        self._initial_sleep = self._last_sleep = self._sleep_total()
+
+    @staticmethod
+    def _sleep_total():
+        return time.clock_gettime(time.CLOCK_BOOTTIME) - time.monotonic()
+
+    def now(self):
+        return time.monotonic() - self._start
+
+    def suspended(self):
+        return self._sleep_total() - self._initial_sleep
+
+    def poll_suspend(self):
+        """Return the length of a suspend since the last poll, or 0."""
+        current = self._sleep_total()
+        gap, self._last_sleep = current - self._last_sleep, current
+        return gap if gap >= SUSPEND_THRESHOLD_SECONDS else 0.0
+
+
+class WindowedRate:
+    """Rate over the most recent window of (time, count) samples."""
+
+    def __init__(self, window):
+        self.window = window
+        self._samples = collections.deque()
+
+    def add(self, t, count):
+        self._samples.append((t, count))
+        while len(self._samples) > 1 and self._samples[1][0] <= t - self.window:
+            self._samples.popleft()
+
+    def rate(self):
+        """Return the rate, or None until a full window has been sampled."""
+        if not self._samples:
+            return None
+        (t0, c0), (t1, c1) = self._samples[0], self._samples[-1]
+        if t1 - t0 < self.window:
+            return None
+        return (c1 - c0) / (t1 - t0)
+
+
+class Logs:
+    def __init__(self, directory):
+        directory.mkdir(parents=True, exist_ok=True)
+        self.directory = directory
+        self.scanned = self._open("scanned.log")
+        self.slow = self._open("slow.log")
+        self._results = self._open("results.log")
+        self._results_lock = threading.Lock()
+
+    def _open(self, name):
+        return open(self.directory / name, "w", buffering=1, encoding=ENCODING, errors=ENCODING_ERRORS)
+
+    def result(self, line):
+        with self._results_lock:
+            self._results.write(line + "\n")
+
+    def close(self):
+        for log in (self.scanned, self.slow, self._results):
+            log.close()
+        self._sort_slow_log()
+
+    def _sort_slow_log(self):
+        path = self.directory / "slow.log"
+        lines = path.read_text(encoding=ENCODING, errors=ENCODING_ERRORS).splitlines()
+        lines.sort(key=lambda line: float(line.split("\t", 1)[0]), reverse=True)
+        path.write_text("".join(line + "\n" for line in lines), encoding=ENCODING, errors=ENCODING_ERRORS)
+
+    def chown_to_sudo_user(self):
+        """Hand the logs to the invoking user instead of leaving them owned by root."""
+        uid, gid = os.environ.get("SUDO_UID"), os.environ.get("SUDO_GID")
+        if os.geteuid() != 0 or not uid or not gid:
+            return
+        for path in (self.directory, *self.directory.iterdir()):
+            os.chown(path, int(uid), int(gid))
+
+
+class Display:
+    """Status lines redrawn in place on a terminal, periodic plain lines otherwise."""
+
+    def __init__(self, stream=sys.stderr):
+        self.stream = stream
+        self.tty = stream.isatty()
+        self._drawn_lines = 0
+        self._last_plain = None
+        self._lock = threading.Lock()
+
+    @property
+    def width(self):
+        return shutil.get_terminal_size().columns - 1 if self.tty else 10_000
+
+    def show(self, lines, now):
+        with self._lock:
+            if self.tty:
+                self._redraw(lines)
+            elif self._last_plain is None or now - self._last_plain >= NON_TTY_INTERVAL_SECONDS:
+                print(lines[0], file=self.stream, flush=True)
+                self._last_plain = now
+
+    def message(self, text):
+        with self._lock:
+            self._clear()
+            print(text, file=self.stream, flush=True)
+
+    def clear(self):
+        with self._lock:
+            self._clear()
+
+    def _redraw(self, lines):
+        # Lines must not wrap, otherwise moving the cursor back up miscounts.
+        width = self.width
+        body = "\n".join("\x1b[K" + line[:width] for line in lines)
+        self.stream.write(self._cursor_to_top() + body)
+        self.stream.flush()
+        self._drawn_lines = len(lines)
+
+    def _clear(self):
+        if self._drawn_lines:
+            self.stream.write(self._cursor_to_top() + "\x1b[J")
+            self.stream.flush()
+            self._drawn_lines = 0
+
+    def _cursor_to_top(self):
+        up = self._drawn_lines - 1
+        return "\r" + (f"\x1b[{up}A" if up > 0 else "")
+
+
+class Notifier:
+    def __init__(self, enabled, warn):
+        self._warn = warn
+        self._command = self._base_command() if enabled else None
+
+    def _base_command(self):
+        if not shutil.which("notify-send"):
+            self._warn("notify-send not found (package libnotify), notifications disabled")
+            return None
+        notify = ["notify-send", "--app-name=clamscan"]
+        if os.geteuid() != 0:
+            return notify
+        # root has no session bus, so deliver into the bus of the user who ran sudo.
+        user, uid = os.environ.get("SUDO_USER"), os.environ.get("SUDO_UID")
+        if not user or not uid:
+            self._warn("running as root without sudo, notifications disabled")
+            return None
+        if not shutil.which("runuser"):
+            self._warn("runuser not found (package util-linux), notifications disabled")
+            return None
+        bus = f"DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/{uid}/bus"
+        return ["runuser", "-u", user, "--", "env", bus, *notify]
+
+    def send(self, summary, body, urgency="normal"):
+        if not self._command:
+            return
+        try:
+            subprocess.run(
+                [*self._command, f"--urgency={urgency}", summary, printable(body)],
+                capture_output=True, timeout=10, check=True,
+            )
+        except (OSError, subprocess.SubprocessError) as error:
+            self._warn(f"notification failed: {error}")
+
+    def send_async(self, summary, body, urgency="normal"):
+        threading.Thread(target=self.send, args=(summary, body, urgency), daemon=True).start()
+
+
+class FileCounter:
+    """Counts the files clamscan will scan with find, in a background thread.
+
+    The find expression mirrors what clamscan counts as "Scanned files":
+    regular, non-empty files readable by the current user,
+    without following symlinks, across filesystems, skipping the excluded root directories.
+    """
+
+    def __init__(self, paths, clock):
+        self.counted = 0
+        self.total = None
+        self.running = False
+        self.duration = 0.0
+        self._clock = clock
+        self._process = None
+        if not shutil.which("find"):
+            return
+        prune = [arg for directory in ROOT_EXCLUDED_DIRS for arg in ("-o", "-path", directory)][1:]
+        # One byte per file instead of the path: no parsing, and newlines in file names don't matter.
+        command = [
+            "find", *paths, "(", *prune, ")", "-prune",
+            "-o", "-type", "f", "!", "-empty", "-readable", "-printf", ".",
+        ]
+        self._process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+        self.running = True
+        threading.Thread(target=self._read, args=(self._process,), daemon=True).start()
+
+    def _read(self, process):
+        started = self._clock.now()
+        while chunk := os.read(process.stdout.fileno(), 65536):
+            self.counted += len(chunk)
+        # Exit code 1 only means some directories were unreadable; the count is still valid.
+        if process.wait() in (0, 1):
+            self.total = self.counted or None
+        self.duration = self._clock.now() - started
+        self.running = False
+
+    def stop(self):
+        if self.running and self._process:
+            self._process.terminate()
+
+
+class Scan:
+    def __init__(self, logs, clock, counter, notifier, display, slow_threshold, show_current_file):
+        self.logs = logs
+        self.clock = clock
+        self.counter = counter
+        self.notifier = notifier
+        self.display = display
+        self.slow_threshold = slow_threshold
+        self.show_current_file = show_current_file
+        self.rate = WindowedRate(RATE_WINDOW_SECONDS)
+        self.lock = threading.Lock()
+        # Counts files announced with "Scanning", which matches clamscan's "Scanned files".
+        self.scanned = 0
+        self.found_lines = []
+        self.errors = 0
+        self.warnings = 0
+        self.slow = 0
+        self.count_reported = False
+        self.first_file_at = None
+        self.current_file = None
+        self.current_since = 0.0
+        self.current_done = False
+        self._in_summary = False
+
+    def handle_stdout_line(self, line):
+        if self._in_summary or line.startswith(SUMMARY_HEADER):
+            self._in_summary = True
+            self.logs.result(line)
+            return
+        if not line:
+            return
+        now = self.clock.now()
+        if line.startswith("Scanning "):
+            self._start_file(line.removeprefix("Scanning "), now)
+            return
+        self._finish_current_file(line, now)
+        if line.endswith(" FOUND"):
+            self._record_finding(line)
+        elif line.endswith((" ERROR", ": Access denied")):
+            with self.lock:
+                self.errors += 1
+            self.logs.result(line)
+        elif ": " in line:
+            self.logs.scanned.write(line + "\n")
+        else:
+            self.logs.result(line)
+
+    def handle_stderr_line(self, line):
+        if not line:
+            return
+        with self.lock:
+            self.warnings += 1
+        self.logs.result(line)
+
+    def _start_file(self, path, now):
+        with self.lock:
+            if self.first_file_at is None:
+                self.first_file_at = now
+            self.scanned += 1
+            self.current_file = path
+            self.current_since = now
+            self.current_done = False
+
+    def _finish_current_file(self, line, now):
+        with self.lock:
+            if self.current_done or not self.current_file:
+                return
+            if not line.startswith(self.current_file + ": "):
+                return
+            self.current_done = True
+            duration = now - self.current_since
+            if duration < self.slow_threshold:
+                return
+            self.slow += 1
+        self.logs.slow.write(f"{duration:.1f}\t{self.current_file}\n")
+
+    def _record_finding(self, line):
+        with self.lock:
+            self.found_lines.append(line)
+            is_first = len(self.found_lines) == 1
+        self.logs.result(line)
+        if is_first:
+            results = self.logs.directory / "results.log"
+            self.notifier.send_async(
+                "ClamAV: infected file found", f"{line}\n\nDetails: {results}", "critical"
+            )
+
+    def tick(self):
+        now = self.clock.now()
+        gap = self.clock.poll_suspend()
+        if gap:
+            message = f"system was suspended for {fmt_duration(gap)}, resumed at {datetime.now():%Y-%m-%d %H:%M:%S}"
+            self.logs.result(f"wrapper: {message}")
+            self.display.message(message)
+        self._report_count()
+        with self.lock:
+            if self.first_file_at is not None:
+                self.rate.add(now - self.first_file_at, self.scanned)
+            lines = self._status_lines(now, self.display.width)
+        self.display.show(lines, now)
+
+    def _report_count(self):
+        counter = self.counter
+        if self.count_reported or counter.running:
+            return
+        self.count_reported = True
+        if counter.total:
+            message = f"file count done: {counter.total:,} files in {fmt_duration(counter.duration)}"
+        else:
+            message = "file count unavailable, showing progress without percentage and ETA"
+        self.logs.result(f"wrapper: {message}")
+        self.display.message(message)
+
+    def _status_lines(self, now, width):
+        counter = self.counter
+        if self.first_file_at is None:
+            counting = f", counting files: {counter.counted:,}" if counter.running else ""
+            return [f"loading signatures ... {fmt_duration(now)}{counting}"]
+        scan_time = now - self.first_file_at
+        rate = self.rate.rate() or (self.scanned / scan_time if scan_time > 0 else 0.0)
+        parts = []
+        if counter.total:
+            total = counter.total
+            fraction = min(self.scanned / total, 0.999)
+            filled = int(fraction * 20)
+            eta = fmt_duration((total - self.scanned) / rate) if rate and total > self.scanned else "?"
+            parts += [
+                f"[{'#' * filled}{'-' * (20 - filled)}] {fraction * 100:5.1f}%",
+                f"{self.scanned:,} / {total:,}",
+            ]
+        else:
+            eta = None
+            if counter.running:
+                label = f"counting files: {counter.counted:,} so far"
+            else:
+                label = "no total"
+            parts.append(f"{self.scanned:,} files ({label})")
+        parts += [f"{rate:,.0f} files/s", f"active {fmt_duration(now)}"]
+        if eta:
+            parts.append(f"ETA {eta}")
+        parts.append(
+            f"found {len(self.found_lines)}  err {self.errors}  warn {self.warnings}  slow {self.slow}"
+        )
+        lines = ["  ".join(parts)]
+        if self.show_current_file and self.current_file:
+            if self.current_done:
+                prefix = "last: "
+            else:
+                # The reader thread may start a file after `now` was taken.
+                prefix = f"scanning ({max(now - self.current_since, 0):.0f}s): "
+            lines.append(prefix + truncate_left(printable(self.current_file), width - len(prefix)))
+        return lines
+
+    def finish(self, returncode, interrupted, wall_seconds):
+        if interrupted:
+            status = "interrupted"
+        elif returncode == 0:
+            status = "clean"
+        elif returncode == 1:
+            status = f"{len(self.found_lines)} infected file(s) found"
+        else:
+            status = f"clamscan failed with exit code {returncode}"
+        timing = (
+            f"active {fmt_duration(self.clock.now())}, wall {fmt_duration(wall_seconds)}, "
+            f"suspended {fmt_duration(self.clock.suspended())}"
+        )
+        counts = (
+            f"scanned {self.scanned:,}, found {len(self.found_lines)}, errors {self.errors}, "
+            f"warnings {self.warnings}, slow {self.slow}"
+        )
+        for line in ("", f"wrapper: {status}", f"wrapper: {counts}", f"wrapper: {timing}"):
+            self.logs.result(line)
+
+        print(f"\nScan {status}.\n{counts}\n{timing}", file=sys.stderr)
+        for line in self.found_lines[:20]:
+            print(f"  {printable(line)}", file=sys.stderr)
+        if len(self.found_lines) > 20:
+            print(f"  ... {len(self.found_lines) - 20} more in results.log", file=sys.stderr)
+        print(f"Logs: {self.logs.directory}", file=sys.stderr)
+
+        urgency = "critical" if self.found_lines or returncode not in (0, 1) else "normal"
+        self.notifier.send(f"ClamAV scan: {status}", f"{counts}\n{timing}", urgency)
+
+
+def parse_args(argv):
+    clamscan_args = []
+    if "--" in argv:
+        split = argv.index("--")
+        argv, clamscan_args = argv[:split], argv[split + 1:]
+    parser = argparse.ArgumentParser(
+        description="Run clamscan with a progress display and separate log files.",
+        epilog="Arguments after -- are passed to clamscan.",
+    )
+    parser.add_argument("paths", nargs="*", default=["/"], metavar="PATH", help="paths to scan (default: /)")
+    parser.add_argument("--log-dir", type=Path, help="log directory (default: ./clamscan-YYYYmmdd-HHMMSS)")
+    parser.add_argument("--slow-threshold", type=float, default=30.0, metavar="SECONDS",
+                        help="log files taking at least this long to slow.log (default: 30)")
+    parser.add_argument("--no-current-file", action="store_true", help="do not show the file being scanned")
+    parser.add_argument("--no-notify", action="store_true", help="disable desktop notifications")
+    return parser.parse_args(argv), clamscan_args
+
+
+def raise_keyboard_interrupt(_signum, _frame):
+    raise KeyboardInterrupt
+
+
+def start_thread(target, *args):
+    thread = threading.Thread(target=target, args=args, daemon=True)
+    thread.start()
+    return thread
+
+
+def pump(stream, handle_line):
+    for line in stream:
+        handle_line(line.rstrip("\n"))
+
+
+def main(argv):
+    args, clamscan_args = parse_args(argv)
+    if not shutil.which("clamscan"):
+        sys.exit("clamscan not found (package clamav)")
+
+    # Absolute paths keep log entries unambiguous and let find match the excluded root directories.
+    paths = [os.path.abspath(path) for path in args.paths]
+    logs = Logs(args.log_dir or Path(f"clamscan-{datetime.now():%Y%m%d-%H%M%S}"))
+    display = Display()
+
+    def warn(message):
+        logs.result(f"wrapper: warning: {message}")
+        display.message(f"warning: {message}")
+
+    if os.geteuid() != 0:
+        warn("not running as root, unreadable files will be reported as 'Access denied'")
+    notifier = Notifier(not args.no_notify, warn)
+    clock = ActiveClock()
+    counter = FileCounter(paths, clock)
+    if counter.running:
+        display.message(
+            "counting files with find in parallel to the scan; with a cold cache this takes a minute or two,"
+            " the progress bar and ETA appear once it is done"
+        )
+    else:
+        warn("find not found (package findutils), showing progress without percentage and ETA")
+    scan = Scan(logs, clock, counter, notifier, display, args.slow_threshold, not args.no_current_file)
+
+    command = ["clamscan", "-r", "--verbose", f"--exclude-dir={ROOT_EXCLUDE}", *clamscan_args, *paths]
+    signal.signal(signal.SIGTERM, raise_keyboard_interrupt)
+    wall_start = time.time()
+    process = subprocess.Popen(
+        command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding=ENCODING, errors=ENCODING_ERRORS
+    )
+    readers = [
+        start_thread(pump, process.stdout, scan.handle_stdout_line),
+        start_thread(pump, process.stderr, scan.handle_stderr_line),
+    ]
+
+    interrupted = False
+    try:
+        while any(reader.is_alive() for reader in readers):
+            scan.tick()
+            time.sleep(REFRESH_SECONDS)
+        returncode = process.wait()
+    except KeyboardInterrupt:
+        interrupted = True
+        if process.poll() is None:
+            process.terminate()
+        returncode = process.wait()
+        for reader in readers:
+            reader.join(timeout=5)
+
+    counter.stop()
+    display.clear()
+    scan.finish(returncode, interrupted, time.time() - wall_start)
+    logs.close()
+    logs.chown_to_sudo_user()
+    return 130 if interrupted else returncode
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

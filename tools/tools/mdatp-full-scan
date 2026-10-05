@@ -1,0 +1,225 @@
+#!/usr/bin/env bash
+# Run a Microsoft Defender (mdatp) full scan and print progress with a rough ETA.
+#
+# mdatp only reports a running "files scanned" count, so the total is estimated
+# by counting the files on the root filesystem. Files readable only by root
+# (e.g. /var/lib/docker) are not counted, and Defender may skip or cache files,
+# so treat the percentage and ETA as rough.
+#
+# Also warns when progress stalls and detects a crash/restart of the Defender daemon.
+#
+# Usage: mdatp-full-scan [interval-seconds]   (default 60)
+#   MDATP_TOTAL=<n>        override the estimated number of files
+#   MDATP_SKIP=<dir>       leave a directory out of the estimate, e.g. one excluded
+#                          in Defender (MDATP_SKIP=/timeshift)
+#   MDATP_STALL_SECS=<s>   no-progress time before warning (default 300)
+# Ctrl-C cancels the scan. Run inside tmux/screen to survive a closed terminal.
+
+set -uo pipefail
+
+INTERVAL=${1:-60}
+STALL_SECS=${MDATP_STALL_SECS:-300}
+STALL_MIN_FILES=100          # fewer new files than this within STALL_SECS = stalled
+RATE_WINDOW=600              # seconds of history used for the ETA rate
+SKIP_DIR=${MDATP_SKIP:-}
+SNAPSHOT_DIR=/timeshift/snapshots
+LOG_DIR=~/mdatp-logs
+LOG="$LOG_DIR/scan-$(date +%F_%H%M).log"
+mkdir -p "$LOG_DIR"
+
+# CLOCK_MONOTONIC stops while the machine is suspended or hibernated, so durations,
+# rates and stall detection reflect running time. Bash only exposes the wall clock.
+running_secs() {
+  python3 -c 'import time; print(int(time.monotonic()))'
+}
+
+fmt_duration() {
+  local s=$1
+  printf '%dh%02dm' $((s / 3600)) $((s % 3600 / 60))
+}
+
+scanned_so_far() {
+  tail -c 2000 "$LOG" 2>/dev/null | grep -ao '[0-9]* file(s) scanned' | tail -1 | cut -d' ' -f1
+}
+
+threats_so_far() {
+  tail -c 2000 "$LOG" 2>/dev/null | grep -ao '[0-9]* threat(s) detected' | tail -1 | cut -d' ' -f1
+}
+
+daemon_pid() {
+  systemctl show -p MainPID --value mdatp.service 2>/dev/null
+}
+
+daemon_healthy() {
+  timeout 20 mdatp health --field healthy 2>/dev/null | grep -q true
+}
+
+wait_for_daemon() {
+  local i
+  for i in $(seq 1 24); do
+    daemon_healthy && return 0
+    sleep 5
+  done
+  return 1
+}
+
+if ! daemon_healthy; then
+  echo "mdatp reports unhealthy - check 'mdatp health' first." >&2
+  exit 1
+fi
+
+snapshots=$(find "$SNAPSHOT_DIR" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l)
+if (( snapshots > 0 )) && [[ $SKIP_DIR != /timeshift* ]]; then
+  echo "Note: $snapshots Timeshift snapshot(s) in $SNAPSHOT_DIR - each is scanned as a full"
+  echo "      copy of the system, so the scan takes about $((snapshots + 1))x as long as without them."
+  echo
+fi
+
+if [[ -n ${MDATP_TOTAL:-} ]]; then
+  TOTAL=$MDATP_TOTAL
+  TOTAL_SRC="MDATP_TOTAL"
+else
+  echo "Counting files for the estimate..."
+  if [[ -n $SKIP_DIR ]]; then
+    TOTAL=$(find / -xdev -path "${SKIP_DIR%/}" -prune -o -type f -print 2>/dev/null | wc -l)
+    TOTAL_SRC="files on / excluding $SKIP_DIR"
+  else
+    TOTAL=$(find / -xdev -type f 2>/dev/null | wc -l)
+    TOTAL_SRC="files on /"
+  fi
+fi
+[[ $TOTAL -gt 0 ]] || TOTAL=1
+
+echo "Log:             $LOG"
+echo "Estimated files: $TOTAL ($TOTAL_SRC)"
+echo "Started:         $(date '+%F %T')"
+echo
+
+DAEMON_PID=$(daemon_pid)
+mdatp scan full > "$LOG" 2>&1 &
+SCAN_PID=$!
+START=$(running_secs)
+START_WALL=$(date +%s)
+
+cancel() {
+  echo
+  echo "Cancelling scan..."
+  mdatp scan cancel
+  kill "$SCAN_PID" 2>/dev/null
+  exit 130
+}
+trap cancel INT TERM
+
+# Progress history for the windowed rate: parallel arrays of timestamps and counts.
+hist_t=("$START")
+hist_n=(0)
+prev_n=0
+prev_t=$START
+stall_n=0                # count at the start of the current no-progress period
+stall_t=$START
+stall_warned=0
+daemon_crashed=0
+
+while kill -0 "$SCAN_PID" 2>/dev/null; do
+  sleep "$INTERVAL"
+  kill -0 "$SCAN_PID" 2>/dev/null || break
+
+  now=$(running_secs)
+  n=$(scanned_so_far); n=${n:-0}
+  threats=$(threats_so_far); threats=${threats:-0}
+  elapsed=$((now - START))
+
+  hist_t+=("$now"); hist_n+=("$n")
+  while (( ${#hist_t[@]} > 2 && now - hist_t[1] >= RATE_WINDOW )); do
+    hist_t=("${hist_t[@]:1}"); hist_n=("${hist_n[@]:1}")
+  done
+
+  # "now" = last interval; "rate" = last RATE_WINDOW seconds, used for the ETA.
+  recent=$(( (n - prev_n) / ((now - prev_t) > 0 ? (now - prev_t) : 1) ))
+  span=$(( now - hist_t[0] ))
+  rate=$(( (n - hist_n[0]) / (span > 0 ? span : 1) ))
+  remaining=$(( TOTAL > n ? TOTAL - n : 0 ))
+  pct=$(( n * 100 / TOTAL ))
+  if (( remaining == 0 )); then
+    eta_txt="past estimate"
+  elif (( rate > 0 )); then
+    eta_txt="~$(fmt_duration $(( remaining / rate )))"
+  else
+    eta_txt="unknown"
+  fi
+
+  printf '%s  %9d files  ~%3d%%  %5d/s now  %5d/s (10m)  threats: %d  elapsed %s  ETA %s\n' \
+    "$(date +%T)" "$n" "$pct" "$recent" "$rate" "$threats" \
+    "$(fmt_duration "$elapsed")" "$eta_txt"
+
+  cur_daemon=$(daemon_pid)
+  if [[ -n $DAEMON_PID && $cur_daemon != "$DAEMON_PID" ]]; then
+    daemon_crashed=1
+    echo "!!  Defender daemon restarted (PID $DAEMON_PID -> ${cur_daemon:-none}) - the scan is lost."
+    break
+  fi
+
+  if (( n - stall_n >= STALL_MIN_FILES )); then
+    stall_n=$n; stall_t=$now; stall_warned=0
+  elif (( now - stall_t >= STALL_SECS && now - stall_warned >= STALL_SECS )); then
+    stall_warned=$now
+    echo "!!  STALLED: fewer than $STALL_MIN_FILES files in $(fmt_duration $((now - stall_t))). To see the file it is stuck on:"
+    echo "      sudo ls -l /proc/\$(pgrep -f 'wdavdaemon unprivileged' | head -1)/fd | grep -vE 'socket|pipe|anon_inode|/dev/|/var/opt/microsoft|/var/log/microsoft'"
+  fi
+
+  prev_n=$n
+  prev_t=$now
+done
+
+if (( daemon_crashed )); then
+  kill "$SCAN_PID" 2>/dev/null
+  wait "$SCAN_PID" 2>/dev/null
+  rc=1
+else
+  wait "$SCAN_PID"
+  rc=$?
+fi
+trap - INT TERM
+end=$(running_secs)
+end_wall=$(date +%s)
+n=$(scanned_so_far); n=${n:-0}
+
+# A crash can also end the client before the loop notices a new daemon PID.
+if (( ! daemon_crashed )) && [[ -n $DAEMON_PID && $(daemon_pid) != "$DAEMON_PID" ]]; then
+  daemon_crashed=1
+fi
+if (( rc != 0 )) && tail -c 500 "$LOG" | grep -qaE 'Input/output error|Could not connect'; then
+  daemon_crashed=1
+fi
+
+echo
+if (( daemon_crashed )); then
+  echo "FAILED: the Defender daemon crashed or restarted during the scan ($n files scanned)."
+  echo "        Check: journalctl -u mdatp.service --since '$(date -d "@$START_WALL" '+%F %T')' | grep -iE 'SEGV|core-dump|restart'"
+  echo "        Report it to IT with a bundle from: sudo mdatp diagnostic create"
+  echo "Waiting for Defender to come back..."
+  wait_for_daemon || echo "Defender is still not healthy - check 'mdatp health'."
+fi
+
+echo "Scan ended at $(date '+%F %T') after $(fmt_duration $((end - START))) running time,"
+echo "  $(fmt_duration $((end_wall - START_WALL))) wall clock (exit $rc)."
+
+# Show the scan record only if it is ours (a lost scan leaves no entry).
+summary=$(timeout 20 mdatp scan list --top 1 2>/dev/null)
+rec_start=$(sed -n 's/^Scan Start Time:[[:space:]]*//p' <<<"$summary" | sed 's/ at / /')
+rec_epoch=$(date -d "$rec_start" +%s 2>/dev/null || echo 0)
+if (( rec_epoch >= START_WALL - 60 )); then
+  echo "$summary"
+else
+  echo "No scan record was saved for this run."
+fi
+
+t=$(threats_so_far)
+if [[ ${t:-0} != 0 ]]; then
+  echo
+  echo "Threats detected - details:"
+  mdatp threat list
+fi
+
+(( daemon_crashed )) && exit 1
+exit "$rc"

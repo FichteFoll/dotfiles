@@ -5,3 +5,4 @@
 --netrc
 --embed-chapters
 --cookies-from-browser=firefox
+--extractor-args=youtube:player-client=default,web_creator

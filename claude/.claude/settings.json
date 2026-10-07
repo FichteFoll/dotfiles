@@ -3,7 +3,7 @@
   "permissions": {
     "defaultMode": "default"
   },
-  "model": "claude-opus-5",
+  "model": "opus",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -63,6 +63,5 @@
   "theme": "auto",
   "editorMode": "normal",
   "preferredNotifChannel": "notifications_disabled",
-  "autoCompactEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "autoCompactEnabled": true
 }

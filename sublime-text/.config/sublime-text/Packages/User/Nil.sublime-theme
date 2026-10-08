@@ -89,7 +89,7 @@
             "class": "sheet_contents",
             "settings": ["inactive_sheet_dimming"],
             "attributes": ["file_dark", "!highlighted"],
-            "background_modifier": "blend(white 98%)"
+            "background_modifier": "blend(white 97%)"
         },
         {
             "class": "sheet_contents",

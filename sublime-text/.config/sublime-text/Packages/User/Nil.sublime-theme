@@ -2,7 +2,7 @@
     "variables": {
     },
     "rules": [
-        // VCS badges
+        // VCS badges //
         {
             "class": "vcs_status_badge",
             "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
@@ -44,7 +44,7 @@
             "content_margin": 6
         },
 
-        // VCS Filenames
+        // VCS Filenames //
         {
             "class": "sidebar_label",
             "parents": [{"class": "file_system_entry", "attributes": ["untracked"]}],
@@ -53,27 +53,27 @@
         {
             "class": "sidebar_label",
             "parents": [{"class": "file_system_entry", "attributes": ["modified"]}],
-            "color": "color(var(--bluish) blend(rgb(255, 255, 255) 75%))"
+            "color": "color(var(--bluish) blend(white 75%))"
         },
         {
             "class": "sidebar_label",
             "parents": [{"class": "file_system_entry", "attributes": ["staged"]}],
-            "color": "color(var(--purplish) blend(rgb(255, 255, 255) 75%))"
+            "color": "color(var(--purplish) blend(white 75%))"
         },
         {
             "class": "sidebar_label",
             "parents": [{"class": "file_system_entry", "attributes": ["added"]}],
-            "color": "color(var(--greenish) blend(rgb(255, 255, 255) 75%))"
+            "color": "color(var(--greenish) blend(white 75%))"
         },
         {
             "class": "sidebar_label",
             "parents": [{"class": "file_system_entry", "attributes": ["unmerged"]}],
-            "color": "color(var(--redish) blend(rgb(255, 255, 255) 75%))"
+            "color": "color(var(--redish) blend(white 75%))"
         },
         {
             "class": "sidebar_label",
             "parents": [{"class": "file_system_entry", "attributes": ["ignored"]}],
-            "color": "color(var(--background) blend(rgb(255, 255, 255) 70%))"
+            "color": "color(var(--background) blend(white 70%))"
         },
         {
             "class": "sidebar_label",
@@ -84,23 +84,18 @@
             "color": "color(var(--background) blend(rgb(0, 0, 0) 70%))"
         },
 
-        // Sheet background
-
-        // {
-        //     "class": "sheet_contents",
-        //     "background_modifier": ""
-        // },
+        // Sheet background //
         {
             "class": "sheet_contents",
             "settings": ["inactive_sheet_dimming"],
             "attributes": ["file_dark", "!highlighted"],
             "background_modifier": "blend(white 98%)"
         },
-        // {
-        //     "class": "sheet_contents",
-        //     "settings": {"inactive_sheet_dimming": true},
-        //     "attributes": ["file_light", "!highlighted"],
-        //     "background_modifier": "blend(black 90%)"
-        // },
+        {
+            "class": "sheet_contents",
+            "settings": ["inactive_sheet_dimming"],
+            "attributes": ["file_light", "!highlighted"],
+            "background_modifier": "blend(black 90%)"
+        },
     ]
 }

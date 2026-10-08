@@ -727,10 +727,10 @@
             "showAlbumCover": true,
             "username": "FichteFoll"
         },
-        "TenorGifSearch": {
+        "AddAttachments": {
             "enabled": false
         },
-        "AddAttachments": {
+        "GifProviderSwitcher": {
             "enabled": false
         }
     },
@@ -744,7 +744,7 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1790192363207
+        "settingsSyncVersion": 1791488364336
     },
     "enabledThemes": [
         "RightAlignedNicks.theme.css"
@@ -754,5 +754,6 @@
         "chatBarButtons": {},
         "messagePopoverButtons": {}
     },
-    "windowsMaterial": "none"
+    "windowsMaterial": "none",
+    "nativeTitleBar": false
 }

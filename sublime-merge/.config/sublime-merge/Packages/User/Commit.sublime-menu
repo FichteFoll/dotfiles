@@ -1,12 +1,6 @@
 [
     {"id": "end"},
     // The double-separator sets the user item visually apart.
-    {"id": "modify", "caption": "-"},
-    {
-        "caption": "↶ Reset --keep",
-        "command": "git",
-        "args": {"argv": ["reset", "--keep", "$commit"]},
-    },
     {"id": "rebase", "caption": "-"},
     {
         "caption": "Rebase",

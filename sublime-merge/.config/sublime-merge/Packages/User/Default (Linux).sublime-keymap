@@ -8,6 +8,13 @@
   { "keys": ["ctrl+pagedown"], "command": "next_tab" },
   { "keys": ["alt+pageup"], "command": "prev_file_tab" },
   { "keys": ["alt+pagedown"], "command": "next_file_tab" },
+  // Pageup & -down scroll to the end of a diff hunk,
+  // which makes them borderline useless,
+  // so I also use them for file tab navigation
+  // https://github.com/sublimehq/sublime_merge/issues/36#issuecomment-827938606
+  { "keys": ["pageup"], "command": "prev_file_tab" },
+  { "keys": ["pagedown"], "command": "next_file_tab" },
+
   // Unbind ctrl+(shift+)tab because it doesn't support recency and confuses me.
   { "keys": ["ctrl+shift+tab"], "command": "noop" },
   { "keys": ["ctrl+tab"], "command": "noop" },

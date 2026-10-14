@@ -113,9 +113,8 @@ support.variable {
     foreground: #1786BD;
 }
 
-variable.function,
 variable.annotation {
-    @name "Functions (usage) and annotations";
+    @name "Annotations";
     fontStyle: italic;
 }
 

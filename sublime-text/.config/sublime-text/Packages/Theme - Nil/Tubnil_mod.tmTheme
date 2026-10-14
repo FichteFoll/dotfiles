@@ -203,9 +203,9 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Functions (usage) and annotations</string>
+			<string>Annotations</string>
 			<key>scope</key>
-			<string>variable.function, variable.annotation</string>
+			<string>variable.annotation</string>
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>

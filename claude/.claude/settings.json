@@ -44,6 +44,9 @@
     "command": "~/.claude/scripts/statusline.sh",
     "refreshInterval": 5
   },
+  "env": {
+    "CLAUDE_CODE_ENABLE_TODO_TOOLS": "1"
+  },
   "enabledPlugins": {
     "jdtls-lsp@claude-plugins-official": true,
     "sonarqube@claude-plugins-official": true,

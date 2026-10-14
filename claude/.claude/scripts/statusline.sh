@@ -6,6 +6,7 @@ YELLOW='\033[33m'
 BLUE='\033[34m'
 MAGENTA='\033[35m'
 CYAN='\033[36m'
+DIM='\033[2m'
 RESET='\033[0m'
 
 # Semantic aliases
@@ -39,6 +40,33 @@ color_model() {
     [ -n "$color" ] && printf '%b%s%b' "$color" "$model" "$RESET" || printf '%s' "$model"
 }
 
+# Summarizes the task list stored by the TaskCreate/TaskUpdate tools, one JSON
+# file per task. Prints nothing once all tasks are completed, so a finished
+# plan disappears from the status line.
+task_progress() {
+    local files
+    shopt -s nullglob
+    files=("$1"/*.json)
+    shopt -u nullglob
+    [ ${#files[@]} -eq 0 ] && return
+
+    local done total running current
+    IFS=$'\t' read -r done total running current < <(jq -rs '
+        [.[] | select(.status == "in_progress")] as $active
+        | [([.[] | select(.status == "completed")] | length), length, ($active | length),
+           ($active[0] | .activeForm // .subject // "")]
+        | @tsv' "${files[@]}" 2>/dev/null)
+    [ -z "$total" ] || [ "$done" -eq "$total" ] && return
+
+    printf 'tasks: %s/%s' "$done" "$total"
+    if [ "$running" -eq 1 ]; then
+        [ ${#current} -gt 30 ] && current="${current:0:29}~"
+        printf ' %b%s%b' "$DIM" "$current" "$RESET"
+    elif [ "$running" -gt 1 ]; then
+        printf ' %b(%s running)%b' "$DIM" "$running" "$RESET"
+    fi
+}
+
 # A hung invocation is not killed by Claude Code for 10 minutes (the default
 # hook timeout) while a new one is spawned on every refresh, so never block
 # indefinitely on stdin or on git.
@@ -51,6 +79,7 @@ CTX_TOTAL=$(jq -r '(.context_window.total_input_tokens / 100 | floor | . / 10 | 
 CTX_PCT=$(jq -r '(.context_window.used_percentage | round | tostring) + "%"' <<< "$input")
 SESSION_PCT=$(jq -r '.rate_limits.five_hour.used_percentage | round | tostring' <<< "$input" 2>/dev/null)
 WEEK_PCT=$(jq -r '.rate_limits.seven_day.used_percentage | round | tostring' <<< "$input" 2>/dev/null)
+SESSION_ID=$(jq -r '.session_id // empty' <<< "$input")
 
 BRANCH=""
 if timeout 2 git -C "$DIR" rev-parse --git-dir > /dev/null 2>&1; then
@@ -76,6 +105,13 @@ if [ -n "${SANDBOX_HOME_CTX:-}" ]; then
     STATUS2="$STATUS2 | sandbox: $SANDBOX_HOME_CTX"
 else
     STATUS2="$STATUS2 | ${DANGER}host${RESET}"
+fi
+# Last, as it changes the most and would shift the segments after it.
+# Claude Code stores the task list under the session ID unless a named list is shared.
+TASK_LIST_ID="${CLAUDE_CODE_TASK_LIST_ID:-$SESSION_ID}"
+if [ -n "$TASK_LIST_ID" ]; then
+    TASKS=$(task_progress "$HOME/.claude/tasks/$TASK_LIST_ID")
+    [ -n "$TASKS" ] && STATUS2="$STATUS2 | $TASKS"
 fi
 STATUS2="[ $STATUS2 ]"
 

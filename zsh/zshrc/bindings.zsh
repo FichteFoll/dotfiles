@@ -231,7 +231,7 @@ bind2maps emacs viins       -- -s '^Xf' insert-files
 # bind2maps emacs viins       -- -s '\e[1;7A' incarg
 # bind2maps emacs viins       -- -s '\e[1;7B' incarg -1
 
-# <C-r>, <C-f> search for pattern occurence in buffer and history
+# <C-r>, <C-f> search for pattern occurrence in buffer and history
 bind2maps emacs viins       -- -s '^R' history-incremental-pattern-search-backward
 bind2maps emacs viins       -- -s '^F' history-incremental-pattern-search-forward
 

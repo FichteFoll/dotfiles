@@ -60,7 +60,6 @@ task_progress() {
 
     printf 'tasks: %s/%s' "$done" "$total"
     if [ "$running" -eq 1 ]; then
-        [ ${#current} -gt 30 ] && current="${current:0:29}~"
         printf ' %b%s%b' "$DIM" "$current" "$RESET"
     elif [ "$running" -gt 1 ]; then
         printf ' %b(%s running)%b' "$DIM" "$running" "$RESET"

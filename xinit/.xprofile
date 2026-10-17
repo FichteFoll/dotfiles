@@ -3,6 +3,14 @@
 # set steam to minimize to tray
 export STEAM_FRAME_FORCE_CLOSE=1
 
+# config fcitx5
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+# forward to D-Bus-activated apps and systemd user units
+dbus-update-activation-environment --systemd GTK_IM_MODULE QT_IM_MODULE XMODIFIERS SDL_IM_MODULE
+
 # disable "bell" beeper
 xset b off
 

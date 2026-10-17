@@ -3,14 +3,15 @@
 from __future__ import annotations
 
 import argparse
+import logging
 import os
 import shutil
-import sys
 from pathlib import Path
-
 
 BASE_DIR = Path(os.environ.get("BASE_DIR", "~")).expanduser()
 DOTFILES_DIR = Path(os.environ.get("DOTFILES_DIR", "~/dotfiles")).expanduser()
+
+logger = logging.getLogger(__name__)
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,14 +25,15 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
+    logging.basicConfig(format="%(levelname)s: %(message)s")
     args = parse_args()
     if not args.files:
-        print("No files provided.", file=sys.stderr)
+        logger.error("No files provided.")
         return 2
 
     paths = collect_paths(args.files)
     if not paths:
-        print("No files to adopt.", file=sys.stderr)
+        logger.error("No files to adopt.")
         return 1
 
     rel_paths = [path.relative_to(BASE_DIR) for path in paths]
@@ -63,7 +65,7 @@ def collect_paths(items: list[str]) -> list[Path]:
                 if child.is_file() and not child.is_symlink():
                     expanded.add(child.resolve())
         elif path.is_symlink():
-            print(f"Skipping symlink: {path}", file=sys.stderr)
+            logger.warning("Skipping symlink: %s", path)
         else:
             expanded.add(path)
 
@@ -82,9 +84,9 @@ def import_dotfiles(package_name: str, paths: list[Path]) -> int:
     dst_paths = [pkg_dir / rel_path for rel_path in rel_paths]
     existing_paths = [path for path in dst_paths if path.exists() or path.is_symlink()]
     if existing_paths:
-        print(
-            "Destination files already exist: " + ", ".join(str(path) for path in existing_paths),
-            file=sys.stderr,
+        logger.error(
+            "Destination files already exist: %s",
+            ", ".join(str(path) for path in existing_paths),
         )
         return 1
 
@@ -95,9 +97,9 @@ def import_dotfiles(package_name: str, paths: list[Path]) -> int:
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(str(src), str(dst))
             src.symlink_to(rel_dst)
-        except Exception as exc:
+        except Exception:
             failures += 1
-            print(f"Failed to adopt {src} -> {dst}: {exc}", file=sys.stderr)
+            logger.exception("Failed to adopt %s -> %s", src, dst)
 
     return 1 if failures else 0
 

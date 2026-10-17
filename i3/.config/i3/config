@@ -359,8 +359,8 @@ bindsym $mod+Shift+m exec "mpv --playlist=<(xsel -ob | extract_links)"
 bindsym $mod+Next exec share_clip
 
 # picom (was "compton")
-bindsym $mod+Ctrl+c       exec --no-startup-id picom
-bindsym $mod+Ctrl+Shift+c exec --no-startup-id killall picom
+bindsym $mod+Ctrl+c       exec --no-startup-id systemctl --user start picom
+bindsym $mod+Ctrl+Shift+c exec --no-startup-id systemctl --user stop picom
 
 # polybar (kills automatically)
 bindsym $mod+Ctrl+p exec --no-startup-id $HOME/.config/polybar/launch.sh
@@ -402,27 +402,11 @@ mode "$mode_launcher" {
 
 # Initial startup #
 
-# config
-# Disable screen saver.
-exec --no-startup-id xset -dpms && xset s off
-
 # systemd user units in `graphical-session.target`
 exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY && systemctl --user start i3-session.target
 
 # desktop
-exec --no-startup-id ~/.fehbg
 exec --no-startup-id ~/.config/polybar/launch.sh
 
-# application daemons (in the tray)
-# exec --no-startup-id blueman-applet
-#exec --no-startup-id dropbox
-exec --no-startup-id fcitx5 -d
-exec --no-startup-id lxpolkit
-exec --no-startup-id nm-applet
-exec --no-startup-id parcellite
-exec --no-startup-id syncthingtray --wait
-exec --no-startup-id udiskie --automount --tray
-exec --no-startup-id xbindkeys
-
-# applications
-exec --no-startup-id keepassxc
+# Application daemons (in the tray) and applications
+# are systemd user units in `graphical-session.target`.

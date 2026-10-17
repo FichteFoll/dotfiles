@@ -1,0 +1,11 @@
+[Unit]
+Description=KeePassXC password manager
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/keepassxc
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

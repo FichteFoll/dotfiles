@@ -13,6 +13,8 @@ dbus-update-activation-environment --systemd GTK_IM_MODULE QT_IM_MODULE XMODIFIE
 
 # disable "bell" beeper
 xset b off
+# disable screen saver and power management
+xset -dpms s off
 
-# start applications
-# blabla &
+# set wallpaper
+[ -x ~/.fehbg ] && ~/.fehbg

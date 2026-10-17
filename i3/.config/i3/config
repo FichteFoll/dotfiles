@@ -149,7 +149,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Stop the session target first so that graphical session units stop with X.
+set $exit_i3 systemctl --user stop i3-session.target; i3-msg exit
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' '$exit_i3'"
 
 # lock
 set $Locker i3lock --tiling --image=$(i3lock-shot --pixelize --tint black 10%)
@@ -158,7 +160,7 @@ set $mode_system System [l]ock, [e] logout, [s]uspend, [h]ibernate, [r]eboot, [S
 mode "$mode_system" {
     set $default_exec mode "default", exec --no-startup-id
     bindsym l $default_exec $Locker
-    bindsym e $default_exec i3-msg exit
+    bindsym e $default_exec "$exit_i3"
     bindsym s $default_exec systemctl suspend
     bindsym h $default_exec systemctl hibernate
     bindsym r $default_exec systemctl reboot
@@ -403,6 +405,9 @@ mode "$mode_launcher" {
 # config
 # Disable screen saver.
 exec --no-startup-id xset -dpms && xset s off
+
+# systemd user units in `graphical-session.target`
+exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY && systemctl --user start i3-session.target
 
 # desktop
 exec --no-startup-id ~/.fehbg

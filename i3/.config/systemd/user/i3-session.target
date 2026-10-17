@@ -1,0 +1,8 @@
+[Unit]
+Description=i3 session
+Documentation=man:systemd.special(7)
+# `graphical-session.target` refuses manual starts
+# and is only activated by a session target binding to it.
+BindsTo=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target

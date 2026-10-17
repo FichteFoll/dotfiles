@@ -100,11 +100,8 @@ STATUS2="$(color_model "$MODEL")"
 [ -n "$EFFORT" ] && [ "$EFFORT" != "medium" ] && STATUS2="$STATUS2 | effort: $EFFORT"
 STATUS2="$STATUS2 | ctx: ${CTX_TOTAL:-ERR} (${CTX_PCT:-0%})"
 STATUS2="$STATUS2 | 5h:$(color_pct "$SESSION_PCT") 7d:$(color_pct "$WEEK_PCT")"
-if [ -n "${SANDBOX_HOME_CTX:-}" ]; then
-    STATUS2="$STATUS2 | sandbox: $SANDBOX_HOME_CTX"
-else
-    STATUS2="$STATUS2 | ${DANGER}host${RESET}"
-fi
+# Running sandboxed is the default, so only flag the exception.
+[ -z "${SANDBOX_HOME_CTX:-}" ] && STATUS2="$STATUS2 | ${DANGER}host${RESET}"
 # Last, as it changes the most and would shift the segments after it.
 # Claude Code stores the task list under the session ID unless a named list is shared.
 TASK_LIST_ID="${CLAUDE_CODE_TASK_LIST_ID:-$SESSION_ID}"

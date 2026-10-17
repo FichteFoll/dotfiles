@@ -75,7 +75,7 @@ DIR=$(jq -r '.workspace.current_dir' <<< "$input")
 MODEL=$(jq -r '.model.display_name' <<< "$input")
 EFFORT=$(jq -r '.effort.level // empty' <<< "$input")
 CTX_TOTAL=$(jq -r '(.context_window.total_input_tokens / 100 | floor | . / 10 | tostring) + "K"' <<< "$input")
-CTX_PCT=$(jq -r '(.context_window.used_percentage | round | tostring) + "%"' <<< "$input")
+CTX_PCT=$(jq -r '.context_window.used_percentage | round | tostring' <<< "$input" 2>/dev/null)
 SESSION_PCT=$(jq -r '.rate_limits.five_hour.used_percentage | round | tostring' <<< "$input" 2>/dev/null)
 WEEK_PCT=$(jq -r '.rate_limits.seven_day.used_percentage | round | tostring' <<< "$input" 2>/dev/null)
 SESSION_ID=$(jq -r '.session_id // empty' <<< "$input")
@@ -98,8 +98,7 @@ STATUS1="$DIR_FMT"
 [ -n "$BRANCH" ] && STATUS1="$STATUS1:${CYAN}${BRANCH}${RESET}"
 STATUS2="$(color_model "$MODEL")"
 [ -n "$EFFORT" ] && [ "$EFFORT" != "medium" ] && STATUS2="$STATUS2 | effort: $EFFORT"
-STATUS2="$STATUS2 | ctx: ${CTX_TOTAL:-ERR} (${CTX_PCT:-0%})"
-STATUS2="$STATUS2 | 5h:$(color_pct "$SESSION_PCT") 7d:$(color_pct "$WEEK_PCT")"
+STATUS2="$STATUS2 | ctx:${CTX_TOTAL:-ERR}/$(color_pct "$CTX_PCT") 5h:$(color_pct "$SESSION_PCT") 7d:$(color_pct "$WEEK_PCT")"
 # Running sandboxed is the default, so only flag the exception.
 [ -z "${SANDBOX_HOME_CTX:-}" ] && STATUS2="$STATUS2 | ${DANGER}host${RESET}"
 # Last, as it changes the most and would shift the segments after it.

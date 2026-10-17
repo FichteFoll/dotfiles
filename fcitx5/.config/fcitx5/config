@@ -71,8 +71,6 @@ DefaultPageSize=7
 # CustomXkbOption=
 # Force Enabled Addons
 # EnabledAddons=
-# Force Disabled Addons
-# DisabledAddons=
 # Preload input method to be used by default
 # PreloadInputMethod=True
 # Allow input method in the password field
@@ -81,4 +79,7 @@ DefaultPageSize=7
 # ShowPreeditForPassword=False
 # Interval of saving user data in minutes
 # AutoSavePeriod=30
+
+[Behavior/DisabledAddons]
+0=clipboard
 

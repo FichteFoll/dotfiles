@@ -31,7 +31,8 @@
             {
                 "caption": "Sign Unsigned Commits from $short_commit…",
                 "command": "git",
-                "args": {"argv": ["-c", "sequence.editor=:", "rebase", "--exec", "git commit --amend --no-edit -S", "$commit~1"]},
+                // To make it work on the root commit, pass `--root` instead of the ref.
+                "args": {"argv": ["-c", "sequence.editor=:", "rebase", "--force-rebase", "--committer-date-is-author-date", "$commit~1"]},
             },
         ],
     },

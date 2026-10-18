@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+# Run the .nvchecker.toml of every package in ~/builds and notify about pending updates.
+# nvchecker only prints updates, warnings and errors at the default log level.
+
+shopt -s nullglob
+
+builds_dir="${1:-$HOME/builds}"
+
+# Only one level deep, to skip the makepkg src/ and pkg/ trees
+for config in "$builds_dir"/*/.nvchecker.toml; do
+    dir="$(dirname "$config")"
+    output="$(cd "$dir" && nvchecker -c "$config" 2>&1 | sed -E 's/^\[[A-Z] [^]]*\] //')"
+    [[ -z $output ]] && continue
+
+    printf '%s\n%s\n' "$dir" "$output"
+    notify-send --app-name=nvchecker "nvchecker: ${dir/#"$HOME"/\~}" "$output"
+done

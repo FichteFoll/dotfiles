@@ -1,0 +1,11 @@
+[Unit]
+Description=Check packages in ~/builds for upstream updates with nvchecker
+
+[Service]
+Type=oneshot
+# User units cannot order after network-online.target,
+# and a catch-up run right after login may start before the network is up.
+ExecStartPre=-/usr/bin/nm-online -q --timeout=120
+ExecStart=%h/bin/nvchecker-builds
+
+# To be triggered by a timer

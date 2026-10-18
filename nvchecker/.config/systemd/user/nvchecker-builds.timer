@@ -1,0 +1,9 @@
+[Unit]
+Description=Check packages in ~/builds for updates every day (at 0000)
+
+[Timer]
+OnCalendar=00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -3,6 +3,7 @@
     "date_format": "(%Y-%m-%d %H:%M)",
     "show_remain_due": true,
     "before_date_space": "",
+    "before_tasks_bullet_margin": "auto",
 
     // normal setting overrides
     "color_scheme": "Packages/Theme - Nil/Tubnil_mod.tmTheme",

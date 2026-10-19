@@ -402,7 +402,7 @@ mode "$mode_launcher" {
 
 # Initial startup #
 
-# systemd user units in `graphical-session.target`
+# systemd user units in `i3-session.target` and `graphical-session.target`
 exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY && systemctl --user start i3-session.target
 
 # desktop

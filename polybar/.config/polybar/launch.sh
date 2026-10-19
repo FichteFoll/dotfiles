@@ -16,8 +16,8 @@ while IFS=: read -r output rest; do
     fi
     systemd-run --user \
          -u "polybar-$bar-$output" \
-         -p PartOf=graphical-session.target \
-         -p After=graphical-session.target \
+         -p PartOf=i3-session.target \
+         -p After=i3-session.target \
          -p Restart=on-failure \
          -E POLY_MONITOR="$output" \
          polybar $bar

@@ -1,11 +1,11 @@
 [Unit]
 Description=picom X compositor
-PartOf=graphical-session.target
-After=graphical-session.target
+PartOf=i3-session.target
+After=i3-session.target
 
 [Service]
 ExecStart=/usr/bin/picom
 Restart=on-failure
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=i3-session.target

@@ -2,15 +2,35 @@
 
 # Run the .nvchecker.toml of every package in ~/builds and notify about pending updates.
 # nvchecker only prints updates, warnings and errors at the default log level.
+#
+# The package configs only contain the entries, named after the pkgname.
+# The old versions are taken from .SRCINFO,
+# so bumping pkgver takes an update and no nvtake is needed.
 
 shopt -s nullglob
 
 builds_dir="${1:-$HOME/builds}"
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/nvchecker-builds"
+
+srcinfo_to_verfile() {
+    awk -F ' = ' '$1 ~ /pkgver$/ {v = $2} $1 == "pkgname" {print $2 "\t" v}' "$1" \
+        | jq -Rn '{version: 2, data: [inputs | split("\t") | {(.[0]): {version: .[1]}}] | add}'
+}
 
 # Only one level deep, to skip the makepkg src/ and pkg/ trees
 for config in "$builds_dir"/*/.nvchecker.toml; do
     dir="$(dirname "$config")"
-    output="$(cd "$dir" && nvchecker -c "$config" 2>&1 | sed -E 's/^\[[A-Z] [^]]*\] //')"
+    pkg_state="$state_dir/$(basename "$dir")"
+    mkdir -p "$pkg_state"
+
+    srcinfo_to_verfile "$dir/.SRCINFO" > "$pkg_state/oldver.json"
+    # Version file paths are resolved relative to the config file
+    {
+        printf '[__config__]\noldver = "oldver.json"\nnewver = "newver.json"\n\n'
+        cat "$config"
+    } > "$pkg_state/nvchecker.toml"
+
+    output="$(nvchecker -c "$pkg_state/nvchecker.toml" 2>&1 | sed -E 's/^\[[A-Z] [^]]*\] //')"
     [[ -z $output ]] && continue
 
     printf '%s\n%s\n' "$dir" "$output"

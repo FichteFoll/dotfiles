@@ -33,12 +33,6 @@ key = "T"
 mods = "Control|Shift"
 action = "SpawnNewInstance"
 
-# For Claude Code
-[[keyboard.bindings]]
-key = "Return"
-mods = "Control"
-chars = "\u001B[13;5u"
-
 # hints
 # Defining any hint replaces the default list,
 # so the default URL hint for opening links is repeated here.

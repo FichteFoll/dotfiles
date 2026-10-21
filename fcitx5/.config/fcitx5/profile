@@ -1,46 +1,18 @@
 [Groups/0]
 # Group Name
-Name="Group 3"
-# Layout
-Default Layout=us
-# Default Input Method
-DefaultIM=keyboard-us
-
-[Groups/0/Items/0]
-# Name
-Name=keyboard-us
-# Layout
-# Layout=
-
-[Groups/1]
-# Group Name
-Name="Group 2"
-# Layout
-Default Layout=de
-# Default Input Method
-DefaultIM=keyboard-de
-
-[Groups/1/Items/0]
-# Name
-Name=keyboard-de
-# Layout
-# Layout=
-
-[Groups/2]
-# Group Name
 Name="Group 1"
 # Layout
 Default Layout=de-neo_qwertz
 # Default Input Method
 DefaultIM=mozc
 
-[Groups/2/Items/0]
+[Groups/0/Items/0]
 # Name
 Name=keyboard-de-neo_qwertz
 # Layout
 # Layout=
 
-[Groups/2/Items/1]
+[Groups/0/Items/1]
 # Name
 Name=mozc
 # Layout
@@ -48,6 +20,4 @@ Name=mozc
 
 [GroupOrder]
 0="Group 1"
-1="Group 2"
-2="Group 3"
 

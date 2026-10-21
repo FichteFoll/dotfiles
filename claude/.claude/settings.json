@@ -62,6 +62,7 @@
   "effortLevel": "medium",
   "awaySummaryEnabled": false,
   "prefersReducedMotion": false,
+  "timeFormat": "24-hour",
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "editorMode": "normal",

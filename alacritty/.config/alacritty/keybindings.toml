@@ -32,9 +32,3 @@ chars = "\x1bd"
 key = "T"
 mods = "Control|Shift"
 action = "SpawnNewInstance"
-
-# For Claude Code
-[[keyboard.bindings]]
-key = "Return"
-mods = "Control"
-chars = "\u001B[13;5u"

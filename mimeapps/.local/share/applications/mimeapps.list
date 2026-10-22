@@ -1,0 +1,37 @@
+# Lower-priority, deprecated location that xdg-mime and GLib still read.
+# Used because applications rewrite ~/.config/mimeapps.list,
+# which would replace a stowed symlink there.
+#
+# Both the coarse types from `file --mime-type` (xdg-open without `mimetype`)
+# and the shared-mime-info types are listed,
+# since neither falls back to the `text/plain` parent type.
+[Default Applications]
+inode/x-empty=sublime_text.desktop
+text/plain=sublime_text.desktop
+text/markdown=sublime_text.desktop
+text/x-log=sublime_text.desktop
+text/csv=sublime_text.desktop
+text/xml=sublime_text.desktop
+application/xml=sublime_text.desktop
+application/json=sublime_text.desktop
+application/toml=sublime_text.desktop
+application/yaml=sublime_text.desktop
+application/x-yaml=sublime_text.desktop
+text/x-shellscript=sublime_text.desktop
+application/x-shellscript=sublime_text.desktop
+text/x-script.python=sublime_text.desktop
+text/x-python=sublime_text.desktop
+text/x-python3=sublime_text.desktop
+text/x-java=sublime_text.desktop
+text/x-c=sublime_text.desktop
+text/x-csrc=sublime_text.desktop
+text/x-chdr=sublime_text.desktop
+text/x-c++=sublime_text.desktop
+text/x-c++src=sublime_text.desktop
+text/x-c++hdr=sublime_text.desktop
+text/javascript=sublime_text.desktop
+application/javascript=sublime_text.desktop
+application/x-typescript=sublime_text.desktop
+text/x-makefile=sublime_text.desktop
+text/x-diff=sublime_text.desktop
+text/x-patch=sublime_text.desktop

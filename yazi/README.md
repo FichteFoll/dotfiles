@@ -21,13 +21,25 @@ need to be installed manually.
 
 ## System dependencies
 
-| Plugin                    | Needs              |
-| ------------------------- | ------------------ |
-| `boydaihungst/mediainfo`  | `mediainfo`        |
-| `kirasok/torrent-preview` | `transmission-cli` |
-| `orhnk/system-clipboard`  | `clipboard` (AUR)  |
-| `Rolv-Apneseth/starship`  | `starship`         |
-| `ouch`                    | `ouch`             |
+### Plugins
+
+| Plugin                   | Needs                                  |
+| ------------------------ | -------------------------------------- |
+| `alberti42/faster-piper` | `transmission-cli` (torrent previewer) |
+| `boydaihungst/mediainfo` | `mediainfo`, `ffmpeg`, `imagemagick`   |
+| `dimi1357/pickle`        | `python`                               |
+| `orhnk/system-clipboard` | `clipboard` (AUR)                      |
+| `Rolv-Apneseth/starship` | `starship`                             |
+| `ouch`                   | `ouch`                                 |
+| `zoxide` (built-in)      | `zoxide`                               |
+
+### Openers and keybindings
+
+| Command     | Used for                                  |
+| ----------- | ----------------------------------------- |
+| `subl`      | `bulk-rename` and `edit` openers          |
+| `mpv`       | default opener for audio and video files  |
+| `alacritty` | `T` to open a terminal in the current dir |
 
 
 ## Unmanaged plugins

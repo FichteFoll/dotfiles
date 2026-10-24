@@ -1,0 +1,50 @@
+#!/bin/bash
+# aur-review - group the build files of aur-view(1) for review
+#
+# Usage: AUR_PAGER="aur-review <command...>"
+#
+# Moves the packages in the directory that aur-view(1) appends to the command
+# into `NEW/` (never viewed before) and `SEEN/`, next to the diffs,
+# then runs the command with the first diff or `NEW/` as its start path
+# and `AUR_REVIEW=1` in its environment.
+set -o errexit
+shopt -s nullglob
+
+XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+AUR_VIEW_DB=${AUR_VIEW_DB:-$XDG_DATA_HOME/aurutils/view}
+
+if (( $# < 2 )); then
+    printf >&2 'usage: %s <command...> <directory>\n' "${0##*/}"
+    exit 1
+fi
+
+cmd=("${@:1:$#-1}")
+dir=${!#}
+
+# Package names are lowercase, so the group names cannot clash with them.
+# The links are absolute, so moving them is safe,
+# and aur-view(1) removes the directory afterwards.
+for pkg_link in "$dir"/*/; do
+    pkg_link=${pkg_link%/}
+    [[ -L $pkg_link ]] || continue
+    if [[ -f $AUR_VIEW_DB/${pkg_link##*/} ]]; then
+        group=SEEN
+    else
+        group=NEW
+    fi
+    mkdir -p -- "$dir/$group"
+    mv -- "$pkg_link" "$dir/$group/"
+done
+
+# `aur view --format log` creates `.log` files instead of `.diff` files
+patches=("$dir"/*.{diff,log})
+if (( ${#patches[@]} )); then
+    start=${patches[0]}
+elif [[ -d $dir/NEW ]]; then
+    start=$dir/NEW
+else
+    start=$dir
+fi
+
+export AUR_REVIEW=1
+exec "${cmd[@]}" "$start"

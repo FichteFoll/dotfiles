@@ -148,3 +148,8 @@ require("relative-motions"):setup({
 })
 
 require("close-and-restore-tab"):setup()
+
+-- Set by `aur-review`
+if os.getenv("AUR_REVIEW") then
+  rt.mgr.ratio = { 1, 2, 5 }
+end

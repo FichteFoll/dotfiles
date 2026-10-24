@@ -23,23 +23,26 @@ need to be installed manually.
 
 ### Plugins
 
-| Plugin                   | Needs                                  |
-| ------------------------ | -------------------------------------- |
-| `alberti42/faster-piper` | `transmission-cli` (torrent previewer) |
-| `boydaihungst/mediainfo` | `mediainfo`, `ffmpeg`, `imagemagick`   |
-| `dimi1357/pickle`        | `python`                               |
-| `orhnk/system-clipboard` | `clipboard` (AUR)                      |
-| `Rolv-Apneseth/starship` | `starship`                             |
-| `ouch`                   | `ouch`                                 |
-| `zoxide` (built-in)      | `zoxide`                               |
+| Plugin                   | Needs                                |
+| ------------------------ | ------------------------------------ |
+| `boydaihungst/mediainfo` | `mediainfo`, `ffmpeg`, `imagemagick` |
+| `dimi1357/pickle`        | `python`                             |
+| `orhnk/system-clipboard` | `clipboard` (AUR)                    |
+| `Rolv-Apneseth/starship` | `starship`                           |
+| `ouch`                   | `ouch`                               |
+| `zoxide` (built-in)      | `zoxide`                             |
 
-### Openers and keybindings
+### Openers, previewers and keybindings
 
-| Command     | Used for                                  |
-| ----------- | ----------------------------------------- |
-| `subl`      | `bulk-rename` and `edit` openers          |
-| `mpv`       | default opener for audio and video files  |
-| `alacritty` | `T` to open a terminal in the current dir |
+| Command                                  | Used for                                  |
+| ---------------------------------------- | ----------------------------------------- |
+| `subl`                                   | `bulk-rename` and `edit` openers          |
+| `mpv`                                    | default opener for audio and video files  |
+| `transmission-show` (`transmission-cli`) | torrent previewer                         |
+| `sqlite3` (`sqlite`)                     | SQLite schema previewer                   |
+| `bat`                                    | CSV previewer                             |
+| `glow`                                   | Markdown previewer                        |
+| `alacritty`                              | `T` to open a terminal in the current dir |
 
 
 ## Unmanaged plugins

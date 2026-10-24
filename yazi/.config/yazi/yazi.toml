@@ -103,13 +103,30 @@ mime = "video/*"
 run = "mediainfo --no-preview"
 
 [[plugin.prepend_previewers]]
-# silence warning https://github.com/ouch-org/ouch/issues/945
+# Must be before the mime-based entry.
 url = "*.sublime-package"
+# silence warning https://github.com/ouch-org/ouch/issues/945
 run = "ouch --show-file-icons --format=zip"
 
 [[plugin.prepend_previewers]]
 mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
 run = "ouch --show-file-icons"
+
+[[plugin.prepend_previewers]]
+mime = "application/bittorrent"
+run = "faster-piper -- transmission-show \"$1\""
+
+[[plugin.prepend_previewers]]
+mime = "application/sqlite3"
+run  = 'faster-piper -- sqlite3 "$1" ".schema --indent"'
+
+[[plugin.prepend_previewers]]
+url = "*.csv"
+run = 'faster-piper -- bat -p --color=always "$1"'
+
+[[plugin.prepend_previewers]]
+url = "*.md"
+run = 'faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
 
 [[plugin.prepend_previewers]]
 url = "*.{pkl,pickle}"
@@ -118,7 +135,3 @@ run = "pickle"
 [[plugin.prepend_previewers]]
 url = "**/trackma/*/anime.{info,list,meta,queue}"
 run = "pickle"
-
-[[plugin.prepend_previewers]]
-mime = "application/bittorrent"
-run = "piper -- transmission-show \"$1\""

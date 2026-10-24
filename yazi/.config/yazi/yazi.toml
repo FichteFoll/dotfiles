@@ -121,4 +121,4 @@ run = "pickle"
 
 [[plugin.prepend_previewers]]
 mime = "application/bittorrent"
-run = "torrent-preview"
+run = "piper -- transmission-show \"$1\""

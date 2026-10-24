@@ -44,11 +44,6 @@ rev = "7f5b75c"
 hash = "2e1cff0ff812795bae4be4584da220aa"
 
 [[plugin.deps]]
-use = "kirasok/torrent-preview"
-rev = "f465282"
-hash = "d849ad596b8a77902e62a42403aeba40"
-
-[[plugin.deps]]
 use = "KKV9/command"
 rev = "523e6a5"
 hash = "a7e5577f7bae80fa064e416c09ac62a4"

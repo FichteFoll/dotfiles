@@ -1,0 +1,149 @@
+#!/bin/bash
+# ya-pkg-review - review pending yazi package upgrades before applying them
+#
+# Usage: ya-pkg-review
+#
+# Fetches the package clones that `ya pkg` keeps in its cache,
+# shows the commits each package would be upgraded with
+# through the configured git pager,
+# asks which upgrades to accept,
+# and runs `ya pkg upgrade` for the accepted ones after a final confirmation.
+# Packages whose `rev` starts with `=` are pinned and skipped, like `ya` does.
+set -o errexit
+shopt -s nullglob
+
+XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
+package_toml=${YAZI_CONFIG_HOME:-$HOME/.config/yazi}/package.toml
+clones_dir=$XDG_CACHE_HOME/yazi/packages
+
+# Prints one `<use> <rev>` line per plugin and flavor dependency.
+read_deps() {
+    python -I -c '
+import sys, tomllib
+with open(sys.argv[1], "rb") as f:
+    toml = tomllib.load(f)
+for section in ("plugin", "flavor"):
+    for dep in toml.get(section, {}).get("deps", []):
+        print(dep["use"], dep["rev"])
+' "$package_toml"
+}
+
+# Mirrors `Dependency::remote()` in yazi-cli:
+# a `use` without `:` refers to the repository `<use>.yazi`.
+remote_of() {
+    local use=$1
+    if [[ $use == *:* ]]; then
+        printf 'https://github.com/%s.git\n' "${use%%:*}"
+    else
+        printf 'https://github.com/%s.yazi.git\n' "$use"
+    fi
+}
+
+path_of() {
+    local use=$1
+    if [[ $use == *:* ]]; then
+        printf '%s.yazi\n' "${use#*:}"
+    else
+        printf '.\n'
+    fi
+}
+
+# Reads a single key from the terminal, since stdout may be a pager's.
+prompt_key() {
+    local key
+    printf '%s ' "$1" >/dev/tty
+    read -rn1 key </dev/tty
+    printf '\n' >/dev/tty
+    printf '%s\n' "$key"
+}
+
+if [[ ! -f $package_toml ]]; then
+    printf >&2 '%s: %s not found\n' "${0##*/}" "$package_toml"
+    exit 1
+fi
+
+# The clone directories are named after a hash of the remote URL,
+# so look them up by their origin instead of recomputing it.
+declare -A clone_of
+for dir in "$clones_dir"/*/; do
+    url=$(git -C "$dir" remote get-url origin 2>/dev/null) || continue
+    clone_of[$url]=${dir%/}
+done
+
+declare -A fetched
+reviewed=() decisions=() accepted=() accepted_commits=()
+
+# The dependencies come in on fd 3, so that git cannot consume them from stdin.
+while read -r -u 3 use rev; do
+    [[ $rev == =* ]] && continue
+
+    clone=${clone_of[$(remote_of "$use")]}
+    if [[ -z $clone ]]; then
+        printf >&2 "%s: no clone for %s, run 'ya pkg install' first\n" "${0##*/}" "$use"
+        continue
+    fi
+    if [[ -z ${fetched[$clone]} ]]; then
+        printf 'Fetching %s\n' "$use"
+        git -C "$clone" fetch --quiet
+        fetched[$clone]=1
+    fi
+
+    path=$(path_of "$use")
+    range=$rev..origin/HEAD
+    [[ -n $(git -C "$clone" rev-list "$range" -- "$path") ]] || continue
+
+    decision=
+    while [[ -z $decision ]]; do
+        git -C "$clone" log --patch --stat "$range" -- "$path"
+        case $(prompt_key "Upgrade $use ($range)? [y]es/[n]o/[r]eview again/[q]uit") in
+            y) decision=accept ;;
+            n) decision=skip ;;
+            q) break 2 ;;
+        esac
+    done
+
+    target=$(git -C "$clone" rev-parse --short origin/HEAD)
+    reviewed+=("$use")
+    if [[ $decision == accept ]]; then
+        decisions+=("upgrade  $rev -> $target")
+        accepted+=("$use")
+        accepted_commits+=("$(git -C "$clone" rev-parse origin/HEAD)")
+    else
+        decisions+=("keep     $rev")
+    fi
+done 3< <(read_deps)
+
+if (( ! ${#reviewed[@]} )); then
+    printf 'Nothing to upgrade\n'
+    exit 0
+fi
+
+printf '\nSummary:\n'
+for i in "${!reviewed[@]}"; do
+    printf '  %-45s %s\n' "${reviewed[i]}" "${decisions[i]}"
+done
+
+if (( ! ${#accepted[@]} )); then
+    exit 0
+fi
+[[ $(prompt_key "Upgrade ${#accepted[@]} packages? [y/N]") == y ]] || exit 0
+
+ya pkg upgrade "${accepted[@]}"
+
+# `ya pkg upgrade` pulls again,
+# so it may have picked up commits that landed after the review.
+declare -A new_rev_of
+while read -r use rev; do
+    new_rev_of[$use]=$rev
+done < <(read_deps)
+for i in "${!accepted[@]}"; do
+    use=${accepted[i]}
+    clone=${clone_of[$(remote_of "$use")]}
+    new_commit=$(git -C "$clone" rev-parse "${new_rev_of[$use]}^{commit}")
+    if [[ $new_commit != "${accepted_commits[i]}" ]]; then
+        printf >&2 'warning: %s was upgraded to %s, not to the reviewed commit\n' \
+            "$use" "${new_rev_of[$use]}"
+    fi
+done
+
+printf 'Remember to commit %s\n' "$package_toml"

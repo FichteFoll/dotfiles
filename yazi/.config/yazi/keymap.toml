@@ -81,6 +81,7 @@ desc = "Open $SHELL here"
 [[mgr.prepend_keymap]]
 on = "<C-y>"
 run = ["plugin system-clipboard"]
+desc = "Copy selected files to system clipboard"
 
 [[mgr.prepend_keymap]]
 on   = [ "g", "c" ]

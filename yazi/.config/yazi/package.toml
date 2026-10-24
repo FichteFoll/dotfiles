@@ -5,28 +5,28 @@ hash = "a028c3c06630a33b068f4d5bd714a795"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
-rev = "75a5330"
-hash = "2eca70f99d25c661e0a92000843d001e"
+rev = "ed946c3"
+hash = "43fff18b85896a499105f621de458ea1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "56d6277"
-hash = "7b625412411be411153886894d9acaf"
+rev = "e0bbd20"
+hash = "17ebde15c4349f90aedbc45984b98db2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "56d6277"
-hash = "88e56a64b7ce7c4314427452343fef17"
+rev = "e0bbd20"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:types"
-rev = "56d6277"
-hash = "9105494e98299f392aee95340066da9f"
+rev = "e0bbd20"
+hash = "d368d5a6a72657e1c0e7ee7340dcea8c"
 
 [[plugin.deps]]
 use = "imsi32/yatline"
-rev = "c5d4b48"
-hash = "e6e98d12b1648d1894c2b560d85eeaa7"
+rev = "dc44b73"
+hash = "fa488655544e367e5439a9748d28519e"
 
 [[plugin.deps]]
 use = "imsi32/yatline-githead"
@@ -35,8 +35,8 @@ hash = "8282baf02fcd6aac00ccad2276775358"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "159eaba"
-hash = "7de446280b1ba8c49ffd86dbc24bbbe6"
+rev = "ea92cf4"
+hash = "9776f378459072b6c2875eae5addc49d"
 
 [[plugin.deps]]
 use = "dimi1357/pickle"
@@ -50,38 +50,38 @@ hash = "a7e5577f7bae80fa064e416c09ac62a4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "56d6277"
-hash = "5b1c276b75cae91cbbdbe7863f39a540"
+rev = "e0bbd20"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "boydaihungst/pref-by-location"
-rev = "e20924c"
-hash = "a3940872a9824e292faebdc286094475"
+rev = "919b2d0"
+hash = "80468b4806ba5218236f0d95c10f98f5"
 
 [[plugin.deps]]
 use = "alberti42/faster-piper"
-rev = "8b794bf"
-hash = "fac71f8ce9447ad509b5aad9e0d8c694"
+rev = "bb90261"
+hash = "12b5e342d54db42b5b023faa1a11f28e"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "e079a00"
-hash = "5e203acd4ff62c96cbc2887c8142d78"
+rev = "f1cec0b"
+hash = "ffbb236e6407c9fc2451325d00bcf326"
 
 [[plugin.deps]]
 use = "MasouShizuka/close-and-restore-tab"
-rev = "5047217"
-hash = "bb24648b1f96f1cef8c1543742189aad"
+rev = "b2153bc"
+hash = "1493e40f8f4f222c9ecb24cf85ccabd2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "1962818"
+rev = "e0bbd20"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "boydaihungst/relative-motions"
-rev = "d720b1c"
-hash = "cb389a36241ada4893796d89dd5da7a0"
+rev = "8f69d78"
+hash = "10b77b13edb2357f023193233e9afe81"
 
 [flavor]
 deps = []

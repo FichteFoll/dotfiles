@@ -48,9 +48,13 @@ see [Caveats](#caveats).
 ## Upgrading plugins
 
 1. Run `ya-pkg-review`.
-   It shows the pending commits of each package through the git pager,
-   asks which upgrades to accept,
-   and runs `ya pkg upgrade` for them after confirming a summary.
+   For each package with new commits,
+   it offers to list them,
+   to review them one by one (oldest first)
+   or as a single diff after their messages,
+   and to upgrade or skip the package.
+   It then runs `ya pkg upgrade` for the accepted packages
+   after confirming a summary.
 2. Commit `package.toml`.
 3. On the other machines,
    pull the dotfiles and run `ya pkg install`.

@@ -4,10 +4,10 @@
 # Usage: ya-pkg-review
 #
 # Fetches the package clones that `ya pkg` keeps in its cache,
-# shows the commits each package would be upgraded with
-# through the configured git pager,
-# asks which upgrades to accept,
-# and runs `ya pkg upgrade` for the accepted ones after a final confirmation.
+# and for each package with new commits offers to list them,
+# to review them one by one or as a single diff through the git pager,
+# and to accept or skip the upgrade.
+# It then runs `ya pkg upgrade` for the accepted ones after a final confirmation.
 # Packages whose `rev` starts with `=` are pinned and skipped, like `ya` does.
 set -o errexit
 shopt -s nullglob
@@ -71,7 +71,7 @@ for dir in "$clones_dir"/*/; do
 done
 
 declare -A fetched
-reviewed=() decisions=() accepted=() accepted_commits=()
+pending=() pending_revs=() pending_clones=() pending_paths=() pending_targets=()
 
 # The dependencies come in on fd 3, so that git cannot consume them from stdin.
 while read -r -u 3 use rev; do
@@ -89,32 +89,68 @@ while read -r -u 3 use rev; do
     fi
 
     path=$(path_of "$use")
-    range=$rev..origin/HEAD
-    [[ -n $(git -C "$clone" rev-list "$range" -- "$path") ]] || continue
+    target=$(git -C "$clone" rev-parse origin/HEAD)
+    [[ -n $(git -C "$clone" rev-list "$rev..$target" -- "$path") ]] || continue
 
+    pending+=("$use")
+    pending_revs+=("$rev")
+    pending_clones+=("$clone")
+    pending_paths+=("$path")
+    pending_targets+=("$target")
+done 3< <(read_deps)
+
+if (( ! ${#pending[@]} )); then
+    printf 'Nothing to upgrade\n'
+    exit 0
+fi
+
+# Shows the commit messages followed by the combined diff of all commits.
+# Git cannot produce both in one command,
+# so the output is piped to the git pager, run through the shell like git does.
+show_full_diff() {
+    local clone=$1 range=$2 path=$3
+    {
+        git -C "$clone" log --color=always --reverse "$range" -- "$path"
+        printf '\n'
+        git -C "$clone" diff --color=always --stat --patch "$range" -- "$path"
+    } | sh -c "$(git var GIT_PAGER)"
+}
+
+reviewed=() decisions=() accepted=() accepted_commits=()
+
+for i in "${!pending[@]}"; do
+    use=${pending[i]}
+    rev=${pending_revs[i]}
+    clone=${pending_clones[i]}
+    path=${pending_paths[i]}
+    target=${pending_targets[i]}
+    range=$rev..$(git -C "$clone" rev-parse --short "$target")
+    count=$(git -C "$clone" rev-list --count "$range" -- "$path")
+
+    printf '\n%s: %d new commits (%s)\n' "$use" "$count" "$range"
     decision=
     while [[ -z $decision ]]; do
-        git -C "$clone" log --patch --stat "$range" -- "$path"
-        case $(prompt_key "Upgrade $use ($range)? [y]es/[n]o/[r]eview again/[q]uit") in
-            y) decision=accept ;;
-            n) decision=skip ;;
+        case $(prompt_key "[l]ist commits/review [c]ommits/review [d]iff/[u]pgrade/[s]kip/[q]uit?") in
+            l) git -C "$clone" log --reverse --format='%C(yellow)%h%C(reset) %s' "$range" -- "$path" ;;
+            c) git -C "$clone" log --reverse --patch --stat "$range" -- "$path" ;;
+            d) show_full_diff "$clone" "$range" "$path" ;;
+            u) decision=upgrade ;;
+            s) decision=skip ;;
             q) break 2 ;;
         esac
     done
 
-    target=$(git -C "$clone" rev-parse --short origin/HEAD)
     reviewed+=("$use")
-    if [[ $decision == accept ]]; then
-        decisions+=("upgrade  $rev -> $target")
+    if [[ $decision == upgrade ]]; then
+        decisions+=("upgrade  $range")
         accepted+=("$use")
-        accepted_commits+=("$(git -C "$clone" rev-parse origin/HEAD)")
+        accepted_commits+=("$target")
     else
         decisions+=("keep     $rev")
     fi
-done 3< <(read_deps)
+done
 
 if (( ! ${#reviewed[@]} )); then
-    printf 'Nothing to upgrade\n'
     exit 0
 fi
 

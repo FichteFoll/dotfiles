@@ -50,7 +50,8 @@ fi
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # Env settings for tools
-export AUR_PAGER="ranger --cmd aur"
+# Absolute path, because `sudo` (`aurs`) resets `PATH` to its `secure_path`
+export AUR_PAGER="$HOME/bin/aur-review yazi"  # or "$HOME/bin/aur-review ranger --cmd aur"
 export AUR_REPO="aur"  # default for aur packages
 export AUR_SYNC_USE_NINJA="1"
 

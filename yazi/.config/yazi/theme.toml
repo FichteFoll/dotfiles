@@ -4,3 +4,9 @@
 [indicator]
 padding = { open = "█", close = "█" }
 preview = { reversed = true, underline = false }
+
+[git]
+# https://github.com/yazi-rs/plugins/tree/main/git.yazi#advanced
+# Ensure file sizes align inside a git repo.
+clean_sign = "  "
+# untracked_sign = "? "

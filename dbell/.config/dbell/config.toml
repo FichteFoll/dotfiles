@@ -1,0 +1,37 @@
+# dbell configuration, see ~/code/diving-bell/docs/configuration.md.
+#
+# [defaults] holds what every profile shares.
+# `default` is the personal profile in its own context.
+# Secrets live in ~/.config/dbell/secrets/, which is not tracked.
+# Further profiles, such as machine- or employer-specific ones, go into config.d/*.toml.
+
+[defaults]
+image = "docker.io/library/archlinux:latest"
+
+[[defaults.mounts]]
+path = "~/.rustup"
+env = "RUSTUP_HOME"
+# Hook and status line scripts, referenced as ~/.claude/scripts/... in settings.json.
+# There is no `scripts` asset kind, so they are mounted into the config directory directly.
+[[defaults.mounts]]
+path = "~/dotfiles/claude/.claude/scripts"
+target = "{sandbox_home}/.claude/scripts"
+
+[defaults.claude]
+settings = ["~/.claude/settings.json", "~/.config/dbell/claude/sandbox.json"]
+keybindings = "~/.claude/keybindings.json"
+theme = "auto"
+
+[[defaults.claude.skills]]
+source = "~/code/agent-config/skills"
+
+[[defaults.claude.rules]]
+source = "~/.claude/rules"
+exclude = ["rules.zip", "test.zip"]
+
+[defaults.broker.notify]
+sounds = { notify = "~/dotfiles/claude/.claude/sounds/notify.flac", error = "~/dotfiles/claude/.claude/sounds/error.flac" }
+
+[profile.default]
+[[profile.default.mounts]]
+path = "~/screenshots"

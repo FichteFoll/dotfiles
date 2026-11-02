@@ -22,6 +22,24 @@ session=$(jq -r '.session_id // empty' <<< "$input")
 transcript=$(jq -r '.transcript_path // empty' <<< "$input")
 message=$(jq -r '.message // empty' <<< "$input")
 
+# Inside a dbell sandbox there is neither a session bus nor audio;
+# the broker's notify command shows the notification and plays the sound on the host.
+# dbell builds the environment from scratch, so its broker shim is the marker.
+DBELL_NOTIFY=/run/dbell/generated/bin/notify
+
+notify_host() {
+    local urgency=$1 title=$2 body=$3
+    if [ -x "$DBELL_NOTIFY" ]; then
+        # The broker rejects a sound name its context does not configure; notify silently then.
+        "$DBELL_NOTIFY" --sound notify -- "$title" "$body" > /dev/null 2>&1 \
+            || "$DBELL_NOTIFY" -- "$title" "$body" > /dev/null 2>&1 \
+            || true
+        return
+    fi
+    notify-send --urgency="$urgency" "$title" "$body" > /dev/null 2>&1 || true
+    paplay ~/.claude/sounds/notify.flac > /dev/null 2>&1 &
+}
+
 # Identifies the session in a notification that may come from any of several
 # terminal windows. The bell tells you which window, this tells you which repo.
 label() {
@@ -55,17 +73,15 @@ agents_pending() {
 case "$ntype" in
     idle_prompt)
         agents_pending && exit 0
-        notify-send 'Claude Code' "Session finished: $(label)" > /dev/null 2>&1
+        notify_host normal 'Claude Code' "Session finished: $(label)"
         ;;
     permission_prompt)
-        notify-send --urgency=critical 'Claude Code' "$message: $(label)" > /dev/null 2>&1
+        notify_host critical 'Claude Code' "$message: $(label)"
         ;;
     *)
         exit 0
         ;;
 esac
-
-paplay ~/.claude/sounds/notify.flac > /dev/null 2>&1 &
 
 # Only the JSON may go to stdout, everything else above is silenced for that.
 jq -nc --arg seq "$(printf '\007')" '{terminalSequence: $seq, suppressOutput: true}'

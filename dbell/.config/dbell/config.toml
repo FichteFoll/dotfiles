@@ -16,6 +16,12 @@ env = "RUSTUP_HOME"
 [[defaults.mounts]]
 path = "~/dotfiles/claude/.claude/scripts"
 target = "{sandbox_home}/.claude/scripts"
+# Repositories the host runs code from are never writable in a sandbox.
+# The sandbox edits ~/clones/<name>; fetch from the `sandbox-<context>` remote to review and merge.
+[[defaults.clones]]
+origin = "~/dotfiles"
+[[defaults.clones]]
+origin = "~/code/diving-bell"
 
 [defaults.claude]
 settings = ["~/.claude/settings.json", "~/.config/dbell/claude/sandbox.json"]

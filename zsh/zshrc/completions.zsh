@@ -51,8 +51,13 @@ _sync-asroot() {
         _aur_local_packages
         return
     fi
-    if (( ${preceding[(I)--[SB]]} )); then
-        _arguments '--[packages follow]'
+    local -i build_marker=${preceding[(I)--B]} sync_marker=${preceding[(I)--S]}
+    if (( build_marker )); then
+        _sync-asroot-section build $build_marker
+        return
+    fi
+    if (( sync_marker )); then
+        _sync-asroot-section sync $sync_marker
         return
     fi
     _arguments \
@@ -62,6 +67,21 @@ _sync-asroot() {
         '--B[following options only for aur build]' \
         '--[packages follow]' \
         '*:package:_aur_local_packages'
+}
+
+# Complete the options of `aur $1` for the words following the marker at index $2.
+# Delegates to aurutils' `_aur` with rewritten words,
+# because its `_aur-sync` and `_aur-build` only exist after `_aur` ran once.
+_sync-asroot-section() {
+    local subcommand=$1 marker=$2 ret=1
+    if [[ $PREFIX == -* ]]; then
+        local -a separator=( '--:packages follow' )
+        _describe -t separator separator separator && ret=0
+    fi
+    words=( aur $subcommand "${(@)words[marker+1,-1]}" )
+    (( CURRENT -= marker - 2 ))
+    _aur && ret=0
+    return ret
 }
 compdef _sync-asroot sync-asroot
 

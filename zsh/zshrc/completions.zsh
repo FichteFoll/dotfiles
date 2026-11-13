@@ -43,6 +43,28 @@ zstyle ':completion:*:man:*'      menu yes select
 autoload -Uz compinit
 compinit
 
+# sync-asroot (`aurs` alias) completes packages from the local repos.
+# After `--S` or `--B`, packages must be separated by a `--`.
+_sync-asroot() {
+    local -a preceding=( ${words[1,CURRENT-1]} )
+    if (( ${preceding[(I)--]} )); then
+        _aur_local_packages
+        return
+    fi
+    if (( ${preceding[(I)--[SB]]} )); then
+        _arguments '--[packages follow]'
+        return
+    fi
+    _arguments \
+        '(-U --user)'{-U+,--user=}'[build as user]:user:_users' \
+        '(-k --keep-going)'{-k+,--keep-going=}'[keep going until N failures]:N:' \
+        '--S[following options only for aur sync]' \
+        '--B[following options only for aur build]' \
+        '--[packages follow]' \
+        '*:package:_aur_local_packages'
+}
+compdef _sync-asroot sync-asroot
+
 # Third-party packages for auto competions
 # - zsh-autosuggestions: fish-like auto completions
 # - git-flow-completion-git
